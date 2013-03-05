@@ -1,0 +1,58 @@
+﻿<#@ template debug="True" hostspecific="True" language="C#" #>
+<#@ Include File="MultipleOutputHelper.ttinclude" #>
+<#@ Assembly Name="$(TargetDir)NLite.dll" #>
+<#@ Assembly Name="$(TargetDir)ELinq.dll" #>
+<#@ Assembly Name="System.Data" #>
+<#@ output extension=".cs" #>
+
+<#
+    var dbConfgiruation = NLite.Data.DbConfiguration.ConfigureSqlServer("server=.;database=Northwind;uid=sa;pwd=;");
+    using (var db = dbConfgiruation.CreateDbContext())
+    {
+			string[] restrictions = new string[]
+			{
+				"northwind", 
+				null, 
+				null, 
+				null
+			};
+	    db.Connection.Open();
+        db.Connection.Close();
+        var tb = db.Connection.GetSchema("Columns", restrictions);
+        tb.WriteXml(Console.Out);
+    }
+#>
+<# var manager = Manager.Create(Host, GenerationEnvironment);
+ manager.StartHeader();#>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+namespace Tests
+{
+<#
+	manager.EndBlock();
+#>
+
+<#   manager.StartNewFile("Employee.generated.cs"); 
+#>
+	public class Employee 
+	{
+	}
+<# manager.EndBlock(); #>
+<#   manager.StartNewFile("Order.generated.cs"); 
+#>
+	public class Order 
+	{
+	}
+<# manager.EndBlock(); #>
+
+<#
+	manager.StartFooter();
+#>
+}
+<#
+	manager.EndBlock();
+#>
+<#
+	manager.Process(true);
+#>

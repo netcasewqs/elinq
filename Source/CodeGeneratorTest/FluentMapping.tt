@@ -1,0 +1,142 @@
+﻿<#@ template debug="True" hostspecific="True" language="C#" #>
+<#@ Include File="MultipleOutputHelper.ttinclude" #><#//把 MultipleOutputHelper文件包含进来 #>
+<#@ Assembly Name="$(TargetDir)NLite.dll" #><#//通过宏的方式添加NLite组件引用，NLite位于项目输出路径 #>
+<#@ Assembly Name="$(TargetDir)ELinq.dll" #><#//通过宏的方式添加ELinq组件引用，ELinq位于项目输出路径 #>
+<#@ Assembly Name="System.Data" #>
+<#@ Import Namespace="NLite.Data" #>
+<#@ Import Namespace="NLite.Data.CodeGeneration" #><#//导入代码生成的命名约定对象对应的命名空间 #>
+<#@ output extension=".cs" #>
+<#
+	 //创建多文件管理器
+	var manager = MultipleFileManager.Create(Host, GenerationEnvironment);
+    
+    //定义代码生成的命名空间，大家可以根据需要自行修改
+	var @namespace = manager.DefaultProjectNamespace+".Models";
+    
+    //定义定义连接字符串名称
+    var connectionStringName = "Northwind";
+
+    //定义DbContext名称-通过模版文件名得到
+    var dbContextName = Host.TemplateFile.Split('\\')[Host.TemplateFile.Split('\\').Length -1].TrimEnd('.','t');
+    
+    //读取App.config或Web.config中连接字符串信息
+    var connectionStringSetting = GetConnectionStringSettings(connectionStringName);
+    
+    //得到配置文件中的连接字符串
+    var connectionString = connectionStringSetting.ConnectionString;
+    
+    //得到DbProviderName 
+    var dbProviderName = connectionStringSetting.ProviderName;
+
+    //通过连接字符串和dbProviderName 名称来配置ELinq的dbConfiguration
+    var dbConfiguration = DbConfiguration.Configure(connectionString, dbProviderName);
+    
+    //通过dbConfiguration 获取数据库的Schema,备注：当前仅仅支持表和视图 
+    var databaseSchema = dbConfiguration.Schema;
+
+    var tables = databaseSchema.Tables.Union(databaseSchema.Views);
+
+    //定义命名约定对象（表名到类名转换约定，列名到字段或属性名转换约定等）
+    var namingConversion = NamingConversion.Default;
+   
+    manager.StartHeader();
+#>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using NLite.Data;
+namespace <#= @namespace #>
+{
+<#manager.EndBlock();#>
+<# //------------------创建DbContext ------------------#>
+	using NLite.Data.Mapping.Fluent;
+
+	public partial class <#= dbContextName #>:DbContext
+	{
+		//连接字符串名称：基于Config文件中连接字符串的配置
+        const string connectionStringName = "<#= connectionStringName #>";
+
+        //构造dbConfiguration 对象
+        static DbConfiguration dbConfiguration;
+
+		static <#= dbContextName #>()
+		{
+			 dbConfiguration = DbConfiguration
+                  .Configure(connectionStringName)
+                  .SetSqlLogger(() =>SqlLog.Debug)
+				  .AddFromAssemblyOf< <#= dbContextName #>>(t=>typeof(ClassMap).IsAssignableFrom(t))
+				  ;
+		}
+
+		public <#= dbContextName #>():base(dbConfiguration){}
+		
+<#foreach (var tb in tables){#>
+		public IDbSet<<#=namingConversion.ClassName(tb.TableName)  #>> <#= namingConversion.QueryableName(tb.TableName) #> { get; private set; }
+<#}#>
+	}
+<# //------------------创建DbContext结束 ------------------#>
+<# //------------------循环创建实体类 ------------------#>
+<#foreach (var tb in tables){
+	manager.StartNewFile(namingConversion.ClassName(tb.TableName) + ".cs");#>
+	public partial class <#= namingConversion.ClassName(tb.TableName) #> 
+	{
+<#foreach (var col in tb.PrimaryKeys){#>	
+		public <#= namingConversion.DataType(col) #> <#= namingConversion.PropertyName(col.ColumnName) #> { get;set; }
+<#}#> 
+<#foreach (var col in tb.Columns){#>
+		public <#= namingConversion.DataType(col) #> <#= namingConversion.PropertyName(col.ColumnName) #> { get;set; }
+<#}#> 
+<#foreach (var fk in tb.ForeignKeys)
+{#>
+		public <#= namingConversion.ClassName(fk.OtherTable.TableName) #> <#= namingConversion.ManyToOneName(fk) #> { get;set; }
+<#}#> 
+<#foreach (var fk in tb.Children)
+{#>
+		public IList<<#= namingConversion.ClassName(fk.OtherTable.TableName) #>> <#= namingConversion.QueryableName(fk.OtherTable.TableName) #> { get;set; }
+<#}#> 
+	}
+<# } manager.EndBlock();#>
+<# //------------------循环创建实体类结束 ------------------#>
+<# //------------------循环创建实体映射类ClassMap ------------------#>
+<#foreach (var tb in tables)
+{
+    manager.StartNewFile(namingConversion.ClassName(tb.TableName) + ".Mapping.cs");#>
+	using NLite.Data.Mapping.Fluent;
+
+	public partial class <#= namingConversion.ClassName(tb.TableName) #>Map:ClassMap<<#= namingConversion.ClassName(tb.TableName) #>> 
+	{
+		public <#= namingConversion.ClassName(tb.TableName) #>Map()
+		{
+			TableName("<#=tb.TableName  #>")<#=tb.IsView?".Readonly()":""  #>;
+<#if(tb.PrimaryKeys.Length > 0){#>
+
+<#foreach (var col in tb.PrimaryKeys){#>
+			Id(e => e.<#=namingConversion.PropertyName(col.ColumnName)  #>).ColumnName("<#= col.ColumnName #>")<#=col.IsGenerated ? ".DbGenerated()" : "" #>.DbType(DBType.<#= col.DbType #>).Length(<#= col.Length #>);
+<#}#>
+<#}#>
+
+<#foreach (var col in tb.Columns){#>
+            Column(e => e.<#=namingConversion.PropertyName(col.ColumnName)  #>).ColumnName("<#= col.ColumnName #>")<#=!col.IsNullable ? ".Required()" : "" #>.DbType(DBType.<#= col.DbType #>).Length(<#= col.Length #>);
+<#}#>
+<#if(tb.ForeignKeys.Length >0){#>
+
+<#foreach(var item in tb.ForeignKeys){#>
+			ManyToOne<<#=namingConversion.ClassName(item.OtherTable.TableName)#>>(e=>e.<#=namingConversion.PropertyName(item.ThisKey.ColumnName)  #>).OtherKey(e=>e.<#=namingConversion.PropertyName(item.OtherKey.ColumnName)  #>);
+<#}#>
+<#}#>
+<#if(tb.Children.Length >0){#>
+
+<#foreach(var item in tb.Children){#>
+			OneToMany<<#=namingConversion.ClassName(item.OtherTable.TableName)#>>(e=>e.<#=namingConversion.PropertyName(item.ThisKey.ColumnName)  #>).OtherKey(e=>e.<#=namingConversion.PropertyName(item.OtherKey.ColumnName)  #>);
+<#}#>
+<#}#>
+		}
+	}
+<#} manager.EndBlock();#>
+<# //------------------循环创建实体映射类ClassMap结束 ------------------#>
+<#manager.StartFooter();#>
+}
+<#
+ manager.EndBlock();
+ manager.Process(true);
+#>

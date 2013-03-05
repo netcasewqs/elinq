@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{23327BAD-3EBD-40D1-BDE0-68DEE26D4FB8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NLite.Data.Test</RootNamespace>
+    <AssemblyName>NLite.Data.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SDK4</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NLite">
+      <HintPath>..\packages\NLite.0.9.5.5\lib\net40\NLite.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\Libs\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
+      <Visible>False</Visible>
+    </CodeAnalysisDependentAssemblyPaths>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ByteArrayTest.cs" />
+    <Compile Include="Cnblogs\IndexTest.cs" />
+    <Compile Include="ConvertTest.cs" />
+    <Compile Include="Core\1. ConfiguarationTest.cs" />
+    <Compile Include="Core\2. InsertTest.cs" />
+    <Compile Include="Core\3. DeleteTest.cs" />
+    <Compile Include="Core\4. UpdateTest.cs" />
+    <Compile Include="Core\5. SelectTest.cs" />
+    <Compile Include="Decimal.cs" />
+    <Compile Include="MathTest.cs" />
+    <Compile Include="Model\DateTimeModel.cs" />
+    <Compile Include="Model\MathModel.cs" />
+    <Compile Include="Model\UserInfo.cs" />
+    <Compile Include="Model\Users.cs" />
+    <Compile Include="NamingConversionTest.cs" />
+    <Compile Include="SqlHelperTest.cs" />
+    <Compile Include="DateTimeTest.cs" />
+    <Compile Include="DecimalTest.cs" />
+    <Compile Include="EnumAndGuidConvertTest.cs" />
+    <Compile Include="EnumTest.cs" />
+    <Compile Include="GeneralFunctionTest.cs" />
+    <Compile Include="GuidTest.cs" />
+    <Compile Include="Int32Test.cs" />
+    <Compile Include="LinqTest.cs" />
+    <Compile Include="Model\Model.cs" />
+    <Compile Include="Model\Northwind.cs" />
+    <Compile Include="NorthwindCUDTest.cs" />
+    <Compile Include="NorthwindExecutionTest.cs" />
+    <Compile Include="NumbericTest.cs" />
+    <Compile Include="ObjectDumper.cs" />
+    <Compile Include="Primitive\TestBase.cs" />
+    <Compile Include="Primitive\TypeInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringNullable.cs" />
+    <Compile Include="StringTest.cs" />
+    <Compile Include="TypeConvert\BooleanConvertTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TypeConvert\ByteArrayConvertTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TypeConvert\ByteConvertTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TypeConvert\CharConvertTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TypeConvert\DateTimeConvertTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TypeConvert\DecimalConvertTest.cs" />
+    <Compile Include="TypeConvert\DoubleConvertTest.cs" />
+    <Compile Include="TypeConvert\GuidConvertTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TypeConvert\Int16ConvertTest.cs" />
+    <Compile Include="TypeConvert\Int32ConvertTest.cs" />
+    <Compile Include="TypeConvert\Int64ConvertTest.cs" />
+    <Compile Include="TypeConvert\SByteConvertTest.cs" />
+    <Compile Include="TypeConvert\SingleConvertTest.cs" />
+    <Compile Include="TypeConvert\StringConvertTest.cs" />
+    <Compile Include="TypeConvert\UInt16ConvertTest.cs" />
+    <Compile Include="TypeConvert\UInt32ConvertTest.cs" />
+    <Compile Include="TypeConvert\UInt64ConvertTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="File\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NLite.Data\NLite.Data.csproj">
+      <Project>{1AEA82FF-B88B-4DAE-A7AA-1B26FF347756}</Project>
+      <Name>NLite.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model\Northwind.Mapping.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

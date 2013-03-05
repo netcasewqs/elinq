@@ -1,0 +1,198 @@
+
+
+    1. 支持事务（ACID），即使系统崩溃或断电
+    2. 零配置，无须安装或管理
+    3. 实现了大部分SQL92
+    4. 全部数据库存在在一个跨平台的磁盘文件中
+    5. 支持TB大小的数据库，GB大小的字符串和blobs
+    6. 对于大多数普通操作，比流行的C/S数据库引擎更快
+    7. 简单，易于使用的API
+    8. 用ANSI-C编写，包含TCL绑定。对其他数十种语言的绑定分别可用
+    9. 注释良好的源代码
+    10. 可作为单个ANSI-C源代码文件
+    11. 自包含，没有外部依赖
+    12. 跨平台：Unix(Linux和Mac OS X)，OS/2，和Windows（Win32和WinCE）
+    13. 源代码在公共域中，可用于任何目的
+    14. 带有单独的命令行界面（CLI）客户端可用于管理SQLite数据库
+
+建议用于：
+
+    1. 应用程序文件格式。取代XML或某些专有格式的磁盘文件，数据更易于访问和跨平台，更新是事务型的。
+    2. 小产品的数据库。用于无线电话，PDA，MP3播放器，机顶盒，和其他电子小产品中。
+    3. 网站数据库。用于中等大小的网站。
+    4. 企业级RDBMS的替身。常作为企业级RDBMS的代理，用于演示或测试。
+
+	
+
+下面的列表是SQLite还未实现的SQL92特性，列表的顺序暗示了特性可能会添加到SQLite的时间，列表顶部的特性可能会在未来实现，而列表底部的特性暂时还没有实现的计划。
+
+    1. RIGHT和FULL OUTER JOIN。左外联结已经实现了，但右外联结和全外联结还没实现。
+    2. 完整的ALTER TABLE支持。只有RENAME TABLE和ADD COLUMN是支持的，其他类型的ALTER TABLE操作，如DROP COLUMN，ALTER COLUMN，ADD CONSTRAINT等等是被忽略的。
+    3. 完全的触发器支持。FOR EACH ROW触发器是支持的，但FOR EACH STATEMENT触发器不支持。
+    4. 写视图。SQLite中的视图是只读的，不能在视图上执行DELETE，INSERT，或UPDATE语句。但你可以创建当试图删除、插入或更新视图时触发的触发器，并在触发器的主体中做必需的操作。
+    5. GRANT和REVOKE。因为SQLite读写普通的磁盘文件，唯一需要的访问权限是正常的文件访问权限。GRANT和RREVOKE命令通常用于C/S的数据库管理系统中，在这里不实现是因为对于嵌入的数据库引擎来说没什么意义。
+
+
+	
+
+(1) 如何创建自动增长字段？
+
+整型主键列（INTEGER PRIMARY KEY），如果向主键插入NULL，那么NULL会自动转换成一个比插入前此列最大值大1的整数，如果达到最大值，则随机选择未使用的值）。
+
+如果想让生成的主键值不是原先删除过的值，则需要在定义主键时添加AUTOINCREMENT关键字。
+
+(2)SQLite支持哪些数据类型？
+
+SQLite使用动态类型。内容可以存储为INTEGER，REAL，TEXT，BLOB，或NULL。
+
+(7)如何列出数据库中所有的表/索引
+
+在命令行中输入“.tables”可获取所有的表的列表，输入“.schema”可查看完整的数据库模式（schema），包括所有的表和索引。
+
+每个SQLite数据库都有一个SQLITE_MASTER表，它定义了数据库的模式。这个表看起来像这个样子：
+
+CREATE TABLE sqlite_master (
+    type TEXT,
+    name TEXT,
+    tbl_name TEXT,
+    rootpage INTEGER,
+    sql TEXT
+);
+
+对于数据表，type字段总是“table”，而name列是表的名称。对于索引，type是“index”，name是索引的名称，tbl_name是索引所属的表的名称。不管是表还是索引，sql字段是它们的创建语句，对于自动创建的索引（用于实现主键或唯一约束），sql字段为NULL。
+
+临时表以及它们的索引和触发器出现在另一个特殊的名为SQLITE_TEMP_MASTER表中，这个表和上面的表结构相同，但只有创建临时表的应用程序能看到。
+
+(11) 如何从存在的表中添加或者删除列
+
+SQLite支持有限的ALTER TABLE语句，你可以用来在表的末尾添加列或者更改表的名字。如果要做更复杂的修改，那么不得不要重新创建表，可以先把数据存到一个临时表中，接着删除表，再创建新表，最后把数据从临时表复制到新表。示例：
+
+BEGIN TRANSACTION; 
+
+CREATE TEMPORARY TABLE t1_backup(a,b); 
+
+INSERT INTO t1_backup SELECT a,b FROM t1; 
+
+DROP TABLE t1; CREATE TABLE t1(a,b); 
+
+INSERT INTO t1 SELECT a,b FROM t1_backup; 
+
+DROP TABLE t1_backup; 
+
+COMMIT;
+
+(19) 插入太慢——我只能每秒做几十次插入
+
+实际上，SQLite在普通的桌面电脑上可以每秒执行50000或更多的插入语句。但它只能每秒做几十个事务。事务被磁盘驱动器的转速限制了。一个事务正常需要磁盘的两次完整的循环（rotatioins），这对于一个7200转每分钟的磁盘驱动器来说，大约每秒限制在60个事务。
+
+事务速度被磁盘驱动器速度限制是因为在默认情况下，在事务完成前，SQLite实际上会等待，直到数据真正安全地存储在磁盘表面上。这样，如果突然断电或者操作系统崩溃，数据还是安全的。
+
+默认地，每个插入语句本身都有自己的事务，但如果把多个插入语句用BEGIN…COMMIT包围，那么所有的插入就被组合到单个事务中。提交所需要的时间被所有的包含的插入语句分摊，所以每个插入语句的时间都会大大减少。
+
+(20)我意外地删除了一些重要信息，如何恢复？
+
+如果有数据库的备份拷贝，那么从备份可以恢复信息。如果没有，那么恢复就非常困难了。……
+
+(22)SQLite支持外键吗？
+
+从3.6.19版本，SQLite开始支持外键约束。之前的版本能够解析外键约束，但不强制实施。
+
+
+SQLite 3 中的数据类型
+
+SQLite使用动态类型系统，在SQLite中，值的数据类型和值本身，而不是和它的容器，关联在一起的。SQLite的动态类型系统和其他数据库引擎的静态类型系统是兼容的，这样在静态类型的数据库上执行的SQL语句也可以在SQLite中执行。
+
+1.0 存储类和数据类型
+
+每个存储在SQLite数据库中（或被数据库引擎操纵的）的值都有下列存储类的一个：
+
+    NULL。空值。
+    INTEGER。有符号整数，存储在1、2、3、4、6或8个字节中。
+    REAL。浮点数，存储为8字节的IEEE浮点数。
+    TEXT。文本串，使用数据库编码（UTF-8, UTF-16BE或UTF-16LE）存储。
+    BLOB。大块数据。
+
+注意存储类（storage class）比数据类型更一般。INTEGER存储类，例如，包含6种长度不同的整数数据类型。这在磁盘中是有区别的。不过一旦INTEGER值从磁盘读到内容中进行处理的时候，这些值会转化为更普通的数据类型（8位有符号整数）。因此在大部分情况下，存储类和数据类型是不易分辨的，这两个术语可以交换使用。
+
+在SQLite 3 数据库中，任何列，除了INTEGER PRIMARY KEY列，都可以存储任何存储类的值。
+
+SQL语句中的所有值，不管是SQL语句中嵌入的字面值，还是预编译的SQL语句中的参数，都有一个隐式的存储类。在下面描述的条件下，在查询执行阶段，数据库引擎可能会在数字存储类（INTEGER和REAL）和TEXT存储类之间转换。
+
+1.1 Boolean数据类型
+
+SQLite没有单独的Boolean存储类，相反，Booean值以整数0（false）和1（true）存储。
+
+1.2 日期和时间数据类型
+
+SQLite没有为存储日期和/或时间设置专门的存储类，相反，内置的日期和时间函数能够把日期和时间作为TEXT，REAL或INTEGER值存储：
+
+    TEXT：作为ISO8601字符串（"YYYY-MM-DD HH:MM:SS.SSS"）。
+    REAL：作为Julian天数，……
+    INTEGER：作为Unix Time，即自1970-01-01 00:00:00 UTC以下的秒数。
+
+2.0 类型相像（type affinity）
+
+为了最大化SQLite和其他数据库引擎之间的兼容性，SQLite支持列的”类型相像“的概念。这里重要的思想是，类型是推荐的，不是必需的。任何列仍然能够存储任何类型的数据。只是某些列，能够选择优先使用某种存储类。这个对列的优先存储类称作它的”相像“。
+
+SQLite 3 数据库中的每个列都赋予下面类型相像中的一个：
+
+    TEXT
+    NUMERIC
+    INTEGER
+    REAL
+    NONE
+
+带有TEXT相像的列会使用存储类NULL、TEXT或BLOB来存储所有的数据。如果数据数据被插入到带有TEXT相像的列中，它会在插入前转换为文本格式。
+
+带有NUMERIC相像的列可以使用所有5个存储类来包含值。当文本数据被插入到一个NUMERIC列，文本的存储类会被转换成INTEGER或REAL（为了优先），如果这个转换是无损的和可逆的话。如果TEXT到INTEGER或REAL的转换是不可能的，那么值会使用TEXT存储类存储。不会试图转换NULL或BLOB值。
+
+……
+
+2.1 列相像的确定
+
+列相像是由列声明的类型确定的，规则是按照下面的顺序：
+
+1. 如果声明的类型包含字符串”INT“那么它被赋予INTEGER相像。
+
+2. 如果列声明的类型包含任何字符串”CHAR“，”CLOB“，或”TEXT“，那么此列拥有TEXT相像。注意类型VARCHAR包含”CHAR“，因此也会赋予TEXT相像。
+
+3. 如果列声明的类型包含”BLOB“或没有指定类型，那么此列拥有NONE相像。
+
+4. 如果列声明的类型包含任何”REAL“，”FLOA“，或”DOUB“，那么此列拥有REAL相像。
+
+5. 其他情况，相像是NUMERIC。
+
+注意规则的顺序是重要的。声明类型为“CHARINT”的列同时匹配规则1和规则2，但第一个规则会优先采用，因此此列的相像是INTEGER。
+
+2.2 相像示例
+示例 	相像结果 	规则
+INT
+INTEGER
+TINYINT
+SMALLINT
+MEDIUMINT
+BIGINT
+UNSIGNED BIG INT
+INT2
+INT8 	INETGER 	1
+CHARACTER(20)
+VARCHAR(255)
+VARYING CHARACTER(255)
+NCHAR(55)
+NATIVE CHARACTER(70)
+NVARCHAR(100)
+TEXT
+CLOB 	TEXT 	2
+BLOB
+未指定数据类型 	NONE 	3
+REAL
+DOUBLE
+DOUBLE PRECISION
+FLOAT 	REAL 	4
+NUMERIC
+DECIMAL(10, 5)
+BOOLEAN
+DATE
+DATETIME 	NUMERIC 	5
+
+注意“FLOATING POINT”类型会指定INTEGER相像，而不是REAL相像，因为”INT“在末尾。”STRING“类型会拥有NUMERIC相像，而不是TEXT。

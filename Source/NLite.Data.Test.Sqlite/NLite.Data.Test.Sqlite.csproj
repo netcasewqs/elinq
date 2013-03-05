@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{291F69C5-7118-4889-A99A-09F6AB4E5F7D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NLite.Data.Test.Sqlite</RootNamespace>
+    <AssemblyName>NLite.Data.Test.Sqlite</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SQLite</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NLite">
+      <HintPath>..\packages\NLite.0.9.5.5\lib\net40\NLite.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.5.7.10213, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libs\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Data.SQLite, Version=1.0.66.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Nlite.Data开发\codeplex1\Bin\System.Data.SQLite.DLL</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\NLite.Data.Test\BetweenTest.cs">
+      <Link>BetweenTest.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data.Test\ByteArrayTest.cs">
+      <Link>ByteArrayTest.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data.Test\Core\1. ConfiguarationTest.cs">
+      <Link>Core\1. ConfiguarationTest.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data.Test\Core\2. InsertTest.cs">
+      <Link>Core\2. InsertTest.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data.Test\Core\3. DeleteTest.cs">
+      <Link>Core\3. DeleteTest.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data.Test\Core\4. UpdateTest.cs">
+      <Link>Core\4. UpdateTest.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data.Test\Core\5. SelectTest.cs">
+      <Link>Core\5. SelectTest.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data.Test\DateTimeTest.cs">
+      <Link>DateTimeTest.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data.Test\Decimal.cs">
+      <Link>Decimal.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data.Test\EnumTest.cs">
+      <Link>EnumTest.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data.Test\GeneralFunctionTest.cs">
+      <Link>GeneralFunctionTest.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data.Test\GuidTest.cs">
+      <Link>GuidTest.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data.Test\Int32Test.cs">
+      <Link>Int32Test.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data.Test\LinqTest.cs">
+      <Link>LinqTest.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data.Test\MathTest.cs">
+      <Link>MathTest.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data.Test\NorthwindCUDTest.cs">
+      <Link>NorthwindCUDTest.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data.Test\NorthwindExecutionTest.cs">
+      <Link>NorthwindExecutionTest.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data.Test\StringNullable.cs">
+      <Link>StringNullable.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data.Test\StringTest.cs">
+      <Link>StringTest.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data.Test\TypeConvert\BooleanConvertTest.cs">
+      <Link>TypeConvert\BooleanConvertTest.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data.Test\TypeConvert\ByteArrayConvertTest.cs">
+      <Link>TypeConvert\ByteArrayConvertTest.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data.Test\TypeConvert\ByteConvertTest.cs">
+      <Link>TypeConvert\ByteConvertTest.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data.Test\TypeConvert\CharConvertTest.cs">
+      <Link>TypeConvert\CharConvertTest.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data.Test\TypeConvert\DateTimeConvertTest.cs">
+      <Link>TypeConvert\DateTimeConvertTest.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data.Test\TypeConvert\GuidConvertTest.cs">
+      <Link>TypeConvert\GuidConvertTest.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data.Test\TypeConvert\Int32ConvertTest.cs">
+      <Link>TypeConvert\Int32ConvertTest.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data.Test\TypeConvert\StringConvertTest.cs">
+      <Link>TypeConvert\StringConvertTest.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Db\SQLite\Northwind.sl3">
+      <Link>DataBase\Northwind.sl3</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\Db\SQLite\SQLite.db">
+      <Link>DataBase\SQLite.db</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\Db\SQLite\SqliteDB.db">
+      <Link>DataBase\SqliteDB.db</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\Db\SQLite\SqliteTest.db">
+      <Link>DataBase\SqliteTest.db</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NLite.Data.Test\NLite.Data.Test.csproj">
+      <Project>{23327BAD-3EBD-40D1-BDE0-68DEE26D4FB8}</Project>
+      <Name>NLite.Data.Test</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NLite.Data\NLite.Data.csproj">
+      <Project>{1AEA82FF-B88B-4DAE-A7AA-1B26FF347756}</Project>
+      <Name>NLite.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Cnblogs\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

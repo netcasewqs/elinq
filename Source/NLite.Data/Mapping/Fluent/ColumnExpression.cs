@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace NLite.Data.Mapping.Fluent
+{
+
+    /// <summary>
+    ///  Column映射表达式
+    /// </summary>
+    public class ColumnExpression : ColumnExpression<ColumnExpression, ColumnAttribute>
+    {
+        internal ColumnExpression() { }
+        /// <summary>
+        /// 设置为Required
+        /// </summary>
+        /// <returns></returns>
+        public ColumnExpression Required()
+        {
+            attribute.IsNullable = false;
+            return this;
+        }
+    }
+}

@@ -1,0 +1,606 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{1AEA82FF-B88B-4DAE-A7AA-1B26FF347756}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>NLite.Data</RootNamespace>
+    <AssemblyName>ELinq</AssemblyName>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SourceAnalysisOverrideSettingsFile>C:\Documents and Settings\issuser\Application Data\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
+    <BaseIntermediateOutputPath>..\..\..\Bin\\obj\</BaseIntermediateOutputPath>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkSubset>
+    </TargetFrameworkSubset>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <RestorePackages>true</RestorePackages>
+    <BuildPackage>true</BuildPackage>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <DelaySign>False</DelaySign>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <RunCodeAnalysis>False</RunCodeAnalysis>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>..\..\..\Bin\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <StartAction>Project</StartAction>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+    <StartAction>Project</StartAction>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <WarningLevel>4</WarningLevel>
+    <DefineConstants>TRACE;DEBUG;SDK4</DefineConstants>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>..\..\..\Bin\</OutputPath>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+    <Prefer32Bit>False</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <OutputPath>..\Bin\</OutputPath>
+    <DocumentationFile>..\Bin\ELinq.xml</DocumentationFile>
+    <DefineConstants>TRACE;DEBUG;SDK4</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <OutputPath>..\Bin\</OutputPath>
+    <DocumentationFile>..\Bin\ELinq.xml</DocumentationFile>
+    <DefineConstants>TRACE;SDK4</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>ELinq.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NLite">
+      <HintPath>..\Libs\NLite\net40\NLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbstractAssociationAttribute.cs" />
+    <Compile Include="ActiveRecord.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="AssociationAttribute.cs" />
+    <Compile Include="AssociationType.cs" />
+    <Compile Include="CodeGeneration\DefaultNamingConversion.cs" />
+    <Compile Include="CodeGeneration\EntityModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeGeneration\IEntityModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeGeneration\IEntityModelConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeGeneration\IMemberModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CodeGeneration\INamingConversion.cs" />
+    <Compile Include="CodeGeneration\INavigationMemberModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ColumnAttribute.cs" />
+    <Compile Include="Common\BatchContext.cs" />
+    <Compile Include="Common\CommandContext.cs" />
+    <Compile Include="Common\DateParts.cs" />
+    <Compile Include="Common\ExecutionService.cs" />
+    <Compile Include="Common\FieldReader.cs" />
+    <Compile Include="Common\ISqlCommand.cs" />
+    <Compile Include="Common\MethodMapping.cs" />
+    <Compile Include="Common\MethodRepository.cs" />
+    <Compile Include="Common\NamedParameter.cs" />
+    <Compile Include="Common\OperationType.cs" />
+    <Compile Include="Common\QueryContext.cs" />
+    <Compile Include="Common\SqlType.cs" />
+    <Compile Include="Common\TypeMapping.cs" />
+    <Compile Include="Common\TypeMappingInfo.cs" />
+    <Compile Include="ComputedColumnAttribute.cs" />
+    <Compile Include="ConcurrencyException.cs" />
+    <Compile Include="ConnectionHost.cs" />
+    <Compile Include="DataAnnotationMappingAdapter.cs" />
+    <Compile Include="DbConfiguration.BuildConnectionString.cs" />
+    <Compile Include="DbConfiguration.Configure.cs" />
+    <Compile Include="DbConfiguration.cs" />
+    <Compile Include="DbConfiguration.Mapping.cs" />
+    <Compile Include="DbConfigurationInfo.cs" />
+    <Compile Include="DbConnectionWrapper.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DbContext.cs" />
+    <Compile Include="DbContextAttribute.cs" />
+    <Compile Include="DbHelper.cs" />
+    <Compile Include="DbProviderNames.cs" />
+    <Compile Include="DbSet.cs" />
+    <Compile Include="DbSetOfT.cs" />
+    <Compile Include="DBType.cs" />
+    <Compile Include="DebugSqlLog.cs" />
+    <Compile Include="Dialect\AccessDialect.cs" />
+    <Compile Include="Dialect\ExcelDialect.cs" />
+    <Compile Include="Dialect\ExpressionBuilder\AssessDbExpressionBuilder.cs" />
+    <Compile Include="Dialect\ExpressionBuilder\DbExpressionBuilder.cs" />
+    <Compile Include="Dialect\ExpressionBuilder\FirebirdExpressionBuilder.cs" />
+    <Compile Include="Dialect\Function\Firebird\DateAddFunctionView.cs" />
+    <Compile Include="Dialect\Function\Firebird\DateAddsFunctionView.cs" />
+    <Compile Include="Dialect\Function\Firebird\DateDiffFunctionView.cs" />
+    <Compile Include="Dialect\Function\Firebird\DatePartFunctionView.cs" />
+    <Compile Include="Dialect\Function\Firebird\DayOfWeekFunctionView.cs" />
+    <Compile Include="Dialect\Function\Firebird\FirebirdDecimalFunctions.cs" />
+    <Compile Include="Dialect\Function\Firebird\FirebirdMathFunctions.cs" />
+    <Compile Include="Dialect\Function\Firebird\FirebirdStringFunctions.cs" />
+    <Compile Include="Dialect\Function\Firebird\LocateFunction.cs" />
+    <Compile Include="Dialect\Function\Firebird\RemoveFunctionView.cs" />
+    <Compile Include="Dialect\Function\Firebird\ToDate3FunctionView.cs" />
+    <Compile Include="Dialect\Function\Firebird\ToDate6FunctionView.cs" />
+    <Compile Include="Dialect\Function\Firebird\ToTimeFunctionView.cs" />
+    <Compile Include="Dialect\Function\MsSql\AddDateFunctionView.cs" />
+    <Compile Include="Dialect\Function\MsSql\DateAddFunctionView.cs" />
+    <Compile Include="Dialect\Function\MsSql\DateDiffFunctionView.cs" />
+    <Compile Include="Dialect\Function\MsSql\DatePartFunctionView.cs" />
+    <Compile Include="Dialect\Function\MsSql\IndexOfFunctionView.cs" />
+    <Compile Include="Dialect\Function\MsSql\InsertFunctionView.cs" />
+    <Compile Include="Dialect\Function\MsSql\LastIndexOfFunctionView.cs" />
+    <Compile Include="Dialect\Function\MsSql\LeftFunctionView.cs" />
+    <Compile Include="Dialect\Function\MsSql\MsSqlDecimalFunctions.cs" />
+    <Compile Include="Dialect\Function\MsSql\MsSqlMathFunctions.cs" />
+    <Compile Include="Dialect\Function\MsSql\MsSqlStringFunctions.cs" />
+    <Compile Include="Dialect\Function\MsSql\PadLeftFunctionView.cs" />
+    <Compile Include="Dialect\Function\MsSql\PadRightFunctionView.cs" />
+    <Compile Include="Dialect\Function\MsSql\RemoveFunctionView.cs" />
+    <Compile Include="Dialect\Function\MsSql\RightFunctionView.cs" />
+    <Compile Include="Dialect\Function\MsSql\SubStringFunctionView.cs" />
+    <Compile Include="Dialect\Function\MsSql\ToDate3FunctionView.cs" />
+    <Compile Include="Dialect\Function\MsSql\ToDate6FunctionView.cs" />
+    <Compile Include="Dialect\Function\MsSql\ToTimeFunctionView.cs" />
+    <Compile Include="Dialect\Function\MySQL\DateAddFunctionView.cs" />
+    <Compile Include="Dialect\Function\MySQL\DateDiffFuncionView1.cs" />
+    <Compile Include="Dialect\Function\MySQL\DateDiffFunctionView.cs" />
+    <Compile Include="Dialect\Function\MySQL\DatePartFunctionView.cs" />
+    <Compile Include="Dialect\Function\MySQL\IndexOfFunctionView.cs" />
+    <Compile Include="Dialect\Function\MySQL\InsertFunctionView.cs" />
+    <Compile Include="Dialect\Function\MySQL\LastIndexOfFunctionView.cs" />
+    <Compile Include="Dialect\Function\MySQL\LeftFunctionView.cs" />
+    <Compile Include="Dialect\Function\MySQL\MySqlDateTimeFunctions.cs" />
+    <Compile Include="Dialect\Function\MySQL\MySqlDecimalFunctions.cs" />
+    <Compile Include="Dialect\Function\MySQL\MySqlMathFunctions.cs" />
+    <Compile Include="Dialect\Function\MySQL\MySqlStringFunctions.cs" />
+    <Compile Include="Dialect\Function\MySQL\PadLeftFunctionView.cs" />
+    <Compile Include="Dialect\Function\MySQL\PadRightFunctionView.cs" />
+    <Compile Include="Dialect\Function\MySQL\RemoveFunctionView.cs" />
+    <Compile Include="Dialect\Function\MySQL\RightFunctionView.cs" />
+    <Compile Include="Dialect\Function\MySQL\ToDate3FunctionView.cs" />
+    <Compile Include="Dialect\Function\MySQL\ToDate6FunctionView.cs" />
+    <Compile Include="Dialect\Function\MySQL\ToTimeFunctionView.cs" />
+    <Compile Include="Dialect\Function\Oracle\AddDateFunctionView.cs" />
+    <Compile Include="Dialect\Function\Oracle\CommonFunction.cs" />
+    <Compile Include="Dialect\Function\Oracle\DateAddFunctionView.cs" />
+    <Compile Include="Dialect\Function\Oracle\DateAddsFunctionView.cs" />
+    <Compile Include="Dialect\Function\Oracle\DateDiffFuncionView1.cs" />
+    <Compile Include="Dialect\Function\Oracle\DateDiffFunctionView.cs" />
+    <Compile Include="Dialect\Function\Oracle\DatePartFunctionView.cs" />
+    <Compile Include="Dialect\Function\Oracle\IndexOfFunctionView.cs" />
+    <Compile Include="Dialect\Function\Oracle\IsNullOrWhiteSpaceFunctionView.cs" />
+    <Compile Include="Dialect\Function\Oracle\LastIndexOfFunctionView.cs" />
+    <Compile Include="Dialect\Function\Oracle\LocateFunction.cs" />
+    <Compile Include="Dialect\Function\Oracle\OracleDateTimeFunctions.cs" />
+    <Compile Include="Dialect\Function\Oracle\OracleDecimalFunctions.cs" />
+    <Compile Include="Dialect\Function\Oracle\OracleMathFunctions.cs" />
+    <Compile Include="Dialect\Function\Oracle\OracleStringFunctions.cs" />
+    <Compile Include="Dialect\Function\Oracle\RemoveFunctionView.cs" />
+    <Compile Include="Dialect\Function\Oracle\SubstringFunctionView.cs" />
+    <Compile Include="Dialect\Function\Oracle\ToDate3FunctionView.cs" />
+    <Compile Include="Dialect\Function\Oracle\ToDate6FunctionView.cs" />
+    <Compile Include="Dialect\Function\SqlCe\AddDateFunctionView.cs" />
+    <Compile Include="Dialect\Function\SqlCe\DateAddFunctionView.cs" />
+    <Compile Include="Dialect\Function\SqlCe\DateDiffFunctionView.cs" />
+    <Compile Include="Dialect\Function\SqlCe\DatePartFunctionView.cs" />
+    <Compile Include="Dialect\Function\SqlCe\IndexOfFunctionView.cs" />
+    <Compile Include="Dialect\Function\SqlCe\PadLeftFunctionView.cs" />
+    <Compile Include="Dialect\Function\SqlCe\PadRightFunctionView.cs" />
+    <Compile Include="Dialect\Function\SqlCe\RemoveFunctionView.cs" />
+    <Compile Include="Dialect\Function\SqlCe\SqlCEDateTimeFunctions.cs" />
+    <Compile Include="Dialect\Function\SqlCe\SqlCEDecimalFunctions.cs" />
+    <Compile Include="Dialect\Function\SqlCe\SqlCEMathFunctions.cs" />
+    <Compile Include="Dialect\Function\SqlCe\SqlCEStringFunctions.cs" />
+    <Compile Include="Dialect\Function\SqlCe\SubStringFunctionView.cs" />
+    <Compile Include="Dialect\Function\SqlCe\ToDate3FunctionView.cs" />
+    <Compile Include="Dialect\Function\SqlCe\ToDate6FunctionView.cs" />
+    <Compile Include="Dialect\Function\SqlCe\ToTimeFunctionView.cs" />
+    <Compile Include="Dialect\Function\SQLite\AddDateFunctionView.cs" />
+    <Compile Include="Dialect\Function\SQLite\AddDateTemplateFunctionView.cs" />
+    <Compile Include="Dialect\Function\SQLite\DateAddFunctionView.cs" />
+    <Compile Include="Dialect\Function\SQLite\DateDiffFuncionView1.cs" />
+    <Compile Include="Dialect\Function\SQLite\DateDiffFunctionView.cs" />
+    <Compile Include="Dialect\Function\SQLite\DatePartFunctionView.cs" />
+    <Compile Include="Dialect\Function\SQLite\DatePartQuarterFunctionView.cs" />
+    <Compile Include="Dialect\Function\SQLite\IndexOfView.cs" />
+    <Compile Include="Dialect\Function\SQLite\InsertFunctionView.cs" />
+    <Compile Include="Dialect\Function\SQLite\LastIndexOfFunctionView.cs" />
+    <Compile Include="Dialect\Function\SQLite\LeftFunctionView.cs" />
+    <Compile Include="Dialect\Function\SQLite\PadLeftFunctionView.cs" />
+    <Compile Include="Dialect\Function\SQLite\PadRightFunctionView.cs" />
+    <Compile Include="Dialect\Function\SQLite\RemoveFunctionView.cs" />
+    <Compile Include="Dialect\Function\SQLite\RightFunctionView.cs" />
+    <Compile Include="Dialect\Function\SQLite\SQLiteDateTimeFunctions.cs" />
+    <Compile Include="Dialect\Function\SQLite\SQLiteDecimalFunctions.cs" />
+    <Compile Include="Dialect\Function\SQLite\SQLiteMathFunctions.cs" />
+    <Compile Include="Dialect\Function\SQLite\SQLiteStringFunctions.cs" />
+    <Compile Include="Dialect\Function\SQLite\ToDate3FunctionView.cs" />
+    <Compile Include="Dialect\Function\SQLite\ToDate6FunctionView.cs" />
+    <Compile Include="Dialect\IDbExpressionBuilder.cs" />
+    <Compile Include="Dialect\ExpressionBuilder\MsSql2000ExpressionBuilder.cs" />
+    <Compile Include="Dialect\ExpressionBuilder\MySqlExpressionBuilder.cs" />
+    <Compile Include="Dialect\ExpressionBuilder\OracleExpressionBuilder.cs" />
+    <Compile Include="Dialect\ExpressionBuilder\PostgresExpressionBuilder.cs" />
+    <Compile Include="Dialect\ExpressionBuilder\SqlCe35ExpressionBuilder.cs" />
+    <Compile Include="Dialect\ExpressionBuilder\SQLiteExpressionBuilder.cs" />
+    <Compile Include="Dialect\FirebirdDialect.cs" />
+    <Compile Include="Dialect\Function\Access\AccessDecimalFunctions.cs" />
+    <Compile Include="Dialect\Function\Access\AccessFunctionRegistry.cs" />
+    <Compile Include="Dialect\Function\Access\AccessMathFunctions.cs" />
+    <Compile Include="Dialect\Function\Access\AccessStringFunctions.cs" />
+    <Compile Include="Dialect\Function\Access\AddDateFunctionView.cs" />
+    <Compile Include="Dialect\Function\Access\CompareFunctionView.cs" />
+    <Compile Include="Dialect\Function\Access\DateAddFunctionView.cs" />
+    <Compile Include="Dialect\Function\Access\DateDiffFunctionView.cs" />
+    <Compile Include="Dialect\Function\Access\DatePartFunctionView.cs" />
+    <Compile Include="Dialect\Function\Access\IFFunctionView.cs" />
+    <Compile Include="Dialect\Function\Access\IndexOfFunctionView.cs" />
+    <Compile Include="Dialect\Function\Access\InsertFunctionView.cs" />
+    <Compile Include="Dialect\Function\Access\LastIndexOfFunction.cs" />
+    <Compile Include="Dialect\Function\Access\LeftFunctionView.cs" />
+    <Compile Include="Dialect\Function\Access\PadLeftFunctionView.cs" />
+    <Compile Include="Dialect\Function\Access\PadRightFunctionView.cs" />
+    <Compile Include="Dialect\Function\Access\RemoveFunctionView.cs" />
+    <Compile Include="Dialect\Function\Access\RightFunctionView.cs" />
+    <Compile Include="Dialect\Function\Access\ToDate3FunctionView.cs" />
+    <Compile Include="Dialect\Function\Access\ToDate6FunctionView.cs" />
+    <Compile Include="Dialect\Function\Access\ToTimeFunctionView.cs" />
+    <Compile Include="Dialect\Function\Default\CaseFunctionView.cs" />
+    <Compile Include="Dialect\Function\Default\CompareFunctionView.cs" />
+    <Compile Include="Dialect\Function\Default\DaysInMonthFunctionView.cs" />
+    <Compile Include="Dialect\Function\Default\EqualsFunctionView.cs" />
+    <Compile Include="Dialect\Function\Default\IsNullOrEmptyFunctionView.cs" />
+    <Compile Include="Dialect\Function\Default\IsNullOrWhiteSpaceFunctionView.cs" />
+    <Compile Include="Dialect\Function\Default\LikeFunctionView.cs" />
+    <Compile Include="Dialect\Function\Default\LRTrimFunctionView.cs" />
+    <Compile Include="Dialect\Function\Default\NoArgFunctionView.cs" />
+    <Compile Include="Dialect\Function\Default\NotSupportFunctionView.cs" />
+    <Compile Include="Dialect\Function\Default\ProxyFunctionView.cs" />
+    <Compile Include="Dialect\Function\Default\StandardFunctionView.cs" />
+    <Compile Include="Dialect\Function\Default\StandardSafeFunctionView.cs" />
+    <Compile Include="Dialect\Function\Default\TemplateFunctionView.cs" />
+    <Compile Include="Dialect\Function\Default\TrimEndFunctionView.cs" />
+    <Compile Include="Dialect\Function\Default\TrimFunctionView.cs" />
+    <Compile Include="Dialect\Function\Default\TrimStartFunctionView.cs" />
+    <Compile Include="Dialect\Function\Default\VarArgsFunctionView.cs" />
+    <Compile Include="Dialect\Function\Firebird\FirebirdFunctionRegistry.cs" />
+    <Compile Include="Dialect\Function\FunctionRegistry.cs" />
+    <Compile Include="Dialect\Function\FunctionType.cs" />
+    <Compile Include="Dialect\Function\FunctionView.cs" />
+    <Compile Include="Dialect\Function\IFunctionRegistry.cs" />
+    <Compile Include="Dialect\Function\IFunctionView.cs" />
+    <Compile Include="Dialect\Function\MsSql\MsSql2005FunctionRegistry.cs" />
+    <Compile Include="Dialect\Function\MsSql\MsSqlFunctionRegistry.cs" />
+    <Compile Include="Dialect\Function\MySQL\MySqlFunctionRegistry.cs" />
+    <Compile Include="Dialect\Function\Oracle\OracleFunctionRegistry.cs" />
+    <Compile Include="Dialect\Function\Postgres\PostgresFunctionRegistry.cs" />
+    <Compile Include="Dialect\Function\SqlCe\SqlCeFunctionRegistry.cs" />
+    <Compile Include="Dialect\Function\SQLite\SQLiteFunctionManager.cs" />
+    <Compile Include="Dialect\IDialect.cs" />
+    <Compile Include="Dialect\JoinColumnGatherer.cs" />
+    <Compile Include="Dialect\MsSql2000Dialect.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dialect\MsSql2005Dialect.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dialect\MySqlDialect.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dialect\OracleDialect.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dialect\PostgresDialect.cs" />
+    <Compile Include="Dialect\ScalarSubqueryRewriter.cs" />
+    <Compile Include="Dialect\SqlBuilder\AccessSqlBuilder.cs" />
+    <Compile Include="Dialect\SqlBuilder\DbSqlBuilder.cs" />
+    <Compile Include="Dialect\SqlBuilder\DbSqlBuilder.Function.cs" />
+    <Compile Include="Dialect\SqlBuilder\ExcelSqlBuilder.cs" />
+    <Compile Include="Dialect\SqlBuilder\FirebirdSqlBuilder.cs" />
+    <Compile Include="Dialect\ISqlBuilder.cs" />
+    <Compile Include="Dialect\SqlBuilder\MsSql2000SqlBuilder.cs" />
+    <Compile Include="Dialect\SqlBuilder\MySqlBuilder.cs" />
+    <Compile Include="Dialect\SqlBuilder\OracleSqlBuilder.cs" />
+    <Compile Include="Dialect\SqlBuilder\PostgresSqlBuilder.cs" />
+    <Compile Include="Dialect\SqlBuilder\SqlCeBuilder.cs" />
+    <Compile Include="Dialect\SqlBuilder\SQLiteSqlBuilder.cs" />
+    <Compile Include="Dialect\SqlBuilder\SqlServer2005SqlBuilder.cs" />
+    <Compile Include="Dialect\SqlCE35Dialect.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dialect\SqlCE4Dialect.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dialect\SQLiteDialect.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dialect\TxtDialect.cs" />
+    <Compile Include="DbConfiguration.DLinqMappingAdapter.cs" />
+    <Compile Include="Driver\AbstractDriver.cs" />
+    <Compile Include="Driver\AccessDriver.cs" />
+    <Compile Include="Driver\IDriver.cs" />
+    <Compile Include="Driver\MySqlDriver.cs" />
+    <Compile Include="Driver\OledbDriver.cs" />
+    <Compile Include="Driver\OracleClientDriver.cs" />
+    <Compile Include="Driver\OracleDriver.cs" />
+    <Compile Include="Driver\OracleODPDriver.cs" />
+    <Compile Include="Driver\SqlCeDriver.cs" />
+    <Compile Include="Driver\SQLiteDriver.cs" />
+    <Compile Include="Driver\SqlServer2000Driver.cs" />
+    <Compile Include="Driver\SqlServer2005Driver.cs" />
+    <Compile Include="Driver\SqlServerDriver.cs" />
+    <Compile Include="EFDataAnnotiationAdapter.cs" />
+    <Compile Include="EmptyDbLog.cs" />
+    <Compile Include="ExecuteContext.cs" />
+    <Compile Include="IdAttribute.cs" />
+    <Compile Include="IDbContext.cs" />
+    <Compile Include="IDbHelper.cs" />
+    <Compile Include="IDbSet.cs" />
+    <Compile Include="IMappingConversion.cs" />
+    <Compile Include="InternalDbContext.cs" />
+    <Compile Include="IReqository.cs" />
+    <Compile Include="ISqlLog.cs" />
+    <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="Linq\ConstructorBindResult.cs" />
+    <Compile Include="Linq\EntityAssignment.cs" />
+    <Compile Include="Linq\Expressions\Aggregator.cs" />
+    <Compile Include="Linq\Expressions\DbExpressionComparer.cs" />
+    <Compile Include="Linq\Expressions\DbExpressionExtensions.cs" />
+    <Compile Include="Linq\Expressions\DbExpressionReplacer.cs" />
+    <Compile Include="Linq\Expressions\DbExpressions.cs" />
+    <Compile Include="Linq\Expressions\DbExpressionVisitor.cs" />
+    <Compile Include="Linq\Expressions\DbExpressionWriter.cs" />
+    <Compile Include="Linq\Expressions\ExpressionHelper.cs" />
+    <Compile Include="Linq\Expressions\Translation\AggregateChecker.cs" />
+    <Compile Include="Linq\Expressions\Translation\AggregateRewriter.cs" />
+    <Compile Include="Linq\Expressions\Translation\ClientJoinedProjectionRewriter.cs" />
+    <Compile Include="Linq\Expressions\Translation\ColumnMapper.cs" />
+    <Compile Include="Linq\Expressions\Translation\ColumnProjector.cs" />
+    <Compile Include="Linq\Expressions\Translation\ComparisonRewriter.cs" />
+    <Compile Include="Linq\Expressions\Translation\CrossApplyRewriter.cs" />
+    <Compile Include="Linq\Expressions\Translation\CrossJoinIsolator.cs" />
+    <Compile Include="Linq\Expressions\Translation\CrossJoinRewriter.cs" />
+    <Compile Include="Linq\Expressions\Translation\DeclaredAliasGatherer.cs" />
+    <Compile Include="Linq\Expressions\Translation\ExecutionBuilder.cs" />
+    <Compile Include="Linq\Expressions\Translation\FunctionBinder.cs" />
+    <Compile Include="Linq\Expressions\Translation\NamedValueGatherer.cs" />
+    <Compile Include="Linq\Expressions\Translation\OrderByRewriter.cs" />
+    <Compile Include="Linq\Expressions\Translation\Parameterizer.cs" />
+    <Compile Include="Linq\Expressions\Translation\QueryBinder.cs" />
+    <Compile Include="Linq\Expressions\Translation\RedundantColumnRemover.cs" />
+    <Compile Include="Linq\Expressions\Translation\RedundantJoinRemover.cs" />
+    <Compile Include="Linq\Expressions\Translation\RedundantSubqueryRemover.cs" />
+    <Compile Include="Linq\Expressions\Translation\ReferencedAliasGatherer.cs" />
+    <Compile Include="Linq\Expressions\Translation\ReferencedColumnGatherer.cs" />
+    <Compile Include="Linq\Expressions\Translation\RelationshipBinder.cs" />
+    <Compile Include="Linq\Expressions\Translation\SingletonProjectionRewriter.cs" />
+    <Compile Include="Linq\Expressions\Translation\SkipToRowNumberRewriter.cs" />
+    <Compile Include="Linq\Expressions\Translation\SubqueryRemover.cs" />
+    <Compile Include="Linq\Expressions\Translation\ThreeTopPagerRewriter.cs" />
+    <Compile Include="Linq\Expressions\Translation\UnusedColumnRemover.cs" />
+    <Compile Include="Linq\ExpressionVisitor.cs" />
+    <Compile Include="Linq\ExpressionWriter.cs" />
+    <Compile Include="Linq\Internal\CompoundKey.cs" />
+    <Compile Include="Linq\Internal\DeferredList.cs" />
+    <Compile Include="Linq\Internal\DeferredValue.cs" />
+    <Compile Include="Linq\Internal\EnumerateOnce.cs" />
+    <Compile Include="Linq\Internal\ExpressionComparer.cs" />
+    <Compile Include="Linq\Internal\ExpressionEvaluator.cs" />
+    <Compile Include="Linq\Internal\ExpressionReplacer.cs" />
+    <Compile Include="Linq\Internal\Grouping.cs" />
+    <Compile Include="Linq\Internal\MostRecentlyUsedCache.cs" />
+    <Compile Include="Linq\Internal\Parameterizer.cs" />
+    <Compile Include="Linq\Internal\PartialEvaluator.cs" />
+    <Compile Include="Linq\Internal\ReadOnlyExtensions.cs" />
+    <Compile Include="Linq\Internal\ReflectionExtensions.cs" />
+    <Compile Include="Linq\Internal\ScopedDictionary.cs" />
+    <Compile Include="Linq\Internal\StrongDelegate.cs" />
+    <Compile Include="Linq\Internal\TopologicalSort.cs" />
+    <Compile Include="Linq\Internal\TypedSubtreeFinder.cs" />
+    <Compile Include="Linq\Internal\TypeHelper.cs" />
+    <Compile Include="Linq\IQueryPolicy.cs" />
+    <Compile Include="Linq\Query.cs" />
+    <Compile Include="Linq\QueryCache.cs" />
+    <Compile Include="Linq\QueryCompiler.cs" />
+    <Compile Include="ManyToOneAttribute.cs" />
+    <Compile Include="MappingConversion.cs" />
+    <Compile Include="MappingException.cs" />
+    <Compile Include="Mapping\EntityMapping.cs" />
+    <Compile Include="Mapping\Fluent\ClassMap.cs" />
+    <Compile Include="Mapping\Fluent\ClassMapOfT.cs" />
+    <Compile Include="Mapping\Fluent\ColumnExpression.cs" />
+    <Compile Include="Mapping\Fluent\ColumnExpressionOfT.cs" />
+    <Compile Include="Mapping\Fluent\ComputedColumnExpressison.cs" />
+    <Compile Include="Mapping\Fluent\IdExpression.cs" />
+    <Compile Include="Mapping\Fluent\MemberExpressionOfT.cs" />
+    <Compile Include="Mapping\Fluent\SequenceExpression.cs" />
+    <Compile Include="Mapping\Fluent\TableExpression.cs" />
+    <Compile Include="Mapping\Fluent\VersionExression.cs" />
+    <Compile Include="Mapping\IEntityMapping.cs" />
+    <Compile Include="Mapping\IMemberMapping.cs" />
+    <Compile Include="Mapping\MemberMapping.cs" />
+    <Compile Include="MemberAttribute.cs" />
+    <Compile Include="ODPConnectionWrapper.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="OneToManyAttribute.cs" />
+    <Compile Include="OneToOneAttribute.cs" />
+    <Compile Include="Repository.cs" />
+    <Compile Include="Res.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Res.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Schema\DatabaseSchema.cs" />
+    <Compile Include="Schema\IColumnSchema.cs" />
+    <Compile Include="Schema\IDatabaseSchema.cs" />
+    <Compile Include="Schema\IForeignKeySchema.cs" />
+    <Compile Include="Inflector.cs" />
+    <Compile Include="Schema\IRelationSchema.cs" />
+    <Compile Include="Schema\Loader\ISchemaLoader.cs" />
+    <Compile Include="Schema\ITableSchema.cs" />
+    <Compile Include="Schema\Loader\MySqlSchemaLoader.cs" />
+    <Compile Include="Schema\Loader\OledbSchemaLoader.cs" />
+    <Compile Include="Schema\Loader\OracleSchemaLoader.cs" />
+    <Compile Include="Schema\Loader\SchemaLoader.cs" />
+    <Compile Include="Schema\Loader\SqlCeSchemaLoader.cs" />
+    <Compile Include="Schema\Loader\SQLiteSchemaLoader.cs" />
+    <Compile Include="Schema\Loader\SqlServerSchemaLoader.cs" />
+    <Compile Include="Schema\Script\DatabaseScriptEntry.cs" />
+    <Compile Include="Schema\Script\Executor\AccessScriptExecutor.cs" />
+    <Compile Include="Schema\Script\Executor\DatabaseScriptExecutor.cs" />
+    <Compile Include="Schema\Script\Executor\FileDatabaseScriptExecutor.cs" />
+    <Compile Include="Schema\Script\Executor\MySQLScriptExecutor.cs" />
+    <Compile Include="Schema\Script\Executor\NonFileDatabaseScriptExecutor.cs" />
+    <Compile Include="Schema\Script\Executor\OracleScriptExecutor.cs" />
+    <Compile Include="Schema\Script\Executor\SqlCeScriptExecutor.cs" />
+    <Compile Include="Schema\Script\Executor\SQLiteScriptExecutor.cs" />
+    <Compile Include="Schema\Script\Executor\SqlServer2000ScriptExecutor.cs" />
+    <Compile Include="Schema\Script\Executor\SqlServerScriptExecutor.cs" />
+    <Compile Include="Schema\Script\Generator\AccessScriptGenerator.cs" />
+    <Compile Include="Schema\Script\Generator\DatabaseScriptGenerator.cs" />
+    <Compile Include="Schema\Script\Executor\IDatabaseScriptExecutor.cs" />
+    <Compile Include="Schema\Script\Generator\FirebirdScriptGenerator.cs" />
+    <Compile Include="Schema\Script\Generator\IDatabaseScriptGenerator.cs" />
+    <Compile Include="Schema\Script\Generator\MySQLScriptGenerator.cs" />
+    <Compile Include="Schema\Script\Generator\OracleScriptGenerator.cs" />
+    <Compile Include="Schema\Script\Generator\SqlCeScriptGenerator.cs" />
+    <Compile Include="Schema\Script\Generator\SQLiteScriptGenerator.cs" />
+    <Compile Include="Schema\Script\Generator\SqlServerScriptGenerator.cs" />
+    <Compile Include="Common\SqlFunctions.cs" />
+    <Compile Include="SQLiteConnectionWrapper.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SqlLog.cs" />
+    <Compile Include="TableAttribute.cs" />
+    <Compile Include="TraceSqlLog.cs" />
+    <Compile Include="UnitOfWork.cs" />
+    <Compile Include="VersionAttribute.cs" />
+    <Compile Include="XmlExtensions.cs" />
+    <Compile Include="Dialect\TypeNames.cs" />
+    <Compile Include="Dialect\Dialect.cs" />
+    <Compile Include="Guard.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ELinq.snk" />
+    <Compile Include="InternalDbContext.QueryPolicy.cs" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Res.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Res.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

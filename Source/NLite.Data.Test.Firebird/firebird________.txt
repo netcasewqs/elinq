@@ -1,0 +1,18 @@
+﻿1：数据库区分大小写。
+
+2：语句中表名字段等需要加"".
+
+3：数据库中没有自动增长列，创建自动增长列需要在Generactors 下,建立一个生成器，并设置初始值为0或1，或其它数字，然后创建触发器  
+
+       例如：有个表A,表A中有个字段Id，我需要设置该字段为自动增长列实现步骤如下：
+	       （1）：在Generactors 下,建立一个生成器，并设置初始值为0或1
+		         create generator gen_A 
+                 set generator gen_A to 0
+				 ☆：注意这两个语句不能同时执行，需单个执行
+		   （2）创建触发器：点Triggers
+		        reate trigger trig_A_Id for A
+                 active before insert position 0
+                as
+                begin
+                   new.id=gen_id(gen_A,1);
+                end

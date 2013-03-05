@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Mapping xmlns="urn:elinq-mapping-1.0" Namespace="NLite.Data.Test.Model.Northwind"  AssemblyName="NLite.Data.Test">
+  <Table Class="Customer" Name="Customers">
+    <Id Member="CustomerID" Name="CustomerID"/>
+    <Column Member="ContactName" Name="ContactName" DbType="String"/>
+    <Column Member="CompanyName" Name="CompanyName" DbType="String"/>
+    <Column Member="Phone" Name="Phone" DbType="String"/>
+    <Column Member="City" DbType="String"/>
+    <OneToMany  Member="Orders" ThisKey="CustomerID" OtherKey="CustomerID"/>
+  </Table>
+  <Table Class="Order" Name="Orders">
+    <Id Member="OrderID"  IsDbGenerated="true"/>
+    <Column Member="CustomerID"/>
+    <Column Member="OrderDate"/>
+    <ManyToOne Member="Customer"/>
+  </Table>
+  <Table Class="OrderDetail" Name="Order Details">
+    <Id Member="OrderID" />
+    <Id Member="ProductID"/>
+  </Table>
+  <Table Class="Product" Name="Products">
+    <Id Member="ID" />
+    <Column Member="ProductName"/>
+    <Column Member="Discontinued"/>
+  </Table>
+</Mapping>

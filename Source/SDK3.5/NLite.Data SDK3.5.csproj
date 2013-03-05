@@ -1,0 +1,1362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{13CA0F9B-FB58-41E7-B0C7-52CB293FD75D}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>NLite.Data</RootNamespace>
+    <AssemblyName>ELinq</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SourceAnalysisOverrideSettingsFile>C:\Documents and Settings\issuser\Application Data\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
+    <BaseIntermediateOutputPath>..\..\..\Bin\\obj\</BaseIntermediateOutputPath>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkSubset>
+    </TargetFrameworkSubset>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+    <RestorePackages>true</RestorePackages>
+    <BuildPackage>true</BuildPackage>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>..\..\..\Bin\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+    <StartAction>Project</StartAction>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <OutputPath>..\..\..\Bin\</OutputPath>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>..\..\..\Bin\</OutputPath>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DocumentationFile>..\Bin\ELinq.XML</DocumentationFile>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <OutputPath>..\Bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SDK35</DefineConstants>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>bin\ELinq.XML</DocumentationFile>
+    <DefineConstants>TRACE;SDK35</DefineConstants>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>ELinq.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <ItemGroup>
+    <Reference Include="NLite, Version=0.9.3.10, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libs\NLite\net35\NLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\NLite.Data\AbstractAssociationAttribute.cs">
+      <Link>AbstractAssociationAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\ActiveRecord.cs">
+      <Link>ActiveRecord.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\AssemblyInfo.cs">
+      <Link>AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\AssociationAttribute.cs">
+      <Link>AssociationAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\AssociationType.cs">
+      <Link>AssociationType.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\CodeGeneration\DefaultNamingConversion.cs">
+      <Link>CodeGeneration\DefaultNamingConversion.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\CodeGeneration\INamingConversion.cs">
+      <Link>CodeGeneration\INamingConversion.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\ColumnAttribute.cs">
+      <Link>ColumnAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Common\BatchContext.cs">
+      <Link>Common\BatchContext.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Common\CommandContext.cs">
+      <Link>Common\CommandContext.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Common\DateParts.cs">
+      <Link>Common\DateParts.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Common\ExecutionService.cs">
+      <Link>Common\ExecutionService.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Common\FieldReader.cs">
+      <Link>Common\FieldReader.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Common\ISqlCommand.cs">
+      <Link>Common\ISqlCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Common\MethodMapping.cs">
+      <Link>Common\MethodMapping.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Common\MethodRepository.cs">
+      <Link>Common\MethodRepository.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Common\NamedParameter.cs">
+      <Link>Common\NamedParameter.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Common\OperationType.cs">
+      <Link>Common\OperationType.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Common\QueryContext.cs">
+      <Link>Common\QueryContext.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Common\SqlFunctions.cs">
+      <Link>Common\SqlFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Common\SqlType.cs">
+      <Link>Common\SqlType.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Common\TypeMapping.cs">
+      <Link>Common\TypeMapping.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Common\TypeMappingInfo.cs">
+      <Link>Common\TypeMappingInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\ComputedColumnAttribute.cs">
+      <Link>ComputedColumnAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\ConcurrencyException.cs">
+      <Link>ConcurrencyException.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\ConnectionHost.cs">
+      <Link>ConnectionHost.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\DataAnnotationMappingAdapter.cs">
+      <Link>DataAnnotationMappingAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\DbConfiguration.BuildConnectionString.cs">
+      <Link>DbConfiguration.BuildConnectionString.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\DbConfiguration.Configure.cs">
+      <Link>DbConfiguration.Configure.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\DbConfiguration.cs">
+      <Link>DbConfiguration.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\DbConfiguration.DLinqMappingAdapter.cs">
+      <Link>DbConfiguration.DLinqMappingAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\DbConfiguration.Mapping.cs">
+      <Link>DbConfiguration.Mapping.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\DbConfigurationInfo.cs">
+      <Link>DbConfigurationInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\DbConnectionWrapper.cs">
+      <Link>DbConnectionWrapper.cs</Link>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="..\NLite.Data\DbContext.cs">
+      <Link>DbContext.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\DbContextAttribute.cs">
+      <Link>DbContextAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\DbHelper.cs">
+      <Link>DbHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\DbProviderNames.cs">
+      <Link>DbProviderNames.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\DbSet.cs">
+      <Link>DbSet.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\DbSetOfT.cs">
+      <Link>DbSetOfT.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\DBType.cs">
+      <Link>DBType.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\DebugSqlLog.cs">
+      <Link>DebugSqlLog.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\AccessDialect.cs">
+      <Link>Dialect\AccessDialect.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Dialect.cs">
+      <Link>Dialect\Dialect.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\ExcelDialect.cs">
+      <Link>Dialect\ExcelDialect.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\ExpressionBuilder\AssessDbExpressionBuilder.cs">
+      <Link>Dialect\ExpressionBuilder\AssessDbExpressionBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\ExpressionBuilder\DbExpressionBuilder.cs">
+      <Link>Dialect\ExpressionBuilder\DbExpressionBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\ExpressionBuilder\FirebirdExpressionBuilder.cs">
+      <Link>Dialect\ExpressionBuilder\FirebirdExpressionBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\ExpressionBuilder\MsSql2000ExpressionBuilder.cs">
+      <Link>Dialect\ExpressionBuilder\MsSql2000ExpressionBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\ExpressionBuilder\MySqlExpressionBuilder.cs">
+      <Link>Dialect\ExpressionBuilder\MySqlExpressionBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\ExpressionBuilder\OracleExpressionBuilder.cs">
+      <Link>Dialect\ExpressionBuilder\OracleExpressionBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\ExpressionBuilder\PostgresExpressionBuilder.cs">
+      <Link>Dialect\ExpressionBuilder\PostgresExpressionBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\ExpressionBuilder\SqlCe35ExpressionBuilder.cs">
+      <Link>Dialect\ExpressionBuilder\SqlCe35ExpressionBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\ExpressionBuilder\SQLiteExpressionBuilder.cs">
+      <Link>Dialect\ExpressionBuilder\SQLiteExpressionBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\FirebirdDialect.cs">
+      <Link>Dialect\FirebirdDialect.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Access\AccessDecimalFunctions.cs">
+      <Link>Dialect\Function\Access\AccessDecimalFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Access\AccessFunctionRegistry.cs">
+      <Link>Dialect\Function\Access\AccessFunctionRegistry.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Access\AccessMathFunctions.cs">
+      <Link>Dialect\Function\Access\AccessMathFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Access\AccessStringFunctions.cs">
+      <Link>Dialect\Function\Access\AccessStringFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Access\AddDateFunctionView.cs">
+      <Link>Dialect\Function\Access\AddDateFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Access\CompareFunctionView.cs">
+      <Link>Dialect\Function\Access\CompareFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Access\DateAddFunctionView.cs">
+      <Link>Dialect\Function\Access\DateAddFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Access\DateDiffFunctionView.cs">
+      <Link>Dialect\Function\Access\DateDiffFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Access\DatePartFunctionView.cs">
+      <Link>Dialect\Function\Access\DatePartFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Access\IFFunctionView.cs">
+      <Link>Dialect\Function\Access\IFFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Access\IndexOfFunctionView.cs">
+      <Link>Dialect\Function\Access\IndexOfFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Access\InsertFunctionView.cs">
+      <Link>Dialect\Function\Access\InsertFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Access\LastIndexOfFunction.cs">
+      <Link>Dialect\Function\Access\LastIndexOfFunction.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Access\LeftFunctionView.cs">
+      <Link>Dialect\Function\Access\LeftFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Access\PadLeftFunctionView.cs">
+      <Link>Dialect\Function\Access\PadLeftFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Access\PadRightFunctionView.cs">
+      <Link>Dialect\Function\Access\PadRightFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Access\RemoveFunctionView.cs">
+      <Link>Dialect\Function\Access\RemoveFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Access\RightFunctionView.cs">
+      <Link>Dialect\Function\Access\RightFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Access\ToDate3FunctionView.cs">
+      <Link>Dialect\Function\Access\ToDate3FunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Access\ToDate6FunctionView.cs">
+      <Link>Dialect\Function\Access\ToDate6FunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Access\ToTimeFunctionView.cs">
+      <Link>Dialect\Function\Access\ToTimeFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Default\CaseFunctionView.cs">
+      <Link>Dialect\Function\Default\CaseFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Default\CompareFunctionView.cs">
+      <Link>Dialect\Function\Default\CompareFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Default\DaysInMonthFunctionView.cs">
+      <Link>Dialect\Function\Default\DaysInMonthFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Default\EqualsFunctionView.cs">
+      <Link>Dialect\Function\Default\EqualsFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Default\IsNullOrEmptyFunctionView.cs">
+      <Link>Dialect\Function\Default\IsNullOrEmptyFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Default\IsNullOrWhiteSpaceFunctionView.cs">
+      <Link>Dialect\Function\Default\IsNullOrWhiteSpaceFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Default\LikeFunctionView.cs">
+      <Link>Dialect\Function\Default\LikeFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Default\LRTrimFunctionView.cs">
+      <Link>Dialect\Function\Default\LRTrimFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Default\NoArgFunctionView.cs">
+      <Link>Dialect\Function\Default\NoArgFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Default\NotSupportFunctionView.cs">
+      <Link>Dialect\Function\Default\NotSupportFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Default\ProxyFunctionView.cs">
+      <Link>Dialect\Function\Default\ProxyFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Default\StandardFunctionView.cs">
+      <Link>Dialect\Function\Default\StandardFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Default\StandardSafeFunctionView.cs">
+      <Link>Dialect\Function\Default\StandardSafeFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Default\TemplateFunctionView.cs">
+      <Link>Dialect\Function\Default\TemplateFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Default\TrimEndFunctionView.cs">
+      <Link>Dialect\Function\Default\TrimEndFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Default\TrimFunctionView.cs">
+      <Link>Dialect\Function\Default\TrimFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Default\TrimStartFunctionView.cs">
+      <Link>Dialect\Function\Default\TrimStartFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Default\VarArgsFunctionView.cs">
+      <Link>Dialect\Function\Default\VarArgsFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Firebird\DateAddFunctionView.cs">
+      <Link>Dialect\Function\Firebird\DateAddFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Firebird\DateAddsFunctionView.cs">
+      <Link>Dialect\Function\Firebird\DateAddsFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Firebird\DateDiffFunctionView.cs">
+      <Link>Dialect\Function\Firebird\DateDiffFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Firebird\DatePartFunctionView.cs">
+      <Link>Dialect\Function\Firebird\DatePartFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Firebird\DayOfWeekFunctionView.cs">
+      <Link>Dialect\Function\Firebird\DayOfWeekFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Firebird\FirebirdDecimalFunctions.cs">
+      <Link>Dialect\Function\Firebird\FirebirdDecimalFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Firebird\FirebirdFunctionRegistry.cs">
+      <Link>Dialect\Function\Firebird\FirebirdFunctionRegistry.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Firebird\FirebirdMathFunctions.cs">
+      <Link>Dialect\Function\Firebird\FirebirdMathFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Firebird\FirebirdStringFunctions.cs">
+      <Link>Dialect\Function\Firebird\FirebirdStringFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Firebird\LocateFunction.cs">
+      <Link>Dialect\Function\Firebird\LocateFunction.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Firebird\RemoveFunctionView.cs">
+      <Link>Dialect\Function\Firebird\RemoveFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Firebird\ToDate3FunctionView.cs">
+      <Link>Dialect\Function\Firebird\ToDate3FunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Firebird\ToDate6FunctionView.cs">
+      <Link>Dialect\Function\Firebird\ToDate6FunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Firebird\ToTimeFunctionView.cs">
+      <Link>Dialect\Function\Firebird\ToTimeFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\FunctionRegistry.cs">
+      <Link>Dialect\Function\FunctionRegistry.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\FunctionType.cs">
+      <Link>Dialect\Function\FunctionType.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\FunctionView.cs">
+      <Link>Dialect\Function\FunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\IFunctionRegistry.cs">
+      <Link>Dialect\Function\IFunctionRegistry.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\IFunctionView.cs">
+      <Link>Dialect\Function\IFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MsSql\AddDateFunctionView.cs">
+      <Link>Dialect\Function\MsSql\AddDateFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MsSql\DateAddFunctionView.cs">
+      <Link>Dialect\Function\MsSql\DateAddFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MsSql\DateDiffFunctionView.cs">
+      <Link>Dialect\Function\MsSql\DateDiffFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MsSql\DatePartFunctionView.cs">
+      <Link>Dialect\Function\MsSql\DatePartFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MsSql\IndexOfFunctionView.cs">
+      <Link>Dialect\Function\MsSql\IndexOfFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MsSql\InsertFunctionView.cs">
+      <Link>Dialect\Function\MsSql\InsertFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MsSql\LastIndexOfFunctionView.cs">
+      <Link>Dialect\Function\MsSql\LastIndexOfFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MsSql\LeftFunctionView.cs">
+      <Link>Dialect\Function\MsSql\LeftFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MsSql\MsSql2005FunctionRegistry.cs">
+      <Link>Dialect\Function\MsSql\MsSql2005FunctionRegistry.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MsSql\MsSqlDecimalFunctions.cs">
+      <Link>Dialect\Function\MsSql\MsSqlDecimalFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MsSql\MsSqlFunctionRegistry.cs">
+      <Link>Dialect\Function\MsSql\MsSqlFunctionRegistry.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MsSql\MsSqlMathFunctions.cs">
+      <Link>Dialect\Function\MsSql\MsSqlMathFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MsSql\MsSqlStringFunctions.cs">
+      <Link>Dialect\Function\MsSql\MsSqlStringFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MsSql\PadLeftFunctionView.cs">
+      <Link>Dialect\Function\MsSql\PadLeftFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MsSql\PadRightFunctionView.cs">
+      <Link>Dialect\Function\MsSql\PadRightFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MsSql\RemoveFunctionView.cs">
+      <Link>Dialect\Function\MsSql\RemoveFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MsSql\RightFunctionView.cs">
+      <Link>Dialect\Function\MsSql\RightFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MsSql\SubStringFunctionView.cs">
+      <Link>Dialect\Function\MsSql\SubStringFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MsSql\ToDate3FunctionView.cs">
+      <Link>Dialect\Function\MsSql\ToDate3FunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MsSql\ToDate6FunctionView.cs">
+      <Link>Dialect\Function\MsSql\ToDate6FunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MsSql\ToTimeFunctionView.cs">
+      <Link>Dialect\Function\MsSql\ToTimeFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MySQL\DateAddFunctionView.cs">
+      <Link>Dialect\Function\MySQL\DateAddFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MySQL\DateDiffFuncionView1.cs">
+      <Link>Dialect\Function\MySQL\DateDiffFuncionView1.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MySQL\DateDiffFunctionView.cs">
+      <Link>Dialect\Function\MySQL\DateDiffFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MySQL\DatePartFunctionView.cs">
+      <Link>Dialect\Function\MySQL\DatePartFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MySQL\IndexOfFunctionView.cs">
+      <Link>Dialect\Function\MySQL\IndexOfFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MySQL\InsertFunctionView.cs">
+      <Link>Dialect\Function\MySQL\InsertFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MySQL\LastIndexOfFunctionView.cs">
+      <Link>Dialect\Function\MySQL\LastIndexOfFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MySQL\LeftFunctionView.cs">
+      <Link>Dialect\Function\MySQL\LeftFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MySQL\MySqlDateTimeFunctions.cs">
+      <Link>Dialect\Function\MySQL\MySqlDateTimeFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MySQL\MySqlDecimalFunctions.cs">
+      <Link>Dialect\Function\MySQL\MySqlDecimalFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MySQL\MySqlFunctionRegistry.cs">
+      <Link>Dialect\Function\MySQL\MySqlFunctionRegistry.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MySQL\MySqlMathFunctions.cs">
+      <Link>Dialect\Function\MySQL\MySqlMathFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MySQL\MySqlStringFunctions.cs">
+      <Link>Dialect\Function\MySQL\MySqlStringFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MySQL\PadLeftFunctionView.cs">
+      <Link>Dialect\Function\MySQL\PadLeftFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MySQL\PadRightFunctionView.cs">
+      <Link>Dialect\Function\MySQL\PadRightFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MySQL\RemoveFunctionView.cs">
+      <Link>Dialect\Function\MySQL\RemoveFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MySQL\RightFunctionView.cs">
+      <Link>Dialect\Function\MySQL\RightFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MySQL\ToDate3FunctionView.cs">
+      <Link>Dialect\Function\MySQL\ToDate3FunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MySQL\ToDate6FunctionView.cs">
+      <Link>Dialect\Function\MySQL\ToDate6FunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\MySQL\ToTimeFunctionView.cs">
+      <Link>Dialect\Function\MySQL\ToTimeFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Oracle\AddDateFunctionView.cs">
+      <Link>Dialect\Function\Oracle\AddDateFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Oracle\CommonFunction.cs">
+      <Link>Dialect\Function\Oracle\CommonFunction.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Oracle\DateAddFunctionView.cs">
+      <Link>Dialect\Function\Oracle\DateAddFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Oracle\DateAddsFunctionView.cs">
+      <Link>Dialect\Function\Oracle\DateAddsFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Oracle\DateDiffFuncionView1.cs">
+      <Link>Dialect\Function\Oracle\DateDiffFuncionView1.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Oracle\DateDiffFunctionView.cs">
+      <Link>Dialect\Function\Oracle\DateDiffFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Oracle\DatePartFunctionView.cs">
+      <Link>Dialect\Function\Oracle\DatePartFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Oracle\IndexOfFunctionView.cs">
+      <Link>Dialect\Function\Oracle\IndexOfFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Oracle\IsNullOrWhiteSpaceFunctionView.cs">
+      <Link>Dialect\Function\Oracle\IsNullOrWhiteSpaceFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Oracle\LastIndexOfFunctionView.cs">
+      <Link>Dialect\Function\Oracle\LastIndexOfFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Oracle\LocateFunction.cs">
+      <Link>Dialect\Function\Oracle\LocateFunction.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Oracle\OracleDateTimeFunctions.cs">
+      <Link>Dialect\Function\Oracle\OracleDateTimeFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Oracle\OracleDecimalFunctions.cs">
+      <Link>Dialect\Function\Oracle\OracleDecimalFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Oracle\OracleFunctionRegistry.cs">
+      <Link>Dialect\Function\Oracle\OracleFunctionRegistry.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Oracle\OracleMathFunctions.cs">
+      <Link>Dialect\Function\Oracle\OracleMathFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Oracle\OracleStringFunctions.cs">
+      <Link>Dialect\Function\Oracle\OracleStringFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Oracle\RemoveFunctionView.cs">
+      <Link>Dialect\Function\Oracle\RemoveFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Oracle\SubstringFunctionView.cs">
+      <Link>Dialect\Function\Oracle\SubstringFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Oracle\ToDate3FunctionView.cs">
+      <Link>Dialect\Function\Oracle\ToDate3FunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Oracle\ToDate6FunctionView.cs">
+      <Link>Dialect\Function\Oracle\ToDate6FunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\Postgres\PostgresFunctionRegistry.cs">
+      <Link>Dialect\Function\Postgres\PostgresFunctionRegistry.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SqlCe\AddDateFunctionView.cs">
+      <Link>Dialect\Function\SqlCe\AddDateFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SqlCe\DateAddFunctionView.cs">
+      <Link>Dialect\Function\SqlCe\DateAddFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SqlCe\DateDiffFunctionView.cs">
+      <Link>Dialect\Function\SqlCe\DateDiffFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SqlCe\DatePartFunctionView.cs">
+      <Link>Dialect\Function\SqlCe\DatePartFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SqlCe\IndexOfFunctionView.cs">
+      <Link>Dialect\Function\SqlCe\IndexOfFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SqlCe\PadLeftFunctionView.cs">
+      <Link>Dialect\Function\SqlCe\PadLeftFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SqlCe\PadRightFunctionView.cs">
+      <Link>Dialect\Function\SqlCe\PadRightFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SqlCe\RemoveFunctionView.cs">
+      <Link>Dialect\Function\SqlCe\RemoveFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SqlCe\SqlCEDateTimeFunctions.cs">
+      <Link>Dialect\Function\SqlCe\SqlCEDateTimeFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SqlCe\SqlCEDecimalFunctions.cs">
+      <Link>Dialect\Function\SqlCe\SqlCEDecimalFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SqlCe\SqlCeFunctionRegistry.cs">
+      <Link>Dialect\Function\SqlCe\SqlCeFunctionRegistry.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SqlCe\SqlCEMathFunctions.cs">
+      <Link>Dialect\Function\SqlCe\SqlCEMathFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SqlCe\SqlCEStringFunctions.cs">
+      <Link>Dialect\Function\SqlCe\SqlCEStringFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SqlCe\SubStringFunctionView.cs">
+      <Link>Dialect\Function\SqlCe\SubStringFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SqlCe\ToDate3FunctionView.cs">
+      <Link>Dialect\Function\SqlCe\ToDate3FunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SqlCe\ToDate6FunctionView.cs">
+      <Link>Dialect\Function\SqlCe\ToDate6FunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SqlCe\ToTimeFunctionView.cs">
+      <Link>Dialect\Function\SqlCe\ToTimeFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SQLite\AddDateFunctionView.cs">
+      <Link>Dialect\Function\SQLite\AddDateFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SQLite\AddDateTemplateFunctionView.cs">
+      <Link>Dialect\Function\SQLite\AddDateTemplateFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SQLite\DateAddFunctionView.cs">
+      <Link>Dialect\Function\SQLite\DateAddFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SQLite\DateDiffFuncionView1.cs">
+      <Link>Dialect\Function\SQLite\DateDiffFuncionView1.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SQLite\DateDiffFunctionView.cs">
+      <Link>Dialect\Function\SQLite\DateDiffFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SQLite\DatePartFunctionView.cs">
+      <Link>Dialect\Function\SQLite\DatePartFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SQLite\DatePartQuarterFunctionView.cs">
+      <Link>Dialect\Function\SQLite\DatePartQuarterFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SQLite\IndexOfView.cs">
+      <Link>Dialect\Function\SQLite\IndexOfView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SQLite\InsertFunctionView.cs">
+      <Link>Dialect\Function\SQLite\InsertFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SQLite\LastIndexOfFunctionView.cs">
+      <Link>Dialect\Function\SQLite\LastIndexOfFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SQLite\LeftFunctionView.cs">
+      <Link>Dialect\Function\SQLite\LeftFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SQLite\PadLeftFunctionView.cs">
+      <Link>Dialect\Function\SQLite\PadLeftFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SQLite\PadRightFunctionView.cs">
+      <Link>Dialect\Function\SQLite\PadRightFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SQLite\RemoveFunctionView.cs">
+      <Link>Dialect\Function\SQLite\RemoveFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SQLite\RightFunctionView.cs">
+      <Link>Dialect\Function\SQLite\RightFunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SQLite\SQLiteDateTimeFunctions.cs">
+      <Link>Dialect\Function\SQLite\SQLiteDateTimeFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SQLite\SQLiteDecimalFunctions.cs">
+      <Link>Dialect\Function\SQLite\SQLiteDecimalFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SQLite\SQLiteFunctionManager.cs">
+      <Link>Dialect\Function\SQLite\SQLiteFunctionManager.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SQLite\SQLiteMathFunctions.cs">
+      <Link>Dialect\Function\SQLite\SQLiteMathFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SQLite\SQLiteStringFunctions.cs">
+      <Link>Dialect\Function\SQLite\SQLiteStringFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SQLite\ToDate3FunctionView.cs">
+      <Link>Dialect\Function\SQLite\ToDate3FunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\Function\SQLite\ToDate6FunctionView.cs">
+      <Link>Dialect\Function\SQLite\ToDate6FunctionView.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\IDbExpressionBuilder.cs">
+      <Link>Dialect\IDbExpressionBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\IDialect.cs">
+      <Link>Dialect\IDialect.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\ISqlBuilder.cs">
+      <Link>Dialect\ISqlBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\JoinColumnGatherer.cs">
+      <Link>Dialect\JoinColumnGatherer.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\MsSql2000Dialect.cs">
+      <Link>Dialect\MsSql2000Dialect.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\MsSql2005Dialect.cs">
+      <Link>Dialect\MsSql2005Dialect.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\MySqlDialect.cs">
+      <Link>Dialect\MySqlDialect.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\OracleDialect.cs">
+      <Link>Dialect\OracleDialect.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\PostgresDialect.cs">
+      <Link>Dialect\PostgresDialect.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\ScalarSubqueryRewriter.cs">
+      <Link>Dialect\ScalarSubqueryRewriter.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\SqlBuilder\AccessSqlBuilder.cs">
+      <Link>Dialect\SqlBuilder\AccessSqlBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\SqlBuilder\DbSqlBuilder.cs">
+      <Link>Dialect\SqlBuilder\DbSqlBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\SqlBuilder\DbSqlBuilder.Function.cs">
+      <Link>Dialect\SqlBuilder\DbSqlBuilder.Function.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\SqlBuilder\ExcelSqlBuilder.cs">
+      <Link>Dialect\SqlBuilder\ExcelSqlBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\SqlBuilder\FirebirdSqlBuilder.cs">
+      <Link>Dialect\SqlBuilder\FirebirdSqlBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\SqlBuilder\MsSql2000SqlBuilder.cs">
+      <Link>Dialect\SqlBuilder\MsSql2000SqlBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\SqlBuilder\MySqlBuilder.cs">
+      <Link>Dialect\SqlBuilder\MySqlBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\SqlBuilder\OracleSqlBuilder.cs">
+      <Link>Dialect\SqlBuilder\OracleSqlBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\SqlBuilder\PostgresSqlBuilder.cs">
+      <Link>Dialect\SqlBuilder\PostgresSqlBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\SqlBuilder\SqlCeBuilder.cs">
+      <Link>Dialect\SqlBuilder\SqlCeBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\SqlBuilder\SQLiteSqlBuilder.cs">
+      <Link>Dialect\SqlBuilder\SQLiteSqlBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\SqlBuilder\SqlServer2005SqlBuilder.cs">
+      <Link>Dialect\SqlBuilder\SqlServer2005SqlBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\SqlCE35Dialect.cs">
+      <Link>Dialect\SqlCE35Dialect.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\SqlCE4Dialect.cs">
+      <Link>Dialect\SqlCE4Dialect.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\SQLiteDialect.cs">
+      <Link>Dialect\SQLiteDialect.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\TxtDialect.cs">
+      <Link>Dialect\TxtDialect.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Dialect\TypeNames.cs">
+      <Link>Dialect\TypeNames.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Driver\AbstractDriver.cs">
+      <Link>Driver\AbstractDriver.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Driver\AccessDriver.cs">
+      <Link>Driver\AccessDriver.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Driver\IDriver.cs">
+      <Link>Driver\IDriver.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Driver\MySqlDriver.cs">
+      <Link>Driver\MySqlDriver.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Driver\OledbDriver.cs">
+      <Link>Driver\OledbDriver.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Driver\OracleClientDriver.cs">
+      <Link>Driver\OracleClientDriver.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Driver\OracleDriver.cs">
+      <Link>Driver\OracleDriver.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Driver\OracleODPDriver.cs">
+      <Link>Driver\OracleODPDriver.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Driver\SqlCeDriver.cs">
+      <Link>Driver\SqlCeDriver.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Driver\SQLiteDriver.cs">
+      <Link>Driver\SQLiteDriver.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Driver\SqlServer2000Driver.cs">
+      <Link>Driver\SqlServer2000Driver.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Driver\SqlServer2005Driver.cs">
+      <Link>Driver\SqlServer2005Driver.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Driver\SqlServerDriver.cs">
+      <Link>Driver\SqlServerDriver.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\EFDataAnnotiationAdapter.cs">
+      <Link>EFDataAnnotiationAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\EmptyDbLog.cs">
+      <Link>EmptyDbLog.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\ExecuteContext.cs">
+      <Link>ExecuteContext.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Guard.cs">
+      <Link>Guard.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\IdAttribute.cs">
+      <Link>IdAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\IDbContext.cs">
+      <Link>IDbContext.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\IDbHelper.cs">
+      <Link>IDbHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\IDbSet.cs">
+      <Link>IDbSet.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\IMappingConversion.cs">
+      <Link>IMappingConversion.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Inflector.cs">
+      <Link>Inflector.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\InternalDbContext.cs">
+      <Link>InternalDbContext.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\InternalDbContext.QueryPolicy.cs">
+      <Link>InternalDbContext.QueryPolicy.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\IReqository.cs">
+      <Link>IReqository.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\ISqlLog.cs">
+      <Link>ISqlLog.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\IUnitOfWork.cs">
+      <Link>IUnitOfWork.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\ConstructorBindResult.cs">
+      <Link>Linq\ConstructorBindResult.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\EntityAssignment.cs">
+      <Link>Linq\EntityAssignment.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\Aggregator.cs">
+      <Link>Linq\Expressions\Aggregator.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\DbExpressionComparer.cs">
+      <Link>Linq\Expressions\DbExpressionComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\DbExpressionExtensions.cs">
+      <Link>Linq\Expressions\DbExpressionExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\DbExpressionReplacer.cs">
+      <Link>Linq\Expressions\DbExpressionReplacer.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\DbExpressions.cs">
+      <Link>Linq\Expressions\DbExpressions.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\DbExpressionVisitor.cs">
+      <Link>Linq\Expressions\DbExpressionVisitor.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\DbExpressionWriter.cs">
+      <Link>Linq\Expressions\DbExpressionWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\ExpressionHelper.cs">
+      <Link>Linq\Expressions\ExpressionHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\Translation\AggregateChecker.cs">
+      <Link>Linq\Expressions\Translation\AggregateChecker.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\Translation\AggregateRewriter.cs">
+      <Link>Linq\Expressions\Translation\AggregateRewriter.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\Translation\ClientJoinedProjectionRewriter.cs">
+      <Link>Linq\Expressions\Translation\ClientJoinedProjectionRewriter.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\Translation\ColumnMapper.cs">
+      <Link>Linq\Expressions\Translation\ColumnMapper.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\Translation\ColumnProjector.cs">
+      <Link>Linq\Expressions\Translation\ColumnProjector.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\Translation\ComparisonRewriter.cs">
+      <Link>Linq\Expressions\Translation\ComparisonRewriter.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\Translation\CrossApplyRewriter.cs">
+      <Link>Linq\Expressions\Translation\CrossApplyRewriter.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\Translation\CrossJoinIsolator.cs">
+      <Link>Linq\Expressions\Translation\CrossJoinIsolator.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\Translation\CrossJoinRewriter.cs">
+      <Link>Linq\Expressions\Translation\CrossJoinRewriter.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\Translation\DeclaredAliasGatherer.cs">
+      <Link>Linq\Expressions\Translation\DeclaredAliasGatherer.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\Translation\ExecutionBuilder.cs">
+      <Link>Linq\Expressions\Translation\ExecutionBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\Translation\FunctionBinder.cs">
+      <Link>Linq\Expressions\Translation\FunctionBinder.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\Translation\NamedValueGatherer.cs">
+      <Link>Linq\Expressions\Translation\NamedValueGatherer.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\Translation\OrderByRewriter.cs">
+      <Link>Linq\Expressions\Translation\OrderByRewriter.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\Translation\Parameterizer.cs">
+      <Link>Linq\Expressions\Translation\Parameterizer.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\Translation\QueryBinder.cs">
+      <Link>Linq\Expressions\Translation\QueryBinder.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\Translation\RedundantColumnRemover.cs">
+      <Link>Linq\Expressions\Translation\RedundantColumnRemover.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\Translation\RedundantJoinRemover.cs">
+      <Link>Linq\Expressions\Translation\RedundantJoinRemover.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\Translation\RedundantSubqueryRemover.cs">
+      <Link>Linq\Expressions\Translation\RedundantSubqueryRemover.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\Translation\ReferencedAliasGatherer.cs">
+      <Link>Linq\Expressions\Translation\ReferencedAliasGatherer.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\Translation\ReferencedColumnGatherer.cs">
+      <Link>Linq\Expressions\Translation\ReferencedColumnGatherer.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\Translation\RelationshipBinder.cs">
+      <Link>Linq\Expressions\Translation\RelationshipBinder.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\Translation\SingletonProjectionRewriter.cs">
+      <Link>Linq\Expressions\Translation\SingletonProjectionRewriter.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\Translation\SkipToRowNumberRewriter.cs">
+      <Link>Linq\Expressions\Translation\SkipToRowNumberRewriter.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\Translation\SubqueryRemover.cs">
+      <Link>Linq\Expressions\Translation\SubqueryRemover.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\Translation\ThreeTopPagerRewriter.cs">
+      <Link>Linq\Expressions\Translation\ThreeTopPagerRewriter.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Expressions\Translation\UnusedColumnRemover.cs">
+      <Link>Linq\Expressions\Translation\UnusedColumnRemover.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\ExpressionVisitor.cs">
+      <Link>Linq\ExpressionVisitor.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\ExpressionWriter.cs">
+      <Link>Linq\ExpressionWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Internal\CompoundKey.cs">
+      <Link>Linq\Internal\CompoundKey.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Internal\DeferredList.cs">
+      <Link>Linq\Internal\DeferredList.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Internal\DeferredValue.cs">
+      <Link>Linq\Internal\DeferredValue.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Internal\EnumerateOnce.cs">
+      <Link>Linq\Internal\EnumerateOnce.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Internal\ExpressionComparer.cs">
+      <Link>Linq\Internal\ExpressionComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Internal\ExpressionEvaluator.cs">
+      <Link>Linq\Internal\ExpressionEvaluator.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Internal\ExpressionReplacer.cs">
+      <Link>Linq\Internal\ExpressionReplacer.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Internal\Grouping.cs">
+      <Link>Linq\Internal\Grouping.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Internal\MostRecentlyUsedCache.cs">
+      <Link>Linq\Internal\MostRecentlyUsedCache.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Internal\Parameterizer.cs">
+      <Link>Linq\Internal\Parameterizer.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Internal\PartialEvaluator.cs">
+      <Link>Linq\Internal\PartialEvaluator.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Internal\ReadOnlyExtensions.cs">
+      <Link>Linq\Internal\ReadOnlyExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Internal\ReflectionExtensions.cs">
+      <Link>Linq\Internal\ReflectionExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Internal\ScopedDictionary.cs">
+      <Link>Linq\Internal\ScopedDictionary.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Internal\StrongDelegate.cs">
+      <Link>Linq\Internal\StrongDelegate.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Internal\TopologicalSort.cs">
+      <Link>Linq\Internal\TopologicalSort.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Internal\TypedSubtreeFinder.cs">
+      <Link>Linq\Internal\TypedSubtreeFinder.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Internal\TypeHelper.cs">
+      <Link>Linq\Internal\TypeHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\IQueryPolicy.cs">
+      <Link>Linq\IQueryPolicy.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\Query.cs">
+      <Link>Linq\Query.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\QueryCache.cs">
+      <Link>Linq\QueryCache.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Linq\QueryCompiler.cs">
+      <Link>Linq\QueryCompiler.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\ManyToOneAttribute.cs">
+      <Link>ManyToOneAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\MappingConversion.cs">
+      <Link>MappingConversion.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\MappingException.cs">
+      <Link>MappingException.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Mapping\EntityMapping.cs">
+      <Link>Mapping\EntityMapping.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Mapping\Fluent\ClassMap.cs">
+      <Link>Mapping\Fluent\ClassMap.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Mapping\Fluent\ClassMapOfT.cs">
+      <Link>Mapping\Fluent\ClassMapOfT.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Mapping\Fluent\ColumnExpression.cs">
+      <Link>Mapping\Fluent\ColumnExpression.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Mapping\Fluent\ColumnExpressionOfT.cs">
+      <Link>Mapping\Fluent\ColumnExpressionOfT.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Mapping\Fluent\ComputedColumnExpressison.cs">
+      <Link>Mapping\Fluent\ComputedColumnExpressison.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Mapping\Fluent\IdExpression.cs">
+      <Link>Mapping\Fluent\IdExpression.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Mapping\Fluent\MemberExpressionOfT.cs">
+      <Link>Mapping\Fluent\MemberExpressionOfT.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Mapping\Fluent\SequenceExpression.cs">
+      <Link>Mapping\Fluent\SequenceExpression.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Mapping\Fluent\TableExpression.cs">
+      <Link>Mapping\Fluent\TableExpression.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Mapping\Fluent\VersionExression.cs">
+      <Link>Mapping\Fluent\VersionExression.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Mapping\IEntityMapping.cs">
+      <Link>Mapping\IEntityMapping.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Mapping\IMemberMapping.cs">
+      <Link>Mapping\IMemberMapping.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Mapping\MemberMapping.cs">
+      <Link>Mapping\MemberMapping.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\MemberAttribute.cs">
+      <Link>MemberAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\ODPConnectionWrapper.cs">
+      <Link>ODPConnectionWrapper.cs</Link>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="..\NLite.Data\OneToManyAttribute.cs">
+      <Link>OneToManyAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\OneToOneAttribute.cs">
+      <Link>OneToOneAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Repository.cs">
+      <Link>Repository.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Res.Designer.cs">
+      <Link>Res.Designer.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\DatabaseSchema.cs">
+      <Link>Schema\DatabaseSchema.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\IColumnSchema.cs">
+      <Link>Schema\IColumnSchema.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\IDatabaseSchema.cs">
+      <Link>Schema\IDatabaseSchema.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\IForeignKeySchema.cs">
+      <Link>Schema\IForeignKeySchema.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\IRelationSchema.cs">
+      <Link>Schema\IRelationSchema.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\ITableSchema.cs">
+      <Link>Schema\ITableSchema.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\Loader\ISchemaLoader.cs">
+      <Link>Schema\Loader\ISchemaLoader.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\Loader\MySqlSchemaLoader.cs">
+      <Link>Schema\Loader\MySqlSchemaLoader.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\Loader\OledbSchemaLoader.cs">
+      <Link>Schema\Loader\OledbSchemaLoader.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\Loader\OracleSchemaLoader.cs">
+      <Link>Schema\Loader\OracleSchemaLoader.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\Loader\SchemaLoader.cs">
+      <Link>Schema\Loader\SchemaLoader.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\Loader\SqlCeSchemaLoader.cs">
+      <Link>Schema\Loader\SqlCeSchemaLoader.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\Loader\SQLiteSchemaLoader.cs">
+      <Link>Schema\Loader\SQLiteSchemaLoader.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\Loader\SqlServerSchemaLoader.cs">
+      <Link>Schema\Loader\SqlServerSchemaLoader.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\Script\DatabaseScriptEntry.cs">
+      <Link>Schema\Script\DatabaseScriptEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\Script\Executor\AccessScriptExecutor.cs">
+      <Link>Schema\Script\Executor\AccessScriptExecutor.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\Script\Executor\DatabaseScriptExecutor.cs">
+      <Link>Schema\Script\Executor\DatabaseScriptExecutor.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\Script\Executor\FileDatabaseScriptExecutor.cs">
+      <Link>Schema\Script\Executor\FileDatabaseScriptExecutor.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\Script\Executor\IDatabaseScriptExecutor.cs">
+      <Link>Schema\Script\Executor\IDatabaseScriptExecutor.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\Script\Executor\MySQLScriptExecutor.cs">
+      <Link>Schema\Script\Executor\MySQLScriptExecutor.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\Script\Executor\NonFileDatabaseScriptExecutor.cs">
+      <Link>Schema\Script\Executor\NonFileDatabaseScriptExecutor.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\Script\Executor\OracleScriptExecutor.cs">
+      <Link>Schema\Script\Executor\OracleScriptExecutor.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\Script\Executor\SqlCeScriptExecutor.cs">
+      <Link>Schema\Script\Executor\SqlCeScriptExecutor.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\Script\Executor\SQLiteScriptExecutor.cs">
+      <Link>Schema\Script\Executor\SQLiteScriptExecutor.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\Script\Executor\SqlServer2000ScriptExecutor.cs">
+      <Link>Schema\Script\Executor\SqlServer2000ScriptExecutor.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\Script\Executor\SqlServerScriptExecutor.cs">
+      <Link>Schema\Script\Executor\SqlServerScriptExecutor.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\Script\Generator\AccessScriptGenerator.cs">
+      <Link>Schema\Script\Generator\AccessScriptGenerator.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\Script\Generator\DatabaseScriptGenerator.cs">
+      <Link>Schema\Script\Generator\DatabaseScriptGenerator.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\Script\Generator\FirebirdScriptGenerator.cs">
+      <Link>Schema\Script\Generator\FirebirdScriptGenerator.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\Script\Generator\IDatabaseScriptGenerator.cs">
+      <Link>Schema\Script\Generator\IDatabaseScriptGenerator.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\Script\Generator\MySQLScriptGenerator.cs">
+      <Link>Schema\Script\Generator\MySQLScriptGenerator.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\Script\Generator\OracleScriptGenerator.cs">
+      <Link>Schema\Script\Generator\OracleScriptGenerator.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\Script\Generator\SqlCeScriptGenerator.cs">
+      <Link>Schema\Script\Generator\SqlCeScriptGenerator.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\Script\Generator\SQLiteScriptGenerator.cs">
+      <Link>Schema\Script\Generator\SQLiteScriptGenerator.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Schema\Script\Generator\SqlServerScriptGenerator.cs">
+      <Link>Schema\Script\Generator\SqlServerScriptGenerator.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\SQLiteConnectionWrapper.cs">
+      <Link>SQLiteConnectionWrapper.cs</Link>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="..\NLite.Data\SqlLog.cs">
+      <Link>SqlLog.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\TableAttribute.cs">
+      <Link>TableAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\TraceSqlLog.cs">
+      <Link>TraceSqlLog.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\UnitOfWork.cs">
+      <Link>UnitOfWork.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\VersionAttribute.cs">
+      <Link>VersionAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\XmlExtensions.cs">
+      <Link>XmlExtensions.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\ELinq.xsd">
+      <Link>ELinq.xsd</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\NLite.Data\Res.resx">
+      <Link>Res.resx</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ELinq.snk" />
+  </ItemGroup>
+</Project>
