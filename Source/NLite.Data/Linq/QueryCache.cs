@@ -9,7 +9,6 @@ using NLite.Data.Linq.Internal;
 using NLite.Data.Mapping;
 using NLite.Data.Linq.Expressions;
 using NLite.Reflection;
-using NLite.Data.Linq.Internal;
 
 namespace NLite.Data.Linq
 {

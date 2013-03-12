@@ -350,8 +350,8 @@ namespace NLite.Data.Dialect.ExpressionBuilder
         {
             List<LambdaExpression> ops;
             var dbContext = ExecuteContext.DbContext;
-            if (dbContext != null &&　dbContext.Operations.TryGetValue(member, out ops))
-            {
+			if(dbContext != null && dbContext.Operations.TryGetValue(member,out ops))
+			{
                 var result = expression;
                 foreach (var fnOp in ops)
                 {

@@ -151,14 +151,50 @@ namespace NLite.Data
             return this;
         }
         /// <summary>
+        /// 批量注册AppDomain下的程序集内符合特定条件的实体到数据表的映射关系
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="typeFilter"></param>
+        /// <returns></returns>
+        public DbConfiguration AddFromAppDomain(System.Func<Type, bool> typeFilter )
+        {
+            foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
+                AddFromAssembly(asm, typeFilter);
+            return this;
+        }
+
+     
+        /// <summary>
         /// 批量注册指定类型T所在的程序集内符合特定条件的实体到数据表的映射关系
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="typeFilter"></param>
         /// <returns></returns>
-        public DbConfiguration AddFromAssemblyOf<T>(System.Func<Type, bool> typeFilter = null)
+        public DbConfiguration AddFromAssemblyOf<T>(System.Func<Type, bool> typeFilter )
         {
-            foreach (var t in typeof(T).Assembly.GetExportedTypes().Where(p => !p.IsAbstract))
+            return AddFromAssembly(typeof(T).Assembly, typeFilter);
+        }
+
+		/// <summary>
+		/// 批量注册指定类型T所在的程序集内符合特定条件的实体到数据表的映射关系
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="typeFilter"></param>
+		/// <returns></returns>
+		public DbConfiguration AddFromAssemblyOf<T>()
+		{
+			return AddFromAssembly(typeof(T).Assembly, null);
+		}
+
+        /// <summary>
+        /// 批量注册特定程序集内符合特定条件的实体到数据表的映射关系
+        /// </summary>
+        /// <param name="typeFilter"></param>
+        /// <returns></returns>
+        public DbConfiguration AddFromAssembly(Assembly asm,System.Func<Type, bool> typeFilter)
+        {
+            Guard.NotNull(asm, "asm");
+            foreach (var t in asm.GetExportedTypes().Where(p => !p.IsAbstract))
             {
                 var entityTypeId = t.TypeHandle.Value;
                 if (mappings.ContainsKey(entityTypeId))
@@ -179,7 +215,7 @@ namespace NLite.Data
                     var dlinqTableAttribute = (Attribute)t.GetCustomAttributes(DLinq.Instance.Table.Type, false).FirstOrDefault();
                     if (dlinqTableAttribute != null)
                         AddDLinqClass(t, dlinqTableAttribute);
-                    else 
+                    else
                         RegistyMapping(CreateMapping(t));
                 }
             }

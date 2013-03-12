@@ -20,7 +20,7 @@ namespace ELinq.DDLTest.ElinqToSql
 
             if (!DbConfiguration.Items.TryGetValue(connectionStringName, out dbConfiguration))
             {
-                dbConfiguration = DbConfiguration.ConfigureAccess("Northwind.accdb")
+                dbConfiguration = DbConfiguration.Configure(connectionStringName)
                     //dbConfiguration = DbConfiguration.Configure(connectionStringName)
                         .SetSqlLogger(() => new SqlLog(Console.Out))
                         .AddFromAssemblyOf<ELinq.DDLTest.ElinqToSql.Models.EmployeeTerritories>(t => t.HasAttribute<TableAttribute>(false));

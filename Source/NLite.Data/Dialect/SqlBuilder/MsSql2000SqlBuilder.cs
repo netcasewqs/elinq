@@ -183,7 +183,7 @@ namespace NLite.Data.Dialect.SqlBuilder
         }
 
         TypeNames typeNames = null;
-        string GetVariableDeclaration(SqlType sqlType, bool suppressSize, int? length = null)
+        string GetVariableDeclaration(SqlType sqlType, bool suppressSize, int? length )
         {
             string result = null;
 
@@ -219,7 +219,7 @@ namespace NLite.Data.Dialect.SqlBuilder
                 this.Append("DECLARE @");
                 this.Append(v.Name);
                 this.Append(" ");
-                this.Append(this.GetVariableDeclaration(v.SqlType, false));
+                this.Append(this.GetVariableDeclaration(v.SqlType, false,null));
             }
             if (decl.Source != null)
             {

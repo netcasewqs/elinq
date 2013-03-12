@@ -29,6 +29,10 @@ namespace NLite.Data
         }
 
 #if SDK35
+		public int ExecuteNonQuery(string sql)
+		{
+			return ExecuteNonQuery(sql,null);
+		}
         public int ExecuteNonQuery(string sql, object namedParameters)
         {
             Guard.NotNullOrEmpty(sql, "sql");
@@ -49,6 +53,10 @@ namespace NLite.Data
            
         }
 
+		public DbDataReader ExecuteReader (string sql)
+		{
+			return ExecuteReader (sql,null);
+		}
         public DbDataReader ExecuteReader(string sql, object namedParameters)
         {
             Guard.NotNullOrEmpty(sql, "sql");
@@ -69,6 +77,10 @@ namespace NLite.Data
             }
         }
 
+		public DataTable ExecuteDataTable (string sql)
+		{
+			return ExecuteDataTable (sql,null);
+		}
         public DataTable ExecuteDataTable(string sql, object namedParameters)
         {
 
@@ -92,6 +104,10 @@ namespace NLite.Data
             }
         }
 
+		public DataSet ExecuteDataSet (string sql)
+		{
+			return ExecuteDataSet (sql,null);
+		}
         public DataSet ExecuteDataSet(string sql, object namedParameters)
         {
 
@@ -115,7 +131,10 @@ namespace NLite.Data
             }
         }
 
-
+		public object ExecuteScalar (string sql)
+		{
+			return ExecuteScalar (sql,null);
+		}
         public object ExecuteScalar(string sql, object namedParameters)
         {
 

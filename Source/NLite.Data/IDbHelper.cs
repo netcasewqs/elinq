@@ -19,21 +19,49 @@ namespace NLite.Data
     /// </summary>
     public interface IDbHelper:IDisposable
     {
+		/// <summary>
+		/// 执行更新
+		/// </summary>
+		/// <returns></returns>
+		int ExecuteNonQuery(string sql);
+		
+		/// <summary>
+		/// 执行查询并返回DataReader
+		/// </summary>
+		/// <returns></returns>
+		DbDataReader ExecuteReader(string sql);
+		/// <summary>
+		/// 执行查询并返回DataTable
+		/// </summary>
+		DataTable ExecuteDataTable(string sql);
+		
+		/// <summary>
+		/// 执行查询并返回DataSet
+		/// </summary>
+		/// <param name="sql"></param>
+		/// <returns></returns>
+		DataSet ExecuteDataSet(string sql);
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		object ExecuteScalar(string sql);
+
         /// <summary>
         /// 执行更新
         /// </summary>
         /// <returns></returns>
-        int ExecuteNonQuery(string sql, object namedParameters=null);
+        int ExecuteNonQuery(string sql, object namedParameters);
 
         /// <summary>
         /// 执行查询并返回DataReader
         /// </summary>
         /// <returns></returns>
-        DbDataReader ExecuteReader(string sql, object namedParameters=null);
+        DbDataReader ExecuteReader(string sql, object namedParameters);
         /// <summary>
         /// 执行查询并返回DataTable
         /// </summary>
-        DataTable ExecuteDataTable(string sql, object namedParameters=null);
+        DataTable ExecuteDataTable(string sql, object namedParameters);
 
         /// <summary>
         /// 执行查询并返回DataSet
@@ -41,12 +69,12 @@ namespace NLite.Data
         /// <param name="sql"></param>
         /// <param name="namedParameters"></param>
         /// <returns></returns>
-        DataSet ExecuteDataSet(string sql, object namedParameters=null);
+        DataSet ExecuteDataSet(string sql, object namedParameters);
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        object ExecuteScalar(string sql, object namedParameters=null);
+        object ExecuteScalar(string sql, object namedParameters);
 
     }
 #else

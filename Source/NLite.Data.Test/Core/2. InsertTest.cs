@@ -51,7 +51,7 @@ namespace NLite.Data.Test.Core
                 q.Insert(c);
 
                 //6. 从数据库中查找指定CustomerID 的PO对象
-                var c2 = q.Find(c.CustomerID);
+                var c2 = q.Get(c.CustomerID);
                 Assert.IsNotNull(c2);
                 Assert.AreNotSame(c, c2);
 
@@ -93,7 +93,7 @@ namespace NLite.Data.Test.Core
                 cusotmers.Insert(c);
 
                 //6. 从数据库中查找指定CustomerID 的PO对象
-                var c2 = cusotmers.Find(c.CustomerID);
+                var c2 = cusotmers.Get(c.CustomerID);
                 Assert.IsNotNull(c2);
 
                 Assert.AreEqual(c.CustomerID, c2.CustomerID);
@@ -132,7 +132,7 @@ namespace NLite.Data.Test.Core
                 cusotmers.Insert(c);
 
                 //6. 从数据库中查找指定CustomerID 的PO对象
-                var c2 = cusotmers.Find(c["CustomerID"]);
+                var c2 = cusotmers.Get(c["CustomerID"]);
                 Assert.IsNotNull(c2);
 
                 Assert.AreEqual(c["CustomerID"], c2.CustomerID);
@@ -171,7 +171,7 @@ namespace NLite.Data.Test.Core
                 cusotmers.Insert(c);
 
                 //6. 从数据库中查找指定CustomerID 的PO对象
-                var c2 = cusotmers.Find(c["CustomerID"]);
+                var c2 = cusotmers.Get(c["CustomerID"]);
                 Assert.IsNotNull(c2);
 
                 Assert.AreEqual(c["CustomerID"], c2.CustomerID);
@@ -210,7 +210,7 @@ namespace NLite.Data.Test.Core
                 cusotmers.Insert(c);
 
                 //6. 从数据库中查找指定CustomerID 的PO对象
-                var c2 = cusotmers.Find(c["CustomerID"]);
+                var c2 = cusotmers.Get(c["CustomerID"]);
                 Assert.IsNotNull(c2);
 
                 Assert.AreEqual(c["CustomerID"], c2.CustomerID);

@@ -11,7 +11,6 @@ using NLite.Data.Linq.Expressions;
 using NLite.Data.Linq;
 using NLite.Reflection;
 using NLite.Data.Dialect;
-using NLite.Data.Linq.Internal;
 using NLite.Data.LinqToSql;
 using NLite.Data.Dialect.ExpressionBuilder;
 

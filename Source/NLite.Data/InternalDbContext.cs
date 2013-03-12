@@ -45,7 +45,7 @@ namespace NLite.Data
         {
         }
 
-        private InternalDbContext(DbConfiguration dbConfiguration, DbConnection conn, bool hasSelfCreateConnection=true)
+        private InternalDbContext(DbConfiguration dbConfiguration, DbConnection conn, bool hasSelfCreateConnection)
         {
             Driver = dbConfiguration.Driver;
             Dialect = dbConfiguration.Dialect;
@@ -87,7 +87,11 @@ namespace NLite.Data
             }
         }
 
-        public void UsingTransaction(Action action, IsolationLevel isolationLevel = IsolationLevel.Unspecified)
+		public void UsingTransaction (Action action)
+		{
+			UsingTransaction (action,IsolationLevel.Unspecified);
+		}
+        public void UsingTransaction(Action action, IsolationLevel isolationLevel)
         {
             Guard.NotNull(action, "action");
 

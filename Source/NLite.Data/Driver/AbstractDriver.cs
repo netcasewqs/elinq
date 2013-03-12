@@ -33,40 +33,46 @@ namespace NLite.Data.Driver
 
             if (parameter.SqlType != null)
             {
-                if (sqlType.Length > 0)
-                    p.Size = sqlType.Length;
+               
                 if (sqlType.Precision > 0)
                     p.Precision = sqlType.Precision;
                 if (sqlType.Scale > 0)
                     p.Scale = sqlType.Scale;
                 if (sqlType.Required)
                     (p as DbParameter).IsNullable = false;
-
-                switch (sqlType.DbType)
-                {
-                    case DBType.NChar:
-                    case DBType.NVarChar:
-                        {
-                            var str = value as string;
-                            if (string.IsNullOrEmpty(str))
-                                p.Size = 2;
-                            else
-                                p.Size = str.Length * 2;
-                            break;
-                        }
-                    case DBType.Char:
-                    case DBType.VarChar:
-                        {
-                            var str = value as string;
-                            if (string.IsNullOrEmpty(str))
-                                p.Size = 1;
-                            else
-                                p.Size = str.Length * 1;
-                            break;
-                        }
-                }
+                if (sqlType.Length > 0)
+                    p.Size = sqlType.Length;
+                else
+                    InitializeParameterLengthWhenZero(p, value, sqlType);
             }
             ConvertDBTypeToNativeType(p, parameter.sqlType.DbType);
+        }
+
+        private static void InitializeParameterLengthWhenZero(IDbDataParameter p, object value, SqlType sqlType)
+        {
+            switch (sqlType.DbType)
+            {
+                case DBType.NChar:
+                case DBType.NVarChar:
+                    {
+                        var str = value as string;
+                        if (string.IsNullOrEmpty(str))
+                            p.Size = 2;
+                        else
+                            p.Size = str.Length * 2;
+                        break;
+                    }
+                case DBType.Char:
+                case DBType.VarChar:
+                    {
+                        var str = value as string;
+                        if (string.IsNullOrEmpty(str))
+                            p.Size = 1;
+                        else
+                            p.Size = str.Length * 1;
+                        break;
+                    }
+            }
         }
 
         protected virtual void ConvertDBTypeToNativeType(IDbDataParameter p, DBType dbType)

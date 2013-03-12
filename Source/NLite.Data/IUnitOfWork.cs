@@ -24,12 +24,19 @@ namespace NLite.Data
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         IRepository<T> CreateRepository<T>();
+
+		/// <summary>
+		/// 启用Ado.net事务
+		/// </summary>
+		/// <param name="action"></param>
+		void UsingTransaction(Action action);
+
         /// <summary>
         /// 启用Ado.net事务
         /// </summary>
         /// <param name="action"></param>
         /// <param name="isolationLevel"></param>
-        void UsingTransaction(Action action, IsolationLevel isolationLevel = IsolationLevel.Unspecified);
+        void UsingTransaction(Action action, IsolationLevel isolationLevel );
 
     }
 }

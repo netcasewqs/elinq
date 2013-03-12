@@ -258,7 +258,7 @@ namespace NLite.Data
         public void CreateTables()
         {
             var scriptGenerator = Option.ScriptGenerator();
-            var script = scriptGenerator.Build(Dialect, mappings.Values.Cast<IEntityMapping>().ToArray(), dbName: null);
+            var script = scriptGenerator.Build(Dialect, mappings.Values.Cast<IEntityMapping>().ToArray(),  null);
 
             var scriptExecutor = Option.ScriptExecutor();
             scriptExecutor.CreateTables(this, script);

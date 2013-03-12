@@ -95,10 +95,20 @@ namespace NLite.Data
         /// </summary>
         /// <param name="action"></param>
         /// <param name="isolationLevel"></param>
-        public void UsingTransaction(Action action, IsolationLevel isolationLevel = IsolationLevel.Unspecified)
+        public void UsingTransaction(Action action)
         {
-            InnerContext.UsingTransaction(action, isolationLevel);
+			InnerContext.UsingTransaction(action, IsolationLevel.Unspecified);
         }
+
+		/// <summary>
+		/// 启用Ado.net事务
+		/// </summary>
+		/// <param name="action"></param>
+		/// <param name="isolationLevel"></param>
+		public void UsingTransaction(Action action, IsolationLevel isolationLevel )
+		{
+			InnerContext.UsingTransaction(action, isolationLevel);
+		}
 
         class MemberInitializer
         {

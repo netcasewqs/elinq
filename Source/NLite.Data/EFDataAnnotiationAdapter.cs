@@ -9,12 +9,7 @@ namespace NLite.Data
 {
     class EFDataAnnotiationAdapter
     {
-        internal const string StrNotMappedAttribute = "System.ComponentModel.DataAnnotations.NotMappedAttribute";
-        internal const string StrTableAttribute = "System.ComponentModel.DataAnnotations.TableAttribute";
-        internal const string StrColumnAttribute = "System.ComponentModel.DataAnnotations.ColumnAttribute";
-        internal const string StrDatabaseGeneratedAttribute = "System.ComponentModel.DataAnnotations.DatabaseGeneratedAttribute";
-        internal const string StrMaxLengthAttribute = "System.ComponentModel.DataAnnotations.MaxLengthAttribute";
-        internal const string StrForeignKeyAttribute = "System.ComponentModel.DataAnnotations.ForeignKeyAttribute";
+        
         internal const string StrAssemblyName = "EntityFramework";
 
         internal static Type NotMappedAttributeType;
@@ -23,6 +18,14 @@ namespace NLite.Data
         internal static Type DatabaseGeneratedAttributeType;
         internal static Type MaxLengthAttributeType;
         internal static Type ForeignKeyAttributeType;
+
+        internal static string StrNotMappedAttribute = "System.ComponentModel.DataAnnotations.NotMappedAttribute";
+        internal static string StrTableAttribute = "System.ComponentModel.DataAnnotations.TableAttribute";
+        internal static string StrColumnAttribute = "System.ComponentModel.DataAnnotations.ColumnAttribute";
+        internal static string StrDatabaseGeneratedAttribute = "System.ComponentModel.DataAnnotations.DatabaseGeneratedAttribute";
+        internal static string StrMaxLengthAttribute = "System.ComponentModel.DataAnnotations.MaxLengthAttribute";
+        internal static string StrForeignKeyAttribute = "System.ComponentModel.DataAnnotations.ForeignKeyAttribute";
+
 
         public TableAttribute Table;
         internal class TableAttribute
@@ -59,16 +62,44 @@ namespace NLite.Data
         public static EFDataAnnotiationAdapter Instance { get; private set; }
         public static void Init(Assembly asm)
         {
+         
+#if  SDK35 || SDK4
+            if (!asm.GetName().Version.ToString().Contains("4.3"))
+            {
+                StrNotMappedAttribute = "System.ComponentModel.DataAnnotations.Schema.NotMappedAttribute";
+                StrTableAttribute = "System.ComponentModel.DataAnnotations.Schema.TableAttribute";
+                StrColumnAttribute = "System.ComponentModel.DataAnnotations.Schema.ColumnAttribute";
+                StrDatabaseGeneratedAttribute = "System.ComponentModel.Schema.DataAnnotations.DatabaseGeneratedAttribute";
+                StrForeignKeyAttribute = "System.ComponentModel.DataAnnotations.Schema.ForeignKeyAttribute";
+            }
+
+            EFDataAnnotiationAdapter.NotMappedAttributeType = asm.GetType(StrNotMappedAttribute);
+            EFDataAnnotiationAdapter.TableAttributeType = asm.GetType(StrTableAttribute);
+            EFDataAnnotiationAdapter.ColumndAttributeType = asm.GetType(StrColumnAttribute);
+            EFDataAnnotiationAdapter.DatabaseGeneratedAttributeType = asm.GetType(StrDatabaseGeneratedAttribute);
+            EFDataAnnotiationAdapter.MaxLengthAttributeType = asm.GetType(StrMaxLengthAttribute);
+            EFDataAnnotiationAdapter.ForeignKeyAttributeType = asm.GetType(StrForeignKeyAttribute);
+#else //>=SDK4.5 
+            asm = AssemblyLoader.Load("System.ComponentModel.DataAnnotations");
+            Guard.NotNull(asm, "asm");
+
+            StrNotMappedAttribute = "System.ComponentModel.DataAnnotations.Schema.NotMappedAttribute";
+            StrTableAttribute = "System.ComponentModel.DataAnnotations.Schema.TableAttribute";
+            StrColumnAttribute = "System.ComponentModel.DataAnnotations.Schema.ColumnAttribute";
+            StrDatabaseGeneratedAttribute = "System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute";
+            StrForeignKeyAttribute = "System.ComponentModel.DataAnnotations.Schema.ForeignKeyAttribute";
+
+
+            EFDataAnnotiationAdapter.NotMappedAttributeType = asm.GetType(StrNotMappedAttribute);
+            EFDataAnnotiationAdapter.TableAttributeType = asm.GetType(StrTableAttribute);
+            EFDataAnnotiationAdapter.ColumndAttributeType = asm.GetType(StrColumnAttribute);
+            EFDataAnnotiationAdapter.DatabaseGeneratedAttributeType = asm.GetType(StrDatabaseGeneratedAttribute);
+            EFDataAnnotiationAdapter.MaxLengthAttributeType = asm.GetType(StrMaxLengthAttribute);
+            EFDataAnnotiationAdapter.ForeignKeyAttributeType = asm.GetType(StrForeignKeyAttribute);
+
+#endif
+
             var instance = new EFDataAnnotiationAdapter();
-            Instance = instance;
-
-            EFDataAnnotiationAdapter.NotMappedAttributeType = asm.GetType(EFDataAnnotiationAdapter.StrNotMappedAttribute);
-            EFDataAnnotiationAdapter.TableAttributeType = asm.GetType(EFDataAnnotiationAdapter.StrTableAttribute);
-            EFDataAnnotiationAdapter.ColumndAttributeType = asm.GetType(EFDataAnnotiationAdapter.StrColumnAttribute);
-            EFDataAnnotiationAdapter.DatabaseGeneratedAttributeType = asm.GetType(EFDataAnnotiationAdapter.StrDatabaseGeneratedAttribute);
-            EFDataAnnotiationAdapter.MaxLengthAttributeType = asm.GetType(EFDataAnnotiationAdapter.StrMaxLengthAttribute);
-            EFDataAnnotiationAdapter.ForeignKeyAttributeType = asm.GetType(EFDataAnnotiationAdapter.StrForeignKeyAttribute);
-
             instance.Table = new TableAttribute();
             instance.Table.Schema = EFDataAnnotiationAdapter.TableAttributeType.GetProperty("Schema").GetGetter();
             instance.Table.Name = EFDataAnnotiationAdapter.TableAttributeType.GetProperty("Name").GetGetter();
@@ -85,6 +116,7 @@ namespace NLite.Data
 
             instance.MaxLength = new MaxLengthAttribute();
             instance.MaxLength.Length = EFDataAnnotiationAdapter.MaxLengthAttributeType.GetProperty("Length").GetGetter();
+            Instance = instance;
         }
     }
 }

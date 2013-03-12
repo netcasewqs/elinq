@@ -128,6 +128,7 @@ namespace NLite.Data.Schema.Loader
             return databaseSchema;
         }
 
+      
         protected  DBType ParseDbType(int strColumnType)
         {
             TypeMappingInfo item;

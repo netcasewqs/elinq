@@ -7,16 +7,39 @@
 <#@ Import Namespace="NLite.Data.CodeGeneration" #>
 <#@ output extension=".cs" #>
 <#
-	var @namespace = "NLite.Data.CodeGenerationDemo";
+	 //创建多文件管理器
+	var manager = MultipleFileManager.Create(Host, GenerationEnvironment);
+    
+    //定义代码生成的命名空间，大家可以根据需要自行修改
+	var @namespace = manager.DefaultProjectNamespace+".Models";
+    
+    //定义定义连接字符串名称
     var connectionStringName = "Northwind";
-    var dbContextName = Host.TemplateFile.Split('\\')[Host.TemplateFile.Split('\\').Length - 1].TrimEnd('.', 't');
+
+    //定义DbContext名称-通过模版文件名得到
+    var dbContextName = Host.TemplateFile.Split('\\')[Host.TemplateFile.Split('\\').Length -1].TrimEnd('.','t');
+    
+    //读取App.config或Web.config中连接字符串信息
     var connectionStringSetting = GetConnectionStringSettings(connectionStringName);
+    
+    //得到配置文件中的连接字符串
     var connectionString = connectionStringSetting.ConnectionString;
+    
+    //得到DbProviderName 
     var dbProviderName = connectionStringSetting.ProviderName;
-	var dbConfiguration = DbConfiguration.Configure(connectionString,dbProviderName);
-	var databaseSchema =dbConfiguration.Schema;
-	var manager = Manager.Create(Host, GenerationEnvironment);
-	manager.StartHeader();
+
+    //通过连接字符串和dbProviderName 名称来配置ELinq的dbConfiguration
+    var dbConfiguration = DbConfiguration.Configure(connectionString, dbProviderName);
+    
+    //通过dbConfiguration 获取数据库的Schema,备注：当前仅仅支持表和视图 
+    var databaseSchema = dbConfiguration.Schema;
+
+    var tables = databaseSchema.Tables.Union(databaseSchema.Views);
+
+    //定义命名约定对象（表名到类名转换约定，列名到字段或属性名转换约定等）
+    var namingConversion = NamingConversion.Default;
+   
+    manager.StartHeader();
 #>
 using System;
 using System.Collections.Generic;
@@ -53,7 +76,7 @@ namespace <#= @namespace #>
 <#}#>
 	}
 <#foreach (var tb in databaseSchema.Tables){
-		manager.StartNewFile(NamingConversion.Default.ClassName(tb.TableName) + ".generated.cs");#>
+		manager.StartNewFile(NamingConversion.Default.ClassName(tb.TableName) + ".cs");#>
 	[Table("<#= tb.TableName #>")]
 	public partial class <#= NamingConversion.Default.ClassName( tb.TableName) #> 
 	{

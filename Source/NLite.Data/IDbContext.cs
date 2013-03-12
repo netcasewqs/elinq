@@ -53,8 +53,13 @@ namespace NLite.Data
         /// 启用Ado.net事务
         /// </summary>
         /// <param name="action"></param>
-        /// <param name="isolationLevel"></param>
-        void UsingTransaction(Action action, IsolationLevel isolationLevel = IsolationLevel.Unspecified);
+        void UsingTransaction(Action action);
+		/// <summary>
+		/// 启用Ado.net事务
+		/// </summary>
+		/// <param name="action"></param>
+		/// <param name="isolationLevel"></param>
+		void UsingTransaction(Action action, IsolationLevel isolationLevel);
     }
 
    

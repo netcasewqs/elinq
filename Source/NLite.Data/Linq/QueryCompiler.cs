@@ -10,7 +10,6 @@ using System.Text;
 using System.Reflection;
 using NLite.Data.Linq.Internal;
 using NLite.Data;
-using NLite.Data.Linq.Internal;
 
 namespace NLite.Data.Linq
 {

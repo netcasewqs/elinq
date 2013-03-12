@@ -6,6 +6,7 @@ using NLite.Data;
 using System.Data;
 using NLite.Data.Common;
 using System.Data.Common;
+using System.Diagnostics;
 
 namespace NLite.Data.Schema.Loader
 {
@@ -171,14 +172,7 @@ namespace NLite.Data.Schema.Loader
         protected virtual IColumnSchema ToColumn(SchemaLoader.ColumnInfo column)
         {
             var columnSchema = Mapper.Map<SchemaLoader.ColumnInfo, ColumnSchema>(column);
-            //var columnSchema = new ColumnSchema();
-            //columnSchema.IsGenerated = column.IsGenerated;
-            //columnSchema.ColumnName = column.ColumnName;
-            //columnSchema.IsPrimaryKey = column.IsPrimaryKey;
-            //columnSchema.IsUniqule = column.IsUniqule;
-            //columnSchema.Comment = column.Comment;
-
-
+        
             var strColumnType = column.ColumnType;
 
             columnSchema.DbType = ParseDbType(strColumnType);
@@ -195,7 +189,8 @@ namespace NLite.Data.Schema.Loader
 
         protected virtual Type ParseType(DBType dbType)
         {
-            return TypeMappings.Values.FirstOrDefault(p => p.DbType == dbType).CLRType;
+            var info = TypeMappings.Values.FirstOrDefault(p => p.DbType == dbType);
+            return info != null ? info.CLRType : Types.Object;
         }
 
         protected virtual DBType ParseDbType(string strColumnType)
@@ -203,7 +198,8 @@ namespace NLite.Data.Schema.Loader
             TypeMappingInfo item;
             if (TypeMappings.TryGetValue(strColumnType, out item))
                 return item.DbType;
-            throw new InvalidProgramException("ColumnType:'" + strColumnType + "' invalid!" );
+            Trace.TraceError("ColumnType:'" + strColumnType + "' invalid!");
+            return DBType.Unkonw;
         }
     }
 }

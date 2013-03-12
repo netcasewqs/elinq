@@ -8,9 +8,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{97388084-C568-4B8D-A7F1-9602DF6C192D}"
 	ProjectSection(SolutionItems) = preProject
 		ELinq.xsd = ELinq.xsd
-		Local.testsettings = Local.testsettings
-		NLite.Data.vsmdi = NLite.Data.vsmdi
-		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLite.Data.Test.SqlServer", "NLite.Data.Test.SqlServer\NLite.Data.Test.SqlServer.csproj", "{949FA9A6-CA16-45D1-95FE-9A281F9C8CC8}"
@@ -35,14 +32,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DDLTest", "DDLTest", "{4E22
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLite.Data.DDLTest", "DDLTest\NLite.Data.DDLTest\NLite.Data.DDLTest.csproj", "{383A6E01-156F-433B-B61C-B6217C4B38EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLite.Data.Test.DataEntity", "NLite.Data.Test.DataEntity\NLite.Data.Test.DataEntity.csproj", "{8756F9D3-975C-46B6-97CD-0F2192D76A25}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGeneratorTest", "CodeGeneratorTest\CodeGeneratorTest.csproj", "{17F69229-A8A4-4C11-886A-835F4E375DD2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLite.Data SDK3.5", "SDK3.5\NLite.Data SDK3.5.csproj", "{13CA0F9B-FB58-41E7-B0C7-52CB293FD75D}"
+EndProject
 Global
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = NLite.Data.vsmdi
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
@@ -124,18 +118,20 @@ Global
 		{383A6E01-156F-433B-B61C-B6217C4B38EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{383A6E01-156F-433B-B61C-B6217C4B38EF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{383A6E01-156F-433B-B61C-B6217C4B38EF}.Release|x86.ActiveCfg = Release|Any CPU
-		{8756F9D3-975C-46B6-97CD-0F2192D76A25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8756F9D3-975C-46B6-97CD-0F2192D76A25}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8756F9D3-975C-46B6-97CD-0F2192D76A25}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{8756F9D3-975C-46B6-97CD-0F2192D76A25}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8756F9D3-975C-46B6-97CD-0F2192D76A25}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8756F9D3-975C-46B6-97CD-0F2192D76A25}.Release|x86.ActiveCfg = Release|Any CPU
 		{17F69229-A8A4-4C11-886A-835F4E375DD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{17F69229-A8A4-4C11-886A-835F4E375DD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17F69229-A8A4-4C11-886A-835F4E375DD2}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{17F69229-A8A4-4C11-886A-835F4E375DD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17F69229-A8A4-4C11-886A-835F4E375DD2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{17F69229-A8A4-4C11-886A-835F4E375DD2}.Release|x86.ActiveCfg = Release|Any CPU
+		{13CA0F9B-FB58-41E7-B0C7-52CB293FD75D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13CA0F9B-FB58-41E7-B0C7-52CB293FD75D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13CA0F9B-FB58-41E7-B0C7-52CB293FD75D}.Debug|x86.ActiveCfg = Debug|x86
+		{13CA0F9B-FB58-41E7-B0C7-52CB293FD75D}.Debug|x86.Build.0 = Debug|x86
+		{13CA0F9B-FB58-41E7-B0C7-52CB293FD75D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13CA0F9B-FB58-41E7-B0C7-52CB293FD75D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13CA0F9B-FB58-41E7-B0C7-52CB293FD75D}.Release|x86.ActiveCfg = Release|x86
+		{13CA0F9B-FB58-41E7-B0C7-52CB293FD75D}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

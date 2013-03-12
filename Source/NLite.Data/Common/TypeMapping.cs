@@ -173,6 +173,7 @@ namespace NLite.Data.Common
             {"Image",new TypeMappingInfo{ CLRType = Types.ByteArray, DbType = DBType.Image, NativeType = "Image"}}, 
             {"Int",new TypeMappingInfo{ CLRType = Types.Int32, DbType = DBType.Int32, NativeType ="Int"}},
             {"Money",new TypeMappingInfo{ CLRType= Types.Decimal, DbType = DBType.Currency, NativeType ="Money"}},
+            {"Numeric",new TypeMappingInfo{ CLRType= Types.Decimal, DbType = DBType.Decimal, NativeType ="Numeric"}},
             {"NChar",new TypeMappingInfo{ CLRType = Types.String, DbType = DBType.NChar, NativeType = "NChar"}},
             {"NText",new TypeMappingInfo{ CLRType = Types.String, DbType = DBType.NText, NativeType = "NText"}},
             {"NVarChar",new TypeMappingInfo{ CLRType= Types.String, DbType = DBType.NVarChar,NativeType = "NVarChar"}},

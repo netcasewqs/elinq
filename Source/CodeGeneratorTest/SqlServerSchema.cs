@@ -15,7 +15,7 @@ namespace CodeGeneratorTest
         public DbConfiguration dbConfiguration;
         public SqlServerSchema()
         {
-            const string connectionStringName = "ELinq";
+            const string connectionStringName = "Northwind";
             //DbConfiguration.InitializeDLinq<System.Data.Linq.Binary>();
 
             if (!DbConfiguration.Items.TryGetValue(connectionStringName, out dbConfiguration))

@@ -103,30 +103,28 @@
     <DocumentationFile>..\Bin\ELinq.xml</DocumentationFile>
     <DefineConstants>TRACE;DEBUG;SDK4</DefineConstants>
     <WarningLevel>4</WarningLevel>
-    <DebugType>full</DebugType>
-    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <OutputPath>..\Bin\</OutputPath>
     <DocumentationFile>..\Bin\ELinq.xml</DocumentationFile>
-    <DefineConstants>TRACE;SDK4</DefineConstants>
+    <DefineConstants>TRACE;SDK45</DefineConstants>
     <WarningLevel>4</WarningLevel>
     <DebugType>full</DebugType>
-    <DebugSymbols>true</DebugSymbols>
+    <DebugSymbols>True</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>ELinq.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>True</SignAssembly>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="NLite">
-      <HintPath>..\Libs\NLite\net40\NLite.dll</HintPath>
+      <HintPath>..\..\Libs\NLite\net40\NLite.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -537,7 +535,7 @@
     <Compile Include="Res.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Res.resx</DependentUpon>
+     <!-- <DependentUpon>Res.resx</DependentUpon>-->
     </Compile>
     <Compile Include="Schema\DatabaseSchema.cs" />
     <Compile Include="Schema\IColumnSchema.cs" />
