@@ -275,9 +275,18 @@
               </xs:annotation>
             </xs:attribute>
           </xs:complexType>
-         
         </xs:element>
       </xs:sequence>
+      <xs:attribute name="Server" type="xs:string" >
+        <xs:annotation>
+          <xs:documentation>Server名称,可选的</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Database" type="xs:string" >
+        <xs:annotation>
+          <xs:documentation>数据库名称,可选的</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
       <xs:attribute name="Schema" type="xs:string" >
         <xs:annotation>
           <xs:documentation>数据库schema名称,可选的</xs:documentation>

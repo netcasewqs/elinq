@@ -158,7 +158,9 @@ namespace NLite.Data
         /// <returns></returns>
         public DbConfiguration AddFromAppDomain(System.Func<Type, bool> typeFilter )
         {
-            foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
+            var elinqAsm = typeof(DbConfiguration).Assembly;
+
+            foreach (var asm in AppDomain.CurrentDomain.GetAssemblies().Where(p=>!p.IsSystemAssembly() && p != elinqAsm))
                 AddFromAssembly(asm, typeFilter);
             return this;
         }
@@ -179,7 +181,6 @@ namespace NLite.Data
 		/// 批量注册指定类型T所在的程序集内符合特定条件的实体到数据表的映射关系
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
-		/// <param name="typeFilter"></param>
 		/// <returns></returns>
 		public DbConfiguration AddFromAssemblyOf<T>()
 		{
@@ -315,6 +316,8 @@ namespace NLite.Data
             var table = new TableAttribute();
             mapping.table = table;
 
+            table.Server = item.GetAttributeValue<string>("Server");
+            table.DatabaseName = item.GetAttributeValue<string>("Database");
             table.Name = item.GetAttributeValue<string>("Name");
             table.Readonly = item.GetAttributeValue<bool>("Readonly");
             table.Schema = globalSchema;
@@ -581,12 +584,28 @@ namespace NLite.Data
             if (tableName.HasValue())
             {
                 var parts = tableName.Split('.').Where(p => !string.IsNullOrEmpty(p)).ToArray();
-                if (parts.Length == 1)
-                    mapping.tableName = tableName;
-                else if (parts.Length == 2)
+                switch (parts.Length)
                 {
-                    mapping.schema = parts[0];
-                    mapping.tableName = parts[1].TrimStart('[').TrimEnd(']');
+                    case 1:
+                        mapping.tableName = tableName;
+                        break;
+                    case 2:
+                         mapping.schema = parts[0];
+                         mapping.tableName = parts[1].TrimStart('[').TrimEnd(']');
+                        break;
+                    case 3:
+                         mapping.databaseName = parts[0];
+                         mapping.schema = parts[1];
+                         mapping.tableName = parts[2].TrimStart('[').TrimEnd(']');
+                        break;
+                    case 4:
+                         mapping.serverName = parts[0];
+                         mapping.databaseName = parts[1];
+                         mapping.schema = parts[2];
+                         mapping.tableName = parts[3].TrimStart('[').TrimEnd(']');
+                        break;
+                    default:
+                        throw new MappingException("Invalid table name '" + tableName + "'");
                 }
             }
             else

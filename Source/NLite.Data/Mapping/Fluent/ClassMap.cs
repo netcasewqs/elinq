@@ -37,6 +37,8 @@ namespace NLite.Data.Mapping.Fluent
                     : table.Name;
                 entity.@readonly = table.Readonly;
                 entity.schema = table.Schema;
+                entity.databaseName = table.DatabaseName;
+                entity.serverName = table.Server;
             }
             else
                 entity.tableName = entity.entityType.Name;

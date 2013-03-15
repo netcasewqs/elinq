@@ -30,12 +30,28 @@ namespace NLite.Data
             if (!string.IsNullOrEmpty(tableName))
             {
                 var parts = tableName.Split('.').Where(p => !string.IsNullOrEmpty(p)).ToArray();
-                if (parts.Length == 1)
-                    table.Name = tableName;
-                else if (parts.Length == 2)
+                switch (parts.Length)
                 {
-                    table.Schema = parts[0];
-                    table.Name = parts[1].TrimStart('[').TrimEnd(']');
+                    case 1:
+                        table.Name = tableName;
+                        break;
+                    case 2:
+                        table.Schema = parts[0];
+                        table.Name = parts[1].TrimStart('[').TrimEnd(']');
+                        break;
+                    case 3:
+                        table.DatabaseName = parts[0];
+                        table.Schema = parts[1];
+                        table.Name = parts[2].TrimStart('[').TrimEnd(']');
+                        break;
+                    case 4:
+                        table.Server = parts[0];
+                        table.DatabaseName = parts[1];
+                        table.Schema = parts[2];
+                        table.Name = parts[3].TrimStart('[').TrimEnd(']');
+                        break;
+                    default:
+                        throw new MappingException("Invalid table name '" + tableName + "'");
                 }
             }
 

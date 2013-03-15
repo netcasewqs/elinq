@@ -289,7 +289,7 @@ namespace NLite.Data.Linq.Translation
             Type entityType = null;
 
             if (cdu != null)
-                entityType = cdu.Table.Entity.EntityType;
+                entityType = cdu.Table.Mapping.EntityType;
 
             string commandText = this.dbContext.BuildSql(operation);
             var namedValues = NamedValueGatherer.Gather(operation);
@@ -499,7 +499,7 @@ namespace NLite.Data.Linq.Translation
                 Expression.Constant(commandText),
                 Expression.Constant(parameters),
                 Expression.NewArrayInit(typeof(object), values),
-                Expression.Constant(cdu.Table.Entity.EntityType, Types.Type),
+                Expression.Constant(cdu.Table.Mapping.EntityType, Types.Type),
                 Expression.Constant((OperationType)cdu.DbNodeType),
                 Expression.Constant(supportVersionCheck),
                 Expression.Constant(cdu.Instance))

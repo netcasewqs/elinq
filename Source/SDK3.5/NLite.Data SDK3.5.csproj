@@ -101,8 +101,8 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <OutputPath>bin\</OutputPath>
-    <DebugSymbols>True</DebugSymbols>
-    <DebugType>full</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>none</DebugType>
     <DocumentationFile>bin\ELinq.XML</DocumentationFile>
     <DefineConstants>TRACE;SDK35</DefineConstants>
     <WarningLevel>4</WarningLevel>

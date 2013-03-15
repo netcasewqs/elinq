@@ -5,6 +5,7 @@ using System.Text;
 using System.Linq.Expressions;
 using NLite.Data.Linq.Expressions;
 using System.Collections.ObjectModel;
+using NLite.Data.Mapping;
 
 namespace NLite.Data.Dialect.SqlBuilder
 {
@@ -448,6 +449,16 @@ namespace NLite.Data.Dialect.SqlBuilder
             }
         }
 
+        protected virtual void WriteTableName(IEntityMapping mapping)
+        {
+            if (Dialect.SupportSchema && !string.IsNullOrEmpty(mapping.Schema))
+            {
+                sb.Append(Dialect.Quote(mapping.Schema));
+                sb.Append(".");
+            }
+            this.AppendTableName(mapping.TableName);
+        }
+
         protected override Expression VisitSource(Expression source)
         {
             bool saveIsNested = this.isNested;
@@ -456,12 +467,7 @@ namespace NLite.Data.Dialect.SqlBuilder
             {
                 case DbExpressionType.Table:
                     TableExpression table = (TableExpression)source;
-                    if (Dialect.SupportSchema && !string.IsNullOrEmpty(table.Entity.Schema))
-                    {
-                        sb.Append(Dialect.Quote(table.Entity.Schema));
-                        sb.Append(".");
-                    }
-                    this.AppendTableName(table.Name);
+                    WriteTableName(table.Mapping);
                     if (!this.HideTableAliases)
                     {
                         this.Append(" ");
@@ -654,9 +660,9 @@ namespace NLite.Data.Dialect.SqlBuilder
         protected override Expression VisitInsert(InsertCommand insert)
         {
             this.Append("INSERT INTO ");
-            if (Dialect.SupportSchema && !string.IsNullOrEmpty(insert.Table.Entity.Schema))
+            if (Dialect.SupportSchema && !string.IsNullOrEmpty(insert.Table.Mapping.Schema))
             {
-                sb.Append(Dialect.Quote(insert.Table.Entity.Schema));
+                sb.Append(Dialect.Quote(insert.Table.Mapping.Schema));
                 sb.Append(".");
             }
             this.AppendTableName(insert.Table.Name);
@@ -683,9 +689,9 @@ namespace NLite.Data.Dialect.SqlBuilder
         protected override Expression VisitUpdate(UpdateCommand update)
         {
             this.Append("UPDATE ");
-            if (Dialect.SupportSchema && !string.IsNullOrEmpty(update.Table.Entity.Schema))
+            if (Dialect.SupportSchema && !string.IsNullOrEmpty(update.Table.Mapping.Schema))
             {
-                sb.Append(Dialect.Quote(update.Table.Entity.Schema));
+                sb.Append(Dialect.Quote(update.Table.Mapping.Schema));
                 sb.Append(".");
             }
             this.AppendTableName(update.Table.Name);

@@ -102,24 +102,22 @@ namespace NLite.Data.Linq.Expressions
     public class TableExpression : AliasedExpression
     {
         private readonly IEntityMapping entity;
-        private readonly string name;
 
-        public TableExpression(TableAlias alias, IEntityMapping entity, string name)
+        public TableExpression(TableAlias alias, IEntityMapping entity)
             : base(DbExpressionType.Table, typeof(void), alias)
         {
             this.entity = entity;
-            this.name = name;
         }
 
 
-        public IEntityMapping Entity
+        public IEntityMapping Mapping
         {
             get { return this.entity; }
         }
 
         public string Name
         {
-            get { return this.name; }
+            get { return this.entity.TableName; }
         }
 
         public override string ToString()

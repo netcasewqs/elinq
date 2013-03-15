@@ -9,6 +9,19 @@ namespace NLite.Data.Dialect.SqlBuilder
 {
     class SqlServer2005SqlBuilder : MsSql2000SqlBuilder
     {
+        protected override void WriteTableName(Mapping.IEntityMapping mapping)
+        {
+            if(mapping.ServerName.HasValue())
+                sb.Append(Dialect.Quote(mapping.ServerName)).Append(".");
+            if (mapping.DatabaseName.HasValue())
+                sb.Append(Dialect.Quote(mapping.DatabaseName)).Append(".");
+            if (Dialect.SupportSchema && !string.IsNullOrEmpty(mapping.Schema))
+            {
+                sb.Append(Dialect.Quote(mapping.Schema));
+                sb.Append(".");
+            }
+            this.AppendTableName(mapping.TableName);
+        }
         protected override Expression VisitRowNumber(RowNumberExpression rowNumber)
         {
             this.Append("ROW_NUMBER() OVER(");

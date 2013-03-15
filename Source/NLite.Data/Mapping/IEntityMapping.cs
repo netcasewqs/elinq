@@ -14,6 +14,14 @@ namespace NLite.Data.Mapping
     public interface IEntityMapping
     {
         /// <summary>
+        /// 得到或设置服务器名
+        /// </summary>
+        string ServerName { get;}
+        /// <summary>
+        /// 数据库名称
+        /// </summary>
+        string DatabaseName { get; }
+        /// <summary>
         /// Schema
         /// </summary>
         string Schema { get; }

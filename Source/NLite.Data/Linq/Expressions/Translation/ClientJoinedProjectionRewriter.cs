@@ -214,7 +214,7 @@ namespace NLite.Data.Linq.Expressions
             {
                 TableAlias newAlias = new TableAlias();
                 this.map[table.Alias] = newAlias;
-                return new TableExpression(newAlias, table.Entity, table.Name);
+                return new TableExpression(newAlias, table.Mapping);
             }
 
             protected override Expression VisitSelect(SelectExpression select)

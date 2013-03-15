@@ -24,6 +24,8 @@ namespace NLite.Data.Mapping
         internal IMemberMapping[] primairyKeys;
 
         // internal Func<Type, EntityModel> getEntity;
+        internal string serverName;
+        internal string databaseName;
         internal string tableName;
         internal bool @readonly;
         internal string schema;
@@ -31,7 +33,8 @@ namespace NLite.Data.Mapping
 
         public IMemberMapping Version { get { return version; } }
 
-
+        public string ServerName { get { return serverName; } }
+        public string DatabaseName { get { return databaseName; } }
         public string Schema { get { return schema; } }
         public string TableName
         {

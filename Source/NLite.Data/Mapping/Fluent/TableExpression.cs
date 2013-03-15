@@ -39,5 +39,28 @@ namespace NLite.Data.Mapping.Fluent
             return this;
         }
 
+        /// <summary>
+        /// 设置Table的DatabaseName
+        /// </summary>
+        /// <param name="databaseName"></param>
+        /// <returns></returns>
+        public TableExpression Database(string databaseName)
+        {
+            Guard.NotNullOrEmpty(databaseName, "databaseName");
+            Attribute.DatabaseName = databaseName;
+            return this;
+        }
+
+        /// <summary>
+        /// 设置Database的Server
+        /// </summary>
+        /// <param name="serverName"></param>
+        /// <returns></returns>
+        public TableExpression Server(string serverName)
+        {
+            Guard.NotNullOrEmpty(serverName, "databaseName");
+            Attribute.Server = serverName;
+            return this;
+        }
     }
 }

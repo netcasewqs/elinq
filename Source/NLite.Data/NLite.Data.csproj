@@ -111,8 +111,8 @@
     <DocumentationFile>..\Bin\ELinq.xml</DocumentationFile>
     <DefineConstants>TRACE;SDK45</DefineConstants>
     <WarningLevel>4</WarningLevel>
-    <DebugType>full</DebugType>
-    <DebugSymbols>True</DebugSymbols>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>ELinq.snk</AssemblyOriginatorKeyFile>
@@ -535,7 +535,7 @@
     <Compile Include="Res.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-     <!-- <DependentUpon>Res.resx</DependentUpon>-->
+      <!-- <DependentUpon>Res.resx</DependentUpon>-->
     </Compile>
     <Compile Include="Schema\DatabaseSchema.cs" />
     <Compile Include="Schema\IColumnSchema.cs" />

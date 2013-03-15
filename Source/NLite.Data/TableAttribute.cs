@@ -26,6 +26,15 @@ namespace NLite.Data
         }
 
         /// <summary>
+        /// 得到或设置服务器名
+        /// </summary>
+        public string Server { get; set; }
+        /// <summary>
+        /// 得到或设置数据库数据库名称
+        /// </summary>
+        public string DatabaseName { get; set; }
+
+        /// <summary>
         /// 得到或设置数据库表的Schema
         /// </summary>
         public string Schema { get; set; }

@@ -94,7 +94,7 @@ namespace NLite.Data.Dialect.ExpressionBuilder
             return fex != null && fex.Name == "@@ROWCOUNT";
         }
 
-        public virtual ProjectionExpression GetQueryExpression(IEntityMapping entity)
+        public virtual ProjectionExpression GetQueryExpression(IEntityMapping mapping)
         {
             Expression projector;
             TableAlias selectAlias;
@@ -103,9 +103,9 @@ namespace NLite.Data.Dialect.ExpressionBuilder
 
             var tableAlias = new TableAlias();
             selectAlias = new TableAlias();
-            var table = new TableExpression(tableAlias, entity, entity.TableName);
+            var table = new TableExpression(tableAlias, mapping);
 
-            projector = this.GetEntityExpression(table, entity);
+            projector = this.GetEntityExpression(table, mapping);
             pc = ColumnProjector.ProjectColumns(projector, null, selectAlias, tableAlias);
 
             proj = new ProjectionExpression(
@@ -113,16 +113,16 @@ namespace NLite.Data.Dialect.ExpressionBuilder
                 pc.Projector
                 );
 
-            return (ProjectionExpression)ApplyPolicy(proj, entity.EntityType);
+            return (ProjectionExpression)ApplyPolicy(proj, mapping.EntityType);
 
         }
 
-        public Expression GetMemberExpression(Expression root, IEntityMapping entity, MemberInfo member)
+        public Expression GetMemberExpression(Expression root, IEntityMapping mapping, MemberInfo member)
         {
-            return GetMemberExpression(root, entity, entity.Get(member));
+            return GetMemberExpression(root, mapping, mapping.Get(member));
         }
 
-        public virtual Expression GetMemberExpression(Expression root, IEntityMapping entity, IMemberMapping mm)
+        public virtual Expression GetMemberExpression(Expression root, IEntityMapping mapping, IMemberMapping mm)
         {
             var m = mm.Member;
             if (mm.IsRelationship)
@@ -139,7 +139,7 @@ namespace NLite.Data.Dialect.ExpressionBuilder
                 {
                     Expression equal =
                         this.GetMemberExpression(projection.Projector, relatedEntity, otherKeyMembers[i]).Equal(
-                            this.GetMemberExpression(root, entity, thisKeyMembers[i])
+                            this.GetMemberExpression(root, mapping, thisKeyMembers[i])
                         );
                     where = (where != null) ? where.And(equal) : equal;
                 }
@@ -166,16 +166,16 @@ namespace NLite.Data.Dialect.ExpressionBuilder
             }
         }
 
-        public virtual Expression GetPrimaryKeyQuery(IEntityMapping entity, Expression source, Expression[] keys)
+        public virtual Expression GetPrimaryKeyQuery(IEntityMapping mapping, Expression source, Expression[] keys)
         {
-            ParameterExpression p = Expression.Parameter(entity.EntityType, "p");
+            ParameterExpression p = Expression.Parameter(mapping.EntityType, "p");
             Expression pred = null;
 
-            if (entity.PrimaryKeys.Length != keys.Length)
+            if (mapping.PrimaryKeys.Length != keys.Length)
                 throw new InvalidOperationException(string.Format(Res.LengthInvalid, " primary key values"));
             for (int i = 0, n = keys.Length; i < n; i++)
             {
-                MemberInfo mem = entity.PrimaryKeys[i].Member;
+                MemberInfo mem = mapping.PrimaryKeys[i].Member;
                 Type memberType = mem.GetMemberType();
                 if (keys[i] != null && TypeHelper.GetNonNullableType(keys[i].Type) != TypeHelper.GetNonNullableType(memberType))
                     throw new InvalidOperationException(string.Format(Res.TypeInvalid, "Primary key value"));
@@ -184,18 +184,18 @@ namespace NLite.Data.Dialect.ExpressionBuilder
             }
             var predLambda = Expression.Lambda(pred, p);
 
-            return Expression.Call(typeof(Queryable), "SingleOrDefault", new Type[] { entity.EntityType }, source, predLambda);
+            return Expression.Call(typeof(Queryable), "SingleOrDefault", new Type[] { mapping.EntityType }, source, predLambda);
         }
 
         protected virtual List<ColumnAssignment> GetInsertColumnAssignments(Expression table, Expression instance, IEntityMapping entity, Func<IMemberMapping, bool> fnIncludeColumn)
         {
             return GetColumnAssignments(table, instance, entity, fnIncludeColumn);
         }
-        public virtual Expression GetInsertExpression(IEntityMapping entity, Expression instance, LambdaExpression selector)
+        public virtual Expression GetInsertExpression(IEntityMapping mapping, Expression instance, LambdaExpression selector)
         {
             var tableAlias = new TableAlias();
-            var table = new TableExpression(tableAlias, entity, entity.TableName);
-            var assignments = this.GetInsertColumnAssignments(table, instance, entity, m => !m.IsGenerated && !m.IsVersion).ToArray();
+            var table = new TableExpression(tableAlias, mapping);
+            var assignments = this.GetInsertColumnAssignments(table, instance, mapping, m => !m.IsGenerated && !m.IsVersion).ToArray();
 
             object o = null;
             var c = instance as ConstantExpression;
@@ -206,37 +206,37 @@ namespace NLite.Data.Dialect.ExpressionBuilder
             {
                 return new BlockCommand(
                     new InsertCommand(table, assignments, o),
-                    this.GetInsertResult(entity, instance, selector, null)
+                    this.GetInsertResult(mapping, instance, selector, null)
                     );
             }
 
             return new InsertCommand(table, assignments, o);
         }
 
-        public virtual Expression GetUpdateExpression(IEntityMapping entity, Expression instance, LambdaExpression updateCheck, LambdaExpression selector, Expression @else)
+        public virtual Expression GetUpdateExpression(IEntityMapping mapping, Expression instance, LambdaExpression updateCheck, LambdaExpression selector, Expression @else)
         {
             var tableAlias = new TableAlias();
-            var table = new TableExpression(tableAlias, entity, entity.TableName);
+            var table = new TableExpression(tableAlias, mapping);
 
-            var where = this.GetIdentityCheck(table, entity, instance);
+            var where = this.GetIdentityCheck(table, mapping, instance);
             if (updateCheck != null)
             {
-                Expression typeProjector = this.GetEntityExpression(table, entity);
+                Expression typeProjector = this.GetEntityExpression(table, mapping);
                 Expression pred = DbExpressionReplacer.Replace(updateCheck.Body, updateCheck.Parameters[0], typeProjector);
                 where = where != null ? where.And(pred) : pred;
             }
 
-            var assignments = this.GetColumnAssignments(table, instance, entity, m => m.IsUpdatable && !m.IsVersion);
+            var assignments = this.GetColumnAssignments(table, instance, mapping, m => m.IsUpdatable && !m.IsVersion);
 
-            var version = entity.Version;
+            var version = mapping.Version;
             bool supportsVersionCheck = false;
 
 
             if (version != null)
             {
-                var versionValue = GetVersionValue(entity, instance);
+                var versionValue = GetVersionValue(mapping, instance);
                 var versionExp = Expression.Constant(versionValue, version.MemberType);
-                var memberExpression = GetMemberExpression(table, entity, entity.Version);
+                var memberExpression = GetMemberExpression(table, mapping, mapping.Version);
                 var versionCheck = memberExpression.Equal(versionExp);
                 where = (where != null) ? where.And(versionCheck) : versionCheck;
 
@@ -274,7 +274,7 @@ namespace NLite.Data.Dialect.ExpressionBuilder
                     update,
                     new IFCommand(
                         this.GetRowsAffectedExpression(update).GreaterThan(Expression.Constant(0)),
-                        this.GetUpdateResult(entity, instance, selector),
+                        this.GetUpdateResult(mapping, instance, selector),
                         @else
                         )
                     );
@@ -296,33 +296,33 @@ namespace NLite.Data.Dialect.ExpressionBuilder
             }
         }
 
-        public virtual Expression GetDeleteExpression(IEntityMapping entity, Expression instance, LambdaExpression deleteCheck)
+        public virtual Expression GetDeleteExpression(IEntityMapping mapping, Expression instance, LambdaExpression deleteCheck)
         {
-            TableExpression table = new TableExpression(new TableAlias(), entity, entity.TableName);
+            TableExpression table = new TableExpression(new TableAlias(), mapping);
             Expression where = null;
 
             if (instance != null)
-                where = this.GetIdentityCheck(table, entity, instance);
+                where = this.GetIdentityCheck(table, mapping, instance);
 
             if (deleteCheck != null)
             {
-                Expression row = this.GetEntityExpression(table, entity);
+                Expression row = this.GetEntityExpression(table, mapping);
                 Expression pred = DbExpressionReplacer.Replace(deleteCheck.Body, deleteCheck.Parameters[0], row);
                 where = (where != null) ? where.And(pred) : pred;
             }
 
             bool supportsVersionCheck = false;
-            if (entity.Version != null && instance != null)
+            if (mapping.Version != null && instance != null)
             {
 
                 //var versionValue = GetVersionValue(entity, instance);
                 //var versionCheck = GetMemberExpression(table, entity, entity.Version).Equal(Expression.Constant(versionValue));
                 //where = (where != null) ? where.And(versionCheck) : versionCheck;
 
-                var version = entity.Version;
-                var versionValue = GetVersionValue(entity, instance);
+                var version = mapping.Version;
+                var versionValue = GetVersionValue(mapping, instance);
                 var versionExp = Expression.Constant(versionValue, version.MemberType);
-                var memberExpression = GetMemberExpression(table, entity, entity.Version);
+                var memberExpression = GetMemberExpression(table, mapping, mapping.Version);
                 if (version.MemberType.IsNullable())
                 {
 
@@ -369,37 +369,37 @@ namespace NLite.Data.Dialect.ExpressionBuilder
             return expression;
         }
 
-        public virtual EntityExpression GetEntityExpression(Expression root, IEntityMapping entity)
+        public virtual EntityExpression GetEntityExpression(Expression root, IEntityMapping mapping)
         {
             var assignments = new List<EntityAssignment>();
-            foreach (var mi in entity.Members)
+            foreach (var mi in mapping.Members)
             {
                 if (!mi.IsRelationship)
                 {
-                    var me = this.GetMemberExpression(root, entity, mi);
+                    var me = this.GetMemberExpression(root, mapping, mi);
                     if (me != null)
                         assignments.Add(new EntityAssignment(mi.Member, me));
                 }
             }
 
-            return new EntityExpression(entity, this.BuildEntityExpression(entity, assignments));
+            return new EntityExpression(mapping, this.BuildEntityExpression(mapping, assignments));
         }
 
-        public virtual Expression GetInsertResult(IEntityMapping entity, Expression instance, LambdaExpression selector, Dictionary<MemberInfo, Expression> map)
+        public virtual Expression GetInsertResult(IEntityMapping mapping, Expression instance, LambdaExpression selector, Dictionary<MemberInfo, Expression> map)
         {
             var tableAlias = new TableAlias();
-            var tex = new TableExpression(tableAlias, entity, entity.TableName);
+            var tex = new TableExpression(tableAlias, mapping);
             var aggregator = Aggregator.GetAggregator(selector.Body.Type, typeof(IEnumerable<>).MakeGenericType(selector.Body.Type));
 
             Expression where = null;
             DeclarationCommand genIdCommand = null;
-            var generatedIds = entity.PrimaryKeys.Where(m => m.IsPrimaryKey && m.IsGenerated).ToList();
+            var generatedIds = mapping.PrimaryKeys.Where(m => m.IsPrimaryKey && m.IsGenerated).ToList();
             if (generatedIds.Count > 0)
             {
                 if (map == null || !generatedIds.Any(m => map.ContainsKey(m.Member)))
                 {
                     var localMap = new Dictionary<MemberInfo, Expression>();
-                    genIdCommand = this.GetGeneratedIdCommand(entity, generatedIds, localMap);
+                    genIdCommand = this.GetGeneratedIdCommand(mapping, generatedIds, localMap);
                     map = localMap;
                 }
 
@@ -407,7 +407,7 @@ namespace NLite.Data.Dialect.ExpressionBuilder
                 var mex = selector.Body as MemberExpression;
                 if (mex != null)
                 {
-                    var id = entity.Get(mex.Member);
+                    var id = mapping.Get(mex.Member);
                     if (id != null && id.IsPrimaryKey && id.IsGenerated)
                     {
                         if (genIdCommand != null)
@@ -432,16 +432,16 @@ namespace NLite.Data.Dialect.ExpressionBuilder
                     }
 
                     where = generatedIds.Select((m, i) =>
-                        this.GetMemberExpression(tex, entity, m.Member).Equal(map[m.Member])
+                        this.GetMemberExpression(tex, mapping, m.Member).Equal(map[m.Member])
                         ).Aggregate((x, y) => x.And(y));
                 }
             }
             else
             {
-                where = this.GetIdentityCheck(tex, entity, instance);
+                where = this.GetIdentityCheck(tex, mapping, instance);
             }
 
-            Expression typeProjector = this.GetEntityExpression(tex, entity);
+            Expression typeProjector = this.GetEntityExpression(tex, mapping);
             Expression selection = DbExpressionReplacer.Replace(selector.Body, selector.Parameters[0], typeProjector);
             TableAlias newAlias = new TableAlias();
             var pc = ColumnProjector.ProjectColumns(selection, null, newAlias, tableAlias);
@@ -458,7 +458,7 @@ namespace NLite.Data.Dialect.ExpressionBuilder
             return pe;
         }
 
-        internal DeclarationCommand GetGeneratedIdCommand(IEntityMapping entity, List<IMemberMapping> members, Dictionary<MemberInfo, Expression> map)
+        internal DeclarationCommand GetGeneratedIdCommand(IEntityMapping mapping, List<IMemberMapping> members, Dictionary<MemberInfo, Expression> map)
         {
             var columns = new List<ColumnDeclaration>();
             var decls = new List<VariableDeclaration>();
@@ -480,12 +480,12 @@ namespace NLite.Data.Dialect.ExpressionBuilder
             return new DeclarationCommand(decls, select);
         }
 
-        internal Expression GetIdentityCheck(Expression root, IEntityMapping entity, Expression instance)
+        internal Expression GetIdentityCheck(Expression root, IEntityMapping mapping, Expression instance)
         {
             var instanceType = instance.Type;
-            if (instanceType == entity.EntityType)
-                return entity.PrimaryKeys
-                .Select(m => this.GetMemberExpression(root, entity, m).Equal(Expression.MakeMemberAccess(instance, m.Member)))
+            if (instanceType == mapping.EntityType)
+                return mapping.PrimaryKeys
+                .Select(m => this.GetMemberExpression(root, mapping, m).Equal(Expression.MakeMemberAccess(instance, m.Member)))
                 .Aggregate((x, y) => x.And(y));
 
             Expression r = null;
@@ -494,12 +494,12 @@ namespace NLite.Data.Dialect.ExpressionBuilder
                 var dic = (instance as ConstantExpression).Value as IDictionary;
                 var keys = dic.Keys.OfType<string>();
 
-                foreach (var m in entity.PrimaryKeys)
+                foreach (var m in mapping.PrimaryKeys)
                 {
                     var k = keys.FirstOrDefault(p => string.Equals(p, m.Member.Name, StringComparison.OrdinalIgnoreCase));
                     if (k != null)
                     {
-                        var c = this.GetMemberExpression(root, entity, m.Member).Equal(Expression.Constant(Converter.Convert(dic[k], m.MemberType), m.MemberType));
+                        var c = this.GetMemberExpression(root, mapping, m.Member).Equal(Expression.Constant(Converter.Convert(dic[k], m.MemberType), m.MemberType));
                         if (r != null)
                             r = r.And(c);
                         else
@@ -516,12 +516,12 @@ namespace NLite.Data.Dialect.ExpressionBuilder
                 var keys = (instanceType.GetProperty("Keys").GetGetter()(dic) as IEnumerable).Cast<string>();
                 var getValueMethod = instanceType.GetMethod("get_Item").GetFunc();
 
-                foreach (var m in entity.PrimaryKeys)
+                foreach (var m in mapping.PrimaryKeys)
                 {
                     var k = keys.FirstOrDefault(p => string.Equals(p, m.Member.Name, StringComparison.OrdinalIgnoreCase));
                     if (k != null)
                     {
-                        var c = this.GetMemberExpression(root, entity, m.Member).Equal(Expression.Constant(Converter.Convert(getValueMethod(dic, k), m.MemberType), m.MemberType));
+                        var c = this.GetMemberExpression(root, mapping, m.Member).Equal(Expression.Constant(Converter.Convert(getValueMethod(dic, k), m.MemberType), m.MemberType));
                         if (r != null)
                             r = r.And(c);
                         else
@@ -536,12 +536,12 @@ namespace NLite.Data.Dialect.ExpressionBuilder
                 var dic = (instance as ConstantExpression).Value as NameValueCollection;
                 var keys = dic.AllKeys;
 
-                foreach (var m in entity.PrimaryKeys)
+                foreach (var m in mapping.PrimaryKeys)
                 {
                     var k = keys.FirstOrDefault(p => string.Equals(p, m.Member.Name, StringComparison.OrdinalIgnoreCase));
                     if (k != null)
                     {
-                        var c = this.GetMemberExpression(root, entity, m.Member).Equal(Expression.Constant(Converter.Convert(dic[k], m.MemberType), m.MemberType));
+                        var c = this.GetMemberExpression(root, mapping, m.Member).Equal(Expression.Constant(Converter.Convert(dic[k], m.MemberType), m.MemberType));
                         if (r != null)
                             r = r.And(c);
                         else
@@ -553,9 +553,9 @@ namespace NLite.Data.Dialect.ExpressionBuilder
             }
 
             var ms = instanceType.GetMembers();
-            var expressions = entity.Members.Where(m => m.IsPrimaryKey)
+            var expressions = mapping.Members.Where(m => m.IsPrimaryKey)
                 .Where(m => ms.Exist(p => p.Name == m.Member.Name))
-                .Select(m => this.GetMemberExpression(root, entity, m).Equal(Expression.MakeMemberAccess(instance, ms.FirstOrDefault(p => p.Name == m.Member.Name))))
+                .Select(m => this.GetMemberExpression(root, mapping, m).Equal(Expression.MakeMemberAccess(instance, ms.FirstOrDefault(p => p.Name == m.Member.Name))))
                 .ToArray();
 
             if (expressions.Length == 0)
@@ -563,14 +563,14 @@ namespace NLite.Data.Dialect.ExpressionBuilder
             return expressions.Aggregate((x, y) => x.And(y));
         }
 
-        internal object GetVersionValue(IEntityMapping entity, Expression instance)
+        internal object GetVersionValue(IEntityMapping mapping, Expression instance)
         {
-            var m = entity.Version;
+            var m = mapping.Version;
             var c = instance as ConstantExpression;
             if (c == null) return null;
 
             var instanceType = instance.Type;
-            if (instanceType == entity.EntityType)
+            if (instanceType == mapping.EntityType)
                 return m.GetValue(c.Value);
 
             if (NLite.Reflection.TypeHelper.IsIDictionaryType(instanceType))
@@ -578,7 +578,7 @@ namespace NLite.Data.Dialect.ExpressionBuilder
                 var dic = c.Value as IDictionary;
                 var keys = dic.Keys.OfType<string>();
 
-                var k = keys.FirstOrDefault(p => string.Equals(p, entity.Version.Member.Name, StringComparison.OrdinalIgnoreCase));
+                var k = keys.FirstOrDefault(p => string.Equals(p, mapping.Version.Member.Name, StringComparison.OrdinalIgnoreCase));
                 if (k != null)
                     return Converter.Convert(dic[k], m.MemberType);
             }
@@ -615,19 +615,19 @@ namespace NLite.Data.Dialect.ExpressionBuilder
             return new ExistsExpression(new SelectExpression(new TableAlias(), null, tq.Select, where));
         }
 
-        internal Expression GetEntityStateTest(IEntityMapping entity, Expression instance, LambdaExpression updateCheck)
+        internal Expression GetEntityStateTest(IEntityMapping mapping, Expression instance, LambdaExpression updateCheck)
         {
-            ProjectionExpression tq = this.GetQueryExpression(entity);
-            Expression where = this.GetIdentityCheck(tq.Select, entity, instance);
+            ProjectionExpression tq = this.GetQueryExpression(mapping);
+            Expression where = this.GetIdentityCheck(tq.Select, mapping, instance);
             Expression check = DbExpressionReplacer.Replace(updateCheck.Body, updateCheck.Parameters[0], tq.Projector);
             where = where.And(check);
             return new ExistsExpression(new SelectExpression(new TableAlias(), null, tq.Select, where));
         }
 
-        internal Expression GetUpdateResult(IEntityMapping entity, Expression instance, LambdaExpression selector)
+        internal Expression GetUpdateResult(IEntityMapping mapping, Expression instance, LambdaExpression selector)
         {
-            var tq = this.GetQueryExpression(entity);
-            Expression where = this.GetIdentityCheck(tq.Select, entity, instance);
+            var tq = this.GetQueryExpression(mapping);
+            Expression where = this.GetIdentityCheck(tq.Select, mapping, instance);
             Expression selection = DbExpressionReplacer.Replace(selector.Body, selector.Parameters[0], tq.Projector);
             TableAlias newAlias = new TableAlias();
             var pc = ColumnProjector.ProjectColumns(selection, null, newAlias, tq.Select.Alias);
@@ -638,7 +638,7 @@ namespace NLite.Data.Dialect.ExpressionBuilder
                 );
         }
 
-        public virtual Expression BuildEntityExpression(IEntityMapping entity, IList<EntityAssignment> assignments)
+        public virtual Expression BuildEntityExpression(IEntityMapping mapping, IList<EntityAssignment> assignments)
         {
             NewExpression newExpression;
 
@@ -646,7 +646,7 @@ namespace NLite.Data.Dialect.ExpressionBuilder
             EntityAssignment[] readonlyMembers = assignments.Where(b=>b.MemberMapping != null)
                 .Where(b => (b.MemberMapping as MemberMapping).setter == null)
                 .ToArray();
-            ConstructorInfo[] cons = entity.EntityType.GetConstructors(BindingFlags.Public | BindingFlags.Instance);
+            ConstructorInfo[] cons = mapping.EntityType.GetConstructors(BindingFlags.Public | BindingFlags.Instance);
             bool hasNoArgConstructor = cons.Any(c => c.GetParameters().Length == 0);
 
             if (readonlyMembers.Length > 0 || !hasNoArgConstructor)
@@ -656,7 +656,7 @@ namespace NLite.Data.Dialect.ExpressionBuilder
                                         .Where(cbr => cbr != null && cbr.Remaining.Length == 0)
                                         .ToList();
                 if (consThatApply.Count == 0)
-                    throw new InvalidOperationException(string.Format(Res.ConstructTypeInvalid, entity.EntityType));
+                    throw new InvalidOperationException(string.Format(Res.ConstructTypeInvalid, mapping.EntityType));
 
                 // just use the first one... (Note: need better algorithm. :-)
                 if (readonlyMembers.Length == assignments.Count)
@@ -667,13 +667,13 @@ namespace NLite.Data.Dialect.ExpressionBuilder
                 assignments = r.Remaining;
             }
             else
-                newExpression = Expression.New(entity.EntityType);
+                newExpression = Expression.New(mapping.EntityType);
 
             Expression result;
             if (assignments.Count > 0)
             {
-                if (entity.EntityType.IsInterface)
-                    assignments = this.MapAssignments(assignments, entity.EntityType).ToList();
+                if (mapping.EntityType.IsInterface)
+                    assignments = this.MapAssignments(assignments, mapping.EntityType).ToList();
                 var memberBindings = new List<MemberBinding>();
                 foreach (var a in assignments)
                 {
@@ -691,8 +691,8 @@ namespace NLite.Data.Dialect.ExpressionBuilder
             else
                 result = newExpression;
 
-            if (entity.EntityType != entity.EntityType)
-                result = Expression.Convert(result, entity.EntityType);
+            if (mapping.EntityType != mapping.EntityType)
+                result = Expression.Convert(result, mapping.EntityType);
             return result;
         }
 
@@ -778,16 +778,16 @@ namespace NLite.Data.Dialect.ExpressionBuilder
         }
 
         internal IEnumerable<ColumnAssignment> GetColumnAssignments(
-           Expression table, Expression instance, IEntityMapping entity,
+           Expression table, Expression instance, IEntityMapping mapping,
            Func<IEntityMapping, MemberInfo, bool> fnIncludeColumn,
            Dictionary<MemberInfo, Expression> map)
         {
-            foreach (var m in entity.Members)
+            foreach (var m in mapping.Members)
             {
-                if (m.IsColumn && fnIncludeColumn(entity, m.Member))
+                if (m.IsColumn && fnIncludeColumn(mapping, m.Member))
                 {
                     yield return new ColumnAssignment(
-                        (ColumnExpression)this.GetMemberExpression(table, entity, m),
+                        (ColumnExpression)this.GetMemberExpression(table, mapping, m),
                         this.GetMemberAccess(instance, m.Member, map)
                         );
                 }
@@ -804,9 +804,9 @@ namespace NLite.Data.Dialect.ExpressionBuilder
             return exp;
         }
 
-        internal void GetColumns(IEntityMapping entity, Dictionary<string, TableAlias> aliases, List<ColumnDeclaration> columns)
+        internal void GetColumns(IEntityMapping mapping, Dictionary<string, TableAlias> aliases, List<ColumnDeclaration> columns)
         {
-            foreach (var mi in entity.Members)
+            foreach (var mi in mapping.Members)
             {
                 if (!mi.IsRelationship && mi.IsColumn)
                 {
@@ -822,18 +822,18 @@ namespace NLite.Data.Dialect.ExpressionBuilder
             }
         }
 
-        internal List<ColumnAssignment> GetColumnAssignments(Expression table, Expression instance, IEntityMapping entity, Func<IMemberMapping, bool> fnIncludeColumn)
+        internal List<ColumnAssignment> GetColumnAssignments(Expression table, Expression instance, IEntityMapping mapping, Func<IMemberMapping, bool> fnIncludeColumn)
         {
             var items = new List<ColumnAssignment>();
             var instanceType = instance.Type;
-            if (instanceType == entity.EntityType)
+            if (instanceType == mapping.EntityType)
             {
-                foreach (var m in entity.Members)
+                foreach (var m in mapping.Members)
                 {
                     if (m.IsColumn && fnIncludeColumn(m))
                     {
                         items.Add(new ColumnAssignment(
-                            (ColumnExpression)this.GetMemberExpression(table, entity, m.Member),
+                            (ColumnExpression)this.GetMemberExpression(table, mapping, m.Member),
                             Expression.MakeMemberAccess(instance, m.Member)
                             ));
                     }
@@ -846,13 +846,13 @@ namespace NLite.Data.Dialect.ExpressionBuilder
                     var dic = (instance as ConstantExpression).Value as IDictionary;
                     var keys = dic.Keys.OfType<string>();
 
-                    foreach (var m in entity.Members)
+                    foreach (var m in mapping.Members)
                     {
                         var k = keys.FirstOrDefault(p => string.Equals(p, m.Member.Name, StringComparison.OrdinalIgnoreCase));
                         if (k != null && m.IsColumn && fnIncludeColumn(m))
                         {
                             items.Add(new ColumnAssignment(
-                                (ColumnExpression)this.GetMemberExpression(table, entity, m.Member),
+                                (ColumnExpression)this.GetMemberExpression(table, mapping, m.Member),
                                  Expression.Constant(Converter.Convert(dic[k], m.MemberType), m.MemberType)
                                 ));
                         }
@@ -864,13 +864,13 @@ namespace NLite.Data.Dialect.ExpressionBuilder
                     var dic = (instance as ConstantExpression).Value;
                     var keys = (instanceType.GetProperty("Keys").GetGetter()(dic) as IEnumerable).Cast<string>();
                     var getValueMethod = instanceType.GetMethod("get_Item").GetFunc();
-                    foreach (var m in entity.Members)
+                    foreach (var m in mapping.Members)
                     {
                         var k = keys.FirstOrDefault(p => string.Equals(p, m.Member.Name, StringComparison.OrdinalIgnoreCase));
                         if (k != null && m.IsColumn && fnIncludeColumn(m))
                         {
                             items.Add(new ColumnAssignment(
-                                (ColumnExpression)this.GetMemberExpression(table, entity, m.Member),
+                                (ColumnExpression)this.GetMemberExpression(table, mapping, m.Member),
                                 Expression.Constant(Converter.Convert(getValueMethod(dic, k), m.MemberType), m.MemberType)));
                         }
                     }
@@ -880,13 +880,13 @@ namespace NLite.Data.Dialect.ExpressionBuilder
                     var dic = (instance as ConstantExpression).Value as NameValueCollection;
                     var keys = dic.AllKeys;
 
-                    foreach (var m in entity.Members)
+                    foreach (var m in mapping.Members)
                     {
                         var k = keys.FirstOrDefault(p => string.Equals(p, m.Member.Name, StringComparison.OrdinalIgnoreCase));
                         if (k != null && m.IsColumn && fnIncludeColumn(m))
                         {
                             items.Add(new ColumnAssignment(
-                                (ColumnExpression)this.GetMemberExpression(table, entity, m.Member),
+                                (ColumnExpression)this.GetMemberExpression(table, mapping, m.Member),
                                 Expression.Constant(Converter.Convert(dic[k], m.MemberType), m.MemberType)
                                 ));
                         }
@@ -895,13 +895,13 @@ namespace NLite.Data.Dialect.ExpressionBuilder
                 else
                 {
                     var members = instanceType.GetMembers();
-                    foreach (var m in entity.Members)
+                    foreach (var m in mapping.Members)
                     {
                         var m2 = members.FirstOrDefault(p => string.Equals(p.Name, m.Member.Name, StringComparison.OrdinalIgnoreCase));
                         if (m2 != null && m.IsColumn && fnIncludeColumn(m))
                         {
                             items.Add(new ColumnAssignment(
-                                (ColumnExpression)this.GetMemberExpression(table, entity, m.Member),
+                                (ColumnExpression)this.GetMemberExpression(table, mapping, m.Member),
                                 Expression.MakeMemberAccess(instance, m2)
                                 ));
                         }
