@@ -1,15 +1,16 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using NLite.Data.Dialect;
 using NLite.Data.Driver;
 using NLite.Data.Mapping;
 using NLite.Data.Schema;
-using System.IO;
 
 
 namespace NLite.Data
@@ -46,7 +47,21 @@ namespace NLite.Data
         /// </summary>
         internal static DbConfiguration DefaultDbConfiguration;
 
+        /// <summary>
+        /// 得到缺省的DbConfiguration
+        /// </summary>
+        public static DbConfiguration Default
+        {
+            get { return DefaultDbConfiguration; }
+        }
 
+        /// <summary>
+        /// 指示当前DbConfiguration是否是缺省的DbConfiguration
+        /// </summary>
+        public bool IsDefault
+        {
+            get { return DefaultDbConfiguration == this; }
+        }
 
         /// <summary>
         /// 把当前DbConfiguration标志为缺省DbConfiguration
@@ -56,14 +71,6 @@ namespace NLite.Data
         {
             DefaultDbConfiguration = this;
             return this;
-        }
-
-        /// <summary>
-        /// 指示当前DbConfiguration是否是缺省的DbConfiguration
-        /// </summary>
-        public bool IsDefault
-        {
-            get { return DefaultDbConfiguration == this; }
         }
 
         /// <summary>
@@ -351,7 +358,9 @@ namespace NLite.Data
                      connectionCreator = () => new DbConnectionWrapper(this,DbProviderFactory.CreateConnection()) { ConnectionString = connectionString };
                     break;
             }
-           
+
+            if (ConfigurationManager.ConnectionStrings.Count == 1)
+                MakeDefault();
         }
     }
 }

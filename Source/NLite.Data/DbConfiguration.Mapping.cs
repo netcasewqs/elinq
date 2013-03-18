@@ -14,6 +14,7 @@ using NLite.Reflection;
 using NLite.Collections;
 using NLite.Data.LinqToSql;
 using NLite.Data.Schema;
+using System.Collections;
 
 namespace NLite.Data
 {
@@ -28,6 +29,17 @@ namespace NLite.Data
         public DbConfiguration AddClass<TEntity>()
         {
             var entityType = typeof(TEntity);
+            return AddClass(entityType);
+        }
+
+        /// <summary>
+        /// 注册实体到数据表的映射关系
+        /// </summary>
+        /// <param name="entityType"></param>
+        /// <returns></returns>
+        public DbConfiguration AddClass(Type entityType)
+        {
+            Guard.NotNull(entityType, "entityType");
             var entityTypeId = entityType.TypeHandle.Value;
             if (mappings.ContainsKey(entityTypeId))
                 throw new RepeatRegistrationException("Repeat register entity mapping for entity '" + entityType.FullName + "'.");
@@ -42,7 +54,7 @@ namespace NLite.Data
                 else
                     RegistyMapping(CreateMapping(entityType));
             }
-                
+
             return this;
         }
 
@@ -150,6 +162,10 @@ namespace NLite.Data
             this.mappingConversion = new ProxyMappingConversion(fnClassNameToTalbeName);
             return this;
         }
+
+        static readonly Assembly ELinqAssembly = typeof(DbConfiguration).Assembly;
+        static readonly Assembly NLiteAssembly = typeof(NLite.IServiceLocator).Assembly;
+
         /// <summary>
         /// 批量注册AppDomain下的程序集内符合特定条件的实体到数据表的映射关系
         /// </summary>
@@ -158,9 +174,21 @@ namespace NLite.Data
         /// <returns></returns>
         public DbConfiguration AddFromAppDomain(System.Func<Type, bool> typeFilter )
         {
-            var elinqAsm = typeof(DbConfiguration).Assembly;
+            Assembly[] asms = null;
+            if (NLiteEnvironment.IsWeb)
+            {
+                var buildManagerType = ClassLoader.Load("System.Web.Compilation.BuildManager,System.Web");
+                Guard.NotNull(buildManagerType, "buildManagerType");
+                asms =(buildManagerType
+                    .GetMethod("GetReferencedAssemblies", BindingFlags.Public | BindingFlags.Static)
+                    .Invoke(null,null) as IEnumerable)
+                    .Cast<Assembly>()
+                    .ToArray();
+            }
+            else
+                asms = AppDomain.CurrentDomain.GetAssemblies();
 
-            foreach (var asm in AppDomain.CurrentDomain.GetAssemblies().Where(p=>!p.IsSystemAssembly() && p != elinqAsm))
+            foreach (var asm in asms)
                 AddFromAssembly(asm, typeFilter);
             return this;
         }
@@ -195,7 +223,26 @@ namespace NLite.Data
         public DbConfiguration AddFromAssembly(Assembly asm,System.Func<Type, bool> typeFilter)
         {
             Guard.NotNull(asm, "asm");
-            foreach (var t in asm.GetExportedTypes().Where(p => !p.IsAbstract))
+            if (asm.IsSystemAssembly() || asm == ELinqAssembly || asm == NLiteAssembly)
+                return this;
+
+            Type[] types = null;
+            try
+            {
+                types = asm.GetTypes();
+            }
+            catch
+            {
+            }
+            finally
+            {
+            }
+
+            if (types == null)
+                return this;
+
+
+            foreach (var t in asm.GetTypes().Where(p => !p.IsAbstract))
             {
                 var entityTypeId = t.TypeHandle.Value;
                 if (mappings.ContainsKey(entityTypeId))
@@ -506,9 +553,35 @@ namespace NLite.Data
         {
             EntityMapping mapping;
             var tableId = entityType.TypeHandle.Value;
+            if (mappings.Count == 0)
+                AddFromAppDomain(HasLazyMappingType);
+            if (mappings.Count == 0)
+                throw new MappingException(string.Format("Entity type '{0}' not configure mapping!", entityType.FullName));
+
             if (!mappings.TryGetValue(tableId, out mapping))
                 throw new MappingException(string.Format("Entity type '{0}' not configure mapping!", entityType.FullName));
             return mapping;
+        }
+
+
+        static bool HasLazyMappingType(Type t)
+        {
+            if (typeof(ClassMap).IsAssignableFrom(t))
+                return true;
+
+            var items = t.GetCustomAttributes(false).Select(p => p.GetType()).ToArray();
+            if (items.Length == 0)
+                return false;
+
+            if (items.Contains(typeof(NLite.Data.TableAttribute)))
+                return true;
+
+            if (DLinq.Instance != null && items.Contains(DLinq.Instance.Table.Type))
+                return true;
+            if (EFDataAnnotiationAdapter.Instance != null && items.Contains(EFDataAnnotiationAdapter.TableAttributeType))
+                return true;
+
+            return false;
         }
 
 

@@ -25,7 +25,7 @@ namespace NLite.Data
                 {
                     var cfg = DbConfiguration.DefaultDbConfiguration;
                     if (cfg == null)
-                        throw new InvalidOperationException("Not set DefaultUnitOfWorkName or no set default DbConfiguration ");
+                        cfg = DbConfiguration.Configure();
                     UnitOfWork.DbConfigurationName = cfg.Name;
                 }
 
@@ -48,10 +48,7 @@ namespace NLite.Data
             if (ctx == null)
             {
                 var cfg = DbConfiguration.Get(dbConfigurationName);
-                if (cfg == null)
-                    throw new InvalidOperationException("Invalid dbConfigurationName");
                 ctx = cfg.CreateDbContext() as IUnitOfWork;
-
                 NLite.Threading.Local.Set(key, ctx);
             }
 

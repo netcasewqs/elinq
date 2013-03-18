@@ -24,14 +24,14 @@ namespace NLite.Data
    
     partial class DbConfiguration
     {
-        static IDictionary<string, DbConfiguration> items;
-        static HashSet<string> providerNames;
-        static Dictionary<string, DbConfigurationInfo> Options;
+        static readonly IDictionary<string, DbConfiguration> items;
+        static readonly HashSet<string> providerNames;
+        static readonly Dictionary<string, DbConfigurationInfo> Options;
 
         /// <summary>
         /// 
         /// </summary>
-        public DbConfigurationInfo Option { internal get; set; }
+        public DbConfigurationInfo Option { get; set; }
 
 
         static DbConfiguration()
@@ -185,6 +185,12 @@ namespace NLite.Data
             Guard.NotNull(dbConfigurationName, "dbConfigurationName");
             DbConfiguration cfg;
             items.TryGetValue(dbConfigurationName, out cfg);
+            if (cfg == null)
+            {
+                //自动配置
+                cfg = DbConfiguration.Configure(dbConfigurationName);
+               
+            }
             return cfg;
         }
         
@@ -198,7 +204,7 @@ namespace NLite.Data
                 throw new ConfigurationErrorsException(Res.ConnectionStringNoConfigException);
             if (System.Configuration.ConfigurationManager.ConnectionStrings.Count != 1)
                 throw new ConfigurationErrorsException(Res.ConnectionStringNoConfigException);
-            return DbConfiguration.Configure(System.Configuration.ConfigurationManager.ConnectionStrings[0].Name);
+            return DbConfiguration.Configure(System.Configuration.ConfigurationManager.ConnectionStrings[0].Name).MakeDefault();
         }
         /// <summary>
         /// 通过connectionStringName对象创建DbConfiguration对象（可以用于配置文件中有多个数据库连接字符串配置）
@@ -244,10 +250,6 @@ namespace NLite.Data
                 items[cfg.Name] = cfg;
 
             AutoMatchDialect(cfg, connectionString, providerName, factory);
-
-            if (System.Configuration.ConfigurationManager.ConnectionStrings.Count == 1)
-                cfg.MakeDefault();
-
             return cfg;
         }
 
