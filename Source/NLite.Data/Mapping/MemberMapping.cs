@@ -240,14 +240,14 @@ namespace NLite.Data.Mapping
                     columnName = cn;
             }
 
-            attr = member.GetCustomAttributes(EFDataAnnotiationAdapter.DatabaseGeneratedAttributeType, false);
+            attr = member.GetCustomAttributes(EFDataAnnotiationAdapter.DatabaseGeneratedAttributeType, false).FirstOrDefault();
             if (attr != null)
             {
                 if ((int)Converter.Convert(EFDataAnnotiationAdapter.Instance.DatabaseGenerated.DatabaseGeneratedOption(attr), Types.Int32) == 1)
                     isGenerated = true;
             }
 
-            attr = member.GetCustomAttributes(EFDataAnnotiationAdapter.MaxLengthAttributeType, false);
+            attr = member.GetCustomAttributes(EFDataAnnotiationAdapter.MaxLengthAttributeType, false).FirstOrDefault();
             if (attr != null)
             {
                 var length = (int)Converter.Convert(EFDataAnnotiationAdapter.Instance.MaxLength.Length(attr), Types.Int32);

@@ -24,8 +24,8 @@ namespace NLite.Data.Test
         public void Initialize()
         {
             db = new Northwind();
-            //db.Orders.Delete(p => p.CustomerID.StartsWith("XX"));
-            //db.Customers.Delete(p => p.CustomerID.StartsWith("XX"));
+            db.Orders.Delete(p => p.CustomerID.StartsWith("XX"));
+            db.Customers.Delete(p => p.CustomerID.StartsWith("XX"));
         }
 
         [TearDown]
@@ -194,9 +194,17 @@ namespace NLite.Data.Test
                     Country = "USA"
                 });
 
+          
+
             var results = db.Customers.Batch(custs, (u, c) => u.Update(c));
             AssertValue(n, results.Count());
             AssertTrue(results.All(r => object.Equals(r, 1)));
+
+            var ids = custs.Select(p => p.CustomerID).ToList();
+
+            db.Customers.Update(new { Country = "ZH-CN" }, p => ids.Contains(p.CustomerID));
+
+
         }
 
      
@@ -226,6 +234,8 @@ namespace NLite.Data.Test
                         Country = "USA"
                     }
                 });
+
+           
 
             var results = db.Customers.Batch(pairs, (u, x) => u.Update(x.current, d => d.City == x.original.City));
             AssertValue(n, results.Count());

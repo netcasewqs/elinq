@@ -13,6 +13,7 @@ using NLite.Linq;
 using NLite.Data.Mapping;
 using NLite.Data.LinqToSql;
 using NLite.Data.Common;
+using NLite.Data.Linq.Internal;
 
 namespace NLite.Data.Linq.Expressions
 {
@@ -367,9 +368,9 @@ namespace NLite.Data.Linq.Expressions
                     return BindJoin(m);
             }
 
-            if (methodName == "ContainsValue" && IsSameOrParent(typeof(Dictionary<,>), declaringType))
+            if (methodName == "ContainsValue" && IsSameOrParent(typeof(IDictionary<,>), declaringType))
             {
-                var args = GetGenericArguments(declaringType, typeof(Dictionary<,>));
+                var args = GetGenericArguments(declaringType, typeof(IDictionary<,>));
                 var minf = EnumerableMethods
                     .First(s => s.Name == "Contains" && s.GetParameters().Length == 2)
                     .MakeGenericMethod(args[1]);
@@ -379,9 +380,9 @@ namespace NLite.Data.Linq.Expressions
                     Expression.PropertyOrField(m.Object, "Values"),
                     m.Arguments[0]);
             }
-            if (methodName == "ContainsKey" && IsSameOrParent(typeof(Dictionary<,>), declaringType))
+            if (methodName == "ContainsKey" && IsSameOrParent(typeof(IDictionary<,>), declaringType))
             {
-                var args = GetGenericArguments(declaringType, typeof(Dictionary<,>));
+                var args = GetGenericArguments(declaringType, typeof(IDictionary<,>));
                 var minf = EnumerableMethods
                     .First(s => s.Name == "Contains" && s.GetParameters().Length == 2)
                     .MakeGenericMethod(args[1]);
@@ -391,6 +392,8 @@ namespace NLite.Data.Linq.Expressions
                     Expression.PropertyOrField(m.Object, "Keys"),
                     m.Arguments[0]);
             }
+          
+
             if (declaringType.FullName == DLinq.StrSqlMethhodsType && declaringType.Assembly.GetName().Name == DLinq.StrAssemblyName)
             {
                 DLinq.Init(declaringType.Assembly);
@@ -442,6 +445,38 @@ namespace NLite.Data.Linq.Expressions
                     //    var s = Expression.Call(typeof(Enumerable), "Skip", new Type[] { elementType },m.Arguments[0], index);
                     //    return Expression.Call(typeof(Enumerable), "Take", new Type[] { elementType },s, Expression.Constant(1,Types.Int32));
                 }
+            }
+
+            if (IsSameOrParent(typeof(IEnumerable<>), declaringType)
+                && !declaringType.IsArray
+                && m.Object.NodeType == ExpressionType.Constant
+                && !typeof(IQueryable).IsAssignableFrom(declaringType))
+            {
+                switch (methodName)
+                {
+                    case "Contains":
+                        var elementType = NLite.Data.Linq.Internal.ReflectionHelper.GetElementType(declaringType);
+                        if (!DbContext.dbConfiguration.HasClass(elementType) && elementType != Types.Char)
+                        {
+                            var lst = (m.Object as ConstantExpression).Value as IEnumerable;
+                            if (lst != null)
+                            {
+                                var items = lst.Cast<object>().ToArray();
+                                var arry = Array.CreateInstance(elementType, items.Length);
+                                for (int i = 0; i < items.Length; i++)
+                                    arry.SetValue(items[i], i);
+                                Expression array = Expression.Constant(arry);
+
+                                var containsMethod = EnumerableMethods
+                                    .First(s => s.Name == "Contains" && s.GetParameters().Length == 2)
+                                    .MakeGenericMethod(elementType);
+                                m = Expression.Call(containsMethod, array, m.Arguments[0]);
+                            }
+                        }
+                        break;
+                }
+                
+                 
             }
             return m;
         }

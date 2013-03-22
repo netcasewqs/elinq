@@ -108,10 +108,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>True</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>ELinq.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ItemGroup>
@@ -1345,8 +1346,5 @@
     <EmbeddedResource Include="..\NLite.Data\Res.resx">
       <Link>Res.resx</Link>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ELinq.snk" />
   </ItemGroup>
 </Project>

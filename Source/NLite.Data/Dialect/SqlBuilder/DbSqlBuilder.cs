@@ -660,12 +660,13 @@ namespace NLite.Data.Dialect.SqlBuilder
         protected override Expression VisitInsert(InsertCommand insert)
         {
             this.Append("INSERT INTO ");
-            if (Dialect.SupportSchema && !string.IsNullOrEmpty(insert.Table.Mapping.Schema))
-            {
-                sb.Append(Dialect.Quote(insert.Table.Mapping.Schema));
-                sb.Append(".");
-            }
-            this.AppendTableName(insert.Table.Name);
+            //if (Dialect.SupportSchema && !string.IsNullOrEmpty(insert.Table.Mapping.Schema))
+            //{
+            //    sb.Append(Dialect.Quote(insert.Table.Mapping.Schema));
+            //    sb.Append(".");
+            //}
+            //this.AppendTableName(insert.Table.Name);
+            WriteTableName(insert.Table.Mapping);
             this.Append("(");
             for (int i = 0, n = insert.Assignments.Count; i < n; i++)
             {
@@ -689,12 +690,13 @@ namespace NLite.Data.Dialect.SqlBuilder
         protected override Expression VisitUpdate(UpdateCommand update)
         {
             this.Append("UPDATE ");
-            if (Dialect.SupportSchema && !string.IsNullOrEmpty(update.Table.Mapping.Schema))
-            {
-                sb.Append(Dialect.Quote(update.Table.Mapping.Schema));
-                sb.Append(".");
-            }
-            this.AppendTableName(update.Table.Name);
+            WriteTableName(update.Table.Mapping);
+            //if (Dialect.SupportSchema && !string.IsNullOrEmpty(update.Table.Mapping.Schema))
+            //{
+            //    sb.Append(Dialect.Quote(update.Table.Mapping.Schema));
+            //    sb.Append(".");
+            //}
+            //this.AppendTableName(update.Table.Name);
             this.AppendLine(Indentation.Same);
             bool saveHide = this.HideColumnAliases;
             this.HideColumnAliases = true;
