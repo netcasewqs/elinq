@@ -104,6 +104,61 @@ namespace NLite.Data
             return this;
         }
 
+        /// <summary>
+        /// 校验Schema
+        /// </summary>
+        internal void ValidateSchema()
+        {
+            //如果不启用映射检查或者数据库还不存在则直接返回
+            if (!enableValidateSchema || !DatabaseExists())
+                return;
+            var errors = new StringBuilder(500);
+            foreach (var mapping in mappings.Values)
+                ValidateTableSchema(mapping,errors);
+            if (errors.Length > 0)
+                throw new MappingException(errors.ToString());
+        }
+
+
+        private void ValidateTableSchema(EntityMapping mapping,StringBuilder errors)
+        {
+            //如果映射的数据库名称和实际的数据库名称不一致，那么有可能是跨库映射则直接返回
+            if (mapping.databaseName.HasValue() && mapping.databaseName.ToLower() != DatabaseName) 
+                return;
+          
+            var tb = Schema.Tables.Union(Schema.Views).FirstOrDefault(p => p.TableName.ToLower() == mapping.tableName.ToLower());
+            if (tb == null)
+                errors.Append("Missing table:" + mapping.tableName ).AppendLine();
+            else
+                ValidateColumns(mapping, tb,errors);
+        }
+
+        private void ValidateColumns(EntityMapping mapping, ITableSchema tb,StringBuilder errors)
+        {
+            var scriptGenerator = this.Option.ScriptGenerator();
+            foreach (var m in mapping.innerMappingMembers.Where(p=>p.isColumn))
+            {
+                var c = tb.AllColumns.FirstOrDefault(p => p.ColumnName.ToLower() == m.columnName.ToLower());
+                if (c == null)
+                {
+                    errors.AppendFormat("Missing column: {0} in {1}", m.columnName, tb.TableName).AppendLine();
+                    continue;
+                }
+             
+                var memberType = m.memberType.IsNullable() ? Nullable.GetUnderlyingType(m.memberType) : m.memberType;
+                if (c.Type == memberType)
+                    continue;
+
+                var currentDbType = scriptGenerator.GetDbType(m.sqlType).ToLower();
+                if (!currentDbType.StartsWith(c.ColumnType.ToLower()))
+                    errors.AppendFormat("Wrong column type in {0} for column {1}. Found: {2}, Expected {3}", tb.TableName,
+                                                            c.ColumnName,
+                                                            currentDbType,
+                                                            c.ColumnType)
+                                                            .AppendLine();
+            }
+        }
+
         private void RegistyMapping(EntityMapping mapping)
         {
             foreach (var m in mapping.innerMappingMembers.Where(p => !string.IsNullOrEmpty(p.otherKey)))

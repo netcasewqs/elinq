@@ -43,6 +43,8 @@ namespace NLite.Data.Schema
 
         string Comment { get; }
 
+        string ColumnType { get; }
+
         DBType DbType { get; }
 
         Type Type { get; }

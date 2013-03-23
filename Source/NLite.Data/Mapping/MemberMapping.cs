@@ -65,6 +65,8 @@ namespace NLite.Data.Mapping
                 setter = storageMember.GetSetter();
             else
                 setter = member.GetSetter();
+            if (columnName == null)
+                columnName = member.Name;
         }
 
         private void InitializeAttributeMapping(MemberAttribute attribute, bool isEnumerableType)

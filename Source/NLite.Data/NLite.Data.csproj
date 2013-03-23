@@ -111,8 +111,8 @@
     <DocumentationFile>..\Bin\ELinq.xml</DocumentationFile>
     <DefineConstants>TRACE;SDK45</DefineConstants>
     <WarningLevel>4</WarningLevel>
-    <DebugType>full</DebugType>
-    <DebugSymbols>true</DebugSymbols>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>

@@ -73,6 +73,27 @@ namespace NLite.Data
             return this;
         }
 
+        private bool enableValidateSchema;
+
+        /// <summary>
+        /// 指示Schema校验开关是否打开，默认是关闭的，如果想打开请调用MakeEnableValidateSchema() 方法。
+        /// </summary>
+        public bool EnableValidateSchema
+        {
+            get { return enableValidateSchema; }
+        }
+
+        /// <summary>
+        /// Schema校验开关，调用该方法将打开，默认是关闭状态
+        /// </summary>
+        /// <returns></returns>
+        public DbConfiguration MakeEnableValidateSchema()
+        {
+            enableValidateSchema = true;
+            var schemal = Schema;
+            return this;
+        }
+
         /// <summary>
         /// DbProvider 名称
         /// </summary>

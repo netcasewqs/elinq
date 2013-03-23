@@ -115,7 +115,7 @@ namespace NLite.Data.Schema.Script.Generator
         /// </summary>
         /// <param name="sqlType"></param>
         /// <returns></returns>
-        protected string GetDbType(SqlType sqlType)
+        public string GetDbType(SqlType sqlType)
         {
             return typeNames.Get(sqlType.DbType, sqlType.Length, sqlType.Precision, sqlType.Scale);
         }

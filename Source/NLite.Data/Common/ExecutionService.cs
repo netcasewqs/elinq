@@ -5,6 +5,7 @@ using System.Text;
 using System.Data.Common;
 using System.Data;
 using NLite.Data.Dialect;
+using System.Runtime.CompilerServices;
 
 namespace NLite.Data.Common
 {
@@ -13,6 +14,8 @@ namespace NLite.Data.Common
         InternalDbContext dbContext;
         int rowsAffected;
         ISqlLog log;
+        static long counter;
+
         public ExecutionService(InternalDbContext dbContext)
         {
             this.dbContext = dbContext;
@@ -215,14 +218,26 @@ namespace NLite.Data.Common
               
         }
 
+        static long Counter
+        {
+            [MethodImpl(MethodImplOptions.Synchronized)]
+            get
+            {
+                return counter += 1;
+            }
+        }
 
         DbCommand GetCommand(string commandText, NamedParameter[] parameters, object[] paramValues)
         {
-            if (dbContext.dbConfiguration.totalOpenConnection == 0)
+            if (Counter == 1)
             {
-                if (!hasCreatingDatabase && !dbContext.dbConfiguration.DatabaseExists())
+                var dbExists = dbContext.dbConfiguration.DatabaseExists();
+                if (dbExists)
+                    dbContext.dbConfiguration.ValidateSchema();
+                else if (!hasCreatingDatabase)
                     CreateDatabase();
             }
+
 
             var cmd = this.dbContext.Connection.CreateCommand();
             cmd.CommandText = commandText;

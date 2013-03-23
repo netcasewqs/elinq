@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using NLite.Data.Mapping;
 using NLite.Data.Dialect;
+using NLite.Data.Common;
 
 namespace NLite.Data.Schema.Script
 {
@@ -12,6 +13,12 @@ namespace NLite.Data.Schema.Script
     /// </summary>
     public interface IDatabaseScriptGenerator
     {
+        /// <summary>
+        /// 得到对应的数据库类型
+        /// </summary>
+        /// <param name="sqlType"></param>
+        /// <returns></returns>
+        string GetDbType(SqlType sqlType);
         /// <summary>
         /// 生成数据库脚本
         /// </summary>

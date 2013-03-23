@@ -55,6 +55,7 @@ namespace NLite.Data.Schema
 
         public bool IsComputed { get; set; }
         public bool IsGenerated { get; set; }
+        public string ColumnType { get; set; }
         public Type Type { get; set; }
         public DBType DbType { get; set; }
 
