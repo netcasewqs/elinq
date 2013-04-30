@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Text;
 using NLite.Collections;
-using NLite.Data.Mapping;
 using NLite.Data.Common;
+using NLite.Data.Mapping;
 namespace NLite.Data.Schema.Script.Generator
 {
-    class MySQLScriptGenerator:DatabaseScriptGenerator
+    class MySQLScriptGenerator : DatabaseScriptGenerator
     {
         protected override string BuildPKScript(Mapping.IMemberMapping[] members)
         {
@@ -88,7 +86,7 @@ namespace NLite.Data.Schema.Script.Generator
                 case DBType.Int32:
                 case DBType.Int64:
                     if (f.IsPrimaryKey)
-                     return " AUTO_INCREMENT PRIMARY KEY";
+                        return " AUTO_INCREMENT PRIMARY KEY";
                     break;
             }
             return null;

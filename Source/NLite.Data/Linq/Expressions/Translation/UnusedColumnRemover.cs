@@ -1,18 +1,13 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 // This source code is made available under the terms of the Microsoft Public License (MS-PL)
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
-using System.Text;
 
 namespace NLite.Data.Linq.Expressions
 {
-   
+
     class UnusedColumnRemover : DbExpressionVisitor
     {
         Dictionary<TableAlias, HashSet<string>> allColumnsUsed;
@@ -23,7 +18,7 @@ namespace NLite.Data.Linq.Expressions
             this.allColumnsUsed = new Dictionary<TableAlias, HashSet<string>>();
         }
 
-        public static Expression Remove(Expression expression) 
+        public static Expression Remove(Expression expression)
         {
             return new UnusedColumnRemover().Visit(expression);
         }
@@ -63,16 +58,16 @@ namespace NLite.Data.Linq.Expressions
             return column;
         }
 
-        protected override Expression VisitSubquery(SubqueryExpression subquery) 
+        protected override Expression VisitSubquery(SubqueryExpression subquery)
         {
             if ((subquery.NodeType == (ExpressionType)DbExpressionType.Scalar ||
                 subquery.NodeType == (ExpressionType)DbExpressionType.In) &&
-                subquery.Select != null) 
+                subquery.Select != null)
             {
                 System.Diagnostics.Debug.Assert(subquery.Select.Columns.Count == 1);
                 MarkColumnAsUsed(subquery.Select.Alias, subquery.Select.Columns[0].Name);
             }
- 	        return base.VisitSubquery(subquery);
+            return base.VisitSubquery(subquery);
         }
 
         protected override Expression VisitSelect(SelectExpression select)
@@ -127,12 +122,12 @@ namespace NLite.Data.Linq.Expressions
 
             ClearColumnsUsed(select.Alias);
 
-            if (columns != select.Columns 
-                || take != select.Take 
+            if (columns != select.Columns
+                || take != select.Take
                 || skip != select.Skip
-                || orderbys != select.OrderBy 
+                || orderbys != select.OrderBy
                 || groupbys != select.GroupBy
-                || where != select.Where 
+                || where != select.Where
                 || from != select.From)
             {
                 select = new SelectExpression(select.Alias, columns, from, where, orderbys, groupbys, select.IsDistinct, skip, take, select.IsReverse);

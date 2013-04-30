@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using NLite.Data;
 
 namespace ELinq.DDLTest.ElinqToSql.Models
@@ -12,10 +9,10 @@ namespace ELinq.DDLTest.ElinqToSql.Models
         [Id]
         public int ShipperID { get; set; }
 
-        [Column(Length=40,IsNullable=false)]
+        [Column(Length = 40, IsNullable = false)]
         public string CompanyName { get; set; }
 
-        [Column(Length=24)]
+        [Column(Length = 24)]
         public string Phone { get; set; }
 
         [OneToMany(ThisKey = "ShipperID", OtherKey = "ShipVia")]

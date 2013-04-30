@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NLite.Data.Linq.Expressions;
-using System.Linq.Expressions;
-using System.Collections.ObjectModel;
-using NLite.Reflection;
-using System.ComponentModel;
-using System.Data;
 using System.Globalization;
-using NLite.Data.Linq;
-using NLite.Data.Dialect.Function;
+using System.Linq;
+using System.Linq.Expressions;
 using NLite.Data.Common;
+using NLite.Data.Linq.Expressions;
+using NLite.Reflection;
 
 namespace NLite.Data.Dialect.SqlBuilder
 {

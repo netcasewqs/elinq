@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NLite.Data.Schema;
 using NLite.Data.Dialect;
-using NLite.Data.Schema.Script;
 using NLite.Data.Driver;
+using NLite.Data.Schema;
+using NLite.Data.Schema.Script;
 
 namespace NLite.Data
 {
@@ -36,7 +33,7 @@ namespace NLite.Data
         /// <summary>
         /// 得到或设置SqlBuilder工厂
         /// </summary>
-        public Func<IDialect,IFunctionRegistry ,ISqlBuilder> SqlBuilder { get; set; }
+        public Func<IDialect, IFunctionRegistry, ISqlBuilder> SqlBuilder { get; set; }
         /// <summary>
         /// 得到或设置ScriptGenerator工厂
         /// </summary>
@@ -49,6 +46,6 @@ namespace NLite.Data
         /// 得到或设置SchemaLoader工厂
         /// </summary>
         public Func<ISchemaLoader> SchemaLoader { get; set; }
-      
+
     }
 }

@@ -1,8 +1,6 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 // This source code is made available under the terms of the Microsoft Public License (MS-PL)
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -15,7 +13,7 @@ namespace NLite.Data.Linq.Expressions
     class CrossJoinIsolator : DbExpressionVisitor
     {
         ILookup<TableAlias, ColumnExpression> columns;
-        Dictionary<ColumnExpression, ColumnExpression> map = new Dictionary<ColumnExpression,ColumnExpression>();
+        Dictionary<ColumnExpression, ColumnExpression> map = new Dictionary<ColumnExpression, ColumnExpression>();
         JoinType? lastJoin;
 
         public static Expression Isolate(Expression expression)
@@ -26,7 +24,7 @@ namespace NLite.Data.Linq.Expressions
         protected override Expression VisitSelect(SelectExpression select)
         {
             var saveColumns = this.columns;
-            this.columns = ReferencedColumnGatherer.Gather(select).ToLookup(c => c.Alias,TableAlias.Comparer);
+            this.columns = ReferencedColumnGatherer.Gather(select).ToLookup(c => c.Alias, TableAlias.Comparer);
             var saveLastJoin = this.lastJoin;
             this.lastJoin = null;
             var result = base.VisitSelect(select);
@@ -66,7 +64,7 @@ namespace NLite.Data.Linq.Expressions
             var aliases = TableAliasGatherer.Gather(expression);
 
             var decls = new List<ColumnDeclaration>();
-            foreach (var ta in aliases) 
+            foreach (var ta in aliases)
             {
                 foreach (var col in this.columns[ta])
                 {

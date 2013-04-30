@@ -1,12 +1,8 @@
 ﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace NLite.Data.Schema.Script.Executor
 {
-    class OracleScriptExecutor:NonFileDatabaseScriptExecutor
+    class OracleScriptExecutor : NonFileDatabaseScriptExecutor
     {
         public override void DeleteDatabase(DbConfiguration dbConfiguration)
         {
@@ -44,7 +40,7 @@ namespace NLite.Data.Schema.Script.Executor
                 dbName = objDbName.ToString();
             else if (connectionStringBuilder.TryGetValue("PWD", out objDbName))
                 dbName = objDbName.ToString();
-            
+
             return dbName;
         }
 
@@ -57,7 +53,7 @@ namespace NLite.Data.Schema.Script.Executor
             else if (connectionStringBuilder.TryGetValue("UID", out objDbName))
                 dbName = objDbName.ToString();
             return dbName;
-        } 
+        }
 
         public override void CreateDatabase(DbConfiguration dbConfiguration, DatabaseScriptEntry script)
         {
@@ -87,9 +83,6 @@ namespace NLite.Data.Schema.Script.Executor
                 cmd.ExecuteNonQuery();
                 //conn.ChangeDatabase(dbName);
                 conn.Close();
-
-
-
             }
             connectionStringBuilder["USER ID"] = dbName;
             connectionStringBuilder["Password"] = dbPassword;
@@ -121,9 +114,9 @@ namespace NLite.Data.Schema.Script.Executor
         }
 
 
-        
-        
 
-        
+
+
+
     }
 }

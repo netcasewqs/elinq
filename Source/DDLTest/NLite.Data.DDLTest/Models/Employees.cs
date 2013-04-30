@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data.Linq;
+﻿using System.Data.Linq;
 using System.Data.Linq.Mapping;
 
 namespace ELinq.DDLTest.Models
@@ -64,7 +60,7 @@ namespace ELinq.DDLTest.Models
         [Column(DbType = "NVarChar(255)")]
         public string PhotoPath { get; set; }
 
-        [Association(Name = "Employees_Orders",ThisKey = "EmployeeID", OtherKey = "EmployeeID")]
+        [Association(Name = "Employees_Orders", ThisKey = "EmployeeID", OtherKey = "EmployeeID")]
         public EntitySet<Orders> Orders { get; set; }
 
         [Association(Name = "Employees_Employees", ThisKey = "EmployeeID", OtherKey = "ReportsTo")]
@@ -75,6 +71,6 @@ namespace ELinq.DDLTest.Models
 
         [Association(Name = "Employees_Employees", ThisKey = "ReportsTo", OtherKey = "EmployeeID", IsForeignKey = true)]
         public Employees Employees1 { get; set; }
-	
+
     }
 }

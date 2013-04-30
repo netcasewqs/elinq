@@ -2,15 +2,10 @@
 // This source code is made available under the terms of the Microsoft Public License (MS-PL)
 
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
-using System.Text;
 using NLite.Data.Linq.Internal;
-using NLite.Data.Linq.Expressions;
 
 namespace NLite.Data.Linq.Expressions
 {
@@ -22,7 +17,7 @@ namespace NLite.Data.Linq.Expressions
         ScopedDictionary<TableAlias, TableAlias> aliasScope;
 
         protected DbExpressionComparer(
-            ScopedDictionary<ParameterExpression, ParameterExpression> parameterScope, 
+            ScopedDictionary<ParameterExpression, ParameterExpression> parameterScope,
             Func<object, object, bool> fnCompare,
             ScopedDictionary<TableAlias, TableAlias> aliasScope)
             : base(parameterScope, fnCompare)
@@ -119,7 +114,7 @@ namespace NLite.Data.Linq.Expressions
             return this.CompareAlias(a.Alias, b.Alias) && a.Name == b.Name;
         }
 
-        protected virtual bool CompareAlias(TableAlias a, TableAlias b)        
+        protected virtual bool CompareAlias(TableAlias a, TableAlias b)
         {
             if (this.aliasScope != null)
             {
@@ -138,7 +133,7 @@ namespace NLite.Data.Linq.Expressions
                 if (!this.Compare(a.From, b.From))
                     return false;
 
-                this.aliasScope = new ScopedDictionary<TableAlias, TableAlias>(save,TableAlias.Comparer);
+                this.aliasScope = new ScopedDictionary<TableAlias, TableAlias>(save, TableAlias.Comparer);
                 this.MapAliases(a.From, b.From);
 
                 return this.Compare(a.Where, b.Where)
@@ -160,7 +155,7 @@ namespace NLite.Data.Linq.Expressions
         {
             TableAlias[] prodA = TableAliasGatherer.Gather(a).ToArray();
             TableAlias[] prodB = TableAliasGatherer.Gather(b).ToArray();
-            for (int i = 0, n = prodA.Length; i < n; i++) 
+            for (int i = 0, n = prodA.Length; i < n; i++)
             {
                 this.aliasScope.Add(prodA[i], prodB[i]);
             }
@@ -214,7 +209,7 @@ namespace NLite.Data.Linq.Expressions
                 var save = this.aliasScope;
                 try
                 {
-                    this.aliasScope = new ScopedDictionary<TableAlias, TableAlias>(this.aliasScope,TableAlias.Comparer);
+                    this.aliasScope = new ScopedDictionary<TableAlias, TableAlias>(this.aliasScope, TableAlias.Comparer);
                     this.MapAliases(a.Left, b.Left);
 
                     return this.Compare(a.Right, b.Right)
@@ -307,7 +302,7 @@ namespace NLite.Data.Linq.Expressions
             var save = this.aliasScope;
             try
             {
-                this.aliasScope = new ScopedDictionary<TableAlias, TableAlias>(this.aliasScope,TableAlias.Comparer);
+                this.aliasScope = new ScopedDictionary<TableAlias, TableAlias>(this.aliasScope, TableAlias.Comparer);
                 this.aliasScope.Add(a.Select.Alias, b.Select.Alias);
 
                 return this.Compare(a.Projector, b.Projector)

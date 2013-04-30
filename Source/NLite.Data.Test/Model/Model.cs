@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NLite.Data.Mapping;
-
+﻿
 namespace NLite.Data.Test.Model
 {
     //[Table(Name="Products")]
@@ -61,4 +56,3 @@ namespace NLite.Data.Test.Model
     //     public decimal Freight;
     //}
 }
-    

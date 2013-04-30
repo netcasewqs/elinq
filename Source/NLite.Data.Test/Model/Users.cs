@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NLite.Data.Mapping;
-using NLite.Data;
 
 namespace NLite.Data.Test.Model
 {

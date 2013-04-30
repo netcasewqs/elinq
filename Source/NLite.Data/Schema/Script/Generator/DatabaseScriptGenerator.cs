@@ -1,18 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NLite.Data.Mapping;
-using NLite.Data.Dialect;
 using NLite.Collections;
 using NLite.Data.Common;
+using NLite.Data.Dialect;
+using NLite.Data.Mapping;
 
 namespace NLite.Data.Schema.Script.Generator
 {
     /// <summary>
     /// 数据库脚本生成器，提供数据库、表、主键约束、外键约束、检查约束、Uniqule约束等脚本的创建工作
     /// </summary>
-    abstract class DatabaseScriptGenerator:IDatabaseScriptGenerator
+    abstract class DatabaseScriptGenerator : IDatabaseScriptGenerator
     {
         internal readonly TypeNames typeNames = new TypeNames();
 
@@ -109,7 +108,7 @@ namespace NLite.Data.Schema.Script.Generator
         /// <param name="member"></param>
         /// <returns></returns>
         protected virtual string BuildCheckConstraintScript(IMemberMapping member) { return null; }
-        
+
         /// <summary>
         /// 得到对应的数据库类型
         /// </summary>
@@ -209,7 +208,7 @@ namespace NLite.Data.Schema.Script.Generator
         /// <param name="mappings">映射元数据</param>
         /// <param name="dbName">数据库名称</param>
         /// <returns>返回数据库脚本</returns>
-        public DatabaseScriptEntry Build(IDialect dialect, Mapping.IEntityMapping[] mappings,string databaseName)
+        public DatabaseScriptEntry Build(IDialect dialect, Mapping.IEntityMapping[] mappings, string databaseName)
         {
             Guard.NotNull(dialect, "dialect");
             Guard.NotNull(mappings, "mappings");
@@ -226,11 +225,11 @@ namespace NLite.Data.Schema.Script.Generator
             if (dialect.SupportSchema)
                 Entry.SchemaScripts = BuildSchemaScript(mappings)
                      .Where(p => p.HasValue())
-                     .ToArray(); 
+                     .ToArray();
 
             var sequanceScript = BuildAllSequanceScripts(Mappings)
                 .Where(p => p.HasValue())
-                     .ToArray(); 
+                     .ToArray();
 
 
             var pkScript = Mappings
@@ -251,7 +250,7 @@ namespace NLite.Data.Schema.Script.Generator
                     .Where(p => p.HasValue())
                     .ToArray();
 
-            var uniquleScript= Mappings.Where(p => p.Members.Any(m => m.IsUniqule))
+            var uniquleScript = Mappings.Where(p => p.Members.Any(m => m.IsUniqule))
                     .SelectMany(p => p.Members.Where(m => m.IsUniqule))
                     .Select(p => BuildUniquleConstraintScript(p))
                     .Where(p => p.HasValue())
@@ -277,7 +276,7 @@ namespace NLite.Data.Schema.Script.Generator
                     Entry.UniquleConstraintScripts = new string[] { uniquleScript.ToCSV(";") };
 
                 if (sequanceScript.Length > 0)
-                    Entry.SequenceScripts = new string[] { sequanceScript.ToCSV(";")};
+                    Entry.SequenceScripts = new string[] { sequanceScript.ToCSV(";") };
             }
             else
             {
@@ -311,6 +310,6 @@ namespace NLite.Data.Schema.Script.Generator
         {
             return null;
         }
-        
+
     }
 }

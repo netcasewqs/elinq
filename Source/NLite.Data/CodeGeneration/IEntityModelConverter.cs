@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using NLite.Data.Schema;
 
 namespace NLite.Data.CodeGeneration
@@ -31,7 +28,7 @@ namespace NLite.Data.CodeGeneration
 
             foreach (var col in table.ForeignKeys)
             {
-                var member = new NavigationMemberModel { IsManyToOne = true, Relation = col,  MemberName = PopulateMemberName(entity,NamingConversion.ManyToOneName(col)) };
+                var member = new NavigationMemberModel { IsManyToOne = true, Relation = col, MemberName = PopulateMemberName(entity, NamingConversion.ManyToOneName(col)) };
                 member.DeclareTypeName = NamingConversion.ClassName(col.OtherTable.TableName);
                 entity.manyToOnes.Add(member);
             }

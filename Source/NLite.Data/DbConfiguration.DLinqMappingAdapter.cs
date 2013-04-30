@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Reflection;
-using NLite.Reflection;
-using NLite.Data.Mapping.Fluent;
-using NLite.Data.Linq;
-using NLite.Data.Dialect;
-using System.Data;
-using NLite.Data.LinqToSql;
 using NLite.Data.Common;
+using NLite.Data.LinqToSql;
+using NLite.Data.Mapping.Fluent;
+using NLite.Reflection;
 
 namespace NLite.Data
 {
@@ -184,7 +180,7 @@ namespace NLite.Data
                     idMapper.Name = name;
                 mapping.members.Add(member, idMapper);
                 columnMapper = idMapper;
-               
+
             }
             else if (isVersion)
             {
@@ -388,7 +384,7 @@ namespace NLite.Data
             public ColumnAttribute Column { get; private set; }
             public AssociationAttribute Association { get; private set; }
 
-          
+
         }
 
         class TableAttribute

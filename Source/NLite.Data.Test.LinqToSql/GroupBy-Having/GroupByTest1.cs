@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using NUnit.Framework;
 using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestInitialize = NUnit.Framework.SetUpAttribute;
 using TestMethod = NUnit.Framework.TestAttribute;
 
 namespace NLite.Data.Test.LinqToSql.GroupBy_Having
 {
     [TestClass]
-    public class GroupByTest1:DLinqConnection
+    public class GroupByTest1 : DLinqConnection
     {
         //简单形式
         [TestMethod]
@@ -23,7 +19,7 @@ namespace NLite.Data.Test.LinqToSql.GroupBy_Having
                            select g;
                 foreach (var it in item)
                 {
-                    Console.WriteLine(it.Key+" --- "+it.Count());
+                    Console.WriteLine(it.Key + " --- " + it.Count());
                 }
             }
         }
@@ -35,7 +31,8 @@ namespace NLite.Data.Test.LinqToSql.GroupBy_Having
             {
                 var item = from p in db.Set<Products>()
                            group p by p.CategoryID into g
-                           select new {
+                           select new
+                           {
                                CategoryID = g.Key,
                                g
                            };
@@ -56,7 +53,7 @@ namespace NLite.Data.Test.LinqToSql.GroupBy_Having
                            select new
                            {
                                g.Key,
-                               MaxPrice = g.Max(p=>p.UnitPrice)
+                               MaxPrice = g.Max(p => p.UnitPrice)
                            };
                 foreach (var it in item)
                 {
@@ -133,7 +130,7 @@ namespace NLite.Data.Test.LinqToSql.GroupBy_Having
                            select new
                            {
                                g.Key,
-                               NumProducts = g.Count(p=>p.Discontinued)
+                               NumProducts = g.Count(p => p.Discontinued)
                            };
                 foreach (var it in item)
                 {
@@ -149,7 +146,7 @@ namespace NLite.Data.Test.LinqToSql.GroupBy_Having
             {
                 var item = from p in db.Set<Products>()
                            group p by p.CategoryID into g
-                           where g.Count()>=10
+                           where g.Count() >= 10
                            select new
                            {
                                g.Key,
@@ -173,12 +170,12 @@ namespace NLite.Data.Test.LinqToSql.GroupBy_Having
                                p.CategoryID,
                                p.SupplierID
                            }
-                           into g
-                           select new
-                           {
-                               g.Key,
-                               g
-                           };
+                               into g
+                               select new
+                               {
+                                   g.Key,
+                                   g
+                               };
                 foreach (var it in item)
                 {
                     Console.WriteLine(it.Key + " --- " + it.g);
@@ -194,8 +191,8 @@ namespace NLite.Data.Test.LinqToSql.GroupBy_Having
                 var item = from p in db.Set<Products>()
                            group p by new
                            {
-                               Criterion = p.UnitPrice>10
-                           }into g
+                               Criterion = p.UnitPrice > 10
+                           } into g
                            select new
                            {
                                g.Key,

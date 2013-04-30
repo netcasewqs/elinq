@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NLite.Data.Mapping;
+﻿using NLite.Data.Common;
 using NLite.Data.Dialect;
-using NLite.Data.Common;
+using NLite.Data.Mapping;
 
 namespace NLite.Data.Schema.Script
 {
@@ -26,7 +22,7 @@ namespace NLite.Data.Schema.Script
         /// <param name="mappings">映射元数据</param>
         /// <param name="dbName">数据库名称</param>
         /// <returns>返回数据库脚本</returns>
-        DatabaseScriptEntry Build(IDialect dialect, IEntityMapping[] mappings,string dbName);
+        DatabaseScriptEntry Build(IDialect dialect, IEntityMapping[] mappings, string dbName);
 
     }
 }

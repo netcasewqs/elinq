@@ -64,11 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessSchemaTest.cs" />
-    <Compile Include="FluentMapping.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FluentMapping.tt</DependentUpon>
-    </Compile>
     <Compile Include="MySqlSchemaTest.cs" />
     <Compile Include="OracleSchemaTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

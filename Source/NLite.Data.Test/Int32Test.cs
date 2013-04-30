@@ -1,18 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NLite.Data.Test.Primitive;
+using System.Linq.Expressions;
+using NLite.Collections;
 using NLite.Data.Test.Primitive.Model;
 using NUnit.Framework;
 using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestInitialize = NUnit.Framework.SetUpAttribute;
 using TestMethod = NUnit.Framework.TestAttribute;
-using NLite.Collections;
-using System.Linq.Expressions;
-using System.Globalization;
-using System.Data.OleDb;
-using System.Data.Common;
 
 
 namespace NLite.Data.Test.Where
@@ -43,8 +35,8 @@ namespace NLite.Data.Test.Where
         {
             base.ExecuteNull("Int32", value, filter);
         }
-     
-      
+
+
         [TestMethod]
         public virtual void A_Equal_B()
         {
@@ -68,12 +60,12 @@ namespace NLite.Data.Test.Where
             new ushort?[] { ushort.MinValue, ushort.MaxValue, 1, 0, 19, null }.ForEach(i => Execute(i, p => i == p.Int32));
             new sbyte?[] { sbyte.MinValue, sbyte.MaxValue, 1, 0, -1, 19, null }.ForEach(i => Execute(i, p => i == p.Int32));
             new byte?[] { byte.MinValue, byte.MaxValue, 1, 0, 19, null }.ForEach(i => Execute(i, p => i == p.Int32));
-            new float?[] { int.MinValue, 1F, 0F,-1F, 19F, 198F,null}.ForEach(i => Execute(i, p => (int?)i == p.Int32));
-            new double?[] {int.MinValue,int.MaxValue, 1,/*22.2,*/ 0, 19, 198, null }.ForEach(i => Execute(i, p => i == p.Int32));
+            new float?[] { int.MinValue, 1F, 0F, -1F, 19F, 198F, null }.ForEach(i => Execute(i, p => (int?)i == p.Int32));
+            new double?[] { int.MinValue, int.MaxValue, 1,/*22.2,*/ 0, 19, 198, null }.ForEach(i => Execute(i, p => i == p.Int32));
             new uint?[] { uint.MinValue, /*uint.MaxValue,*/ 1, 0, 19, null }.ForEach(i => Execute(i, p => i == p.Int32));
-            new long?[] {int.MinValue,int.MaxValue,-1, 1, 0, 19, null }.ForEach(i => Execute(i, p => i == p.Int32));
-            new ulong?[] {int.MaxValue, 1L, 0L, 19L, null }.ForEach(i => Execute(i, p => (int?)i == p.Int32));
-            new decimal?[] {int.MinValue,int.MaxValue,-1M,234M,1M, 0M, 19M, null }.ForEach(i => Execute(i, p => i==p.Int32));
+            new long?[] { int.MinValue, int.MaxValue, -1, 1, 0, 19, null }.ForEach(i => Execute(i, p => i == p.Int32));
+            new ulong?[] { int.MaxValue, 1L, 0L, 19L, null }.ForEach(i => Execute(i, p => (int?)i == p.Int32));
+            new decimal?[] { int.MinValue, int.MaxValue, -1M, 234M, 1M, 0M, 19M, null }.ForEach(i => Execute(i, p => i == p.Int32));
         }
         [TestMethod]
         public virtual void A_Equals_B()
@@ -83,11 +75,11 @@ namespace NLite.Data.Test.Where
             new ushort?[] { ushort.MinValue, ushort.MaxValue, 1, 0, 19, null }.ForEach(i => Execute(i, p => p.Int32.Equals(i)));
             new sbyte?[] { sbyte.MinValue, sbyte.MaxValue, 1, 0, -1, 19, null }.ForEach(i => Execute(i, p => p.Int32.Equals(i)));
             new byte?[] { byte.MinValue, byte.MaxValue, 1, 0, 19, null }.ForEach(i => Execute(i, p => p.Int32.Equals(i)));
-            new float?[] { int.MinValue, 1F, 0F, 19F,-1f /*19.9F,*/}.ForEach(i => Execute(i, p => ((int?)i).Equals(p.Int32)));
+            new float?[] { int.MinValue, 1F, 0F, 19F, -1f /*19.9F,*/}.ForEach(i => Execute(i, p => ((int?)i).Equals(p.Int32)));
             new double?[] { int.MinValue, int.MaxValue, 1d, 0d, 19d, /*19.9d,*/ null }.ForEach(i => Execute(i, p => i.Equals(p.Int32)));
             new uint?[] { uint.MinValue,/* uint.MaxValue,*/ 1, 0, 19, null }.ForEach(i => Execute(i, p => i.Equals(p.Int32)));
             new long?[] { int.MinValue, int.MaxValue, -1, 1, 0, 19, null }.ForEach(i => Execute(i, p => i.Equals(p.Int32)));
-            new ulong?[] {int.MaxValue, 1L, 0L, 19L, null }.ForEach(i => Execute(i, p => ((Int32?)i).Equals(p.Int32)));
+            new ulong?[] { int.MaxValue, 1L, 0L, 19L, null }.ForEach(i => Execute(i, p => ((Int32?)i).Equals(p.Int32)));
             new decimal?[] { int.MinValue, int.MaxValue, -1M, /*19.9M,*/ 1M, 0M, 19M, null }.ForEach(i => Execute(i, p => i.Equals(p.Int32)));
         }
         [TestMethod]
@@ -114,10 +106,10 @@ namespace NLite.Data.Test.Where
             new sbyte?[] { sbyte.MinValue, sbyte.MaxValue, 1, 0, -1, 19, null }.ForEach(i => Execute(i, p => object.Equals(i, p.Int32)));
             new byte?[] { byte.MinValue, byte.MaxValue, 1, 0, 19, null }.ForEach(i => Execute(i, p => object.Equals(i, p.Int32)));
             new uint?[] { uint.MinValue, 1, 0, 19, null }.ForEach(i => Execute(i, p => object.Equals(i, p.Int32)));
-            new float?[] { int.MinValue,/*2147483647,*/ 1, 0, -1,19, null }.ForEach(i => Execute(i, p => object.Equals((int?)i, p.Int32)));
+            new float?[] { int.MinValue,/*2147483647,*/ 1, 0, -1, 19, null }.ForEach(i => Execute(i, p => object.Equals((int?)i, p.Int32)));
             new double?[] { int.MinValue, int.MaxValue, 1, 0, -1, 19, null }.ForEach(i => Execute(i, p => object.Equals(i, p.Int32)));
             new long?[] { int.MinValue, int.MaxValue, 1, 0, -1, 19, null }.ForEach(i => Execute(i, p => object.Equals(i, p.Int32)));
-            new ulong?[] { int.MaxValue, 1, 0,19, null }.ForEach(i => Execute(i, p => object.Equals(i, p.Int32)));
+            new ulong?[] { int.MaxValue, 1, 0, 19, null }.ForEach(i => Execute(i, p => object.Equals(i, p.Int32)));
             new decimal?[] { int.MinValue, int.MaxValue, 1, 0, -1, 19, null }.ForEach(i => Execute(i, p => object.Equals(i, p.Int32)));
         }
         [TestMethod]
@@ -161,7 +153,7 @@ namespace NLite.Data.Test.Where
         [TestMethod]
         public virtual void A_Not_Equal_B()
         {
-            new int?[] { int.MinValue, int.MaxValue, 1, 0, -1, 19, null}.ForEach(i => ExecuteNull(i, p => p.Int32!=i));
+            new int?[] { int.MinValue, int.MaxValue, 1, 0, -1, 19, null }.ForEach(i => ExecuteNull(i, p => p.Int32 != i));
             new short?[] { short.MinValue, short.MaxValue, 1, 0, -1, 19, null }.ForEach(i => ExecuteNull(i, p => p.Int32 != i));
             new ushort?[] { ushort.MinValue, ushort.MaxValue, 1, 0, 19, null }.ForEach(i => ExecuteNull(i, p => p.Int32 != i));
             new sbyte?[] { sbyte.MinValue, sbyte.MaxValue, 1, 0, -1, 19, null }.ForEach(i => ExecuteNull(i, p => p.Int32 != i));
@@ -193,9 +185,9 @@ namespace NLite.Data.Test.Where
         {
             new int?[] { int.MinValue, int.MaxValue, 1, 0, -1, 19, null }.ForEach(i => ExecuteNull(i, p => !p.Int32.Equals(i)));
             new short?[] { short.MinValue, short.MaxValue, 1, 0, -1, 19, null }.ForEach(i => ExecuteNull(i, p => !p.Int32.Equals(i)));
-            new ushort?[] { ushort.MinValue, ushort.MaxValue, 1, 0, 19, null }.ForEach(i => ExecuteNull(i,p=>!p.Int32.Equals(i)));
-            new sbyte?[] { sbyte.MinValue, sbyte.MaxValue, 1, 0, -1, 19, null }.ForEach(i => ExecuteNull(i,p=> !p.Int32.Equals(i)));
-            new byte?[] { byte.MinValue, byte.MaxValue, 1, 0, 19, null }.ForEach(i => ExecuteNull(i, p=>!p.Int32.Equals(i)));
+            new ushort?[] { ushort.MinValue, ushort.MaxValue, 1, 0, 19, null }.ForEach(i => ExecuteNull(i, p => !p.Int32.Equals(i)));
+            new sbyte?[] { sbyte.MinValue, sbyte.MaxValue, 1, 0, -1, 19, null }.ForEach(i => ExecuteNull(i, p => !p.Int32.Equals(i)));
+            new byte?[] { byte.MinValue, byte.MaxValue, 1, 0, 19, null }.ForEach(i => ExecuteNull(i, p => !p.Int32.Equals(i)));
             new float?[] { int.MinValue, 1F, 0F, 19F, -1f /*19.9F,*/}.ForEach(i => ExecuteNull(i, p => !((int?)i).Equals(p.Int32)));
             new double?[] { int.MinValue, int.MaxValue, 1d, 0d, 19d, /*19.9d,*/ null }.ForEach(i => ExecuteNull(i, p => !i.Equals(p.Int32)));
             new uint?[] { uint.MinValue,/* uint.MaxValue,*/ 1, 0, 19, null }.ForEach(i => ExecuteNull(i, p => !i.Equals(p.Int32)));
@@ -209,7 +201,7 @@ namespace NLite.Data.Test.Where
             new int?[] { int.MinValue, int.MaxValue, 1, 0, -1, 19, null }.ForEach(i => ExecuteNull(i, p => !i.Equals(p.Int32)));
             new short?[] { short.MinValue, short.MaxValue, 1, 0, -1, 19, null }.ForEach(i => ExecuteNull(i, p => !i.Equals(p.Int32)));
             new ushort?[] { ushort.MinValue, ushort.MaxValue, 1, 0, 19, null }.ForEach(i => ExecuteNull(i, p => !i.Equals(p.Int32)));
-            new sbyte?[] { sbyte.MinValue, sbyte.MaxValue, 1, 0, -1, 19, null }.ForEach(i => ExecuteNull(i, p =>!i.Equals(p.Int32)));
+            new sbyte?[] { sbyte.MinValue, sbyte.MaxValue, 1, 0, -1, 19, null }.ForEach(i => ExecuteNull(i, p => !i.Equals(p.Int32)));
             new byte?[] { byte.MinValue, byte.MaxValue, 1, 0, 19, null }.ForEach(i => ExecuteNull(i, p => !i.Equals(p.Int32)));
             new float?[] { int.MinValue, 1F, 0F, 19F, -1f /*19.9F,*/}.ForEach(i => ExecuteNull(i, p => !((int?)i).Equals(p.Int32)));
             new double?[] { int.MinValue, int.MaxValue, 1d, 0d, 19d, /*19.9d,*/ null }.ForEach(i => ExecuteNull(i, p => !i.Equals(p.Int32)));
@@ -287,8 +279,8 @@ namespace NLite.Data.Test.Where
             new long?[] { int.MinValue, int.MaxValue, 1, 0, -1, 19 }.ForEach(i => Execute(i, p => i >= p.Int32));
             new ulong?[] { int.MaxValue, 1, 0, 19 }.ForEach(i => Execute(i, p => (int?)i >= p.Int32 - 1));
             new decimal?[] { int.MinValue, int.MaxValue, 1, 0, -1, 19 }.ForEach(i => Execute(i, p => i >= p.Int32));
-            new int?[] { null, 19 }.ForEach(i => ExecuteNull(i, p => null>=p.Int32));
-            new int?[] { null }.ForEach(i => ExecuteNull(i, p => -1>=p.Int32));
+            new int?[] { null, 19 }.ForEach(i => ExecuteNull(i, p => null >= p.Int32));
+            new int?[] { null }.ForEach(i => ExecuteNull(i, p => -1 >= p.Int32));
         }
         [TestMethod]
         public virtual void A_GreaterThan_B()
@@ -411,7 +403,7 @@ namespace NLite.Data.Test.Where
             new ulong?[] { ulong.MinValue, 1, 0, 19 }.ForEach(i => Execute(i, p => p.Int32 + 19 > int.MinValue));
             new decimal?[] { int.MinValue, 1, 0, -1, 19 }.ForEach(i => Execute(i, p => p.Int32 + 19 > int.MinValue));
             Execute(int.MaxValue, p => p.Int32 + int.MinValue == -1);
-            Execute(null, p => p.Int32 + null ==null);
+            Execute(null, p => p.Int32 + null == null);
             int? a = null;
             Execute(a, p => p.Int32 + 18 == null);
         }
@@ -467,10 +459,10 @@ namespace NLite.Data.Test.Where
             new long?[] { int.MinValue, int.MaxValue, 1, 0, -1, 19 }.ForEach(i => Execute(i, p => i - p.Int32 == 0));
             new ulong?[] { ulong.MinValue, int.MaxValue, 1, 0, 19 }.ForEach(i => Execute(i, p => (int?)i - p.Int32 == 0));
             new decimal?[] { int.MinValue, int.MaxValue, 1, 0, -1, 19 }.ForEach(i => Execute(i, p => i - p.Int32 == 0));
-            Execute(null, p =>null- p.Int32== null);
+            Execute(null, p => null - p.Int32 == null);
             int? a = null;
-            Execute(a, p => 18-p.Int32== null);
-            Execute(18, p => null-p.Int32 == null);
+            Execute(a, p => 18 - p.Int32 == null);
+            Execute(18, p => null - p.Int32 == null);
         }
         [TestMethod]
         public virtual void A_Multiply_B()
@@ -505,10 +497,10 @@ namespace NLite.Data.Test.Where
             new long?[] { int.MinValue, int.MaxValue, 1, 0, -1, 19 }.ForEach(i => Execute(i, p => 1 * p.Int32 == i));
             new ulong?[] { ulong.MinValue, int.MaxValue, 1, 0, 19 }.ForEach(i => Execute(i, p => 1 * p.Int32 == (int?)i));
             new decimal?[] { int.MinValue, int.MaxValue, 1, 0, -1, 19 }.ForEach(i => Execute(i, p => 1 * p.Int32 == i));
-            Execute(null, p => null*p.Int32 == null);
+            Execute(null, p => null * p.Int32 == null);
             int? a = null;
-            Execute(a, p => 18*p.Int32== null);
-            Execute(18, p => null*p.Int32== null);
+            Execute(a, p => 18 * p.Int32 == null);
+            Execute(18, p => null * p.Int32 == null);
         }
         [TestMethod]
         [ExpectedException(typeof(QueryException))]
@@ -530,7 +522,7 @@ namespace NLite.Data.Test.Where
             Execute(a, p => p.Int32 / 18 == null);
             Execute(0, p => p.Int32 / null == null);
             //int.MinValue在sqlserverCe数据库中0/int.MinValue=0.00000000000
-            new int?[] { int.MaxValue /*, int.MinValue*/, 1, -1, 19}.ForEach(i => Execute(0, p => p.Int32 / i == 0));
+            new int?[] { int.MaxValue /*, int.MinValue*/, 1, -1, 19 }.ForEach(i => Execute(0, p => p.Int32 / i == 0));
 #if !MySQL && !SQLite&& !MySQL_SDK3_5
             int? b = 0;
             Execute(0, p => p.Int32 / b == 0);//遇到以零作除数错误,引发异常
@@ -556,7 +548,7 @@ namespace NLite.Data.Test.Where
             Execute(a, p => 45 / p.Int32 == null);
             Execute(2, p => null / p.Int32 == null);
             Execute(0, p => null / p.Int32 == null);
-            new int?[] { int.MaxValue, int.MinValue, 1, -1, 19}.ForEach(i => Execute(i, p => 0/p.Int32 == 0));//遇到以零作除数错误,引发异常
+            new int?[] { int.MaxValue, int.MinValue, 1, -1, 19 }.ForEach(i => Execute(i, p => 0 / p.Int32 == 0));//遇到以零作除数错误,引发异常
 
 #if !MySQL && !SQLite&& !MySQL_SDK3_5
             int? b = 0;
@@ -582,7 +574,7 @@ namespace NLite.Data.Test.Where
             int? a = null;
             Execute(a, p => p.Int32 % 18 == null);
             Execute(0, p => p.Int32 % null == null);
-            new int?[] { int.MaxValue, int.MinValue, 1, -1, 19}.ForEach(i => Execute(0, p => p.Int32 % i == 0));//遇到以零作除数错误,引发异常
+            new int?[] { int.MaxValue, int.MinValue, 1, -1, 19 }.ForEach(i => Execute(0, p => p.Int32 % i == 0));//遇到以零作除数错误,引发异常
 #if !MySQL && !SQLite&& !MySQL_SDK3_5
             int? b = 0;
             Execute(0, p => p.Int32 / b == 0);//遇到以零作除数错误,引发异常
@@ -593,7 +585,7 @@ namespace NLite.Data.Test.Where
         public virtual void B_Modulo_A()
         {
 #if !SqlCE
-            new int?[] { int.MinValue, int.MaxValue, -1,1,19 }.ForEach(i => Execute(i, p => i % p.Int32 == 0));
+            new int?[] { int.MinValue, int.MaxValue, -1, 1, 19 }.ForEach(i => Execute(i, p => i % p.Int32 == 0));
             new short?[] { short.MaxValue, short.MinValue, 1, -1, 19 }.ForEach(i => Execute(i, p => i % p.Int32 == 0));
             new sbyte?[] { sbyte.MaxValue, sbyte.MinValue, 1, -1, 19 }.ForEach(i => Execute(i, p => i % p.Int32 == 0));
             new float?[] { int.MinValue,/*int.MaxValue,*/1, -1, 19 }.ForEach(i => Execute(i, p => (int?)i % p.Int32 == 0));
@@ -611,7 +603,7 @@ namespace NLite.Data.Test.Where
             Execute(a, p => 0 % p.Int32 == null);
             Execute(2, p => null % p.Int32 == null);
             Execute(0, p => null % p.Int32 == null);
-            new int?[] { int.MaxValue, int.MinValue, 1, -1, 19}.ForEach(i => Execute(i, p => 0 % p.Int32 == 0));//遇到以零作除数错误,引发异常
+            new int?[] { int.MaxValue, int.MinValue, 1, -1, 19 }.ForEach(i => Execute(i, p => 0 % p.Int32 == 0));//遇到以零作除数错误,引发异常
 #if !MySQL &&!SQLite&& !MySQL_SDK3_5
             int? b = 0;
             Execute(0, p => p.Int32 / b == 0);//遇到以零作除数错误,引发异常
@@ -621,7 +613,7 @@ namespace NLite.Data.Test.Where
         [ExpectedException(typeof(QueryException))]
         public virtual void Zero_Modulo_A()
         {
-            new int?[] { int.MinValue, int.MaxValue, 1, -1, 19}.ForEach(i => Execute(i, p => 0 % p.Int32 == 0));
+            new int?[] { int.MinValue, int.MaxValue, 1, -1, 19 }.ForEach(i => Execute(i, p => 0 % p.Int32 == 0));
             Execute(null, p => 0 % p.Int32 == null);
 #if !MySQL && !SQLite&& !MySQL_SDK3_5
             int? b = 0;
@@ -631,27 +623,27 @@ namespace NLite.Data.Test.Where
         [TestMethod]
         public virtual void Null_Plus_A()
         {
-            new int?[] { int.MinValue, int.MaxValue, 1, -1, 19,null,0}.ForEach(i => Execute(i, p => null + p.Int32 == null));
+            new int?[] { int.MinValue, int.MaxValue, 1, -1, 19, null, 0 }.ForEach(i => Execute(i, p => null + p.Int32 == null));
         }
         [TestMethod]
         public virtual void Null_Subtract_A()
         {
-            new int?[] { int.MinValue, int.MaxValue, 1, -1, 19,null,0}.ForEach(i => Execute(i, p => null - p.Int32 == null));
+            new int?[] { int.MinValue, int.MaxValue, 1, -1, 19, null, 0 }.ForEach(i => Execute(i, p => null - p.Int32 == null));
         }
         [TestMethod]
         public virtual void Null_Miltiply_A()
         {
-            new int?[] { int.MinValue, int.MaxValue, 1, -1, 19 ,null,0}.ForEach(i => Execute(i, p => null * p.Int32 == null));
+            new int?[] { int.MinValue, int.MaxValue, 1, -1, 19, null, 0 }.ForEach(i => Execute(i, p => null * p.Int32 == null));
         }
         [TestMethod]
         public virtual void Null_Divide_A()
         {
-            new int?[] { int.MinValue, int.MaxValue, 1, -1, 19,null,0 }.ForEach(i => Execute(i, p => null / p.Int32 == null));
+            new int?[] { int.MinValue, int.MaxValue, 1, -1, 19, null, 0 }.ForEach(i => Execute(i, p => null / p.Int32 == null));
         }
         [TestMethod]
         public virtual void Null_Modulo_A()
         {
-            new int?[] { int.MinValue, int.MaxValue, 1, -1, 19,null,0 }.ForEach(i => Execute(i, p => null % p.Int32 == null));
+            new int?[] { int.MinValue, int.MaxValue, 1, -1, 19, null, 0 }.ForEach(i => Execute(i, p => null % p.Int32 == null));
         }
         [TestMethod]
         public virtual void B_Plus_Plus()
@@ -698,13 +690,13 @@ namespace NLite.Data.Test.Where
         [TestMethod]
         public virtual void A_Equal_Opposite_B()
         {
-            new int?[] {/*int.MinValu,*/ int.MaxValue, 1,-1, 19,0,null}.ForEach(i => Execute(-i, p => p.Int32 ==-i));
-            new short?[] { short.MinValue, short.MaxValue, 1, -1, 19,0,null}.ForEach(i => Execute(-i, p => p.Int32 == -i));
-            new ushort?[] {ushort.MaxValue, 1,19,null,0}.ForEach(i => Execute(-i, p => p.Int32 == -i));
-            new sbyte?[] { sbyte.MinValue, sbyte.MaxValue, 1, -1, 19,0,null}.ForEach(i => Execute(-i, p => p.Int32 == -i));
-            new byte?[] {byte.MaxValue, 1,19,0,null}.ForEach(i => Execute(-i, p => p.Int32 == -i));
-            new uint?[] { uint.MinValue, 1, 0, 19, null}.ForEach(i => Execute(-i, p => p.Int32 == -i));
-            new float?[] { /*int.MinValue,int.MaxValue,*/1, 0, -1, 19,null}.ForEach(i => Execute(-i, p => p.Int32 == -(int?)i));
+            new int?[] {/*int.MinValu,*/ int.MaxValue, 1, -1, 19, 0, null }.ForEach(i => Execute(-i, p => p.Int32 == -i));
+            new short?[] { short.MinValue, short.MaxValue, 1, -1, 19, 0, null }.ForEach(i => Execute(-i, p => p.Int32 == -i));
+            new ushort?[] { ushort.MaxValue, 1, 19, null, 0 }.ForEach(i => Execute(-i, p => p.Int32 == -i));
+            new sbyte?[] { sbyte.MinValue, sbyte.MaxValue, 1, -1, 19, 0, null }.ForEach(i => Execute(-i, p => p.Int32 == -i));
+            new byte?[] { byte.MaxValue, 1, 19, 0, null }.ForEach(i => Execute(-i, p => p.Int32 == -i));
+            new uint?[] { uint.MinValue, 1, 0, 19, null }.ForEach(i => Execute(-i, p => p.Int32 == -i));
+            new float?[] { /*int.MinValue,int.MaxValue,*/1, 0, -1, 19, null }.ForEach(i => Execute(-i, p => p.Int32 == -(int?)i));
             new double?[] { /*int.MinValue,*/ int.MaxValue, 1, 0, -1, 19, null }.ForEach(i => Execute(-i, p => p.Int32 == -i));
             new long?[] { /*int.MinValue, */int.MaxValue, 1, 0, -1, 19, null }.ForEach(i => Execute(-i, p => p.Int32 == -i));
             new ulong?[] { int.MaxValue, 1, 0, 19 }.ForEach(i => Execute(-(int?)i, p => p.Int32 == -(int?)i));
@@ -755,7 +747,7 @@ namespace NLite.Data.Test.Where
 #if Access
             Execute(null, p => ~p.Int32 != null);
 #endif
-            
+
             int? a = null;
             Assert.IsTrue(~a == null);
         }
@@ -808,14 +800,14 @@ namespace NLite.Data.Test.Where
 #if !SqlCE&&!SqlCE_SDK3_5
             new int?[] { int.MinValue, int.MaxValue, 1, 0, -1, 19 }.ForEach(i => Execute(i, p => (p.Int32 ^ i) == 0));
             new short?[] { short.MinValue, short.MaxValue, 1, 0, -1, 19 }.ForEach(i => Execute(i, p => (p.Int32 ^ i) == 0));
-            new double?[] { int.MinValue, int.MaxValue, 1,/*22.2,*/ 0, 19, 198 }.ForEach(i => Execute(i, p => (p.Int32 ^(int?)i)==0));
+            new double?[] { int.MinValue, int.MaxValue, 1,/*22.2,*/ 0, 19, 198 }.ForEach(i => Execute(i, p => (p.Int32 ^ (int?)i) == 0));
             new sbyte?[] { sbyte.MinValue, sbyte.MaxValue, 1, 0, -1, 19 }.ForEach(i => Execute(i, p => (p.Int32 ^ i) == 0));
             new float?[] { int.MinValue,/*int.MaxValue, */1F, 0F, -1F, 19F, 198F }.ForEach(i => Execute(i, p => (p.Int32 ^ (int?)i) == 0));
             new long?[] { int.MinValue, int.MaxValue, -1, 1, 0, 19 }.ForEach(i => Execute(i, p => (p.Int32 ^ i) == 0));
             new decimal?[] { int.MinValue, int.MaxValue, -1M, 234M, 1M, 0M, 19M }.ForEach(i => Execute(i, p => (p.Int32 ^ (int?)i) == 0));
 #endif
             new byte?[] { byte.MinValue, byte.MaxValue, 1, 0, 19 }.ForEach(i => Execute(i, p => (p.Int32 ^ i) == 0));
-            new ushort?[] { ushort.MinValue, ushort.MaxValue, 1, 0, 19}.ForEach(i => Execute(i, p => (p.Int32 ^ i) == 0));
+            new ushort?[] { ushort.MinValue, ushort.MaxValue, 1, 0, 19 }.ForEach(i => Execute(i, p => (p.Int32 ^ i) == 0));
             new uint?[] { uint.MinValue, 1, 0, 19 }.ForEach(i => Execute(i, p => (p.Int32 ^ i) == 0));
             new ulong?[] { int.MaxValue, 1L, 0L, 19L }.ForEach(i => Execute(i, p => (p.Int32 ^ (int?)i) == 0));
             int? a = null;
@@ -883,7 +875,7 @@ namespace NLite.Data.Test.Where
         [TestMethod]
         public virtual void Logic_Not_A()
         {
-            new int?[] { int.MinValue, int.MaxValue, -8, -1, 0, 1, 25 }.ForEach(i => Execute(i, p =>!( p.Int32 < int.MinValue)));
+            new int?[] { int.MinValue, int.MaxValue, -8, -1, 0, 1, 25 }.ForEach(i => Execute(i, p => !(p.Int32 < int.MinValue)));
             new int?[] { int.MinValue, int.MaxValue, -8, -1, 0, 1, 25 }.ForEach(i => Execute(i, p => !(p.Int32 < int.MinValue)));
         }
         //a.between(c,d)

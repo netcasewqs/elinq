@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Linq.Expressions;
+using NLite.Collections;
 using NLite.Data.Test.Primitive.Model;
 using NUnit.Framework;
 using TestMethod = NUnit.Framework.TestAttribute;
-using System.Linq.Expressions;
-using NLite.Collections;
 
 namespace NLite.Data.Test.TypeConvert
 {
@@ -25,9 +23,9 @@ namespace NLite.Data.Test.TypeConvert
 
         public virtual void Execute(string value, Expression<Func<NullableTypeInfo, bool>> filter)
         {
-            var identityFieldValue =100;
+            var identityFieldValue = 100;
             var expected = new NullableTypeInfo { Int32 = identityFieldValue, String = value };
-            
+
             Table.Delete(p => true);
             Table.Insert(expected);
 
@@ -136,7 +134,7 @@ namespace NLite.Data.Test.TypeConvert
         [TestMethod]
         public virtual void ToSingle()
         {
-            new string[] { "0", "1", "-1", "-1024.3","0.987" }.ForEach(s => Execute(s, p => Convert.ToSingle(p.String) == Convert.ToSingle(s)));
+            new string[] { "0", "1", "-1", "-1024.3", "0.987" }.ForEach(s => Execute(s, p => Convert.ToSingle(p.String) == Convert.ToSingle(s)));
             new string[] { "0", "1", "-1", "-1024.3", "0.987" }.ForEach(s => Execute(s, p => Single.Parse(p.String) == Single.Parse(s)));
         }
         [TestMethod]
@@ -158,6 +156,6 @@ namespace NLite.Data.Test.TypeConvert
             new string[] { "2002-07-16 00:00:00", "1922/07/16 00:00:00" }.ForEach(s => Execute(s, p => Convert.ToDateTime(p.String) == Convert.ToDateTime(s)));
             new string[] { "2002-07-16 00:00:00", "1922/07/16 00:00:00" }.ForEach(s => Execute(s, p => DateTime.Parse(p.String) == DateTime.Parse(s)));
         }
-       
+
     }
 }

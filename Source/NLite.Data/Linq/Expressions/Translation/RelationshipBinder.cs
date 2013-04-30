@@ -1,17 +1,10 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 // This source code is made available under the terms of the Microsoft Public License (MS-PL)
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
-using System.Text;
-using NLite.Data.Mapping;
 using NLite.Data.Dialect;
-using NLite.Data.Dialect.ExpressionBuilder;
+using NLite.Data.Mapping;
 
 namespace NLite.Data.Linq.Expressions
 {
@@ -70,7 +63,7 @@ namespace NLite.Data.Linq.Expressions
             EntityExpression ex = source as EntityExpression;
             IMemberMapping mm = null;
 
-            if (ex != null && (mm = ex.Entity.Get(m.Member))!= null &&  mm.IsRelationship)
+            if (ex != null && (mm = ex.Entity.Get(m.Member)) != null && mm.IsRelationship)
             {
                 ProjectionExpression projection = (ProjectionExpression)this.Visit(this.expressionBuilder.GetMemberExpression(source, ex.Entity, m.Member));
                 if (this.currentFrom != null && mm.IsManyToOne)

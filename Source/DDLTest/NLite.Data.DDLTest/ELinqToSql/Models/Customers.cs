@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using NLite.Data;
-using System.Data;
 
 namespace ELinq.DDLTest.ElinqToSql.Models
 {
     [Table(Name = "dbo2.Customers")]
-    public partial class Customers 
+    public partial class Customers
     {
-        [Id(DbType = DBType.NChar, Length=5)]
+        [Id(DbType = DBType.NChar, Length = 5)]
         public string CustomerID { get; set; }
 
-        [Column(Length=40,IsNullable=false)]
+        [Column(Length = 40, IsNullable = false)]
         public string CompanyName { get; set; }
 
-        [Column(Length=30)]
+        [Column(Length = 30)]
         public string ContactName { get; set; }
 
         [Column(Length = 30)]
@@ -24,7 +20,7 @@ namespace ELinq.DDLTest.ElinqToSql.Models
 
         [Column(Length = 60)]
         public string Address { get; set; }
-     
+
         [Column(Length = 15)]
         public string City { get; set; }
 
@@ -46,6 +42,6 @@ namespace ELinq.DDLTest.ElinqToSql.Models
         [OneToMany(ThisKey = "CustomerID", OtherKey = "CustomerID")]
         public List<Orders> Orders { get; set; }
 
-       
+
     }
 }

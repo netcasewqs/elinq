@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
+using System.Data.Linq.SqlClient;
 using System.Linq;
+using NLite.Data.Common;
+using NLite.Data.Test.Model.Northwind;
 using NUnit.Framework;
 using TestClass = NUnit.Framework.TestFixtureAttribute;
 using TestInitialize = NUnit.Framework.SetUpAttribute;
 using TestMethod = NUnit.Framework.TestAttribute;
-using NLite.Data.Test.Primitive.Model;
-using System.Linq.Expressions;
-using NLite.Data.Test.Model.Northwind;
-using NLite.Data.Linq;
-using System.Data.Linq.SqlClient;
-using NLite.Data.Common;
 namespace NLite.Data.Test
 {
     /// <summary>
@@ -84,7 +79,7 @@ namespace NLite.Data.Test
         [TestMethod]
         public virtual void TestDateTimeDay1()
         {
-            var v = db.Orders.Where(o => o.OrderDate == new DateTime(1997, 8, 25)).Take(1).Max(o => SqlFunctions.DatePart(DateParts.Day,o.OrderDate));
+            var v = db.Orders.Where(o => o.OrderDate == new DateTime(1997, 8, 25)).Take(1).Max(o => SqlFunctions.DatePart(DateParts.Day, o.OrderDate));
             //var v = db.Orders.FirstOrDefault(o => o.OrderID == 10644);
             //AssertValue(25, v.OrderDate.Day);
             AssertValue(25, v);
@@ -122,14 +117,14 @@ namespace NLite.Data.Test
         public virtual void TestDateTimeHour()
         {
             var hour = db.Customers.Where(c => c.CustomerID == "ALFKI").Max(c => new DateTime((c.CustomerID == "ALFKI") ? 1997 : 1997, 7, 4, 3, 5, 6).Hour);
-            AssertValue(3, hour);   
+            AssertValue(3, hour);
         }
 
         [TestMethod]
         public virtual void TestDateTimeHour1()
         {
             var hour = db.Customers.Where(c => c.CustomerID == "ALFKI").Max(c => SqlFunctions.DatePart(DateParts.Hour, new DateTime((c.CustomerID == "ALFKI") ? 1997 : 1997, 7, 4, 3, 5, 6)));
-            AssertValue(3, hour);   
+            AssertValue(3, hour);
         }
 
         [TestMethod]
@@ -156,7 +151,7 @@ namespace NLite.Data.Test
         [TestMethod]
         public virtual void TestDateTimeSecond1()
         {
-            var second = db.Customers.Where(c => c.CustomerID == "ALFKI").Max(c => SqlFunctions.DatePart(DateParts.Second,new DateTime((c.CustomerID == "ALFKI") ? 1997 : 1997, 7, 4, 3, 5, 6)));
+            var second = db.Customers.Where(c => c.CustomerID == "ALFKI").Max(c => SqlFunctions.DatePart(DateParts.Second, new DateTime((c.CustomerID == "ALFKI") ? 1997 : 1997, 7, 4, 3, 5, 6)));
             AssertValue(6, second);
         }
 
@@ -170,7 +165,7 @@ namespace NLite.Data.Test
             Console.WriteLine(second);
         }
 
-        
+
 
         [TestMethod]
         public virtual void TestDateTimeDate()
@@ -225,9 +220,9 @@ namespace NLite.Data.Test
         [TestMethod]
         public virtual void TestDateTimeDayOfYear1()
         {
-            var actual = db.Orders.Where(o => o.OrderDate == new DateTime(1997, 1, 1)).Take(1).Max(o => SqlFunctions.DatePart(DateParts.DayOfYear,o.OrderDate));
+            var actual = db.Orders.Where(o => o.OrderDate == new DateTime(1997, 1, 1)).Take(1).Max(o => SqlFunctions.DatePart(DateParts.DayOfYear, o.OrderDate));
             AssertValue(1, actual);
-            actual = db.Orders.Where(o => o.OrderDate == new DateTime(1997, 8, 25)).Take(1).Max(o => SqlFunctions.DatePart(DateParts.DayOfYear,o.OrderDate));
+            actual = db.Orders.Where(o => o.OrderDate == new DateTime(1997, 8, 25)).Take(1).Max(o => SqlFunctions.DatePart(DateParts.DayOfYear, o.OrderDate));
             AssertValue(new DateTime(1997, 8, 25).DayOfYear, actual);
         }
 
@@ -457,51 +452,51 @@ namespace NLite.Data.Test
                                          ).FirstOrDefault();
             Assert.AreNotEqual(null, actual);
         }
-//#if Oracle
-//        [TestMethod]
-//        public virtual void TestDateTimeDateDiffMillisecond() //TODO:Sqlite 选出的值为-51925180000   TODO:Sqlserver 值溢出
-//        {
-//            var actual = db.Orders.FirstOrDefault(o => o.OrderDate == new DateTime(1997, 8, 25) && (long)SqlFunctions.DateDiff(DateParts.Millisecond, o.OrderDate, new DateTime(1996, 1, 1, 12, 10, 10)) == -51968990000L);
-//            Assert.AreNotEqual(null, actual);
-//        }
+        //#if Oracle
+        //        [TestMethod]
+        //        public virtual void TestDateTimeDateDiffMillisecond() //TODO:Sqlite 选出的值为-51925180000   TODO:Sqlserver 值溢出
+        //        {
+        //            var actual = db.Orders.FirstOrDefault(o => o.OrderDate == new DateTime(1997, 8, 25) && (long)SqlFunctions.DateDiff(DateParts.Millisecond, o.OrderDate, new DateTime(1996, 1, 1, 12, 10, 10)) == -51968990000L);
+        //            Assert.AreNotEqual(null, actual);
+        //        }
 
-//        [TestMethod]
-//        public virtual void TestDateTimeDateDiffMillisecond2()
-//        {
-//            //DateTime aa = new DateTime(1997,12,23,12,15,56);
-//            //DateTime bb = new DateTime(1996,5,30,8,56,56);
-//            //Console.WriteLine((aa -bb).TotalDays);
-//            //Console.WriteLine((aa -bb ).TotalMilliseconds);
-//            var actual = db.Orders.FirstOrDefault(o => o.OrderDate == new DateTime(1997, 8, 25) && (long)(o.OrderDate - new DateTime(1996, 1, 1, 12, 10, 10)).TotalMilliseconds == -51968990000L);
-//            Assert.AreNotEqual(null, actual);
-//        }
+        //        [TestMethod]
+        //        public virtual void TestDateTimeDateDiffMillisecond2()
+        //        {
+        //            //DateTime aa = new DateTime(1997,12,23,12,15,56);
+        //            //DateTime bb = new DateTime(1996,5,30,8,56,56);
+        //            //Console.WriteLine((aa -bb).TotalDays);
+        //            //Console.WriteLine((aa -bb ).TotalMilliseconds);
+        //            var actual = db.Orders.FirstOrDefault(o => o.OrderDate == new DateTime(1997, 8, 25) && (long)(o.OrderDate - new DateTime(1996, 1, 1, 12, 10, 10)).TotalMilliseconds == -51968990000L);
+        //            Assert.AreNotEqual(null, actual);
+        //        }
 
-//        [TestMethod]
-//        public virtual void TestDateTimeDateDiffMicrosecond()
-//        {
-//            var actual = db.Orders.FirstOrDefault(o => o.OrderDate == new DateTime(1997, 8, 25) && (long)SqlFunctions.DateDiff(DateParts.Microsecond, o.OrderDate, new DateTime(1996, 1, 1, 12, 10, 10)) == -51968990000000L);
-//            Assert.AreNotEqual(null, actual);
-//        }
+        //        [TestMethod]
+        //        public virtual void TestDateTimeDateDiffMicrosecond()
+        //        {
+        //            var actual = db.Orders.FirstOrDefault(o => o.OrderDate == new DateTime(1997, 8, 25) && (long)SqlFunctions.DateDiff(DateParts.Microsecond, o.OrderDate, new DateTime(1996, 1, 1, 12, 10, 10)) == -51968990000000L);
+        //            Assert.AreNotEqual(null, actual);
+        //        }
 
-//        [TestMethod]
-//        public virtual void TestDateTimeDateDiffNenosecond()
-//        {
-//            var actual = db.Orders.FirstOrDefault(o => o.OrderDate == new DateTime(1997, 8, 25) && (long)SqlFunctions.DateDiff(DateParts.Nanosecond, o.OrderDate, new DateTime(1996, 1, 1, 12, 10, 10)) == -51968990000000000L);
-//            Assert.AreNotEqual(null, actual);
-//        }
-        
-//#endif
+        //        [TestMethod]
+        //        public virtual void TestDateTimeDateDiffNenosecond()
+        //        {
+        //            var actual = db.Orders.FirstOrDefault(o => o.OrderDate == new DateTime(1997, 8, 25) && (long)SqlFunctions.DateDiff(DateParts.Nanosecond, o.OrderDate, new DateTime(1996, 1, 1, 12, 10, 10)) == -51968990000000000L);
+        //            Assert.AreNotEqual(null, actual);
+        //        }
 
-        
+        //#endif
+
+
         [TestMethod]
         public virtual void TestDateTimeDateDiffWeek()
         {
-           var actual = db.Orders.FirstOrDefault(o => o.OrderDate == new DateTime(1997, 8, 25) && SqlFunctions.DateDiff(DateParts.Week, o.OrderDate, new DateTime(1996, 1, 1, 1, 1, 1)) == -86);
-           Console.WriteLine(actual);
-           Assert.AreNotEqual(null, actual);
+            var actual = db.Orders.FirstOrDefault(o => o.OrderDate == new DateTime(1997, 8, 25) && SqlFunctions.DateDiff(DateParts.Week, o.OrderDate, new DateTime(1996, 1, 1, 1, 1, 1)) == -86);
+            Console.WriteLine(actual);
+            Assert.AreNotEqual(null, actual);
         }
 
-//。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。ADD
+        //。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。ADD
 
         [TestMethod]
         public virtual void TestDateTimeToday()
@@ -527,7 +522,7 @@ namespace NLite.Data.Test
             var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.DatePart(DateParts.Year, o.OrderDate) == expected).FirstOrDefault();
             Assert.IsNotNull(actual);
 
-            var item = db.Orders.Where(o =>o.OrderDate == dt && SqlFunctions.DatePart(DateParts.Year, o.OrderDate) == expected).FirstOrDefault();
+            var item = db.Orders.Where(o => o.OrderDate == dt && SqlFunctions.DatePart(DateParts.Year, o.OrderDate) == expected).FirstOrDefault();
             Assert.IsNotNull(item);
         }
 
@@ -536,7 +531,7 @@ namespace NLite.Data.Test
         {
             DateTime dt = new DateTime(1997, 8, 25);
             var expected = dt.Month;
-            var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.DatePart(DateParts.Month, o.OrderDate) ==expected).FirstOrDefault();
+            var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.DatePart(DateParts.Month, o.OrderDate) == expected).FirstOrDefault();
             Assert.IsNotNull(actual);
 
             var item = db.Orders.Where(o => o.OrderDate == dt && SqlFunctions.DatePart(DateParts.Month, o.OrderDate) == expected).FirstOrDefault();
@@ -548,7 +543,7 @@ namespace NLite.Data.Test
         {
             DateTime dt = new DateTime(1997, 8, 25);
             var expected = dt.Day;
-            var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.DatePart(DateParts.Day, o.OrderDate) ==expected).FirstOrDefault();
+            var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.DatePart(DateParts.Day, o.OrderDate) == expected).FirstOrDefault();
             Assert.IsNotNull(actual);
 
             var item = db.Orders.Where(o => o.OrderDate == dt && SqlFunctions.DatePart(DateParts.Day, o.OrderDate) == expected).FirstOrDefault();
@@ -560,7 +555,7 @@ namespace NLite.Data.Test
         {
             DateTime dt = new DateTime(1997, 8, 25);
             var expected = dt.Hour;
-            var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.DatePart(DateParts.Hour, o.OrderDate) ==expected).FirstOrDefault();
+            var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.DatePart(DateParts.Hour, o.OrderDate) == expected).FirstOrDefault();
             Assert.IsNotNull(actual);
 
             var item = db.Orders.Where(o => o.OrderDate == dt && SqlFunctions.DatePart(DateParts.Hour, o.OrderDate) == expected).FirstOrDefault();
@@ -572,7 +567,7 @@ namespace NLite.Data.Test
         {
             DateTime dt = new DateTime(1997, 8, 25);
             var expected = dt.Minute;
-            var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.DatePart(DateParts.Minute, o.OrderDate) ==expected).FirstOrDefault();
+            var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.DatePart(DateParts.Minute, o.OrderDate) == expected).FirstOrDefault();
             Assert.IsNotNull(actual);
 
             var item = db.Orders.Where(o => o.OrderDate == dt && SqlFunctions.DatePart(DateParts.Minute, o.OrderDate) == expected).FirstOrDefault();
@@ -584,7 +579,7 @@ namespace NLite.Data.Test
         {
             DateTime dt = new DateTime(1997, 8, 25);
             var expected = dt.Second;
-            var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.DatePart(DateParts.Second, o.OrderDate) ==expected).FirstOrDefault();
+            var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.DatePart(DateParts.Second, o.OrderDate) == expected).FirstOrDefault();
             Assert.IsNotNull(actual);
 
             var item = db.Orders.Where(o => o.OrderDate == dt && SqlFunctions.DatePart(DateParts.Second, o.OrderDate) == expected).FirstOrDefault();
@@ -611,7 +606,7 @@ namespace NLite.Data.Test
         {
             DateTime dt = new DateTime(1997, 8, 25);
             var expected = dt.DayOfYear;
-            var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.DatePart(DateParts.DayOfYear, o.OrderDate)==expected).FirstOrDefault();
+            var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.DatePart(DateParts.DayOfYear, o.OrderDate) == expected).FirstOrDefault();
             Assert.IsNotNull(actual);
 
             var item = db.Orders.Where(o => o.OrderDate == dt && SqlFunctions.DatePart(DateParts.DayOfYear, o.OrderDate) == expected).FirstOrDefault();
@@ -619,13 +614,13 @@ namespace NLite.Data.Test
         }
 #if SqlCE
         [ExpectedException(typeof(NotSupportedException))]
-#endif 
+#endif
         [TestMethod]
         public virtual void TestDateTimeDatePartDayOfWeekNew()
         {
             DateTime dt = new DateTime(1997, 8, 25);
             var expected = (int)dt.DayOfWeek;
-            var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.DatePart(DateParts.DayOfWeek, o.OrderDate) ==expected).FirstOrDefault();
+            var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.DatePart(DateParts.DayOfWeek, o.OrderDate) == expected).FirstOrDefault();
             Assert.IsNotNull(actual);
 
             var item = db.Orders.Where(o => o.OrderDate == dt && SqlFunctions.DatePart(DateParts.DayOfWeek, o.OrderDate) == expected).FirstOrDefault();
@@ -636,8 +631,8 @@ namespace NLite.Data.Test
         public virtual void TestDateTimeDatePartQuarterNew()
         {
             DateTime dt = new DateTime(1997, 8, 25);
-            var expected = dt.Month/3 + 1;
-            var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.DatePart(DateParts.Quarter, o.OrderDate) ==expected).FirstOrDefault();
+            var expected = dt.Month / 3 + 1;
+            var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.DatePart(DateParts.Quarter, o.OrderDate) == expected).FirstOrDefault();
             Assert.IsNotNull(actual);
 
             var item = db.Orders.Where(o => o.OrderDate == dt && SqlFunctions.DatePart(DateParts.Quarter, o.OrderDate) == expected).FirstOrDefault();
@@ -650,7 +645,7 @@ namespace NLite.Data.Test
         {
             DateTime dt = new DateTime(1997, 8, 25);
             var expected = dt.Year + 3;
-            var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.DateAdd(DateParts.Year, o.OrderDate, 3).Value.Year ==expected).FirstOrDefault();
+            var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.DateAdd(DateParts.Year, o.OrderDate, 3).Value.Year == expected).FirstOrDefault();
             Assert.IsNotNull(actual);
 
             var item = db.Orders.Where(o => o.OrderDate == dt && SqlFunctions.DateAdd(DateParts.Year, o.OrderDate, 3).Value.Year == expected).FirstOrDefault();
@@ -662,7 +657,7 @@ namespace NLite.Data.Test
         {
             DateTime dt = new DateTime(1997, 8, 25);
             var expected = dt.Month + 1;
-            var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.DateAdd(DateParts.Month, o.OrderDate, 1).Value.Month ==expected).FirstOrDefault();
+            var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.DateAdd(DateParts.Month, o.OrderDate, 1).Value.Month == expected).FirstOrDefault();
             Assert.IsNotNull(actual);
 
             var item = db.Orders.Where(o => o.OrderDate == dt && SqlFunctions.DateAdd(DateParts.Month, o.OrderDate, 1).Value.Month == expected).FirstOrDefault();
@@ -674,7 +669,7 @@ namespace NLite.Data.Test
         {
             DateTime dt = new DateTime(1997, 8, 25);
             var expected = dt.Day + 1;
-            var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.DateAdd(DateParts.Day, o.OrderDate, 1).Value.Day ==expected).FirstOrDefault();
+            var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.DateAdd(DateParts.Day, o.OrderDate, 1).Value.Day == expected).FirstOrDefault();
             Assert.IsNotNull(actual);
 
             var item = db.Orders.Where(o => o.OrderDate == dt && SqlFunctions.DateAdd(DateParts.Day, o.OrderDate, 1).Value.Day == expected).FirstOrDefault();
@@ -686,7 +681,7 @@ namespace NLite.Data.Test
         {
             DateTime dt = new DateTime(1997, 8, 25);
             var expected = dt.Hour + 1;
-            var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.DateAdd(DateParts.Hour, o.OrderDate, 1).Value.Hour ==expected).FirstOrDefault();
+            var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.DateAdd(DateParts.Hour, o.OrderDate, 1).Value.Hour == expected).FirstOrDefault();
             Assert.IsNotNull(actual);
 
             var item = db.Orders.Where(o => o.OrderDate == dt && SqlFunctions.DateAdd(DateParts.Hour, o.OrderDate, 1).Value.Hour == expected).FirstOrDefault();
@@ -698,7 +693,7 @@ namespace NLite.Data.Test
         {
             DateTime dt = new DateTime(1997, 8, 25);
             var expected = dt.Minute + 1;
-            var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.DateAdd(DateParts.Minute, o.OrderDate, 1).Value.Minute ==expected).FirstOrDefault();
+            var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.DateAdd(DateParts.Minute, o.OrderDate, 1).Value.Minute == expected).FirstOrDefault();
             Assert.IsNotNull(actual);
 
             var item = db.Orders.Where(o => o.OrderDate == dt && SqlFunctions.DateAdd(DateParts.Minute, o.OrderDate, 1).Value.Minute == expected).FirstOrDefault();
@@ -710,7 +705,7 @@ namespace NLite.Data.Test
         {
             DateTime dt = new DateTime(1997, 8, 25);
             var expected = dt.Second + 1;
-            var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.DateAdd(DateParts.Second, o.OrderDate, 1).Value.Second ==expected).FirstOrDefault();
+            var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.DateAdd(DateParts.Second, o.OrderDate, 1).Value.Second == expected).FirstOrDefault();
             Assert.IsNotNull(actual);
 
             var item = db.Orders.Where(o => o.OrderDate == dt && SqlFunctions.DateAdd(DateParts.Second, o.OrderDate, 1).Value.Second == expected).FirstOrDefault();
@@ -733,7 +728,7 @@ namespace NLite.Data.Test
         [TestMethod]
         public virtual void TestDateTimeToDateTimeNew()
         {
-            DateTime dt = new DateTime(1997, 8, 25,0,0,0);
+            DateTime dt = new DateTime(1997, 8, 25, 0, 0, 0);
             var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.ToDateTime(1997, 8, 25, 0, 0, 0) == o.OrderDate).FirstOrDefault();
             Assert.IsNotNull(actual);
 
@@ -858,7 +853,7 @@ namespace NLite.Data.Test
             DateTime dt = new DateTime(1997, 8, 25, 0, 0, 0);
             DateTime dt1 = new DateTime(1996, 1, 15, 10, 20, 30);
             var expected = (dt - dt1).Milliseconds;
-            var actual = db.Orders.Select(o => o.OrderDate == dt &&  SqlFunctions.DateDiff(DateParts.Millisecond,o.OrderDate, dt1) == expected).FirstOrDefault();
+            var actual = db.Orders.Select(o => o.OrderDate == dt && SqlFunctions.DateDiff(DateParts.Millisecond, o.OrderDate, dt1) == expected).FirstOrDefault();
             Assert.IsNotNull(actual);
 
             //溢出
@@ -867,7 +862,7 @@ namespace NLite.Data.Test
             //Assert.IsNotNull(item);
         }
 
-//..........................................................................................NEW
+        //..........................................................................................NEW
 
         [TestMethod]
         public virtual void DateTimeNow()
@@ -878,7 +873,7 @@ namespace NLite.Data.Test
             var actual = db.Orders.Where(o => o.OrderDate == dt && SqlFunctions.Between(DateTime.Now, o.OrderDate, new DateTime(2015, 10, 10))).FirstOrDefault();
             Assert.IsNotNull(actual);
 
-            
+
         }
 
         [TestMethod]
@@ -891,7 +886,7 @@ namespace NLite.Data.Test
             var actual = db.Orders.Select(o => o.OrderDate == dt && SqlMethods.DateDiffYear(o.OrderDate, dt1) == expected).FirstOrDefault();
             Assert.IsNotNull(actual);
 
-            var item = db.Orders.Where(o =>o.OrderDate == dt && SqlMethods.DateDiffYear( dt1,o.OrderDate) == expected).FirstOrDefault();
+            var item = db.Orders.Where(o => o.OrderDate == dt && SqlMethods.DateDiffYear(dt1, o.OrderDate) == expected).FirstOrDefault();
             Assert.IsNotNull(item);
         }
 
@@ -923,8 +918,8 @@ namespace NLite.Data.Test
         [TestMethod]
         public virtual void DateDiffHour()
         {
-            DateTime dt = new DateTime(1997, 8, 25,0,0,0);
-            DateTime dt1 = new DateTime(1996, 1, 15,10,20,30);
+            DateTime dt = new DateTime(1997, 8, 25, 0, 0, 0);
+            DateTime dt1 = new DateTime(1996, 1, 15, 10, 20, 30);
             var expected = (dt - dt1).Hours;
             var actual = db.Orders.Select(o => o.OrderDate == dt && SqlMethods.DateDiffHour(o.OrderDate, dt1) == expected).FirstOrDefault();
             Assert.IsNotNull(actual);
@@ -933,12 +928,12 @@ namespace NLite.Data.Test
             var item = db.Orders.Where(o => o.OrderDate == dt && SqlMethods.DateDiffHour(dt1, o.OrderDate) == (int)expected1).FirstOrDefault();
             Assert.IsNotNull(item);
 #else
-            var item = db.Orders.Where(o => o.OrderDate == dt && SqlMethods.DateDiffHour(dt1, o.OrderDate)-1 == (int)expected1).FirstOrDefault();
+            var item = db.Orders.Where(o => o.OrderDate == dt && SqlMethods.DateDiffHour(dt1, o.OrderDate) - 1 == (int)expected1).FirstOrDefault();
             Assert.IsNotNull(item);
 #endif
         }
 
-        
+
 
         [TestMethod]
         public virtual void DateDiffMinute()
@@ -949,13 +944,13 @@ namespace NLite.Data.Test
             var actual = db.Orders.Select(o => o.OrderDate == dt && SqlMethods.DateDiffMinute(o.OrderDate, dt1) == expected).FirstOrDefault();
             Assert.IsNotNull(actual);
             var expected1 = (dt - dt1).TotalMinutes;
-            
+
 
 #if SQLite || Oracle
             var item = db.Orders.Where(o => o.OrderDate == dt && SqlMethods.DateDiffMinute(dt1, o.OrderDate) == (int)expected1).FirstOrDefault();
             Assert.IsNotNull(item);
 #else
-           var item = db.Orders.Where(o => o.OrderDate == dt && SqlMethods.DateDiffMinute(dt1, o.OrderDate) - 1 == (int)expected1).FirstOrDefault();
+            var item = db.Orders.Where(o => o.OrderDate == dt && SqlMethods.DateDiffMinute(dt1, o.OrderDate) - 1 == (int)expected1).FirstOrDefault();
             Assert.IsNotNull(item);
 #endif
         }
@@ -969,13 +964,13 @@ namespace NLite.Data.Test
             var actual = db.Orders.Select(o => o.OrderDate == dt && SqlMethods.DateDiffSecond(o.OrderDate, dt1) == expected).FirstOrDefault();
             Assert.IsNotNull(actual);
             var expected1 = (dt - dt1).TotalSeconds;
-            
+
 
 #if Oracle
             var item = db.Orders.Where(o => o.OrderDate == dt && SqlMethods.DateDiffSecond(dt1, o.OrderDate)+1 == (int)expected1).FirstOrDefault();
             Assert.IsNotNull(item);
 #else
-           var item = db.Orders.Where(o => o.OrderDate == dt && SqlMethods.DateDiffSecond(dt1, o.OrderDate)  == (int)expected1).FirstOrDefault();
+            var item = db.Orders.Where(o => o.OrderDate == dt && SqlMethods.DateDiffSecond(dt1, o.OrderDate) == (int)expected1).FirstOrDefault();
             Assert.IsNotNull(item);
 #endif
         }
@@ -995,7 +990,7 @@ namespace NLite.Data.Test
             //Assert.IsNotNull(item);
         }
 
-         [TestMethod]
+        [TestMethod]
         public void Test()
         {
             var start = DateTime.Parse("1997-08-25 00:00:00");
@@ -1044,7 +1039,7 @@ namespace NLite.Data.Test
             DateTime dt = new DateTime(1997, 8, 25, 0, 0, 0);
             var actual = db.Orders.Select(o => o.OrderDate == dt && SqlMethods.DateDiffHour(o.OrderDate, null) == null).FirstOrDefault();
             Assert.IsNotNull(actual);
-          
+
             var item = db.Orders.Where(o => o.OrderDate == dt && SqlMethods.DateDiffHour(null, o.OrderDate) - 1 == null).FirstOrDefault();
             Assert.IsNotNull(item);
         }
@@ -1055,7 +1050,7 @@ namespace NLite.Data.Test
             DateTime dt = new DateTime(1997, 8, 25, 0, 0, 0);
             var actual = db.Orders.Select(o => o.OrderDate == dt && SqlMethods.DateDiffMinute(o.OrderDate, null) == null).FirstOrDefault();
             Assert.IsNotNull(actual);
-          
+
             var item = db.Orders.Where(o => o.OrderDate == dt && SqlMethods.DateDiffMinute(null, o.OrderDate) - 1 == null).FirstOrDefault();
             Assert.IsNotNull(item);
         }
@@ -1080,11 +1075,11 @@ namespace NLite.Data.Test
             DateTime dt = new DateTime(1997, 8, 25, 0, 0, 0);
             var actual = db.Orders.Select(o => o.OrderDate == dt && SqlMethods.DateDiffMillisecond(o.OrderDate, null) == null).FirstOrDefault();
             Assert.IsNotNull(actual);
-            
+
             var item = db.Orders.Where(o => o.OrderDate == dt && SqlMethods.DateDiffMillisecond(null, o.OrderDate) == null).FirstOrDefault();
             Assert.IsNotNull(item);
         }
-       
+
     }
 
 }

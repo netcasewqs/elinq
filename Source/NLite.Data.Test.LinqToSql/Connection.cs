@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
-using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestInitialize = NUnit.Framework.SetUpAttribute;
-using TestMethod = NUnit.Framework.TestAttribute;
 using NLite.Reflection;
+using NUnit.Framework;
 
 namespace NLite.Data.Test.LinqToSql
 {

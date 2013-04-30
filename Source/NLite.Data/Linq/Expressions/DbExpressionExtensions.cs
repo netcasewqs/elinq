@@ -1,15 +1,9 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 // This source code is made available under the terms of the Microsoft Public License (MS-PL)
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
-using System.Text;
-using NLite.Data.Dialect;
 using NLite.Data.Common;
 
 namespace NLite.Data.Linq.Expressions
@@ -173,7 +167,7 @@ namespace NLite.Data.Linq.Expressions
 
         public static SelectExpression AddRedundantSelect(this SelectExpression sel, TableAlias newAlias)
         {
-            var newColumns = 
+            var newColumns =
                 from d in sel.Columns
                 let qt = (d.Expression is ColumnExpression) ? ((ColumnExpression)d.Expression).SqlType : SqlType.Get(d.Expression.Type)
                 select new ColumnDeclaration(d.Name, new ColumnExpression(d.Expression.Type, qt, newAlias, d.Name), qt);

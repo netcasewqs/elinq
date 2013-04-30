@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Linq.Expressions;
-using NLite.Data.Dialect.SqlBuilder;
 using NLite.Data.Common;
 
 namespace NLite.Data.Dialect.Function.Postgres
@@ -320,7 +317,7 @@ namespace NLite.Data.Dialect.Function.Postgres
         //    get { return FunctionViews.NotSupport(); }
         //}
 
-        
+
 
         public IFunctionView Now
         {

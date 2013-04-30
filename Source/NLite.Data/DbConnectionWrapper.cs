@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Data;
 using System.Data.Common;
-using System.Data;
-using NLite.Reflection;
-using NLite.Data.Schema;
 
 namespace NLite.Data
 {
@@ -78,13 +72,13 @@ namespace NLite.Data
     class DbConnectionWrapper : DbConnection
     {
         internal DbConnection innerConnection;
-     
+
         internal TransactionWrapper transaction;
         internal DbConfiguration dbConfiguration;
 
         internal bool IsFileDatabase = false;
 
-        public DbConnectionWrapper(DbConfiguration dbConfiguration,DbConnection conn)
+        public DbConnectionWrapper(DbConfiguration dbConfiguration, DbConnection conn)
         {
             this.innerConnection = conn;
             var connTypeName = conn.GetType().FullName;
@@ -146,7 +140,7 @@ namespace NLite.Data
             get { return innerConnection.Database; }
         }
 
-      
+
         public override void Open()
         {
             innerConnection.Open();

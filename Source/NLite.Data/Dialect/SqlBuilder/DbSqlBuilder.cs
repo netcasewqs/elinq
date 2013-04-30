@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Linq.Expressions;
-using NLite.Data.Linq.Expressions;
 using System.Collections.ObjectModel;
+using System.Linq.Expressions;
+using System.Text;
+using NLite.Data.Linq.Expressions;
 using NLite.Data.Mapping;
 
 namespace NLite.Data.Dialect.SqlBuilder
@@ -71,7 +70,7 @@ namespace NLite.Data.Dialect.SqlBuilder
         }
 
 
-       
+
         public int IndentationWidth
         {
             get { return this.indent; }
@@ -145,7 +144,7 @@ namespace NLite.Data.Dialect.SqlBuilder
             this.Append(name);
         }
 
-     
+
 
         protected virtual void AppendTableName(string tableName)
         {

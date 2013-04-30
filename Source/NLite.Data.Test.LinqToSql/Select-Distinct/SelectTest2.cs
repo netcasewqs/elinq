@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using NUnit.Framework;
 using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestInitialize = NUnit.Framework.SetUpAttribute;
 using TestMethod = NUnit.Framework.TestAttribute;
 
 namespace NLite.Data.Test.LinqToSql.Select_Distinct
 {
-   
+
     [TestClass]
-    public class SelectTest2:DLinqConnection
+    public class SelectTest2 : DLinqConnection
     {
         //条件形式
         [TestMethod]
@@ -19,7 +15,7 @@ namespace NLite.Data.Test.LinqToSql.Select_Distinct
         {
             using (var db = dbConfiguration.CreateDbContext())
             {
-                var item = db.Set<Customers>().Select(p => new { p.CompanyName,Touch =p.Fax==null?"电话"+p.Phone:"传真"+p.Fax});
+                var item = db.Set<Customers>().Select(p => new { p.CompanyName, Touch = p.Fax == null ? "电话" + p.Phone : "传真" + p.Fax });
                 foreach (var it in item)
                 {
                     Console.WriteLine(it.Touch);
@@ -32,10 +28,10 @@ namespace NLite.Data.Test.LinqToSql.Select_Distinct
         {
             using (var db = dbConfiguration.CreateDbContext())
             {
-                var item = db.Set<Customers>().Select(p => new Name { FirstName = p.Country, SecondName=p.CompanyName});
+                var item = db.Set<Customers>().Select(p => new Name { FirstName = p.Country, SecondName = p.CompanyName });
                 foreach (var it in item)
                 {
-                    Console.WriteLine(it.FirstName+" : "+it.SecondName);
+                    Console.WriteLine(it.FirstName + " : " + it.SecondName);
                 }
             }
         }
@@ -45,7 +41,7 @@ namespace NLite.Data.Test.LinqToSql.Select_Distinct
         {
             using (var db = dbConfiguration.CreateDbContext())
             {
-                var item = db.Set<Customers>().Where(p=>p.City=="London").Select(p=>p.CompanyName);
+                var item = db.Set<Customers>().Where(p => p.City == "London").Select(p => p.CompanyName);
                 foreach (var it in item)
                 {
                     Console.WriteLine(it);
@@ -58,7 +54,7 @@ namespace NLite.Data.Test.LinqToSql.Select_Distinct
         {
             using (var db = dbConfiguration.CreateDbContext())
             {
-                var item = db.Set<Customers>().Select(p => new { p.CustomerID, CompanyInfo = new { p.CompanyName, p.City, p.Country }, ContactInfo = new {p.ContactName,p.ContactTitle} });
+                var item = db.Set<Customers>().Select(p => new { p.CustomerID, CompanyInfo = new { p.CompanyName, p.City, p.Country }, ContactInfo = new { p.ContactName, p.ContactTitle } });
                 foreach (var it in item)
                 {
                     Console.WriteLine(it.ContactInfo);
@@ -91,7 +87,7 @@ namespace NLite.Data.Test.LinqToSql.Select_Distinct
                 var item = db.Customers//.Include(p => p.Orders)
                     .Select(p => new
                     {
-                       // p.CustomerID,
+                        // p.CustomerID,
                         p.CompanyName,
                         OrderCount = p.Orders.Where(s => s.ShipCountry == "UK")//.Select(s => s.ShipCity).Count()
                     });
@@ -108,7 +104,7 @@ namespace NLite.Data.Test.LinqToSql.Select_Distinct
         {
             using (var db = dbConfiguration.CreateDbContext())
             {
-                var item = db.Set<Customers>().Where(p => p.Fax != null).Select(p => new { p.CompanyName,p.Phone,Internation =p.Phone.Replace("-","")});
+                var item = db.Set<Customers>().Where(p => p.Fax != null).Select(p => new { p.CompanyName, p.Phone, Internation = p.Phone.Replace("-", "") });
                 foreach (var it in item)
                 {
                     Console.WriteLine(it.Internation);
@@ -121,7 +117,7 @@ namespace NLite.Data.Test.LinqToSql.Select_Distinct
         {
             using (var db = dbConfiguration.CreateDbContext())
             {
-                var item = db.Set<Customers>().Select(p=>p.Country).Distinct();
+                var item = db.Set<Customers>().Select(p => p.Country).Distinct();
                 foreach (var it in item)
                 {
                     Console.WriteLine(it);
@@ -136,7 +132,7 @@ namespace NLite.Data.Test.LinqToSql.Select_Distinct
             {
                 var item = db.Set<Customers>().Select(p => p.Country).Distinct().Count();
                 var item2 = db.Set<Customers>().Select(p => p.Country).Count();
-                Console.WriteLine(item+"////"+item2);
+                Console.WriteLine(item + "////" + item2);
             }
         }
     }

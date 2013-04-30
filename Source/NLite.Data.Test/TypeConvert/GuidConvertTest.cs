@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using NUnit.Framework;
-using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestInitialize = NUnit.Framework.SetUpAttribute;
-using TestMethod = NUnit.Framework.TestAttribute;
-using NLite.Data.Test.Primitive.Model;
 using System.Linq.Expressions;
-using System.ComponentModel;
+using NLite.Data.Test.Primitive.Model;
+using NUnit.Framework;
+using TestMethod = NUnit.Framework.TestAttribute;
 
 namespace NLite.Data.Test.TypeConvert
 {
-    public class GuidConvertTest:TestBase<NullableTypeInfo>
+    public class GuidConvertTest : TestBase<NullableTypeInfo>
     {
         protected override string ConnectionStringName
         {
@@ -48,9 +43,9 @@ namespace NLite.Data.Test.TypeConvert
 
             Table.Delete(p => true);
         }
-        
+
         Guid guid = new Guid("4A83D44A-5612-4E78-89EE-08F894912C0A");
-        
+
         [TestMethod]
         //[NUnit.Framework.Ignore]
         public virtual void ToSString()

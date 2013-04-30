@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using NLite.Data;
 
 namespace ELinq.DDLTest.ElinqToSql.Models
@@ -12,13 +9,13 @@ namespace ELinq.DDLTest.ElinqToSql.Models
         [Id]
         public int CategoryID { get; set; }
 
-        [Column(IsNullable=false,Length=15)]
+        [Column(IsNullable = false, Length = 15)]
         public string CategoryName { get; set; }
 
-        [Column(DbType=DBType.NText)]
+        [Column(DbType = DBType.NText)]
         public string Description { get; set; }
 
-        [Column(DbType=DBType.Image)]
+        [Column(DbType = DBType.Image)]
         public byte[] Picture { get; set; }
 
         [OneToMany(ThisKey = "CategoryID", OtherKey = "CategoryID")]

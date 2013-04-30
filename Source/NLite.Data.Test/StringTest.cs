@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using NLite.Data.Test.Primitive.Model;
 using NUnit.Framework;
 using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestInitialize = NUnit.Framework.SetUpAttribute;
 using TestMethod = NUnit.Framework.TestAttribute;
-using NLite.Data.Test.Primitive.Model;
-using NLite.Data.Test.Primitive;
-using System.Linq.Expressions;
-using System.Data.SqlClient;
-using NLite.Data;
 
 namespace NLite.Data.Test
 {
@@ -87,10 +82,10 @@ namespace NLite.Data.Test
             Excute("vance", p => string.Concat(p.descript, 1, true) == expected);
             str = "ance";
             expected = string.Concat("v", str);
-            Excute("ance", p => string.Concat("v", p.descript) ==expected);
-            expected = string.Concat("v",str,1);
+            Excute("ance", p => string.Concat("v", p.descript) == expected);
+            expected = string.Concat("v", str, 1);
             Excute("ance", p => string.Concat("v", p.descript, 1) == expected);
-            expected = string.Concat("v",str,1,false);
+            expected = string.Concat("v", str, 1, false);
             Excute("ance", p => string.Concat("v", p.descript, 1, false) == expected);
 
             expected = "v" + str;
@@ -232,110 +227,110 @@ namespace NLite.Data.Test
             expected = str.IndexOf('n', 1);
             Excute("vance", p => p.descript.IndexOf('n', 1) == expected);
             expected = str.IndexOf('t');
-            Excute("vance", p => p.descript.IndexOf('t') ==expected);
+            Excute("vance", p => p.descript.IndexOf('t') == expected);
             expected = str.IndexOf("dddddd");
-            Excute("vance", p => p.descript.IndexOf("dddddd") ==expected);
+            Excute("vance", p => p.descript.IndexOf("dddddd") == expected);
             expected = str.IndexOf('t', 0);
-            Excute("vance", p => p.descript.IndexOf('t', 0)==expected);
+            Excute("vance", p => p.descript.IndexOf('t', 0) == expected);
             expected = str.IndexOf('t', 5);
-            Excute("vance", p => p.descript.IndexOf('t', 5) ==expected);
-            expected = str.IndexOf("dddddd",0);
-            Excute("vance", p => p.descript.IndexOf("dddddd", 0) ==expected);
-            expected = str.IndexOf("dddddd",5);
-            Excute("vance", p => p.descript.IndexOf("dddddd", 5) ==expected);
-            expected = str.IndexOf("nc",0);
+            Excute("vance", p => p.descript.IndexOf('t', 5) == expected);
+            expected = str.IndexOf("dddddd", 0);
+            Excute("vance", p => p.descript.IndexOf("dddddd", 0) == expected);
+            expected = str.IndexOf("dddddd", 5);
+            Excute("vance", p => p.descript.IndexOf("dddddd", 5) == expected);
+            expected = str.IndexOf("nc", 0);
             Excute("vance", p => p.descript.IndexOf("nc", 0) == expected);
             expected = str.IndexOf("nc", 3);
-            Excute("vance", p => p.descript.IndexOf("nc", 3)==expected);
-            expected = str.IndexOf("nc",4);
-            Excute("vance", p => p.descript.IndexOf("nc", 4) ==expected);
-            expected = str.IndexOf("nc",5);
-            Excute("vance", p => p.descript.IndexOf("nc", 5) ==expected);
+            Excute("vance", p => p.descript.IndexOf("nc", 3) == expected);
+            expected = str.IndexOf("nc", 4);
+            Excute("vance", p => p.descript.IndexOf("nc", 4) == expected);
+            expected = str.IndexOf("nc", 5);
+            Excute("vance", p => p.descript.IndexOf("nc", 5) == expected);
             expected = str.IndexOf('n', 0);
             Excute("vance", p => p.descript.IndexOf('n', 0) == expected);
             expected = str.IndexOf('n', 3);
-            Excute("vance", p => p.descript.IndexOf('n', 3) ==expected);
+            Excute("vance", p => p.descript.IndexOf('n', 3) == expected);
             expected = str.IndexOf('n', 4);
-            Excute("vance", p => p.descript.IndexOf('n', 4) ==expected);
+            Excute("vance", p => p.descript.IndexOf('n', 4) == expected);
             expected = str.IndexOf('n', 5);
-            Excute("vance", p => p.descript.IndexOf('n', 5) ==expected);
+            Excute("vance", p => p.descript.IndexOf('n', 5) == expected);
 
             expected = "vance".IndexOf("n");
             Excute("n", p => "vance".IndexOf(p.descript) == expected);
             expected = "vance".IndexOf("nc");
             Excute("nc", p => "vance".IndexOf(p.descript) == expected);
-            expected = "vance".IndexOf("nc",2);
+            expected = "vance".IndexOf("nc", 2);
             Excute("nc", p => "vance".IndexOf(p.descript, 1) == expected);
             expected = "vance".IndexOf("n", 2);
             Excute("n", p => "vance".IndexOf(p.descript, 2) == expected);
 
             expected = "vance".IndexOf("t");
-            Excute("t", p => "vance".IndexOf(p.descript)==expected);
+            Excute("t", p => "vance".IndexOf(p.descript) == expected);
             expected = "vance".IndexOf("dddddd");
-            Excute("dddddd", p => "vance".IndexOf(p.descript)==expected);
-            expected = "vance".IndexOf("t",0);
-            Excute("t", p => "vance".IndexOf(p.descript, 0) ==expected);
+            Excute("dddddd", p => "vance".IndexOf(p.descript) == expected);
+            expected = "vance".IndexOf("t", 0);
+            Excute("t", p => "vance".IndexOf(p.descript, 0) == expected);
             expected = "vance".IndexOf("t", 5);
-            Excute("t", p => "vance".IndexOf(p.descript, 5) ==expected);
-            expected = "vance".IndexOf("dddddd",0);
-            Excute("dddddd", p => "vance".IndexOf(p.descript, 0) ==expected);
+            Excute("t", p => "vance".IndexOf(p.descript, 5) == expected);
+            expected = "vance".IndexOf("dddddd", 0);
+            Excute("dddddd", p => "vance".IndexOf(p.descript, 0) == expected);
             expected = "vance".IndexOf("dddddd", 5);
-            Excute("dddddd", p => "vance".IndexOf(p.descript, 5) ==expected);
+            Excute("dddddd", p => "vance".IndexOf(p.descript, 5) == expected);
             expected = "vance".IndexOf("nc", 0);
             Excute("nc", p => "vance".IndexOf(p.descript, 0) == expected);
             expected = "vance".IndexOf("nc", 3);
-            Excute("nc", p => "vance".IndexOf(p.descript, 3) ==expected);
+            Excute("nc", p => "vance".IndexOf(p.descript, 3) == expected);
             expected = "vance".IndexOf("nc", 4);
-            Excute("nc", p => "vance".IndexOf(p.descript, 4) ==expected);
+            Excute("nc", p => "vance".IndexOf(p.descript, 4) == expected);
             expected = "vance".IndexOf("nc", 5);
-            Excute("nc", p => "vance".IndexOf(p.descript, 5) ==expected);
+            Excute("nc", p => "vance".IndexOf(p.descript, 5) == expected);
             expected = "vance".IndexOf("n", 0);
             Excute("n", p => "vance".IndexOf(p.descript, 0) == expected);
             expected = "vance".IndexOf("n", 3);
-            Excute("n", p => "vance".IndexOf(p.descript, 3) ==expected);
+            Excute("n", p => "vance".IndexOf(p.descript, 3) == expected);
             expected = "vance".IndexOf("n", 4);
-            Excute("n", p => "vance".IndexOf(p.descript, 4) ==expected);
+            Excute("n", p => "vance".IndexOf(p.descript, 4) == expected);
             expected = "vance".IndexOf("n", 5);
-            Excute("n", p => "vance".IndexOf(p.descript, 5) ==expected);
+            Excute("n", p => "vance".IndexOf(p.descript, 5) == expected);
 
-            expected = "vance".IndexOf("nc",0,StringComparison.Ordinal);
+            expected = "vance".IndexOf("nc", 0, StringComparison.Ordinal);
             Excute("nc", p => "vance".IndexOf(p.descript, 0, StringComparison.Ordinal) == expected);
             expected = "vance".IndexOf("nc", 5, StringComparison.Ordinal);
-            Excute("nc", p => "vance".IndexOf(p.descript, 5, StringComparison.Ordinal) ==expected);
+            Excute("nc", p => "vance".IndexOf(p.descript, 5, StringComparison.Ordinal) == expected);
             expected = "vance".IndexOf("NC", 5, StringComparison.Ordinal);
-            Excute("NC", p => "vance".IndexOf(p.descript, 5, StringComparison.Ordinal) ==expected);
+            Excute("NC", p => "vance".IndexOf(p.descript, 5, StringComparison.Ordinal) == expected);
             expected = "VANCE".IndexOf("NC", 0, StringComparison.Ordinal);
             Excute("NC", p => "VANCE".IndexOf(p.descript, 0, StringComparison.Ordinal) == expected);
             expected = "VANCE".IndexOf("NC", 5, StringComparison.Ordinal);
-            Excute("NC", p => "VANCE".IndexOf(p.descript, 5, StringComparison.Ordinal) ==expected);
+            Excute("NC", p => "VANCE".IndexOf(p.descript, 5, StringComparison.Ordinal) == expected);
             expected = "VANCE".IndexOf("nc", 5, StringComparison.Ordinal);
-            Excute("nc", p => "VANCE".IndexOf(p.descript, 5, StringComparison.Ordinal) ==expected);
+            Excute("nc", p => "VANCE".IndexOf(p.descript, 5, StringComparison.Ordinal) == expected);
 
             expected = "vance".IndexOf("nc", 0, StringComparison.CurrentCulture);
             Excute("nc", p => "vance".IndexOf(p.descript, 0, StringComparison.CurrentCulture) == expected);
             expected = "vance".IndexOf("nc", 5, StringComparison.CurrentCulture);
-            Excute("nc", p => "vance".IndexOf(p.descript, 5, StringComparison.CurrentCulture) ==expected);
+            Excute("nc", p => "vance".IndexOf(p.descript, 5, StringComparison.CurrentCulture) == expected);
             expected = "vance".IndexOf("NC", 5, StringComparison.CurrentCulture);
-            Excute("NC", p => "vance".IndexOf(p.descript, 5, StringComparison.CurrentCulture) ==expected);
+            Excute("NC", p => "vance".IndexOf(p.descript, 5, StringComparison.CurrentCulture) == expected);
             expected = "VANCE".IndexOf("NC", 0, StringComparison.CurrentCulture);
             Excute("NC", p => "VANCE".IndexOf(p.descript, 0, StringComparison.CurrentCulture) == expected);
             expected = "VANCE".IndexOf("NC", 5, StringComparison.CurrentCulture);
-            Excute("NC", p => "VANCE".IndexOf(p.descript, 5, StringComparison.CurrentCulture) ==expected);
+            Excute("NC", p => "VANCE".IndexOf(p.descript, 5, StringComparison.CurrentCulture) == expected);
             expected = "VANCE".IndexOf("nc", 5, StringComparison.CurrentCulture);
-            Excute("nc", p => "VANCE".IndexOf(p.descript, 5, StringComparison.CurrentCulture) ==expected);
+            Excute("nc", p => "VANCE".IndexOf(p.descript, 5, StringComparison.CurrentCulture) == expected);
 
             expected = "vance".IndexOf("nc", 0, StringComparison.InvariantCulture);
             Excute("nc", p => "vance".IndexOf(p.descript, 0, StringComparison.InvariantCulture) == expected);
             expected = "vance".IndexOf("nc", 5, StringComparison.InvariantCulture);
-            Excute("nc", p => "vance".IndexOf(p.descript, 5, StringComparison.InvariantCulture) ==expected);
+            Excute("nc", p => "vance".IndexOf(p.descript, 5, StringComparison.InvariantCulture) == expected);
             expected = "vance".IndexOf("NC", 5, StringComparison.InvariantCulture);
-            Excute("NC", p => "vance".IndexOf(p.descript, 5, StringComparison.InvariantCulture) ==expected);
+            Excute("NC", p => "vance".IndexOf(p.descript, 5, StringComparison.InvariantCulture) == expected);
             expected = "VANCE".IndexOf("NC", 0, StringComparison.InvariantCulture);
             Excute("NC", p => "VANCE".IndexOf(p.descript, 0, StringComparison.InvariantCulture) == expected);
             expected = "VANCE".IndexOf("NC", 5, StringComparison.InvariantCulture);
-            Excute("NC", p => "VANCE".IndexOf(p.descript, 5, StringComparison.InvariantCulture) ==expected);
+            Excute("NC", p => "VANCE".IndexOf(p.descript, 5, StringComparison.InvariantCulture) == expected);
             expected = "VANCE".IndexOf("nc", 5, StringComparison.InvariantCulture);
-            Excute("nc", p => "VANCE".IndexOf(p.descript, 5, StringComparison.InvariantCulture) ==expected);
+            Excute("nc", p => "VANCE".IndexOf(p.descript, 5, StringComparison.InvariantCulture) == expected);
 #if SqlServer
             expected = "vance".IndexOf("NC", 0, StringComparison.Ordinal);
             Excute("NC", p => "vance".IndexOf(p.descript, 0, StringComparison.Ordinal) == expected);
@@ -353,19 +348,19 @@ namespace NLite.Data.Test
             expected = "vance".IndexOf("nc", 0, StringComparison.CurrentCultureIgnoreCase);
             Excute("nc", p => "vance".IndexOf(p.descript, 0, StringComparison.CurrentCultureIgnoreCase) == expected);
             expected = "vance".IndexOf("nc", 5, StringComparison.CurrentCultureIgnoreCase);
-            Excute("nc", p => "vance".IndexOf(p.descript, 5, StringComparison.CurrentCultureIgnoreCase) ==expected);
+            Excute("nc", p => "vance".IndexOf(p.descript, 5, StringComparison.CurrentCultureIgnoreCase) == expected);
             expected = "vance".IndexOf("NC", 0, StringComparison.CurrentCultureIgnoreCase);
             Excute("NC", p => "vance".IndexOf(p.descript, 0, StringComparison.CurrentCultureIgnoreCase) == expected);
             expected = "vance".IndexOf("NC", 5, StringComparison.CurrentCultureIgnoreCase);
-            Excute("NC", p => "vance".IndexOf(p.descript, 5, StringComparison.CurrentCultureIgnoreCase) ==expected);
+            Excute("NC", p => "vance".IndexOf(p.descript, 5, StringComparison.CurrentCultureIgnoreCase) == expected);
             expected = "VANCE".IndexOf("NC", 0, StringComparison.CurrentCultureIgnoreCase);
             Excute("NC", p => "VANCE".IndexOf(p.descript, 0, StringComparison.CurrentCultureIgnoreCase) == expected);
             expected = "VANCE".IndexOf("NC", 5, StringComparison.CurrentCultureIgnoreCase);
-            Excute("NC", p => "VANCE".IndexOf(p.descript, 5, StringComparison.CurrentCultureIgnoreCase) ==expected);
+            Excute("NC", p => "VANCE".IndexOf(p.descript, 5, StringComparison.CurrentCultureIgnoreCase) == expected);
             expected = "VANCE".IndexOf("nc", 0, StringComparison.CurrentCultureIgnoreCase);
             Excute("nc", p => "VANCE".IndexOf(p.descript, 0, StringComparison.CurrentCultureIgnoreCase) == expected);
             expected = "VANCE".IndexOf("nc", 5, StringComparison.CurrentCultureIgnoreCase);
-            Excute("nc", p => "VANCE".IndexOf(p.descript, 5, StringComparison.CurrentCultureIgnoreCase) ==expected);
+            Excute("nc", p => "VANCE".IndexOf(p.descript, 5, StringComparison.CurrentCultureIgnoreCase) == expected);
 
             expected = "vance".IndexOf("nc", 0, StringComparison.InvariantCultureIgnoreCase);
             Excute("nc", p => "vance".IndexOf(p.descript, 0, StringComparison.InvariantCultureIgnoreCase) == expected);
@@ -413,8 +408,8 @@ namespace NLite.Data.Test
             //Console.WriteLine("vance".IndexOf(' ', 3));
             //Console.WriteLine("vance".IndexOf(default(char), 3));
 
-            Console.WriteLine("vance".Substring(1,1));
-           
+            Console.WriteLine("vance".Substring(1, 1));
+
             //Excute("n", p => "vance".IndexOf(p.descript, 1, 1) == -1);
 
             //Console.WriteLine("vance".IndexOf("", 6));
@@ -424,7 +419,7 @@ namespace NLite.Data.Test
         public virtual void IsNullOrEmpty()
         {
             Excute("", p => p.descript.IsNullOrEmpty());
-            Excute("vance", p => !p.descript.IsNullOrEmpty()); 
+            Excute("vance", p => !p.descript.IsNullOrEmpty());
         }
 #if MySQL ||Access||SqlCE||SqlServer||Oracle||SQLite
         [TestMethod]
@@ -444,7 +439,7 @@ namespace NLite.Data.Test
             //Excute("vancevance", p => p.descript.LastIndexOf('n') == 7);
             //Excute("vancevance", p => p.descript.LastIndexOf('t') != 7);
             var str = "vancevance";
-            var expected = str.LastIndexOf('n',4);
+            var expected = str.LastIndexOf('n', 4);
 #if !Oracle
             Excute("vancevance", p => p.descript.LastIndexOf('n', 4) == expected);
 #endif
@@ -469,7 +464,7 @@ namespace NLite.Data.Test
             Excute("vancevance", p => p.descript.LastIndexOf("dddddd") == expected);
             expected = str.LastIndexOf("dddddd", 6);
             Excute("vancevance", p => p.descript.LastIndexOf("dddddd", 6) == expected);
-            expected = str.LastIndexOf("nc",0);
+            expected = str.LastIndexOf("nc", 0);
             Excute("vancevance", p => p.descript.LastIndexOf("nc", 0) == expected);
             expected = str.LastIndexOf("nc", 9);
             Excute("vancevance", p => p.descript.LastIndexOf("nc", 9) == expected);
@@ -517,7 +512,7 @@ namespace NLite.Data.Test
             var str = "vance";
             var expected = str.Length;
             Excute("vance", p => p.descript.Length == expected);
-           
+
 #if Access || SQLite || MySQL || Oracle
 
             expected = "  ".Length;
@@ -564,7 +559,7 @@ namespace NLite.Data.Test
             Excute("vance", p => p.descript.RightOf("") == null);
 #else
             //expected = str.RightOf("");
-            Excute("vance", p => p.descript.RightOf("")!=null);
+            Excute("vance", p => p.descript.RightOf("") != null);
             //expected = "".RightOf('n');
             Excute("", p => p.descript.RightOf('n') == "");
             //expected = "".RightOf("");
@@ -575,7 +570,7 @@ namespace NLite.Data.Test
             expected = str.RightOf("an");
             Excute("an", p => "vance".RightOf(p.descript) == expected);
             expected = "vancnne".RightOf("n");
-            Excute("n", p => "vancnne".RightOf(p.descript) == expected);         
+            Excute("n", p => "vancnne".RightOf(p.descript) == expected);
         }
 #endif
         [TestMethod]
@@ -583,8 +578,8 @@ namespace NLite.Data.Test
         {
             var str = "vance";
             var expected = str.PadLeft(8);
-            Excute("vance", p => p.descript.PadLeft(8) ==expected);
-            expected = str.PadLeft(8,'*');
+            Excute("vance", p => p.descript.PadLeft(8) == expected);
+            expected = str.PadLeft(8, '*');
             Excute("vance", p => p.descript.PadLeft(8, '*') == expected);
 #if Oracle
             Excute("", p => p.descript.PadLeft(8) == null);
@@ -592,7 +587,7 @@ namespace NLite.Data.Test
 
 #else
             expected = "".PadLeft(8);
-            Excute("", p => p.descript.PadLeft(8) ==expected);
+            Excute("", p => p.descript.PadLeft(8) == expected);
             expected = "".PadLeft(8, '*');
             Excute("", p => p.descript.PadLeft(8, '*') == expected);
 #endif
@@ -613,7 +608,7 @@ namespace NLite.Data.Test
             expected = "".PadRight(8);
             Excute("", p => p.descript.PadRight(8) == expected);
             expected = "".PadRight(8, '*');
-            Excute("", p => p.descript.PadRight(8, '*') ==expected);
+            Excute("", p => p.descript.PadRight(8, '*') == expected);
 #endif
         }
 
@@ -639,19 +634,19 @@ namespace NLite.Data.Test
 #endif
             expected = str.Remove(1);
             Excute("vance", p => p.descript.Remove(1) == expected);
-            expected = str.Remove(1,3);
+            expected = str.Remove(1, 3);
             Excute("vance", p => p.descript.Remove(1, 3) == expected);
             expected = str.Remove(4);
             Excute("vance", p => p.descript.Remove(4) == expected);
 
-            expected = str.Remove(1,0);
+            expected = str.Remove(1, 0);
             Excute("vance", p => p.descript.Remove(1, 0) == expected);
-            expected = str.Remove(1,4);
+            expected = str.Remove(1, 4);
             Excute("vance", p => p.descript.Remove(1, 4) == expected);
             //TODO:.net方法使用错误，翻译到数据库中：可以
             //expected = str.Remove(1,7);
             Excute("vance", p => p.descript.Remove(1, 7) == "v");
-            
+
         }
 
         [TestMethod]
@@ -679,12 +674,12 @@ namespace NLite.Data.Test
             var str = "vance";
             var expected = str.Substring(2);
             Excute("vance", p => p.descript.Substring(2) == expected);
-            expected = str.Substring(2,2);
+            expected = str.Substring(2, 2);
             Excute("vance", p => p.descript.Substring(2, 2) == expected);
             expected = str.Substring(0);
             Excute("vance", p => p.descript.Substring(0) == expected);
 
-            expected = str.Substring(0,2);
+            expected = str.Substring(0, 2);
             Excute("vance", p => p.descript.Substring(0, 2) == expected);
 #if Access || SQLite || MySQL || SqlServer || SqlCE
             //expected = str.Substring(6,2);
@@ -696,7 +691,7 @@ namespace NLite.Data.Test
             Excute("vance", p => p.descript.Substring(6, 2) == null);
 
 #endif
-            expected = str.Substring(1,4);
+            expected = str.Substring(1, 4);
             Excute("vance", p => p.descript.Substring(1, 4) == expected);
             //TODO:.net索引超出长度，翻译到数据库中能拿到数据
             //expected = str.Substring(1,5);
@@ -717,7 +712,7 @@ namespace NLite.Data.Test
             Excute("", p => p.descript.ToLower() == expected);
 #endif
             expected = " ".ToLower();
-            Excute(" ", p => p.descript.ToLower() ==expected);
+            Excute(" ", p => p.descript.ToLower() == expected);
         }
         [TestMethod]
         public virtual void ToUpper()
@@ -738,7 +733,7 @@ namespace NLite.Data.Test
         {
             var str = "  vance  ";
             var expected = str.Trim();
-            Excute(str, p => p.descript.Trim() ==expected);
+            Excute(str, p => p.descript.Trim() == expected);
 #if Oracle
             //expected = "".Trim();
             Excute("", p => p.descript.Trim() ==null);
@@ -793,7 +788,7 @@ namespace NLite.Data.Test
         public virtual void Insert()
         {
             var str = "vance";
-            var expected = str.Insert(4,"info");
+            var expected = str.Insert(4, "info");
 
             Excute(str, p => p.descript.Insert(4, "info") == expected);
             expected = str.Insert(0, "info");
@@ -812,7 +807,7 @@ namespace NLite.Data.Test
         [TestMethod]
         public virtual void Reverse()
         {
-            var str = "vance";var str1 = "";
+            var str = "vance"; var str1 = "";
             var expected = str.Reverse().ToArray();
             for (int i = 0; i < expected.Count(); i++)
             {
@@ -826,6 +821,6 @@ namespace NLite.Data.Test
             Excute("", p => p.descript.Reverse().ToString() == null);
 #endif
         }
-#endif       
+#endif
     }
 }

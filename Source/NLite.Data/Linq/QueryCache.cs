@@ -2,12 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading;
-using NLite.Data;
-using NLite.Data.Linq.Internal;
-using NLite.Data.Mapping;
 using NLite.Data.Linq.Expressions;
+using NLite.Data.Linq.Internal;
 using NLite.Reflection;
 
 namespace NLite.Data.Linq
@@ -88,7 +84,7 @@ namespace NLite.Data.Linq
             return cached;
         }
 
-      
+
 
         private LambdaExpression Parameterize(Expression query, out object[] arguments)
         {
@@ -129,7 +125,7 @@ namespace NLite.Data.Linq
             }
         }
 
-      
+
         private IQueryProvider FindProvider(Expression expression)
         {
             ConstantExpression root = TypedSubtreeFinder.Find(expression, typeof(IQueryProvider)) as ConstantExpression;
@@ -220,7 +216,7 @@ namespace NLite.Data.Linq
             internal static LambdaExpression Rewrite(Expression body, IList<ParameterExpression> parameters)
             {
                 var visitor = new ExplicitToObjectArray(parameters);
-                return Expression.Lambda(visitor.Visit(body), visitor.array);                  
+                return Expression.Lambda(visitor.Visit(body), visitor.array);
             }
 
             protected override Expression VisitParameter(ParameterExpression p)

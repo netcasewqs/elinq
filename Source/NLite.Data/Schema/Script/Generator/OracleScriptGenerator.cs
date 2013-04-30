@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NLite.Collections;
-using NLite.Data.Mapping;
 using NLite.Data.Common;
+using NLite.Data.Mapping;
 namespace NLite.Data.Schema.Script.Generator
 {
-    class OracleScriptGenerator:DatabaseScriptGenerator
+    class OracleScriptGenerator : DatabaseScriptGenerator
     {
         protected override string BuildPKScript(Mapping.IMemberMapping[] members)
         {
@@ -79,7 +78,7 @@ namespace NLite.Data.Schema.Script.Generator
 
         protected override string BuildSequenceScript(Mapping.IEntityMapping mapping)
         {
-            
+
             var sequenceName = mapping.Members.Where(p => p.IsGenerated).Select(p => p.SequenceName).Where(p => p.HasValue()).ToArray();
             var sb = new StringBuilder(512);
             if (sequenceName != null)

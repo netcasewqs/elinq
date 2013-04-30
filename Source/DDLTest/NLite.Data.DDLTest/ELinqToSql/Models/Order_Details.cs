@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NLite.Data;
+﻿using NLite.Data;
 
 namespace ELinq.DDLTest.ElinqToSql.Models
 {
@@ -15,7 +11,7 @@ namespace ELinq.DDLTest.ElinqToSql.Models
         [Id]
         public int ProductID { get; set; }
 
-        [Column(IsNullable=false)]
+        [Column(IsNullable = false)]
         public decimal UnitPrice { get; set; }
 
         [Column(IsNullable = false)]

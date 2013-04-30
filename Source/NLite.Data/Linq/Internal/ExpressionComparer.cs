@@ -2,14 +2,10 @@
 // This source code is made available under the terms of the Microsoft Public License (MS-PL)
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
-using NLite.Data;
 
 //TODO:https://gist.github.com/2658225 does not support AnonymousTypes
 namespace NLite.Data.Linq.Internal
@@ -129,7 +125,7 @@ namespace NLite.Data.Linq.Internal
                 case ExpressionType.ListInit:
                     return this.CompareListInit((ListInitExpression)a, (ListInitExpression)b);
                 default:
-                    throw new Exception(string.Format(Res.TypeUnhandle ,"expression", a.NodeType));
+                    throw new Exception(string.Format(Res.TypeUnhandle, "expression", a.NodeType));
             }
         }
 
@@ -333,7 +329,7 @@ namespace NLite.Data.Linq.Internal
                 case MemberBindingType.MemberBinding:
                     return this.CompareMemberMemberBinding((MemberMemberBinding)a, (MemberMemberBinding)b);
                 default:
-                    throw new Exception(string.Format(Res.TypeUnhandle,"binding", a.BindingType));
+                    throw new Exception(string.Format(Res.TypeUnhandle, "binding", a.BindingType));
             }
         }
 

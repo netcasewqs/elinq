@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Text;
-using System.Data;
-using System.Collections.Generic;
 using System.Linq;
+using NLite.Data.Test.Model;
 using NUnit.Framework;
 using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestInitialize = NUnit.Framework.SetUpAttribute;
 using TestMethod = NUnit.Framework.TestAttribute;
-using NLite.Data;
-using NLite.Data.Test.Primitive.Model;
-using NLite.Data.Test;
-using NLite.Data.Test.Model;
 
 namespace NLite.Data.Test.Where
 {

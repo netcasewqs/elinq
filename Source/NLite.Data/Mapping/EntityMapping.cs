@@ -1,17 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Reflection;
-using System.Collections.ObjectModel;
-using System.Linq.Expressions;
-using System.Collections;
-using NLite.Data.Dialect;
-using NLite.Reflection;
-using NLite.Data.Linq.Internal;
-using NLite.Collections;
-using NLite.Linq;
 using System.Diagnostics;
+using System.Linq;
+using System.Reflection;
 
 namespace NLite.Data.Mapping
 {

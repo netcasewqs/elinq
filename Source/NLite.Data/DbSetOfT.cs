@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Linq.Expressions;
 using System.Collections;
+using System.Collections.Generic;
 using System.Data.Common;
-using NLite.Data.Mapping;
-using NLite.Data.Linq;
-using NLite.Reflection;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
+using NLite.Data.Linq;
+using NLite.Data.Mapping;
+using NLite.Reflection;
 
 namespace NLite.Data
 {
@@ -27,7 +26,7 @@ namespace NLite.Data
             this.dbContext = dbContext;
             this.entity = entity;
             if (InsertMethod == null && entity.PrimaryKeys.Length == 1 && entity.PrimaryKeys[0].IsGenerated)
-                InsertMethod = typeof(DbSet).GetMethod("Insert",BindingFlags.Public| BindingFlags.NonPublic| BindingFlags.Static).MakeGenericMethod(typeof(T), entity.PrimaryKeys[0].MemberType).GetFunc();
+                InsertMethod = typeof(DbSet).GetMethod("Insert", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static).MakeGenericMethod(typeof(T), entity.PrimaryKeys[0].MemberType).GetFunc();
         }
         /// <summary>
         /// IEntityModel接口对象
@@ -142,7 +141,7 @@ namespace NLite.Data
             return DbSet.Delete<T>(this, instance, deleteCheck);
         }
 
-       
+
         public int Update(object instance)
         {
             return DbSet.Update<T, int>(this, instance, null, null);
@@ -174,7 +173,7 @@ namespace NLite.Data
             dbContext.IncludeWith<T>(fnMember);
             return this;
         }
-      
+
         public IDbSet<T> Include(Expression<Func<T, object>> fnMember, bool deferLoad)
         {
             dbContext.IncludeWith<T>(fnMember, deferLoad);
@@ -197,13 +196,13 @@ namespace NLite.Data
             dbContext.Include(member);
             return this;
         }
-        
+
         public IDbSet<T> IncludeWith<TEntity>(Expression<Func<TEntity, object>> fnMember)
         {
             dbContext.IncludeWith<TEntity>(fnMember);
             return this;
         }
-        
+
         public IDbSet<T> IncludeWith<TEntity>(Expression<Func<TEntity, object>> fnMember, bool deferLoad)
         {
             dbContext.IncludeWith<TEntity>(fnMember, deferLoad);

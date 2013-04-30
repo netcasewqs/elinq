@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Linq.Expressions;
+using NLite.Data.Test.Primitive.Model;
 using NUnit.Framework;
 using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestInitialize = NUnit.Framework.SetUpAttribute;
 using TestMethod = NUnit.Framework.TestAttribute;
-using NLite.Data.Test.Primitive.Model;
-using System.Linq.Expressions;
-using System.ComponentModel;
 
 namespace NLite.Data.Test.TypeConvert
 {
     [TestClass]
-    public class DateTimeConvertTest:TestBase<NullableTypeInfo>
+    public class DateTimeConvertTest : TestBase<NullableTypeInfo>
     {
         protected override string ConnectionStringName
         {
@@ -52,7 +48,7 @@ namespace NLite.Data.Test.TypeConvert
         [TestMethod]
         public virtual void ToSString()
         {
-            DateTime dt = new DateTime(2012,11,14,15,44,23);
+            DateTime dt = new DateTime(2012, 11, 14, 15, 44, 23);
             var str = dt.ToString("yyyy-MM-dd HH:mm:ss");
             Execute("DateTime", dt, p => p.DateTime.Value.ToString() == str);
         }

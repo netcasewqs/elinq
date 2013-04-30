@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Linq.Expressions;
+using NLite.Data.Test.Primitive.Model;
 using NUnit.Framework;
 using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestInitialize = NUnit.Framework.SetUpAttribute;
 using TestMethod = NUnit.Framework.TestAttribute;
-using NLite.Data.Test.Primitive.Model;
-using System.Linq.Expressions;
-using System.ComponentModel;
 
 namespace NLite.Data.Test.TypeConvert
 {
     [TestClass]
-    public class ByteArrayConvertTest:TestBase<NullableTypeInfo>
+    public class ByteArrayConvertTest : TestBase<NullableTypeInfo>
     {
         protected override string ConnectionStringName
         {
@@ -49,7 +45,7 @@ namespace NLite.Data.Test.TypeConvert
 
             Table.Delete(p => true);
         }
-        byte[] arr = new byte[]{ 1,0,3,4};
+        byte[] arr = new byte[] { 1, 0, 3, 4 };
         [TestMethod]
         [ExpectedException(typeof(NotSupportedException))]
         public virtual void ToSString()
@@ -60,13 +56,13 @@ namespace NLite.Data.Test.TypeConvert
         [ExpectedException(typeof(NotSupportedException))]
         public virtual void PartToBoolean()
         {
-            Execute("Binary", arr, p =>BitConverter.ToBoolean(p.Binary,1)==false);
+            Execute("Binary", arr, p => BitConverter.ToBoolean(p.Binary, 1) == false);
         }
         [TestMethod]
         [ExpectedException(typeof(NotSupportedException))]
         public virtual void PartToChar()
         {
-            Execute("Binary", arr, p => BitConverter.ToChar(p.Binary,0)==1);
+            Execute("Binary", arr, p => BitConverter.ToChar(p.Binary, 0) == 1);
         }
         [TestMethod]
         [ExpectedException(typeof(NotSupportedException))]

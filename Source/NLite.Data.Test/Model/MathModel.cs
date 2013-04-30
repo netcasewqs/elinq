@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NLite.Data.Mapping;
-using NLite.Data;
-namespace NLite.Data.Test.Model
+﻿namespace NLite.Data.Test.Model
 {
-    [Table(Name="MathTest")]
+    [Table(Name = "MathTest")]
     public class MathModel
     {
-        [Id(Name = "ID",IsDbGenerated=true)]
+        [Id(Name = "ID", IsDbGenerated = true)]
         public int ID;
-        [Column(Name="a")]
+        [Column(Name = "a")]
         public int a;
         [Column(Name = "b")]
         public int b;

@@ -1,21 +1,16 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 // This source code is made available under the terms of the Microsoft Public License (MS-PL)
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
 
 namespace NLite.Data.Linq.Expressions
 {
-    using NLite.Linq;
-    using NLite.Data.Linq.Internal;
     using NLite.Data.Dialect;
-    
+    using NLite.Linq;
+
 
     /// <summary>
     /// rewrites nested projections into client-side joins
@@ -35,7 +30,7 @@ namespace NLite.Data.Linq.Expressions
             this.dbExpressionBuilder = dbContext.ExpressionBuilder;
         }
 
-        public static Expression Rewrite(InternalDbContext dbContext,Expression expression)
+        public static Expression Rewrite(InternalDbContext dbContext, Expression expression)
         {
             return new ClientJoinedProjectionRewriter(dbContext).Visit(expression);
         }
@@ -116,7 +111,7 @@ namespace NLite.Data.Linq.Expressions
                 }
                 return base.VisitProjection(proj);
             }
-            finally 
+            finally
             {
                 this.currentSelect = save;
             }
@@ -125,9 +120,9 @@ namespace NLite.Data.Linq.Expressions
         private bool CanJoinOnClient(SelectExpression select)
         {
             // can add singleton (1:0,1) join if no grouping/aggregates or distinct
-            return 
-                this.canJoinOnClient 
-                && this.currentMember != null 
+            return
+                this.canJoinOnClient
+                && this.currentMember != null
                 && !this.policy.IsDeferLoaded(this.currentMember)
                 && !select.IsDistinct
                 && (select.GroupBy == null || select.GroupBy.Count == 0)

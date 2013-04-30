@@ -1,21 +1,13 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
+using System.Data.Common;
 using NUnit.Framework;
 using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestInitialize = NUnit.Framework.SetUpAttribute;
-using TestMethod = NUnit.Framework.TestAttribute;
 using TestCleanup = NUnit.Framework.TearDownAttribute;
-using System.Data;
-using System.Linq.Expressions;
-using System.Data.SqlClient;
-using NLite.Data.Mapping;
-using System.Data.Common;
+using TestInitialize = NUnit.Framework.SetUpAttribute;
 
 namespace NLite.Data.Test
 {
-      [TestClass]
+    [TestClass]
     public class TestBase
     {
 
@@ -55,14 +47,14 @@ namespace NLite.Data.Test
         }
     }
     [TestClass]
-      public class TestBase<T> : TestBase where T : class,new()
+    public class TestBase<T> : TestBase where T : class,new()
     {
         protected IDbContext Db;
         protected IDbSet<T> Table;
 
         protected virtual string ConnectionStringName
         {
-            get { return "g_jia"; } 
+            get { return "g_jia"; }
         }
 
         [TestInitialize]
@@ -106,7 +98,7 @@ namespace NLite.Data.Test
             sb.ConnectionString = conn.ConnectionString;
             var dbFile = AppDomain.CurrentDomain.BaseDirectory + "\\" + sb["Initial Catalog"] as string;
             sb.Add("Initial Catalog", dbFile);
-            
+
             conn.ConnectionString = sb.ConnectionString;
 
             //Db = new DbContext(conn);

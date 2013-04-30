@@ -1,22 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NLite.Reflection;
-using NLite.Collections;
-using System.Linq.Expressions;
-
-using NLite.Data.Mapping;
-using System.Data.Common;
-using System.Data;
-using System.Runtime.Remoting.Messaging;
-using NLite.Data.Common;
-using NLite.Data.Dialect.Function;
-using NLite.Data.Dialect.ExpressionBuilder;
-using NLite.Data.Dialect.SqlBuilder;
-using System.Collections.Specialized;
-using System.Collections;
-using System.Reflection;
+﻿
 
 namespace NLite.Data.Dialect
 {

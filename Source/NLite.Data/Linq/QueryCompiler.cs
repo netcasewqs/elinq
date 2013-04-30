@@ -2,14 +2,11 @@
 // This source code is made available under the terms of the Microsoft Public License (MS-PL)
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Reflection;
 using NLite.Data.Linq.Internal;
-using NLite.Data;
 
 namespace NLite.Data.Linq
 {
@@ -107,7 +104,7 @@ namespace NLite.Data.Linq
                         );
                     root = this.FindProviderInExpression(replaced);
                 }
-                if (root != null) 
+                if (root != null)
                 {
                     ConstantExpression cex = root as ConstantExpression;
                     if (cex == null)
@@ -177,7 +174,7 @@ namespace NLite.Data.Linq
                     if (fnType.FullName.StartsWith("System.Func`"))
                     {
                         var typeArgs = fnType.GetGenericArguments();
-                        MethodInfo method = this.GetType().GetMethod("FastInvoke"+typeArgs.Length, BindingFlags.Public|BindingFlags.Instance);
+                        MethodInfo method = this.GetType().GetMethod("FastInvoke" + typeArgs.Length, BindingFlags.Public | BindingFlags.Instance);
                         if (method != null)
                         {
                             this.invoker = (Func<object[], object>)Delegate.CreateDelegate(typeof(Func<object[], object>), this, method.MakeGenericMethod(typeArgs));

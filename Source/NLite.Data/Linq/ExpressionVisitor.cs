@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq.Expressions;
 using System.Reflection;
-using NLite.Data;
 
 namespace NLite.Data.Linq
 {
@@ -89,7 +88,7 @@ namespace NLite.Data.Linq
 
         protected virtual Expression VisitUnknown(Expression expression)
         {
-            throw new Exception(string.Format(Res.TypeUnhandle,"expression", expression.NodeType));
+            throw new Exception(string.Format(Res.TypeUnhandle, "expression", expression.NodeType));
         }
 
         protected virtual MemberBinding VisitBinding(MemberBinding binding)
@@ -103,7 +102,7 @@ namespace NLite.Data.Linq
                 case MemberBindingType.ListBinding:
                     return this.VisitMemberListBinding((MemberListBinding)binding);
                 default:
-                    throw new Exception(string.Format(Res.TypeUnhandle,"binding", binding.BindingType));
+                    throw new Exception(string.Format(Res.TypeUnhandle, "binding", binding.BindingType));
             }
         }
 
@@ -428,7 +427,7 @@ namespace NLite.Data.Linq
 
         protected virtual Expression VisitMemberInit(MemberInitExpression init)
         {
-            var  n = this.VisitNew(init.NewExpression) as NewExpression;
+            var n = this.VisitNew(init.NewExpression) as NewExpression;
             IEnumerable<MemberBinding> bindings = this.VisitBindingList(init.Bindings);
             return this.UpdateMemberInit(init, n, bindings);
         }

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Linq.Expressions;
-using NLite.Reflection;
 using NLite.Data.Linq.Expressions;
+using NLite.Reflection;
 
 namespace NLite.Data.Dialect.SqlBuilder
 {

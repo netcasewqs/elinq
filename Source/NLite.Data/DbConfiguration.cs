@@ -148,18 +148,18 @@ namespace NLite.Data
                 switch (DbProviderName)
                 {
                     case DbProviderNames.Oracle_ODP:
-                        connection = new ODPConnectionWrapper(this,connection);
+                        connection = new ODPConnectionWrapper(this, connection);
                         break;
                     case DbProviderNames.SQLite:
                         connection = new SQLiteConnectionWrapper(this, connection) { IsFileDatabase = true };
                         break;
                     case DbProviderNames.SqlCe40:
                     case DbProviderNames.SqlCe35:
-                    case DbProviderNames.Oledb :
+                    case DbProviderNames.Oledb:
                         connection = new DbConnectionWrapper(this, connection) { IsFileDatabase = true };
                         break;
                     default:
-                        connection = new DbConnectionWrapper(this,connection);
+                        connection = new DbConnectionWrapper(this, connection);
                         break;
 
                 }
@@ -188,8 +188,8 @@ namespace NLite.Data
         }
 
         private Func<DbConnection> connectionCreator;
-      
-         /// <summary>
+
+        /// <summary>
         /// 创建数据库
         /// </summary>
         public void CreateDatabase()
@@ -280,13 +280,13 @@ namespace NLite.Data
             return dataDirectory;
         }
 
-         /// <summary>
+        /// <summary>
         /// 创建数据表
         /// </summary>
         public void CreateTables()
         {
             var scriptGenerator = Option.ScriptGenerator();
-            var script = scriptGenerator.Build(Dialect, mappings.Values.Cast<IEntityMapping>().ToArray(),  null);
+            var script = scriptGenerator.Build(Dialect, mappings.Values.Cast<IEntityMapping>().ToArray(), null);
 
             var scriptExecutor = Option.ScriptExecutor();
             scriptExecutor.CreateTables(this, script);
@@ -301,7 +301,7 @@ namespace NLite.Data
             return scriptExecutor.DatabaseExists(this);
         }
 
-         /// <summary>
+        /// <summary>
         /// 删除数据库
         /// </summary>
         public void DeleteDatabase()
@@ -330,7 +330,7 @@ namespace NLite.Data
                 return schema;
             }
         }
-    
+
         internal Func<ISqlLog> sqlLogger = () => SqlLog.Debug;
         /// <summary>
         /// 设置sql语句输出日志
@@ -359,24 +359,24 @@ namespace NLite.Data
             switch (providerName)
             {
                 case DbProviderNames.SQLite:
-                    connectionCreator = () => new SQLiteConnectionWrapper(this,DbProviderFactory.CreateConnection()) { ConnectionString = connectionString, IsFileDatabase = true };
+                    connectionCreator = () => new SQLiteConnectionWrapper(this, DbProviderFactory.CreateConnection()) { ConnectionString = connectionString, IsFileDatabase = true };
                     break;
                 case DbProviderNames.Oledb:
                 case DbProviderNames.SqlCe35:
                 case DbProviderNames.SqlCe40:
-                    connectionCreator = () => new DbConnectionWrapper(this,DbProviderFactory.CreateConnection()) { ConnectionString = connectionString, IsFileDatabase = true };
+                    connectionCreator = () => new DbConnectionWrapper(this, DbProviderFactory.CreateConnection()) { ConnectionString = connectionString, IsFileDatabase = true };
                     break;
                 case DbProviderNames.SqlServer:
                     var builder = DbProviderFactory.CreateConnectionStringBuilder();
                     builder.ConnectionString = connectionString;
                     builder["MultipleActiveResultSets"] = true;
-                    connectionCreator = () => new DbConnectionWrapper(this,DbProviderFactory.CreateConnection()) { ConnectionString = connectionString };
+                    connectionCreator = () => new DbConnectionWrapper(this, DbProviderFactory.CreateConnection()) { ConnectionString = connectionString };
                     break;
                 case DbProviderNames.Oracle_ODP:
-                     connectionCreator = () => new ODPConnectionWrapper(this,DbProviderFactory.CreateConnection()) { ConnectionString = connectionString };
+                    connectionCreator = () => new ODPConnectionWrapper(this, DbProviderFactory.CreateConnection()) { ConnectionString = connectionString };
                     break;
                 default:
-                     connectionCreator = () => new DbConnectionWrapper(this,DbProviderFactory.CreateConnection()) { ConnectionString = connectionString };
+                    connectionCreator = () => new DbConnectionWrapper(this, DbProviderFactory.CreateConnection()) { ConnectionString = connectionString };
                     break;
             }
 

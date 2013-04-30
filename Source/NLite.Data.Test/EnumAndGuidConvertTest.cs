@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestInitialize = NUnit.Framework.SetUpAttribute;
 using TestMethod = NUnit.Framework.TestAttribute;
-using NLite.Data.Mapping;
-using System.ComponentModel;
-using System.Linq.Expressions;
 
 namespace NLite.Data.Test
 {
-    
+
     /// <summary>
     /// EnumAndGuidConvertTest 的摘要说明
     /// </summary>
@@ -20,7 +15,7 @@ namespace NLite.Data.Test
     [TestClass]
     public class EnumConvertTest
     {
-       
+
 
         [TestMethod]
         public virtual void ToInt16()
@@ -80,7 +75,7 @@ namespace NLite.Data.Test
             Assert.IsTrue(PrimitiveMapper.Map<DayOfWeek, Int32>(DayOfWeek.Monday) == k);
             Assert.IsTrue(PrimitiveMapper.Map<DayOfWeek, Int32>(DayOfWeek.Sunday) == j);
 
-            Assert.IsTrue(PrimitiveMapper.Map<DayOfWeek?,Int32>(DayOfWeek.Friday)==i);
+            Assert.IsTrue(PrimitiveMapper.Map<DayOfWeek?, Int32>(DayOfWeek.Friday) == i);
             Assert.IsTrue(PrimitiveMapper.Map<DayOfWeek?, Int32>(DayOfWeek.Monday) == k);
             Assert.IsTrue(PrimitiveMapper.Map<DayOfWeek?, Int32>(DayOfWeek.Sunday) == j);
             Assert.IsNotNull(PrimitiveMapper.Map<DayOfWeek?, Int32>(null));
@@ -160,7 +155,7 @@ namespace NLite.Data.Test
             Assert.IsTrue(PrimitiveMapper.Map<DayOfWeek?, long?>(DayOfWeek.Friday) == i);
             Assert.IsTrue(PrimitiveMapper.Map<DayOfWeek?, long?>(DayOfWeek.Monday) == k);
             Assert.IsTrue(PrimitiveMapper.Map<DayOfWeek?, long?>(DayOfWeek.Sunday) == j);
-            Assert.IsNull(PrimitiveMapper.Map<DayOfWeek?, long?>(null));           
+            Assert.IsNull(PrimitiveMapper.Map<DayOfWeek?, long?>(null));
         }
         [TestMethod]
         public virtual void ToUInt64()
@@ -315,7 +310,7 @@ namespace NLite.Data.Test
             Assert.IsTrue(PrimitiveMapper.Map<DayOfWeek, string>(DayOfWeek.Friday) == i);
             Assert.IsTrue(PrimitiveMapper.Map<DayOfWeek, string>(DayOfWeek.Monday) == k);
             Assert.IsTrue(PrimitiveMapper.Map<DayOfWeek, string>(DayOfWeek.Sunday) == j);
-             
+
             Assert.IsTrue(PrimitiveMapper.Map<DayOfWeek?, string>(DayOfWeek.Friday) == i);
             Assert.IsTrue(PrimitiveMapper.Map<DayOfWeek?, string>(DayOfWeek.Monday) == k);
             Assert.IsTrue(PrimitiveMapper.Map<DayOfWeek?, string>(DayOfWeek.Sunday) == j);
@@ -364,7 +359,7 @@ namespace NLite.Data.Test
             short i = 6;
             short j = 1;
             short k = 0;
-            Assert.IsTrue(PrimitiveMapper.Map<short,DayOfWeek>(i)==DayOfWeek.Saturday);
+            Assert.IsTrue(PrimitiveMapper.Map<short, DayOfWeek>(i) == DayOfWeek.Saturday);
             Assert.IsTrue(PrimitiveMapper.Map<short, DayOfWeek>(j) == DayOfWeek.Monday);
             Assert.IsTrue(PrimitiveMapper.Map<short, DayOfWeek>(k) == DayOfWeek.Sunday);
 
@@ -636,11 +631,11 @@ namespace NLite.Data.Test
             Guid g = new Guid("df793523-e09a-49d9-bf43-54ad35ffde4a");
             Guid gg = new Guid("df793523-e09a-49d9-bf43-54ad35ffde41");
 
-            Assert.IsTrue(PrimitiveMapper.Map<string, Guid>(i) == g );
-            Assert.IsTrue(PrimitiveMapper.Map<string, Guid>(j) ==gg );
+            Assert.IsTrue(PrimitiveMapper.Map<string, Guid>(i) == g);
+            Assert.IsTrue(PrimitiveMapper.Map<string, Guid>(j) == gg);
 
-            Assert.IsTrue(PrimitiveMapper.Map<string, Guid?>(i) == g );
-            Assert.IsTrue(PrimitiveMapper.Map<string, Guid?>(j) == gg );
+            Assert.IsTrue(PrimitiveMapper.Map<string, Guid?>(i) == g);
+            Assert.IsTrue(PrimitiveMapper.Map<string, Guid?>(j) == gg);
         }
         [TestMethod]
         public virtual void ByteToGuid()
@@ -667,12 +662,12 @@ namespace NLite.Data.Test
             string ss = "df793523-e09a-49d9-bf43-54ad35ffde41";
 
             Console.WriteLine(g);//df793523-e09a-49d9-bf43-54ad35ffde4a
-            Assert.AreEqual(PrimitiveMapper.Map<Guid, string>(g),s);
+            Assert.AreEqual(PrimitiveMapper.Map<Guid, string>(g), s);
             Assert.IsTrue(PrimitiveMapper.Map<Guid, string>(gg) == ss);
 
             Assert.IsTrue(PrimitiveMapper.Map<Guid?, string>(g) == s);
             Assert.IsTrue(PrimitiveMapper.Map<Guid?, string>(gg) == ss);
-            Assert.IsNull(PrimitiveMapper.Map<Guid?,string>(null));
+            Assert.IsNull(PrimitiveMapper.Map<Guid?, string>(null));
         }
         [TestMethod]
         //[ExpectedException(typeof(ArgumentException))]
@@ -709,7 +704,7 @@ namespace NLite.Data.Test
             PrimitiveMapper.Map<Guid?, byte[]>(null).AreEqual(null);
         }
 
-      
+
     }
 
     public static class CollectionAssert

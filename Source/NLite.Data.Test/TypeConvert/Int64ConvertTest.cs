@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using NUnit.Framework;
-using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestInitialize = NUnit.Framework.SetUpAttribute;
-using TestMethod = NUnit.Framework.TestAttribute;
-using NLite.Data.Test.Primitive.Model;
 using System.Linq.Expressions;
-using System.ComponentModel;
+using NLite.Data.Test.Primitive.Model;
+using NUnit.Framework;
+using TestMethod = NUnit.Framework.TestAttribute;
 namespace NLite.Data.Test.TypeConvert
 {
     public class Int64ConvertTest : TestBase<NullableTypeInfo>
     {
-       
+
         protected override string ConnectionStringName
         {
             get

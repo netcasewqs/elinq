@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Linq.Expressions;
+using NLite.Data.Test.Primitive.Model;
 using NUnit.Framework;
 using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestInitialize = NUnit.Framework.SetUpAttribute;
 using TestMethod = NUnit.Framework.TestAttribute;
-using NLite.Data.Test.Primitive.Model;
-using System.Linq.Expressions;
-using System.ComponentModel;
 
 namespace NLite.Data.Test.TypeConvert
 {
     [TestClass]
-    public class CharConvertTest: TestBase<NullableTypeInfo>
+    public class CharConvertTest : TestBase<NullableTypeInfo>
     {
         protected override string ConnectionStringName
         {
@@ -67,9 +63,9 @@ namespace NLite.Data.Test.TypeConvert
         [TestMethod]
         public virtual void ToSByte()
         {
-            Execute("Char", '0', p => Convert.ToSByte(p.Char.Value)==0);
-            Execute("Char", '1', p => Convert.ToSByte(p.Char.Value)==1);
-            Execute("Char", '2', p => Convert.ToSByte(p.Char.Value)==2);
+            Execute("Char", '0', p => Convert.ToSByte(p.Char.Value) == 0);
+            Execute("Char", '1', p => Convert.ToSByte(p.Char.Value) == 1);
+            Execute("Char", '2', p => Convert.ToSByte(p.Char.Value) == 2);
         }
         [TestMethod]
         public virtual void ToByte()
@@ -154,7 +150,7 @@ namespace NLite.Data.Test.TypeConvert
         [TestMethod]
         public virtual void Parse()
         {
-            Execute("Char", '0', p =>char.Parse("0")=='0');
+            Execute("Char", '0', p => char.Parse("0") == '0');
         }
     }
 }

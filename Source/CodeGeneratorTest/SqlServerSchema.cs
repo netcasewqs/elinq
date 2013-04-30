@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using NLite.Data;
-using NLite.Data.Schema;
-using NLite.Data.Schema.Loader;
 using NUnit.Framework;
 
 namespace CodeGeneratorTest
@@ -24,8 +19,8 @@ namespace CodeGeneratorTest
                         .SetSqlLogger(() => new SqlLog(Console.Out))
                         ;
             }
-            
-            
+
+
         }
 
         [Test]

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
-using NLite.Data;
 using System.Data;
+using System.Linq;
+using NLite.Data;
+using NUnit.Framework;
 
 namespace CodeGeneratorTest
 {
@@ -39,7 +37,7 @@ namespace CodeGeneratorTest
                     , item["ProviderDbType"]
                     , item["DataType"]));
 
-            
+
 
         }
 
@@ -48,7 +46,7 @@ namespace CodeGeneratorTest
         {
             var schema = dbConfiguration.Schema;
             Assert.IsNotNull(schema);
-            
+
             var cc = aa;
         }
 

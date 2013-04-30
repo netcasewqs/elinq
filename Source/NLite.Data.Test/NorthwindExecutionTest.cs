@@ -1,22 +1,18 @@
 ﻿using System;
-using System.Text;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
-
+using NLite.Data.Linq;
+using NLite.Data.Test.Model.Northwind;
 using NUnit.Framework;
 using TestClass = NUnit.Framework.TestFixtureAttribute;
 using TestInitialize = NUnit.Framework.SetUpAttribute;
 using TestMethod = NUnit.Framework.TestAttribute;
-using NLite.Data.Test.Model.Northwind;
-using NLite.Linq;
-using NLite.Data.Linq;
-using System.Data;
-using System.Reflection;
 
 namespace NLite.Data.Test
 {
     [TestClass]
-    public class NorthwindExecutionTest:TestBase
+    public class NorthwindExecutionTest : TestBase
     {
         protected Northwind db;
 
@@ -32,7 +28,7 @@ namespace NLite.Data.Test
         }
 
         [TestInitialize]
-        public  void Initialize()
+        public void Initialize()
         {
             stopwatch.Stop();
             Console.WriteLine(stopwatch.ElapsedMilliseconds);
@@ -52,7 +48,7 @@ namespace NLite.Data.Test
         {
             db.Dispose();
         }
-        
+
         [TestMethod]
         public void TestToDataTable()
         {
@@ -111,9 +107,9 @@ namespace NLite.Data.Test
             list = fn2(db, "London", "EASTC").ToList();
             AssertValue(6, list.Count);
             AssertValue(null, list[0].City);
-           
+
         }
-      
+
 
         [TestMethod]
         public virtual void TestCount()
@@ -129,7 +125,7 @@ namespace NLite.Data.Test
             AssertValue(6, count);
         }
 
-       
+
         [TestMethod]
         public virtual void TestWhere()
         {
@@ -146,7 +142,7 @@ namespace NLite.Data.Test
         public virtual void TestAnyContains()
         {
             var citys = new string[] { "B", "U" };
-            var q = db.Customers.Where(p=>citys.Any(c=>p.City.Contains(c)));
+            var q = db.Customers.Where(p => citys.Any(c => p.City.Contains(c)));
             var items = q.ToArray();
             Assert.IsTrue(items.Length >= 2);
         }
@@ -458,7 +454,7 @@ namespace NLite.Data.Test
                 where c.CustomerID == "ALFKI"
                 select d
                 ).ToList();
-            
+
             AssertValue(12930, list.Count);
         }
 
@@ -1341,7 +1337,7 @@ namespace NLite.Data.Test
             AssertValue(notrim.Trim(), trim);
         }
 
-    
+
 
         [TestMethod]
         public virtual void TestMathAbs()
@@ -2025,7 +2021,7 @@ namespace NLite.Data.Test
         [TestMethod]
         public virtual void TestCustomersIncludeOrders()
         {
-            var custs = db.Customers.Include(c=>c.Orders).Where(c => c.CustomerID == "ALFKI").ToList();
+            var custs = db.Customers.Include(c => c.Orders).Where(c => c.CustomerID == "ALFKI").ToList();
             AssertValue(1, custs.Count);
             Assert.AreNotEqual(null, custs[0].Orders);
             AssertValue(6, custs[0].Orders.Count);
@@ -2035,8 +2031,8 @@ namespace NLite.Data.Test
         public virtual void TestCustomersIncludeOrdersAndDetails()
         {
             var custs = db.Customers
-                .Include(c=>c.Orders)
-                .IncludeWith<Order>(o=>o.Details)
+                .Include(c => c.Orders)
+                .IncludeWith<Order>(o => o.Details)
                 .Where(c => c.CustomerID == "ALFKI")
                 .ToList();
             AssertValue(1, custs.Count);
@@ -2052,7 +2048,7 @@ namespace NLite.Data.Test
         public virtual void TestCustomersIncludeOrdersWhere()
         {
             var custs = db.Customers
-                .Include(c=>c.Orders.Where(o=>(o.OrderID & 1) == 0))
+                .Include(c => c.Orders.Where(o => (o.OrderID & 1) == 0))
                 .Where(c => c.CustomerID == "ALFKI")
                 .ToList();
             AssertValue(1, custs.Count);
@@ -2065,7 +2061,7 @@ namespace NLite.Data.Test
         {
             var custs = db
                 .Customers
-                .Include(c=>c.Orders)
+                .Include(c => c.Orders)
                 .Where(c => c.CustomerID == "ALFKI")
                 .ToList();
             AssertValue(1, custs.Count);
@@ -2119,7 +2115,7 @@ namespace NLite.Data.Test
         {
             var list = db
                 .Orders
-                .Include(o=>o.Details)
+                .Include(o => o.Details)
                 .Where(o => o.CustomerID == "ALFKI")
                 .GroupBy(o => o.CustomerID)
                 .ToList();
@@ -2136,7 +2132,7 @@ namespace NLite.Data.Test
         [TestMethod]
         public virtual void TestOrdersIncludeDetailsWithFirst()
         {
-            var q = from o in db.Orders.Include(o=>o.Details)
+            var q = from o in db.Orders.Include(o => o.Details)
                     where o.OrderID == 10248
                     select o;
 

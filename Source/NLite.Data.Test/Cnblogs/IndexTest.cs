@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
-using NLite.Data.Mapping;
+﻿using NUnit.Framework;
 
 namespace NLite.Data.Test.Cnblogs
 {
     [TestFixture]
     public class IndexTest
     {
-        [Table(Name="tbIndex")]
+        [Table(Name = "tbIndex")]
         class Index
         {
             public int Id;

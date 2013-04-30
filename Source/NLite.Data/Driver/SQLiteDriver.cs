@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data;
 using NLite.Data.Common;
 using NLite.Reflection;
 
 namespace NLite.Data.Driver
 {
-    class SQLiteDriver:AbstractDriver
+    class SQLiteDriver : AbstractDriver
     {
         protected override void InitializeParameter(IDbDataParameter p, NamedParameter parameter, object value)
         {

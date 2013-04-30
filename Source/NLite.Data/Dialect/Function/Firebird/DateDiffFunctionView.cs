@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NLite.Data.Common;
-using NLite.Data.Dialect.SqlBuilder;
 using System.Linq.Expressions;
+using NLite.Data.Common;
 
 namespace NLite.Data.Dialect.Function.Firebird
 {
-    class DateDiffFunctionView : IFunctionView 
+    class DateDiffFunctionView : IFunctionView
     {
         static readonly Dictionary<DateParts, IFunctionView> functions = new Dictionary<DateParts, IFunctionView>
         {

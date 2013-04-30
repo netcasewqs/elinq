@@ -2,13 +2,10 @@
 // This source code is made available under the terms of the Microsoft Public License (MS-PL)
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using NLite.Data.Dialect;
 using NLite.Data.Common;
 
 namespace NLite.Data.Linq.Expressions
@@ -56,12 +53,12 @@ namespace NLite.Data.Linq.Expressions
         private ColumnProjector(Expression expression, IEnumerable<ColumnDeclaration> existingColumns, TableAlias newAlias, IEnumerable<TableAlias> existingAliases)
         {
             this.newAlias = newAlias;
-            this.existingAliases = new HashSet<TableAlias>(existingAliases,TableAlias.Comparer);
+            this.existingAliases = new HashSet<TableAlias>(existingAliases, TableAlias.Comparer);
             this.map = new Dictionary<ColumnExpression, ColumnExpression>();
             if (existingColumns != null)
             {
                 this.columns = new List<ColumnDeclaration>(existingColumns);
-                this.columnNames = new HashSet<string>(existingColumns.Select(c => c.Name),StringComparer.Ordinal);
+                this.columnNames = new HashSet<string>(existingColumns.Select(c => c.Name), StringComparer.Ordinal);
             }
             else
             {
@@ -105,7 +102,7 @@ namespace NLite.Data.Linq.Expressions
                             return new ColumnExpression(column.Type, column.SqlType, this.newAlias, existingColumn.Name);
                         }
                     }
-                    if (this.existingAliases.Contains(column.Alias)) 
+                    if (this.existingAliases.Contains(column.Alias))
                     {
                         int ordinal = this.columns.Count;
                         string columnName = this.GetUniqueColumnName(column.Name);
@@ -214,7 +211,7 @@ namespace NLite.Data.Linq.Expressions
                             {
                                 this.candidates.Add(expression);
                             }
-                            else 
+                            else
                             {
                                 this.isBlocked = true;
                             }

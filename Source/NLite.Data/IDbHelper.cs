@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data.Common;
 using System.Data;
-using NLite.Data.Mapping;
-using NLite.Data.Common;
+using System.Data.Common;
+
 #if SDK4
 using System.Dynamic;
 #endif
-using System.Collections.Specialized;
 
 namespace NLite.Data
 {
-    #if SDK35
+#if SDK35
     /// <summary>
     /// SqlHelper 接口
     /// </summary>
@@ -81,7 +76,7 @@ namespace NLite.Data
     /// <summary>
     /// SqlHelper 接口
     /// </summary>
-    public interface IDbHelper:IDisposable
+    public interface IDbHelper : IDisposable
     {
         /// <summary>
         /// 得到DbConfiguration对象

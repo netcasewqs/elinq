@@ -1,22 +1,14 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 // This source code is made available under the terms of the Microsoft Public License (MS-PL)
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-using System.Text;
 using System.IO;
-using NLite.Linq;
-using NLite.Data.Dialect;
+using System.Linq.Expressions;
 
 
 namespace NLite.Data.Linq.Expressions
 {
-   
+
     class DbExpressionWriter : ExpressionWriter
     {
         InternalDbContext dbContext;
@@ -144,7 +136,7 @@ namespace NLite.Data.Linq.Expressions
 
         protected virtual Expression VisitSelect(SelectExpression select)
         {
-            this.Write(dbContext.BuildSql( select));
+            this.Write(dbContext.BuildSql(select));
             return select;
         }
 
@@ -199,7 +191,7 @@ namespace NLite.Data.Linq.Expressions
         protected virtual Expression VisitColumn(ColumnExpression column)
         {
             int iAlias;
-            string aliasName = 
+            string aliasName =
                 this.aliasMap.TryGetValue(column.Alias, out iAlias)
                 ? "A" + iAlias
                 : "A" + (column.Alias != null ? column.Alias.GetHashCode().ToString() : "") + "?";
@@ -213,4 +205,3 @@ namespace NLite.Data.Linq.Expressions
         }
     }
 }
- 

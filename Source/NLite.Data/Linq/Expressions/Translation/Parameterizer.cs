@@ -2,17 +2,11 @@
 // This source code is made available under the terms of the Microsoft Public License (MS-PL)
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
-using System.Text;
+using NLite.Data.Common;
 using NLite.Data.Dialect;
 using NLite.Reflection;
-using NLite.Data.Mapping;
-using NLite.Data.Common;
 
 namespace NLite.Data.Linq.Expressions
 {
@@ -57,7 +51,7 @@ namespace NLite.Data.Linq.Expressions
             return e != null && e.NodeType == ExpressionType.Constant || e.NodeType == ExpressionType.Parameter;
         }
 
-       
+
 
         protected override Expression VisitBinary(BinaryExpression b)
         {
@@ -95,7 +89,7 @@ namespace NLite.Data.Linq.Expressions
                     if (!this.map.TryGetValue(tv, out nv))
                     {
                         string name = "p" + (iParam++);
-                        nv = new NamedValueExpression(name, SqlType.Get(ca.Column.Type), Expression.Constant(null,ca.Column.Type));
+                        nv = new NamedValueExpression(name, SqlType.Get(ca.Column.Type), Expression.Constant(null, ca.Column.Type));
                         this.map.Add(tv, nv);
                     }
                     expression = nv;
@@ -113,11 +107,11 @@ namespace NLite.Data.Linq.Expressions
                     }
                 }
             }
-           
+
             nv = expression as NamedValueExpression;
             if (nv != null)
             {
-               
+
                 expression = new NamedValueExpression(nv.Name, ca.Column.SqlType, nv.Value);
             }
             return this.UpdateColumnAssignment(ca, ca.Column, expression);
@@ -149,7 +143,7 @@ namespace NLite.Data.Linq.Expressions
             return c;
         }
 
-        protected override Expression VisitParameter(ParameterExpression p) 
+        protected override Expression VisitParameter(ParameterExpression p)
         {
             return this.GetNamedValue(p);
         }
@@ -158,7 +152,7 @@ namespace NLite.Data.Linq.Expressions
         {
             m = (MemberExpression)base.VisitMemberAccess(m);
             NamedValueExpression nv = m.Expression as NamedValueExpression;
-            if (nv != null) 
+            if (nv != null)
             {
                 Expression x = Expression.MakeMemberAccess(nv.Value, m.Member);
                 return GetNamedValue(x);
@@ -186,7 +180,8 @@ namespace NLite.Data.Linq.Expressions
             if (type.IsEnum)
                 type = Enum.GetUnderlyingType(type);
 
-            switch (Type.GetTypeCode(type)) {
+            switch (Type.GetTypeCode(type))
+            {
                 case TypeCode.Boolean:
                 case TypeCode.Byte:
                 case TypeCode.Decimal:
@@ -217,7 +212,7 @@ namespace NLite.Data.Linq.Expressions
                 this.value = value;
                 this.hash = type.GetHashCode();
 
-                if(value != null)
+                if (value != null)
                     this.hash = this.hash ^ value.GetHashCode();
             }
 
@@ -254,7 +249,7 @@ namespace NLite.Data.Linq.Expressions
             {
                 if (!(obj is HashedExpression))
                     return false;
- 	            return this.Equals((HashedExpression)obj);
+                return this.Equals((HashedExpression)obj);
             }
 
             public bool Equals(HashedExpression other)

@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using NLite.Collections;
 using NLite.Data.Mapping;
 
 namespace NLite.Data.Schema.Script.Generator
 {
-    class SqlServerScriptGenerator:DatabaseScriptGenerator
+    class SqlServerScriptGenerator : DatabaseScriptGenerator
     {
         protected override string[] BuildSchemaScript(IEntityMapping[] mappings)
         {

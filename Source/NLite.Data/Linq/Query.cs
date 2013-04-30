@@ -7,15 +7,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
-using NLite.Data;
 using NLite.Data.Common;
 using NLite.Data.Linq.Expressions;
-using NLite.Data.Dialect;
 
 namespace NLite.Data.Linq
 {
-   
+
     class Query<T> : IQueryable<T>, IQueryable, IEnumerable<T>, IEnumerable, IOrderedQueryable<T>, IOrderedQueryable
     {
         IQueryProvider provider;
@@ -102,13 +99,13 @@ namespace NLite.Data.Linq
             get
             {
                 var dbContext = provider as InternalDbContext;
-                if(dbContext != null)
+                if (dbContext != null)
                     return string.Format("ELinq Version :{0}{1}{2}{3}{4}"
-                        ,Version
-                        ,Environment.NewLine
-                        ,"Dialect :"+dbContext.Dialect.GetType().Name
-                        ,Environment.NewLine
-                        ,dbContext.GetSqlText(this.Expression));
+                        , Version
+                        , Environment.NewLine
+                        , "Dialect :" + dbContext.Dialect.GetType().Name
+                        , Environment.NewLine
+                        , dbContext.GetSqlText(this.Expression));
                 return null;
             }
         }
@@ -146,7 +143,7 @@ namespace NLite.Data.Linq
 
             protected override Expression VisitMethodCall(MethodCallExpression m)
             {
-                if (ExectorType.IsAssignableFrom(m.Method.DeclaringType) && m.Method.Name == "List" )
+                if (ExectorType.IsAssignableFrom(m.Method.DeclaringType) && m.Method.Name == "List")
                 {
                     executeExpression = m;
                     return m;

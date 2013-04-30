@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data;
-using NLite.Data.Common;
-
+﻿
 namespace NLite.Data.Schema.Loader
 {
-    class SqlServerSchemaLoader:SchemaLoader
+    class SqlServerSchemaLoader : SchemaLoader
     {
         protected override string AllColumnsSql
         {
@@ -37,7 +31,7 @@ namespace NLite.Data.Schema.Loader
                         WHERE d.Name <>'syssegments' and d.Name <>'sysconstraints' and d.name <>'sysdiagrams'
                                 "
                         ;
-                }
+            }
         }
 
         protected override string AllConstraintsSql
@@ -97,6 +91,6 @@ namespace NLite.Data.Schema.Loader
             }
         }
 
-       
+
     }
 }

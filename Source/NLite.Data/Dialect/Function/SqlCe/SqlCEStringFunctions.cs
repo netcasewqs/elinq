@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace NLite.Data.Dialect.Function.SqlCe
 {
     class SqlCEStringFunctions : IStringFunctions
@@ -35,7 +31,7 @@ namespace NLite.Data.Dialect.Function.SqlCe
         public IFunctionView LeftOf
         {
             //get { return FunctionViews.Template("left(?1, ?2)"); }
-            get { return FunctionView.NotSupport("LeftOf"); } 
+            get { return FunctionView.NotSupport("LeftOf"); }
         }
 
         public IFunctionView Length

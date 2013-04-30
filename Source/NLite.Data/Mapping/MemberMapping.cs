@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Reflection;
-using System.Collections;
-using System.Data;
-using NLite.Data.Dialect;
-using NLite.Reflection;
-using NLite.Collections;
+using NLite.Data.Common;
 using NLite.Data.Linq.Internal;
 using NLite.Data.LinqToSql;
-using NLite.Data.Common;
+using NLite.Reflection;
 
 namespace NLite.Data.Mapping
 {
@@ -172,7 +166,7 @@ namespace NLite.Data.Mapping
                     {
                         object attr = null;
 #if !SDK35
-                   
+
                         attr = member.GetCustomAttributes(DataAnnotationMappingAdapter.KeyAttributeType, false).FirstOrDefault();
                         isPrimaryKey = attr != null;
 #endif
@@ -181,11 +175,11 @@ namespace NLite.Data.Mapping
 
                         attr = member.GetCustomAttributes(DataAnnotationMappingAdapter.StringLengthAttributeType, false).FirstOrDefault();
                         if (attr != null)
-                            length =(int) DataAnnotationMappingAdapter.Instance.StringLength.Length(attr);
+                            length = (int)DataAnnotationMappingAdapter.Instance.StringLength.Length(attr);
                     }
 
                     sqlType = SqlType.Get(underlyingType, new ColumnAttribute { IsNullable = !required, Length = length });
-                    
+
                 }
                 else//manyToOne
                 {

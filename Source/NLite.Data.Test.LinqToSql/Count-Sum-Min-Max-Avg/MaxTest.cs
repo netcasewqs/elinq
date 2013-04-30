@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using NUnit.Framework;
 using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestInitialize = NUnit.Framework.SetUpAttribute;
 using TestMethod = NUnit.Framework.TestAttribute;
 
 namespace NLite.Data.Test.LinqToSql.Count_Sun_Min_Max_Avg
 {
     [TestClass]
-    public class MaxTest:DLinqConnection
+    public class MaxTest : DLinqConnection
     {
         //简单形式
         [TestMethod]

@@ -5,13 +5,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
 using System.Text;
-using System.IO;
 using NLite.Data.Linq.Internal;
-using NLite.Reflection;
 
 namespace NLite.Data.Linq
 {
@@ -278,7 +276,7 @@ namespace NLite.Data.Linq
 
         protected override Expression VisitConstant(ConstantExpression c)
         {
-            if (c.Value == null) 
+            if (c.Value == null)
             {
                 this.Write("null");
             }

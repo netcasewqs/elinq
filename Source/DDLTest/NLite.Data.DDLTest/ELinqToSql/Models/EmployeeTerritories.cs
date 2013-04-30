@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NLite.Data;
+﻿using NLite.Data;
 
 namespace ELinq.DDLTest.ElinqToSql.Models
 {
@@ -12,7 +8,7 @@ namespace ELinq.DDLTest.ElinqToSql.Models
         [Id]
         public int EmployeeID { get; set; }
 
-        [Id(Length=20)]
+        [Id(Length = 20)]
         public string TerritoryID { get; set; }
 
         [ManyToOne(ThisKey = "EmployeeID", OtherKey = "EmployeeID")]

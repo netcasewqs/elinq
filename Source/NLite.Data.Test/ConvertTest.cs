@@ -1,36 +1,20 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
+using NLite;
 using NUnit.Framework;
 using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestInitialize = NUnit.Framework.SetUpAttribute;
 using TestMethod = NUnit.Framework.TestAttribute;
-using NLite.Data.Test.Primitive;
-using System.ComponentModel;
-using NLite.Data.Mapping;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
-using System.Globalization;
-using System.Collections;
-using System.Reflection;
-using NLite.Data.Test;
-using NLite.Reflection;
-using System.Linq.Expressions;
-using NLite.Data.Linq;
-using NLite;
 public class PrimitiveMapper
 {
-   
+
 
     public static TTo Map<TFrom, TTo>(TFrom from)
     {
-        return Converter.Convert<TFrom,TTo>(from);
+        return Converter.Convert<TFrom, TTo>(from);
     }
 
-    public static object Map(object from,Type toType)
+    public static object Map(object from, Type toType)
     {
-        return Converter.Convert(from, toType );
+        return Converter.Convert(from, toType);
     }
 }
 
@@ -42,18 +26,18 @@ namespace NLite.Data.Test.ConvertTest
     [TestClass]
     public class BooleanConvertTest
     {
-       
-        
+
+
         [TestMethod]
         public virtual void ToBoolean()
         {
             //Boolean a = true;
             //Boolean b; 
-           // b = (Boolean)a;
+            // b = (Boolean)a;
             //b = a;
             //Boolean b = Convert.ToBoolean(a);
             //b = (Boolean)Convert.ChangeType(a, typeof(Boolean));
-           // var converter = TypeDescriptor.GetConverter(typeof(Boolean));
+            // var converter = TypeDescriptor.GetConverter(typeof(Boolean));
             //b = (Boolean)converter.ConvertFrom(a);
             //Console.WriteLine(b);
 
@@ -210,7 +194,7 @@ namespace NLite.Data.Test.ConvertTest
             Assert.IsTrue(PrimitiveMapper.Map<bool?, UInt16>(false) == 0);
             Assert.IsTrue(PrimitiveMapper.Map<bool?, UInt16>(null) == 0);
 
-            Assert.IsTrue(PrimitiveMapper.Map<bool, UInt16?>(true) == 1); 
+            Assert.IsTrue(PrimitiveMapper.Map<bool, UInt16?>(true) == 1);
             Assert.IsTrue(PrimitiveMapper.Map<bool, UInt16?>(false) == 0);
 
             Assert.IsTrue(PrimitiveMapper.Map<bool?, UInt16?>(true) == 1);
@@ -232,7 +216,7 @@ namespace NLite.Data.Test.ConvertTest
             //b = (Int32)converter.ConvertTo(a, typeof(Int32));
             Console.WriteLine(b);
              */
-            Assert.IsTrue(PrimitiveMapper.Map<bool,Int32>(true)==1);
+            Assert.IsTrue(PrimitiveMapper.Map<bool, Int32>(true) == 1);
             Assert.IsTrue(PrimitiveMapper.Map<bool, Int32>(false) == 0);
 
             Assert.IsTrue(PrimitiveMapper.Map<bool?, Int32>(true) == 1);
@@ -437,7 +421,7 @@ namespace NLite.Data.Test.ConvertTest
             //b = (DateTime)converter.ConvertTo(a, typeof(DateTime));
             Console.WriteLine(b);
              */
-            Assert.IsFalse(PrimitiveMapper.Map<bool, DateTime>(true)==new DateTime(2012,7,9));
+            Assert.IsFalse(PrimitiveMapper.Map<bool, DateTime>(true) == new DateTime(2012, 7, 9));
         }
         [TestMethod]
         public virtual void ToSString()
@@ -454,7 +438,7 @@ namespace NLite.Data.Test.ConvertTest
             b = (String)converter.ConvertTo(a, typeof(String));
             Console.WriteLine(b);
              */
-            Assert.IsTrue(PrimitiveMapper.Map<bool, string>(true)=="True");
+            Assert.IsTrue(PrimitiveMapper.Map<bool, string>(true) == "True");
             bool b = true;
             string s = b.ToString();
             Console.WriteLine(s);
@@ -463,7 +447,7 @@ namespace NLite.Data.Test.ConvertTest
         public virtual void Parse()
         {
             Boolean a = true;
-            String b="false";
+            String b = "false";
             //b = "1";
             //b = "0";
             a = Boolean.Parse(b);
@@ -491,7 +475,7 @@ namespace NLite.Data.Test.ConvertTest
             b = (Boolean)converter.ConvertTo(a,typeof(Boolean));
             Console.WriteLine(b);
             */
-            Assert.IsNotNull(PrimitiveMapper.Map<char,bool>(' '));
+            Assert.IsNotNull(PrimitiveMapper.Map<char, bool>(' '));
         }
         [TestMethod]
         public virtual void ToChar()
@@ -508,7 +492,7 @@ namespace NLite.Data.Test.ConvertTest
             //b = Convert.ToChar(a);
             Console.WriteLine(b);
              */
-            Assert.IsNotNull(PrimitiveMapper.Map<char,char>(' '));
+            Assert.IsNotNull(PrimitiveMapper.Map<char, char>(' '));
         }
         [TestMethod]
         public virtual void ToSByte()
@@ -550,7 +534,7 @@ namespace NLite.Data.Test.ConvertTest
             Assert.IsNotNull(PrimitiveMapper.Map<char?, sbyte?>('-'));
             Assert.IsNotNull(PrimitiveMapper.Map<char?, sbyte?>(' '));
             Assert.IsNull(PrimitiveMapper.Map<char?, sbyte?>(null));
-            
+
         }
         [TestMethod]
         public virtual void ToByte()
@@ -866,7 +850,7 @@ namespace NLite.Data.Test.ConvertTest
             Assert.IsNotNull(PrimitiveMapper.Map<char?, Single>('a'));
             Assert.IsNotNull(PrimitiveMapper.Map<char?, Single>('-'));
             Assert.IsNotNull(PrimitiveMapper.Map<char?, Single>(null));
-           // Assert.IsNotNull(PrimitiveMapper.Map<char?, Single>(' '));
+            // Assert.IsNotNull(PrimitiveMapper.Map<char?, Single>(' '));
 
             Assert.IsNotNull(PrimitiveMapper.Map<char, Single?>('1'));
             Assert.IsNotNull(PrimitiveMapper.Map<char, Single?>('0'));
@@ -937,7 +921,7 @@ namespace NLite.Data.Test.ConvertTest
             //b = (DateTime)converter.ConvertTo(a, typeof(DateTime));
             Console.WriteLine(b);
              */
-            Assert.IsNotNull(PrimitiveMapper.Map<char?,DateTime?>(' '));
+            Assert.IsNotNull(PrimitiveMapper.Map<char?, DateTime?>(' '));
         }
         [TestMethod]
         public virtual void ToSString()
@@ -954,17 +938,17 @@ namespace NLite.Data.Test.ConvertTest
             //b = (String)converter.ConvertTo(a, typeof(String));
             Console.WriteLine(b);
              */
-            Assert.IsTrue(PrimitiveMapper.Map<char, String>('1')=="1");
-            Assert.IsTrue(PrimitiveMapper.Map<char, String>('0')=="0");
-            Assert.IsTrue(PrimitiveMapper.Map<char, String>('a')=="a");
-            Assert.IsTrue(PrimitiveMapper.Map<char, String>('-')=="-");
-            Assert.IsTrue(PrimitiveMapper.Map<char, String>(' ')==" ");
+            Assert.IsTrue(PrimitiveMapper.Map<char, String>('1') == "1");
+            Assert.IsTrue(PrimitiveMapper.Map<char, String>('0') == "0");
+            Assert.IsTrue(PrimitiveMapper.Map<char, String>('a') == "a");
+            Assert.IsTrue(PrimitiveMapper.Map<char, String>('-') == "-");
+            Assert.IsTrue(PrimitiveMapper.Map<char, String>(' ') == " ");
 
-            Assert.IsTrue(PrimitiveMapper.Map<char?, String>('1')=="1");
-            Assert.IsTrue(PrimitiveMapper.Map<char?, String>('0')=="0");
-            Assert.IsTrue(PrimitiveMapper.Map<char?, String>('a')=="a");
-            Assert.IsTrue(PrimitiveMapper.Map<char?, String>('-')=="-");
-            Assert.IsTrue(PrimitiveMapper.Map<char?, String>(' ')==" ");
+            Assert.IsTrue(PrimitiveMapper.Map<char?, String>('1') == "1");
+            Assert.IsTrue(PrimitiveMapper.Map<char?, String>('0') == "0");
+            Assert.IsTrue(PrimitiveMapper.Map<char?, String>('a') == "a");
+            Assert.IsTrue(PrimitiveMapper.Map<char?, String>('-') == "-");
+            Assert.IsTrue(PrimitiveMapper.Map<char?, String>(' ') == " ");
             Assert.IsNull(PrimitiveMapper.Map<char?, String>(null));
 
             //Assert.IsNotNull(PrimitiveMapper.Map<char, String?>('1'));
@@ -1063,7 +1047,7 @@ namespace NLite.Data.Test.ConvertTest
 
             Assert.IsNotNull(PrimitiveMapper.Map<sbyte, Char?>(0).Value);
             Assert.IsNotNull(PrimitiveMapper.Map<sbyte, Char?>(1).Value);
-           // Assert.IsNotNull(PrimitiveMapper.Map<sbyte, Char?>(-1).Value);
+            // Assert.IsNotNull(PrimitiveMapper.Map<sbyte, Char?>(-1).Value);
             Assert.IsNotNull(PrimitiveMapper.Map<sbyte, Char?>(2).Value);
 
             Assert.IsNull(PrimitiveMapper.Map<sbyte?, Char?>(null));
@@ -1107,7 +1091,7 @@ namespace NLite.Data.Test.ConvertTest
             Assert.IsNotNull(PrimitiveMapper.Map<sbyte?, sbyte?>(0).Value);
             Assert.IsNotNull(PrimitiveMapper.Map<sbyte?, sbyte?>(1).Value);
             Assert.IsNotNull(PrimitiveMapper.Map<sbyte?, sbyte?>(-1).Value);
-            Assert.IsNotNull(PrimitiveMapper.Map<sbyte?, sbyte?>(2).Value); 
+            Assert.IsNotNull(PrimitiveMapper.Map<sbyte?, sbyte?>(2).Value);
         }
         [TestMethod]
         public virtual void ToByte()
@@ -1280,7 +1264,7 @@ namespace NLite.Data.Test.ConvertTest
             Assert.IsNotNull(PrimitiveMapper.Map<sbyte?, UInt32>(null));
             Assert.IsNotNull(PrimitiveMapper.Map<sbyte?, UInt32>(0));
             Assert.IsNotNull(PrimitiveMapper.Map<sbyte?, UInt32>(1));
-           // Assert.IsNotNull(PrimitiveMapper.Map<sbyte?, UInt32>(-1));
+            // Assert.IsNotNull(PrimitiveMapper.Map<sbyte?, UInt32>(-1));
             Assert.IsNotNull(PrimitiveMapper.Map<sbyte?, UInt32>(2));
 
             Assert.IsNotNull(PrimitiveMapper.Map<sbyte, UInt32?>(0).Value);
@@ -1478,7 +1462,7 @@ namespace NLite.Data.Test.ConvertTest
             Assert.IsNotNull(PrimitiveMapper.Map<sbyte?, Decimal?>(1).Value);
             Assert.IsNotNull(PrimitiveMapper.Map<sbyte?, Decimal?>(-1).Value);
             Assert.IsNotNull(PrimitiveMapper.Map<sbyte?, Decimal?>(2).Value);
-        }       
+        }
         [TestMethod]
         [ExpectedException(typeof(InvalidCastException))]
         //[ExpectedException(typeof(NotSupportedException))]
@@ -2004,14 +1988,14 @@ namespace NLite.Data.Test.ConvertTest
             //b = (String)converter.ConvertTo(a, typeof(String));
             Console.WriteLine(b);
              */
-            Assert.IsTrue(PrimitiveMapper.Map<byte, string>(0)=="0");
-            Assert.IsTrue(PrimitiveMapper.Map<byte, string>(1)=="1");
-            Assert.IsTrue(PrimitiveMapper.Map<byte, string>(2)=="2");
+            Assert.IsTrue(PrimitiveMapper.Map<byte, string>(0) == "0");
+            Assert.IsTrue(PrimitiveMapper.Map<byte, string>(1) == "1");
+            Assert.IsTrue(PrimitiveMapper.Map<byte, string>(2) == "2");
 
-            Assert.IsTrue(PrimitiveMapper.Map<byte?, string>(null)==null);
-            Assert.IsTrue(PrimitiveMapper.Map<byte?, string>(0)=="0");
-            Assert.IsTrue(PrimitiveMapper.Map<byte?, string>(1)=="1");
-            Assert.IsTrue(PrimitiveMapper.Map<byte?, string>(2)=="2");
+            Assert.IsTrue(PrimitiveMapper.Map<byte?, string>(null) == null);
+            Assert.IsTrue(PrimitiveMapper.Map<byte?, string>(0) == "0");
+            Assert.IsTrue(PrimitiveMapper.Map<byte?, string>(1) == "1");
+            Assert.IsTrue(PrimitiveMapper.Map<byte?, string>(2) == "2");
         }
         [TestMethod]
         public virtual void Parse()
@@ -2166,7 +2150,7 @@ namespace NLite.Data.Test.ConvertTest
             Assert.IsNotNull(PrimitiveMapper.Map<Int16, Byte>(1));
             Assert.IsNotNull(PrimitiveMapper.Map<Int16, Byte>(127));
 
-           // Assert.IsNotNull(PrimitiveMapper.Map<Int16?, Byte>(-1));
+            // Assert.IsNotNull(PrimitiveMapper.Map<Int16?, Byte>(-1));
             Assert.IsNotNull(PrimitiveMapper.Map<Int16?, Byte>(0));
             Assert.IsNotNull(PrimitiveMapper.Map<Int16?, Byte>(1));
             Assert.IsNotNull(PrimitiveMapper.Map<Int16?, Byte>(127));
@@ -2550,10 +2534,10 @@ namespace NLite.Data.Test.ConvertTest
             b = (String)converter.ConvertTo(a, typeof(String));
             Console.WriteLine(b);
              */
-            Assert.IsTrue(PrimitiveMapper.Map<Int16, string>(-1)=="-1");
-            Assert.IsTrue(PrimitiveMapper.Map<Int16, string>(0)=="0");
+            Assert.IsTrue(PrimitiveMapper.Map<Int16, string>(-1) == "-1");
+            Assert.IsTrue(PrimitiveMapper.Map<Int16, string>(0) == "0");
             Assert.IsNotNull(PrimitiveMapper.Map<Int16, string>(1));
-            Assert.IsTrue(PrimitiveMapper.Map<Int16, string>(511)=="511");
+            Assert.IsTrue(PrimitiveMapper.Map<Int16, string>(511) == "511");
 
             Assert.IsNotNull(PrimitiveMapper.Map<Int16?, string>(-1));
             Assert.IsNotNull(PrimitiveMapper.Map<Int16?, string>(0));
@@ -3020,7 +3004,7 @@ namespace NLite.Data.Test.ConvertTest
             //converter = TypeDescriptor.GetConverter(typeof(UInt16));
             //b = (DateTime)converter.ConvertTo(a, typeof(DateTime));
             Console.WriteLine(b);*/
-            Assert.IsNull(PrimitiveMapper.Map<UInt16,DateTime>(0));
+            Assert.IsNull(PrimitiveMapper.Map<UInt16, DateTime>(0));
         }
         [TestMethod]
         public virtual void ToSString()
@@ -3114,7 +3098,7 @@ namespace NLite.Data.Test.ConvertTest
             //converter = TypeDescriptor.GetConverter(typeof(Single));
             //b = (Char)converter.ConvertTo(a, typeof(Char));
             Console.WriteLine(b);*/
-            Assert.IsNull(PrimitiveMapper.Map<Single,char>(1F));
+            Assert.IsNull(PrimitiveMapper.Map<Single, char>(1F));
         }
         [TestMethod]
         public virtual void ToSByte()
@@ -3254,7 +3238,7 @@ namespace NLite.Data.Test.ConvertTest
             Assert.IsNotNull(PrimitiveMapper.Map<Single, UInt16?>(1F).Value);
             Assert.IsNotNull(PrimitiveMapper.Map<Single, UInt16?>(2.789F).Value);
 
-           // Assert.IsNotNull(PrimitiveMapper.Map<Single?, UInt16?>(-1F).Value);
+            // Assert.IsNotNull(PrimitiveMapper.Map<Single?, UInt16?>(-1F).Value);
             Assert.IsNotNull(PrimitiveMapper.Map<Single?, UInt16?>(0F).Value);
             Assert.IsNotNull(PrimitiveMapper.Map<Single?, UInt16?>(1F).Value);
             Assert.IsNotNull(PrimitiveMapper.Map<Single?, UInt16?>(2.789F).Value);
@@ -3532,7 +3516,7 @@ namespace NLite.Data.Test.ConvertTest
             //converter = TypeDescriptor.GetConverter(typeof(Single));
             //b = (DateTime)converter.ConvertTo(a, typeof(DateTime));
             Console.WriteLine(b);*/
-            Assert.IsNull(PrimitiveMapper.Map<Single,DateTime>(0));
+            Assert.IsNull(PrimitiveMapper.Map<Single, DateTime>(0));
         }
         [TestMethod]
         public virtual void ToSString()
@@ -3630,7 +3614,7 @@ namespace NLite.Data.Test.ConvertTest
             //converter = TypeDescriptor.GetConverter(typeof(Double));
             //b = (Char)converter.ConvertTo(a, typeof(Char));
             Console.WriteLine(b);*/
-            Assert.IsNull(PrimitiveMapper.Map<double,char>(0));
+            Assert.IsNull(PrimitiveMapper.Map<double, char>(0));
         }
         [TestMethod]
         public virtual void ToSByte()
@@ -3658,12 +3642,12 @@ namespace NLite.Data.Test.ConvertTest
             Assert.IsNotNull(PrimitiveMapper.Map<double?, sbyte>(null));
 
             Assert.IsNotNull(PrimitiveMapper.Map<double, sbyte?>(-1).Value);
-            Assert.IsNotNull(PrimitiveMapper.Map<double, sbyte?>(0).Value );
+            Assert.IsNotNull(PrimitiveMapper.Map<double, sbyte?>(0).Value);
             Assert.IsNotNull(PrimitiveMapper.Map<double, sbyte?>(1).Value);
             Assert.IsNotNull(PrimitiveMapper.Map<double, sbyte?>(2.789).Value);
 
             Assert.IsNotNull(PrimitiveMapper.Map<double?, sbyte?>(-1).Value);
-            Assert.IsNotNull(PrimitiveMapper.Map<double?, sbyte?>(0).Value );
+            Assert.IsNotNull(PrimitiveMapper.Map<double?, sbyte?>(0).Value);
             Assert.IsNotNull(PrimitiveMapper.Map<double?, sbyte?>(1).Value);
             Assert.IsNotNull(PrimitiveMapper.Map<double?, sbyte?>(2.789).Value);
             Assert.IsNull(PrimitiveMapper.Map<double?, sbyte?>(null));
@@ -3683,7 +3667,7 @@ namespace NLite.Data.Test.ConvertTest
             b = (Byte)converter.ConvertTo(a, typeof(Byte));
             Console.WriteLine(b);*/
             //Assert.IsNotNull(PrimitiveMapper.Map<double, byte>(-1));
-            Assert.IsNotNull(PrimitiveMapper.Map<double,byte>(0));
+            Assert.IsNotNull(PrimitiveMapper.Map<double, byte>(0));
             Assert.IsNotNull(PrimitiveMapper.Map<double, byte>(1));
             Assert.IsNotNull(PrimitiveMapper.Map<double, byte>(2.6));
 
@@ -4044,7 +4028,7 @@ namespace NLite.Data.Test.ConvertTest
             //converter = TypeDescriptor.GetConverter(typeof(Double));
             //b = (DateTime)converter.ConvertTo(a, typeof(DateTime));
             Console.WriteLine(b);*/
-            Assert.IsNull(PrimitiveMapper.Map<double,DateTime>(0));
+            Assert.IsNull(PrimitiveMapper.Map<double, DateTime>(0));
         }
         [TestMethod]
         public virtual void ToSString()
@@ -4063,7 +4047,7 @@ namespace NLite.Data.Test.ConvertTest
             Assert.IsNotNull(PrimitiveMapper.Map<double, string>(-1));
             Assert.IsNotNull(PrimitiveMapper.Map<double, string>(0));
             Assert.IsNotNull(PrimitiveMapper.Map<double, string>(1));
-            Assert.IsTrue(PrimitiveMapper.Map<double, string>(2.6)=="2.6");
+            Assert.IsTrue(PrimitiveMapper.Map<double, string>(2.6) == "2.6");
 
             Assert.IsNotNull(PrimitiveMapper.Map<double?, string>(-1));
             Assert.IsNotNull(PrimitiveMapper.Map<double?, string>(0));
@@ -4556,7 +4540,7 @@ namespace NLite.Data.Test.ConvertTest
             //converter = TypeDescriptor.GetConverter(typeof(Decimal));
             //b = (DateTime)converter.ConvertTo(a, typeof(DateTime));
             Console.WriteLine(b);*/
-            Assert.IsNull(PrimitiveMapper.Map<decimal,DateTime>(0));
+            Assert.IsNull(PrimitiveMapper.Map<decimal, DateTime>(0));
         }
         [TestMethod]
         public virtual void ToSString()
@@ -4572,7 +4556,7 @@ namespace NLite.Data.Test.ConvertTest
             converter = TypeDescriptor.GetConverter(typeof(Decimal));
             b = (String)converter.ConvertTo(a, typeof(String));
             Console.WriteLine(b);*/
-            Assert.IsTrue(PrimitiveMapper.Map<decimal, string>(-0.2M)=="-0.2");
+            Assert.IsTrue(PrimitiveMapper.Map<decimal, string>(-0.2M) == "-0.2");
             Assert.IsNotNull(PrimitiveMapper.Map<decimal, string>(0M));
             Assert.IsNotNull(PrimitiveMapper.Map<decimal, string>(1M));
             Assert.IsNotNull(PrimitiveMapper.Map<decimal, string>(2.6M));
@@ -4615,7 +4599,7 @@ namespace NLite.Data.Test.ConvertTest
             converter = TypeDescriptor.GetConverter(typeof(DateTime));
             b = (Boolean)converter.ConvertTo(a, typeof(Boolean));
             Console.WriteLine(b);*/
-            Assert.IsNull(PrimitiveMapper.Map<DateTime,bool>(new DateTime(2012,7,12)));
+            Assert.IsNull(PrimitiveMapper.Map<DateTime, bool>(new DateTime(2012, 7, 12)));
         }
         [ExpectedException(typeof(InvalidCastException))]
         //[ExpectedException(typeof(NotSupportedException))]
@@ -4634,7 +4618,7 @@ namespace NLite.Data.Test.ConvertTest
             b = (Char)converter.ConvertTo(a, typeof(Char));
 
             Console.WriteLine(b);*/
-            Assert.IsNull(PrimitiveMapper.Map<DateTime,char>(new DateTime(2012,7,12)));
+            Assert.IsNull(PrimitiveMapper.Map<DateTime, char>(new DateTime(2012, 7, 12)));
         }
         [ExpectedException(typeof(InvalidCastException))]
         //[ExpectedException(typeof(NotSupportedException))]
@@ -4652,7 +4636,7 @@ namespace NLite.Data.Test.ConvertTest
             converter = TypeDescriptor.GetConverter(typeof(DateTime));
             b = (SByte)converter.ConvertTo(a, typeof(SByte));
             Console.WriteLine(b);*/
-            Assert.IsNull(PrimitiveMapper.Map<DateTime,sbyte>(new DateTime(2012,7,14)));
+            Assert.IsNull(PrimitiveMapper.Map<DateTime, sbyte>(new DateTime(2012, 7, 14)));
         }
         [ExpectedException(typeof(InvalidCastException))]
         //[ExpectedException(typeof(NotSupportedException))]
@@ -4867,7 +4851,7 @@ namespace NLite.Data.Test.ConvertTest
             Console.WriteLine(b);*/
             Assert.IsTrue(PrimitiveMapper.Map<DateTime, string>(new DateTime(2012, 7, 14)) == "2012/7/14 0:00:00");
             Assert.IsNotNull(PrimitiveMapper.Map<DateTime?, DateTime>(new DateTime(2012, 7, 14)));
-            DateTime dt = new DateTime(2012,7,14);
+            DateTime dt = new DateTime(2012, 7, 14);
             string ds = dt.ToString();
             Console.WriteLine(ds);
         }
@@ -4907,7 +4891,7 @@ namespace NLite.Data.Test.ConvertTest
             //Assert.IsTrue(PrimitiveMapper.Map<string, bool>("1"));
             //Assert.IsTrue(PrimitiveMapper.Map<string, bool>("-1"));
             //Assert.IsTrue(PrimitiveMapper.Map<string, bool>("zxm"));
-            Assert.IsTrue(PrimitiveMapper.Map<string,bool>("true"));
+            Assert.IsTrue(PrimitiveMapper.Map<string, bool>("true"));
 
             Assert.IsFalse(PrimitiveMapper.Map<string, bool?>("false").Value);
             //Assert.IsFalse(PrimitiveMapper.Map<string, bool?>("0").Value);
@@ -4930,12 +4914,12 @@ namespace NLite.Data.Test.ConvertTest
             //converter = TypeDescriptor.GetConverter(typeof(String));
             //b = (Char)converter.ConvertTo(a, typeof(Char));
             Console.WriteLine(b);*/
-            Assert.IsTrue(PrimitiveMapper.Map<string, char>("false")=='f');
+            Assert.IsTrue(PrimitiveMapper.Map<string, char>("false") == 'f');
             Assert.IsTrue(PrimitiveMapper.Map<string, char>("0") == '0');
             Assert.IsTrue(PrimitiveMapper.Map<string, char>("1") == '1');
             Assert.IsTrue(PrimitiveMapper.Map<string, char>("-1") == '-');
-            Assert.IsTrue(PrimitiveMapper.Map<string, char>("zxm")=='z');
-            Assert.IsTrue(PrimitiveMapper.Map<string, char>("true")=='t');
+            Assert.IsTrue(PrimitiveMapper.Map<string, char>("zxm") == 'z');
+            Assert.IsTrue(PrimitiveMapper.Map<string, char>("true") == 't');
 
             Assert.IsTrue(PrimitiveMapper.Map<string, char?>("false").Value == 'f');
             Assert.IsTrue(PrimitiveMapper.Map<string, char?>("0").Value == '0');
@@ -4974,7 +4958,7 @@ namespace NLite.Data.Test.ConvertTest
             Assert.IsTrue(PrimitiveMapper.Map<string, sbyte?>("0").Value == 0);
             Assert.IsTrue(PrimitiveMapper.Map<string, sbyte?>("1").Value == 1);
             Assert.IsTrue(PrimitiveMapper.Map<string, sbyte?>("-1").Value == -1);
-            Assert.IsTrue(PrimitiveMapper.Map<string, sbyte?>("127").Value ==127);
+            Assert.IsTrue(PrimitiveMapper.Map<string, sbyte?>("127").Value == 127);
             Assert.IsTrue(PrimitiveMapper.Map<string, sbyte?>("-127").Value == -127);
         }
         [TestMethod]
@@ -5253,9 +5237,9 @@ namespace NLite.Data.Test.ConvertTest
             //b = (DateTime)converter.ConvertTo(a, typeof(DateTime));
             Console.WriteLine(b);
              */
-            DateTime d = new DateTime(1922,7,16);
-            Assert.IsTrue(PrimitiveMapper.Map<string,DateTime>("1922/7/16")==d);
-            Assert.IsNotNull(PrimitiveMapper .Map<string,DateTime>("2002-7-16"));
+            DateTime d = new DateTime(1922, 7, 16);
+            Assert.IsTrue(PrimitiveMapper.Map<string, DateTime>("1922/7/16") == d);
+            Assert.IsNotNull(PrimitiveMapper.Map<string, DateTime>("2002-7-16"));
             d = Convert.ToDateTime("2002-7-16");
             Console.WriteLine(d);
         }
@@ -5277,7 +5261,7 @@ namespace NLite.Data.Test.ConvertTest
             Assert.IsTrue(PrimitiveMapper.Map<string, string>("1.88") == "1.88");
             Assert.IsTrue(PrimitiveMapper.Map<string, string>("-1") == "-1");
             Assert.IsTrue(PrimitiveMapper.Map<string, string>("-1024") == "-1024");
-            Assert.IsTrue(PrimitiveMapper.Map<string,string>("zxml")=="zxml");
+            Assert.IsTrue(PrimitiveMapper.Map<string, string>("zxml") == "zxml");
         }
     }
 }

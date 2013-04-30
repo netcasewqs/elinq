@@ -2,23 +2,18 @@
 // This source code is made available under the terms of the Microsoft Public License (MS-PL)
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
-using NLite.Data.Linq.Internal;
+using NLite.Data.Common;
 using NLite.Data.Dialect;
-using NLite.Data.Mapping;
 using NLite.Data.Linq.Expressions;
+using NLite.Data.Linq.Internal;
+using NLite.Data.Mapping;
 //using NLite.Reflection;
 using NLite.Linq;
-using NLite.Data.Linq;
-using NLite.Data.Common;
-using NLite.Reflection;
 
 namespace NLite.Data.Linq.Translation
 {

@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace NLite.Data.Common
 {
-    using NLite.Data.Linq.Internal;
-    using NLite.Data.Dialect;
 
     public class NamedParameter
     {

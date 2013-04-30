@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NLite.Data.Mapping;
 using System.ComponentModel;
-using System.Data;
 
 namespace NLite.Data.Test.Primitive.Model
 {
@@ -20,11 +15,11 @@ namespace NLite.Data.Test.Primitive.Model
         //[Column(Name = "createTime")]
         public DateTime createTime;
     }
-   
+
     [Table(Name = "NullableTypes")]
     public class NullableTypeInfo
     {
-        [Id(Name="Id",IsDbGenerated = true)]
+        [Id(Name = "Id", IsDbGenerated = true)]
         public int Id;
         //[Column]
         public bool? Boolean;
@@ -50,9 +45,9 @@ namespace NLite.Data.Test.Primitive.Model
         public Int64? Int64;
         //[Column]
         public SByte? SByte;
-       // [Column]
+        // [Column]
         public Single? Single;
-       // [Column]
+        // [Column]
         public String String;
         //[Column]
         public UInt16? UInt16;
@@ -67,22 +62,22 @@ namespace NLite.Data.Test.Primitive.Model
         [Description("学生")]
         Student = 1,
         [Description("教师")]
-        Teacher=2,
+        Teacher = 2,
         [Description("管理员")]
-        Administrator=4,
+        Administrator = 4,
         [Description("服务人员")]
-        Server=8
+        Server = 8
     };
     [Table(Name = "NullableTypes")]
     public class EnumClass
     {
-        [Id(Name="Id",IsDbGenerated = true)]
+        [Id(Name = "Id", IsDbGenerated = true)]
         public int Id;
-       // [Column(Name="Int32")]
+        // [Column(Name="Int32")]
         public roles? Int32;
-       // [Column]
+        // [Column]
         public String String;
     }
-   
+
 }
 

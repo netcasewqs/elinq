@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Collections;
-using System.Reflection;
 using System.IO;
+using System.Reflection;
 
 namespace NLite.Data.Test
 {
@@ -15,9 +12,9 @@ namespace NLite.Data.Test
             ObjectDumper.Write(o);
         }
 
-        public static void Dump(this object o,int length)
+        public static void Dump(this object o, int length)
         {
-            ObjectDumper.Write(o,length);
+            ObjectDumper.Write(o, length);
         }
     }
 
@@ -199,5 +196,5 @@ namespace NLite.Data.Test
         }
     }
 
-    
+
 }

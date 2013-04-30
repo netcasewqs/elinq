@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace NLite.Data.Schema.Script
 {
     /// <summary>
@@ -48,6 +44,6 @@ namespace NLite.Data.Schema.Script
         /// <summary>
         /// 得到或设置创建序列脚本
         /// </summary>
-        public string[] SequenceScripts { get; set;}
+        public string[] SequenceScripts { get; set; }
     }
 }

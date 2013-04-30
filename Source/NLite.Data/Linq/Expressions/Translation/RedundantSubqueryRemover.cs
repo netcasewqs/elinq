@@ -1,14 +1,9 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 // This source code is made available under the terms of the Microsoft Public License (MS-PL)
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
-using System.Text;
 
 namespace NLite.Data.Linq.Expressions
 {
@@ -19,7 +14,7 @@ namespace NLite.Data.Linq.Expressions
     /// </summary>
     class RedundantSubqueryRemover : DbExpressionVisitor
     {
-        private RedundantSubqueryRemover() 
+        private RedundantSubqueryRemover()
         {
         }
 
@@ -47,10 +42,10 @@ namespace NLite.Data.Linq.Expressions
         protected override Expression VisitProjection(ProjectionExpression proj)
         {
             proj = (ProjectionExpression)base.VisitProjection(proj);
-            if (proj.Select.From is SelectExpression) 
+            if (proj.Select.From is SelectExpression)
             {
                 List<SelectExpression> redundant = RedundantSubqueryGatherer.Gather(proj.Select);
-                if (redundant != null) 
+                if (redundant != null)
                 {
                     proj = SubqueryRemover.Remove(proj, redundant);
                 }

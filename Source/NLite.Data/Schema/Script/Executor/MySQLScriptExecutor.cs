@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NLite.Data.Dialect;
 
 namespace NLite.Data.Schema.Script.Executor
 {
-    class MySQLScriptExecutor:NonFileDatabaseScriptExecutor
+    class MySQLScriptExecutor : NonFileDatabaseScriptExecutor
     {
         public override void DeleteDatabase(DbConfiguration dbConfiguration)
         {
@@ -73,7 +69,7 @@ namespace NLite.Data.Schema.Script.Executor
                     ctx.UsingTransaction(() =>
                     {
                         CreateTables(log, script, ctx);
-                        
+
                     });
                 }
                 catch

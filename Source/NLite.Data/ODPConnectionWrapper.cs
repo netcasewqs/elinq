@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data.Common;
+﻿using System.Data.Common;
 using NLite.Reflection;
 
 namespace NLite.Data
 {
-    class ODPConnectionWrapper:DbConnectionWrapper
+    class ODPConnectionWrapper : DbConnectionWrapper
     {
         static Setter _bindByNameProperty;
 

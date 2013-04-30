@@ -1,9 +1,6 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 // This source code is made available under the terms of the Microsoft Public License (MS-PL)
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using NLite.Data.Linq.Internal;
@@ -15,7 +12,7 @@ namespace NLite.Data.Linq.Expressions
     /// </summary>
     class ThreeTopPagerRewriter : DbExpressionVisitor
     {
-       
+
         public static Expression Rewrite(Expression expression)
         {
             return new ThreeTopPagerRewriter().Visit(expression);

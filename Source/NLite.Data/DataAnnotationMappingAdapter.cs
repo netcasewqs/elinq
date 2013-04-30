@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NLite.Reflection;
 using System.Reflection;
+using NLite.Reflection;
 
 namespace NLite.Data
 {
@@ -17,7 +14,7 @@ namespace NLite.Data
 
 #if !SDK35
         public static Type AssociationAttributeType;
-        public  static Type KeyAttributeType;
+        public static Type KeyAttributeType;
         public AssociationAttribute Association;
         internal class AssociationAttribute
         {
@@ -31,10 +28,10 @@ namespace NLite.Data
         public static Type RequiredAttributeType;
         public static Type StringLengthAttributeType;
 
-      
+
         public StringLengthAttribute StringLength;
 
-        
+
         internal class StringLengthAttribute
         {
             public Getter Length;
@@ -49,8 +46,8 @@ namespace NLite.Data
 #if !SDK35
             AssociationAttributeType = asm.GetType(StrAssociationAttribute);
             KeyAttributeType = asm.GetType(StrKeyAttribute);
-          
-            instance.Association= new AssociationAttribute();
+
+            instance.Association = new AssociationAttribute();
             instance.Association.ThisKey = AssociationAttributeType.GetProperty("ThisKey").GetGetter();
             instance.Association.OtherKey = AssociationAttributeType.GetProperty("OtherKey").GetGetter();
             instance.Association.IsForeignKey = AssociationAttributeType.GetProperty("IsForeignKey").GetGetter();

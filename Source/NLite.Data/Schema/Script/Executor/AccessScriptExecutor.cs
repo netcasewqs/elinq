@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Reflection;
-using NLite.Reflection;
 
 namespace NLite.Data.Schema.Script.Executor
 {
-    class AccessScriptExecutor:FileDatabaseScriptExecutor
+    class AccessScriptExecutor : FileDatabaseScriptExecutor
     {
         protected override void OnCreateDatabase(DbConfiguration dbConfiguration, string dbName)
         {
@@ -26,7 +22,7 @@ namespace NLite.Data.Schema.Script.Executor
                 Guard.NotNull(method, "method");
                 method.Invoke(catalog, new object[] { dbConfiguration.ConnectionString });
 
-               // type.InvokeMember("Create", flags, null, catalog, new object[] { dbConfiguration.ConnectionString });
+                // type.InvokeMember("Create", flags, null, catalog, new object[] { dbConfiguration.ConnectionString });
             }
             catch (TargetInvocationException ex)
             {

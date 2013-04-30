@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Reflection;
 using NLite.Reflection;
 
@@ -9,7 +6,7 @@ namespace NLite.Data
 {
     class EFDataAnnotiationAdapter
     {
-        
+
         internal const string StrAssemblyName = "EntityFramework";
 
         internal static Type NotMappedAttributeType;
@@ -62,7 +59,7 @@ namespace NLite.Data
         public static EFDataAnnotiationAdapter Instance { get; private set; }
         public static void Init(Assembly asm)
         {
-         
+
 #if  SDK35 || SDK4
             if (!asm.GetName().Version.ToString().Contains("4.3"))
             {
@@ -79,7 +76,7 @@ namespace NLite.Data
             EFDataAnnotiationAdapter.DatabaseGeneratedAttributeType = asm.GetType(StrDatabaseGeneratedAttribute);
             EFDataAnnotiationAdapter.MaxLengthAttributeType = asm.GetType(StrMaxLengthAttribute);
             EFDataAnnotiationAdapter.ForeignKeyAttributeType = asm.GetType(StrForeignKeyAttribute);
-#else //>=SDK4.5 
+#else //>=SDK4.5
             asm = AssemblyLoader.Load("System.ComponentModel.DataAnnotations");
             Guard.NotNull(asm, "asm");
 

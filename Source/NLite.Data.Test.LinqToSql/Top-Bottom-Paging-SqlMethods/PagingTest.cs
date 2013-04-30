@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using NUnit.Framework;
 using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestInitialize = NUnit.Framework.SetUpAttribute;
 using TestMethod = NUnit.Framework.TestAttribute;
 
 namespace NLite.Data.Test.LinqToSql.Top_Bottom_Paging_SqlMethods
 {
     [TestClass]
-    public class PagingTest:DLinqConnection
+    public class PagingTest : DLinqConnection
     {
         //索引
         [TestMethod]
@@ -19,8 +15,8 @@ namespace NLite.Data.Test.LinqToSql.Top_Bottom_Paging_SqlMethods
             using (var db = dbConfiguration.CreateDbContext())
             {
                 var item = (from c in db.Set<Customers>()
-                           orderby c.ContactName
-                           select c)
+                            orderby c.ContactName
+                            select c)
                            .Skip(50)
                            .Take(10);
                 foreach (var it in item)
@@ -36,7 +32,7 @@ namespace NLite.Data.Test.LinqToSql.Top_Bottom_Paging_SqlMethods
             using (var db = dbConfiguration.CreateDbContext())
             {
                 var item = (from p in db.Set<Products>()
-                            where p.ProductID>50
+                            where p.ProductID > 50
                             orderby p.ProductID
                             select p)
                            .Take(10);

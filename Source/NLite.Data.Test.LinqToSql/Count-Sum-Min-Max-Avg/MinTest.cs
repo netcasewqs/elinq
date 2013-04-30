@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using NUnit.Framework;
 using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestInitialize = NUnit.Framework.SetUpAttribute;
 using TestMethod = NUnit.Framework.TestAttribute;
 
 namespace NLite.Data.Test.LinqToSql.Count_Sum_Min_Max_Avg
 {
     [TestClass]
-    public class MinTest:DLinqConnection
+    public class MinTest : DLinqConnection
     {
         //简单形式
         [TestMethod]
@@ -18,7 +14,7 @@ namespace NLite.Data.Test.LinqToSql.Count_Sum_Min_Max_Avg
         {
             using (var db = dbConfiguration.CreateDbContext())
             {
-                var item = db.Set<Orders>().Select(p=>p.Freight).Min();
+                var item = db.Set<Orders>().Select(p => p.Freight).Min();
                 Console.WriteLine(item);
             }
         }
@@ -28,7 +24,7 @@ namespace NLite.Data.Test.LinqToSql.Count_Sum_Min_Max_Avg
         {
             using (var db = dbConfiguration.CreateDbContext())
             {
-                var item = db.Set<Orders>().Min(p=>p.Freight);
+                var item = db.Set<Orders>().Min(p => p.Freight);
                 Console.WriteLine(item);
             }
         }

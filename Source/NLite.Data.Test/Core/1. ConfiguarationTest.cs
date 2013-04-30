@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
-using NLite.Data.Test.Model.Northwind;
 using System.Data.Common;
-using System.Data;
+using System.Linq;
+using NLite.Data.Test.Model.Northwind;
+using NUnit.Framework;
 
 namespace NLite.Data.Test.Core
 {
@@ -94,7 +91,7 @@ namespace NLite.Data.Test.Core
                            .Configure("Northwind")
                            .AddClass<Customer>()
                            .CreateDbContext();
-           
+
             var customers = db.Set<Customer>();
             Assert.IsNotNull(customers);
         }
@@ -108,11 +105,11 @@ namespace NLite.Data.Test.Core
 
             var db = DbConfiguration
                           .Configure("Northwind")
-                          //不映射.AddClass<Customer>();
+                //不映射.AddClass<Customer>();
                           .CreateDbContext();
-            
+
             var customers = db.Set<Customer>();//报异常：ORMappingException
-           
+
         }
 
         //3. 设置日志，方便开发测试

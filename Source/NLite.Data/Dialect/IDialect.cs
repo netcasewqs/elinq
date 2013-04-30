@@ -1,11 +1,4 @@
-﻿using System;
-using NLite.Data.Linq.Expressions;
-using System.Data.Common;
-using NLite.Data.Common;
-using System.Linq.Expressions;
-using NLite.Data.Dialect.ExpressionBuilder;
-using NLite.Data.Dialect.Function;
-namespace NLite.Data.Dialect
+﻿namespace NLite.Data.Dialect
 {
     public interface IDialect
     {

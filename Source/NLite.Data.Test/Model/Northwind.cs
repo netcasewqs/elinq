@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace NLite.Data.Test.Model.Northwind
 {
@@ -21,7 +19,7 @@ namespace NLite.Data.Test.Model.Northwind
         public string City;
         //[Column]
         public string Country;
-       // [Association(ThisKey="CustomerID", OtherKey="CustomerID")]
+        // [Association(ThisKey="CustomerID", OtherKey="CustomerID")]
         public ICollection<Order> Orders;
     }
 
@@ -34,7 +32,7 @@ namespace NLite.Data.Test.Model.Northwind
         public string CustomerID;
         //[Column]
         public DateTime OrderDate;
-       //[ManyToOne(ThisKey = "CustomerId", OtherKey = "CustomerID")]
+        //[ManyToOne(ThisKey = "CustomerId", OtherKey = "CustomerID")]
         public Customer Customer;
         //[Association]
         public IEnumerable<OrderDetail> Details;
@@ -52,7 +50,7 @@ namespace NLite.Data.Test.Model.Northwind
     }
 
 
-   // [Table(Name = "Products")]
+    // [Table(Name = "Products")]
     public class Product
     {
         //[Id]
@@ -63,7 +61,7 @@ namespace NLite.Data.Test.Model.Northwind
         public bool Discontinued;
 
     }
-    public class Northwind:DbContext
+    public class Northwind : DbContext
     {
         //连接字符串名称：基于Config文件中连接字符串的配置
         const string connectionStringName = "Northwind";
@@ -91,7 +89,7 @@ namespace NLite.Data.Test.Model.Northwind
             }
         }
 
-      
+
         public Northwind()
             : base(dbConfiguration)
         {

@@ -1,19 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data.Common;
-using System.Data;
-using NLite.Data.Common;
-using System.Collections.Specialized;
 using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Data;
+using System.Data.Common;
+using System.Linq;
 using System.Reflection;
+using NLite.Data.Common;
 using NLite.Reflection;
-using NLite.Collections;
 
 namespace NLite.Data.Driver
 {
-    public class AbstractDriver:IDriver
+    public class AbstractDriver : IDriver
     {
         public virtual char NamedPrefix { get { return '@'; } }
         public virtual bool AllowsMultipleOpenReaders { get { return true; } }
@@ -33,7 +31,7 @@ namespace NLite.Data.Driver
 
             if (parameter.SqlType != null)
             {
-               
+
                 if (sqlType.Precision > 0)
                     p.Precision = sqlType.Precision;
                 if (sqlType.Scale > 0)

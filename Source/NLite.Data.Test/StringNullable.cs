@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using NLite.Data.Test.Primitive.Model;
 using NUnit.Framework;
 using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestInitialize = NUnit.Framework.SetUpAttribute;
 using TestMethod = NUnit.Framework.TestAttribute;
-using System.Linq;
-using System.Text;
-using NLite.Data.Test.Primitive.Model;
-using NLite.Data.Test.Primitive;
-using System.Linq.Expressions;
-using System.Data.SqlClient;
-using NLite.Data;
 namespace NLite.Data.Test
 {
     [TestClass]

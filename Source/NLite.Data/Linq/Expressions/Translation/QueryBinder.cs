@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
-using NLite.Linq;
-using NLite.Data.Mapping;
-using NLite.Data.Dialect;
-using NLite.Reflection;
-using NLite.Data.Linq;
-using NLite.Data.Linq.Internal;
 using NLite.Data.Common;
-using NLite.Data.Dialect.ExpressionBuilder;
+using NLite.Data.Dialect;
+using NLite.Data.Linq.Internal;
+using NLite.Linq;
+using NLite.Reflection;
 
 namespace NLite.Data.Linq.Expressions
 {
@@ -30,7 +25,7 @@ namespace NLite.Data.Linq.Expressions
         Expression root;
         IDbSet batchUpd;
 
-        private QueryBinder(IDbExpressionBuilder expressionBuilder,InternalDbContext policy, Expression root)
+        private QueryBinder(IDbExpressionBuilder expressionBuilder, InternalDbContext policy, Expression root)
         {
             this.expressionBuilder = expressionBuilder;
             this.dbContext = policy;
@@ -56,7 +51,7 @@ namespace NLite.Data.Linq.Expressions
 
         public static Expression Bind(IDbExpressionBuilder expressionBuilder, InternalDbContext policy, Expression expression)
         {
-            return new QueryBinder(expressionBuilder,policy, expression).Visit(expression);
+            return new QueryBinder(expressionBuilder, policy, expression).Visit(expression);
         }
 
         private static LambdaExpression GetLambda(Expression e)
@@ -125,7 +120,7 @@ namespace NLite.Data.Linq.Expressions
                         if (m.Arguments.Count == 1)
                             return this.BindDistinct(m.Arguments[0]);
                         break;
-                  
+
                     case "Except":
                     case "Intersect":
                         if (m.Arguments.Count == 2)
@@ -250,7 +245,7 @@ namespace NLite.Data.Linq.Expressions
                 var upd = this.batchUpd != null
                     ? this.batchUpd
                     : (IDbSet)((ConstantExpression)m.Arguments[0]).Value;
-                
+
                 switch (methodName)
                 {
                     case "Insert":
@@ -298,11 +293,11 @@ namespace NLite.Data.Linq.Expressions
                 }
 
             }
-           
+
             return base.VisitMethodCall(m);
         }
 
-       
+
         protected override Expression VisitUnary(UnaryExpression u)
         {
             if ((u.NodeType == ExpressionType.Convert || u.NodeType == ExpressionType.ConvertChecked)
@@ -386,7 +381,7 @@ namespace NLite.Data.Linq.Expressions
 
             return result;
         }
-    
+
         private Expression BindWhere(Type resultType, Expression source, LambdaExpression predicate)
         {
             ProjectionExpression projection = this.VisitSequence(source);
@@ -517,7 +512,7 @@ namespace NLite.Data.Linq.Expressions
 
             this.map[outerKey.Parameters[0]] = outerProjection.Projector;
             var predicateLambda = Expression.Lambda(innerKey.Body.Equal(outerKey.Body), innerKey.Parameters[0]);
-            var callToWhere = Expression.Call(typeof(Enumerable), "Where", new Type[] { args[1] }, innerSource, predicateLambda);           
+            var callToWhere = Expression.Call(typeof(Enumerable), "Where", new Type[] { args[1] }, innerSource, predicateLambda);
             Expression group = this.Visit(callToWhere);
 
             this.map[resultSelector.Parameters[0]] = outerProjection.Projector;
@@ -640,7 +635,7 @@ namespace NLite.Data.Linq.Expressions
             else
             {
                 // result must be IGrouping<K,E>
-                resultExpr = 
+                resultExpr =
                     Expression.New(
                         typeof(Grouping<,>).MakeGenericType(keyExpr.Type, subqueryElemExpr.Type).GetConstructors()[0],
                         new Expression[] { keyExpr, elementSubquery }
@@ -924,7 +919,7 @@ namespace NLite.Data.Linq.Expressions
                             new[] { new ColumnDeclaration("value", new AggregateExpression(typeof(int), "Count", null, false), colType) }
                             );
                         var colx = new ColumnExpression(typeof(int), colType, newSelect.Alias, "value");
-                        var exp = isAll 
+                        var exp = isAll
                             ? colx.Equal(Expression.Constant(0))
                             : colx.GreaterThan(Expression.Constant(0));
                         return new ProjectionExpression(
@@ -960,7 +955,7 @@ namespace NLite.Data.Linq.Expressions
                 this.root = exp;
                 return this.Visit(exp);
             }
-            else 
+            else
             {
                 ProjectionExpression projection = this.VisitSequence(queryable);
                 match = this.Visit(match);
@@ -1101,8 +1096,8 @@ namespace NLite.Data.Linq.Expressions
         protected override Expression VisitMemberAccess(MemberExpression m)
         {
             var memberType = m.Member.GetMemberType();
-            if (m.Expression != null 
-                && m.Expression.NodeType == ExpressionType.Parameter 
+            if (m.Expression != null
+                && m.Expression.NodeType == ExpressionType.Parameter
                 && !this.map.ContainsKey((ParameterExpression)m.Expression)
                 && this.IsQuery(m))
             {
@@ -1111,7 +1106,7 @@ namespace NLite.Data.Linq.Expressions
             }
 
             if (m.Member.DeclaringType.IsNullable() && m.Member.Name == "HasValue")
-                return Visit( Expression.NotEqual(m.Expression, Expression.Constant(null)));
+                return Visit(Expression.NotEqual(m.Expression, Expression.Constant(null)));
 
             Expression source = this.Visit(m.Expression);
             if (this.IsAggregate(m.Member) && IsRemoteQuery(source))
@@ -1171,7 +1166,7 @@ namespace NLite.Data.Linq.Expressions
                     {
                         MemberAssignment assign = min.Bindings[i] as MemberAssignment;
                         if (assign != null && MembersMatch(assign.Member, member))
-                        {                            
+                        {
                             return assign.Expression;
                         }
                     }

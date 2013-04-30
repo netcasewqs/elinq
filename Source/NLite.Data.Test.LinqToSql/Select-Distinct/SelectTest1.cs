@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using NUnit.Framework;
 using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestInitialize = NUnit.Framework.SetUpAttribute;
 using TestMethod = NUnit.Framework.TestAttribute;
 
 namespace NLite.Data.Test.LinqToSql
 {
     [TestClass]
-    public class SelectTest1:DLinqConnection
+    public class SelectTest1 : DLinqConnection
     {
         //简单用法
         [TestMethod]
@@ -18,7 +14,7 @@ namespace NLite.Data.Test.LinqToSql
         {
             using (var db = dbConfiguration.CreateDbContext())
             {
-                var item = db.Set<Customers>().Select(p=>p.Country);
+                var item = db.Set<Customers>().Select(p => p.Country);
                 foreach (var it in item)
                 {
                     Console.WriteLine(it.ToString());
@@ -34,7 +30,7 @@ namespace NLite.Data.Test.LinqToSql
                 var item = db.Set<Customers>().Select(p => new { p.Country, p.CompanyName });
                 foreach (var it in item)
                 {
-                    Console.WriteLine(it.CompanyName+" In "+it.Country);
+                    Console.WriteLine(it.CompanyName + " In " + it.Country);
                 }
             }
         }
@@ -43,7 +39,7 @@ namespace NLite.Data.Test.LinqToSql
         {
             using (var db = dbConfiguration.CreateDbContext())
             {
-                var item = db.Set<Customers>().Select(p => new {CountyName= p.Country,CompanyNames= p.CompanyName+" In "+p.Country });
+                var item = db.Set<Customers>().Select(p => new { CountyName = p.Country, CompanyNames = p.CompanyName + " In " + p.Country });
                 foreach (var it in item)
                 {
                     Console.WriteLine(it.CompanyNames);
@@ -55,7 +51,7 @@ namespace NLite.Data.Test.LinqToSql
         {
             using (var db = dbConfiguration.CreateDbContext())
             {
-                var item = db.Set<Customers>().Select(p => new { CompanyNames = p.CompanyName + " In " + p.Country, p.Country});
+                var item = db.Set<Customers>().Select(p => new { CompanyNames = p.CompanyName + " In " + p.Country, p.Country });
                 foreach (var it in item)
                 {
                     Console.WriteLine(it.CompanyNames);

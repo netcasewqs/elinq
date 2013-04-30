@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Reflection;
 using System.Linq.Expressions;
+using System.Reflection;
 using NLite.Linq;
 
 namespace NLite.Data.Common
 {
     using System.Globalization;
-    using NLite.Data.Common;
 
     /// <summary>
     /// Linq 函数映射类，把成员操作映射到NLite.Data 所支持的Linq函数操作上

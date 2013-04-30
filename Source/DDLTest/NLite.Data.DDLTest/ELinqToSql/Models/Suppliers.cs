@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using NLite.Data;
-using NUnit.Framework;
 
 namespace ELinq.DDLTest.ElinqToSql.Models
 {
@@ -13,7 +9,7 @@ namespace ELinq.DDLTest.ElinqToSql.Models
         [Id(IsDbGenerated = true, SequenceName = "S_Suppliers")]
         public int SupplierID { get; set; }
 
-        [Column(Length=40,IsNullable=false)]
+        [Column(Length = 40, IsNullable = false)]
         public string CompanyName { get; set; }
 
         [Column(Length = 30)]
@@ -31,7 +27,7 @@ namespace ELinq.DDLTest.ElinqToSql.Models
         [Column(Length = 15)]
         public string Region { get; set; }
 
-        [Column( Length = 10)]
+        [Column(Length = 10)]
         public string PostalCode { get; set; }
 
         [Column(Length = 15)]
@@ -40,7 +36,7 @@ namespace ELinq.DDLTest.ElinqToSql.Models
         [Column(Length = 24)]
         public string Phone { get; set; }
 
-        [Column( Length = 24)]
+        [Column(Length = 24)]
         public string Fax { get; set; }
 
         [Column(Length = 1073741823)]

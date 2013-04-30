@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using NLite.Linq;
-using NLite.Data.Mapping;
-using System.Collections;
-using NLite.Data.Linq.Expressions;
-using NLite.Data.Dialect;
-using NLite.Reflection;
-using System.Reflection;
 using System.Data.Common;
-using NLite.Data.Linq;
+using System.Linq.Expressions;
+using NLite.Data.Mapping;
 
 namespace NLite.Data
 {
@@ -55,15 +45,15 @@ namespace NLite.Data
         IDbSet Include(System.Reflection.MemberInfo member);
     }
 
-   
+
     /// <summary>
     /// 表示用于执行插入、读取、更新和删除操作的类型化实体集，对实体集的所有增、删、改、查操作会立即同步到数据库对应的表中
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IDbSet<T> :  IRepository<T>, IDbSet
+    public interface IDbSet<T> : IRepository<T>, IDbSet
     {
 
-       
+
 
         /// <summary>
         /// 立即加载针对特定关系检索的对象。

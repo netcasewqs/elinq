@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 using System.Threading;
 
 namespace NLite.Data.Linq.Internal
@@ -25,11 +22,11 @@ namespace NLite.Data.Linq.Internal
         }
 
         public MostRecentlyUsedCache(int maxSize, IEqualityComparer<T> comparer)
-            : this(maxSize, (x,y) => comparer.Equals(x, y))
+            : this(maxSize, (x, y) => comparer.Equals(x, y))
         {
         }
 
-        public MostRecentlyUsedCache(int maxSize, Func<T,T,bool> fnEquals)
+        public MostRecentlyUsedCache(int maxSize, Func<T, T, bool> fnEquals)
         {
             this.list = new List<T>();
             this.maxSize = maxSize;
@@ -39,7 +36,7 @@ namespace NLite.Data.Linq.Internal
 
         public int Count
         {
-            get 
+            get
             {
                 this.rwlock.EnterReadLock();
                 try

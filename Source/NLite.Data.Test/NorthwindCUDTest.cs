@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
 using System.Linq;
+using NLite.Data.Test.Model.Northwind;
 using NUnit.Framework;
 using TestClass = NUnit.Framework.TestFixtureAttribute;
 using TestInitialize = NUnit.Framework.SetUpAttribute;
 using TestMethod = NUnit.Framework.TestAttribute;
-using NLite.Data.Test.Model.Northwind;
 
 namespace NLite.Data.Test
 {
     [TestClass]
-    public class NorthwindCUDTest:TestBase
+    public class NorthwindCUDTest : TestBase
     {
         private Northwind db;
 
@@ -35,12 +33,12 @@ namespace NLite.Data.Test
             db.Customers.Delete(p => p.CustomerID.StartsWith("XX"));
             db.Dispose();
         }
-        
+
 
         [TestMethod]
         public void TestInsertCustomerNoResult()
         {
-            var cust = new 
+            var cust = new
             {
                 CustomerID = "XX1",
                 CompanyName = "Company1",
@@ -49,7 +47,7 @@ namespace NLite.Data.Test
                 Country = "USA"
             };
             var result = db.Customers.Insert(cust);
-            AssertValue(1, result); 
+            AssertValue(1, result);
         }
 
 
@@ -73,7 +71,7 @@ namespace NLite.Data.Test
         {
             int n = 10;
             var custs = Enumerable.Range(1, n).Select(
-                i => new 
+                i => new
                 {
                     CustomerID = "XX" + i,
                     CompanyName = "Company" + i,
@@ -87,8 +85,8 @@ namespace NLite.Data.Test
         }
 
 
-       
-    
+
+
         [TestMethod]
         public void TestInsertOrderWithNoResult()
         {
@@ -109,12 +107,12 @@ namespace NLite.Data.Test
         {
             this.TestInsertCustomerNoResult();
 
-            var cust = new 
+            var cust = new
             {
                 CustomerID = "XX1",
                 CompanyName = "Company1",
                 ContactName = "Contact1",
-                City = "Portland", 
+                City = "Portland",
                 Country = "USA"
             };
 
@@ -140,19 +138,19 @@ namespace NLite.Data.Test
             AssertValue("Portland", result);
         }
 
- 
+
 
         [TestMethod]
         public void TestUpdateCustomerWithUpdateCheckThatDoesNotSucceed()
         {
-            this.TestInsertCustomerNoResult(); 
+            this.TestInsertCustomerNoResult();
 
-            var cust = new 
+            var cust = new
             {
                 //CustomerID = "XX1",
                 CompanyName = "Company1",
                 ContactName = "Contact1",
-                City = "Portland", 
+                City = "Portland",
                 Country = "USA"
             };
 
@@ -163,14 +161,14 @@ namespace NLite.Data.Test
         [TestMethod]
         public void TestUpdateCustomerWithUpdateCheckThatSucceeds()
         {
-            this.TestInsertCustomerNoResult(); 
+            this.TestInsertCustomerNoResult();
 
-            var cust = new 
+            var cust = new
             {
                 CustomerID = "XX1",
                 CompanyName = "Company1",
                 ContactName = "Contact1",
-                City = "Portland", 
+                City = "Portland",
                 Country = "USA"
             };
 
@@ -185,7 +183,7 @@ namespace NLite.Data.Test
 
             int n = 10;
             var custs = Enumerable.Range(1, n).Select(
-                i => new 
+                i => new
                 {
                     CustomerID = "XX" + i,
                     CompanyName = "Company" + i,
@@ -194,7 +192,7 @@ namespace NLite.Data.Test
                     Country = "USA"
                 });
 
-          
+
 
             var results = db.Customers.Batch(custs, (u, c) => u.Update(c));
             AssertValue(n, results.Count());
@@ -207,7 +205,7 @@ namespace NLite.Data.Test
 
         }
 
-     
+
         [TestMethod]
         public void TestBatchUpdateCustomerWithUpdateCheck()
         {
@@ -217,7 +215,7 @@ namespace NLite.Data.Test
             var pairs = Enumerable.Range(1, n).Select(
                 i => new
                 {
-                    original = new 
+                    original = new
                     {
                         CustomerID = "XX" + i,
                         CompanyName = "Company" + i,
@@ -225,7 +223,7 @@ namespace NLite.Data.Test
                         City = "Seattle",
                         Country = "USA"
                     },
-                    current = new 
+                    current = new
                     {
                         CustomerID = "XX" + i,
                         CompanyName = "Company" + i,
@@ -235,7 +233,7 @@ namespace NLite.Data.Test
                     }
                 });
 
-           
+
 
             var results = db.Customers.Batch(pairs, (u, x) => u.Update(x.current, d => d.City == x.original.City));
             AssertValue(n, results.Count());
@@ -244,7 +242,7 @@ namespace NLite.Data.Test
 
 
 
-      
+
         [TestMethod]
         public void TestDeleteCustomer()
         {
@@ -269,7 +267,7 @@ namespace NLite.Data.Test
         {
             this.TestInsertCustomerNoResult();
 
-            var cust = new 
+            var cust = new
             {
                 CustomerID = "XX2",
                 CompanyName = "Company2",
@@ -287,7 +285,7 @@ namespace NLite.Data.Test
         {
             this.TestInsertCustomerNoResult();
 
-            var cust = new 
+            var cust = new
             {
                 CustomerID = "XX1",
                 CompanyName = "Company1",
@@ -305,7 +303,7 @@ namespace NLite.Data.Test
         {
             this.TestInsertCustomerNoResult();
 
-            var cust = new 
+            var cust = new
             {
                 CustomerID = "XX1",
                 CompanyName = "Company1",
@@ -318,7 +316,7 @@ namespace NLite.Data.Test
             AssertValue(0, result);
         }
 
-     
+
         [TestMethod]
         public void TestBatchDeleteCustomers()
         {
@@ -327,7 +325,7 @@ namespace NLite.Data.Test
             try
             {
                 this.TestBatchInsertCustomersNoResult();
-                
+
                 int n = 10;
                 var custs = Enumerable.Range(1, n).Select(
                     i => new
@@ -358,7 +356,7 @@ namespace NLite.Data.Test
 
             int n = 10;
             var custs = Enumerable.Range(1, n).Select(
-                i => new 
+                i => new
                 {
                     CustomerID = "XX" + i,
                     CompanyName = "Company" + i,
@@ -380,7 +378,7 @@ namespace NLite.Data.Test
 
             int n = 10;
             var custs = Enumerable.Range(1, n).Select(
-                i => new 
+                i => new
                 {
                     CustomerID = "XX" + i,
                     CompanyName = "Company" + i,
@@ -404,8 +402,8 @@ namespace NLite.Data.Test
             AssertValue(10, result);
         }
 
-     
 
-      
+
+
     }
 }

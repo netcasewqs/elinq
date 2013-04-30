@@ -1,8 +1,6 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 // This source code is made available under the terms of the Microsoft Public License (MS-PL)
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace NLite.Data.Linq.Internal
@@ -12,7 +10,7 @@ namespace NLite.Data.Linq.Internal
         ScopedDictionary<TKey, TValue> previous;
         Dictionary<TKey, TValue> map;
 
-        public ScopedDictionary(ScopedDictionary<TKey, TValue> previous,IEqualityComparer<TKey> comparer)
+        public ScopedDictionary(ScopedDictionary<TKey, TValue> previous, IEqualityComparer<TKey> comparer)
         {
             this.previous = previous;
             this.map = new Dictionary<TKey, TValue>(comparer);

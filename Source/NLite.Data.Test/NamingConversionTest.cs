@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
+﻿using System.Linq;
 using NLite.Data.CodeGeneration;
+using NUnit.Framework;
 
 namespace NLite.Data.Test
 {

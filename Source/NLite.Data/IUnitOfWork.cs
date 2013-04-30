@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data;
 
 namespace NLite.Data
@@ -17,7 +14,7 @@ namespace NLite.Data
         /// <remarks>
         /// 用DbConfigurationName标致不同的UnitOfWork,目的是为了支持多数据库
         /// </remarks>
-        string DbConfigurationName { get;  }
+        string DbConfigurationName { get; }
         /// <summary>
         /// 创建仓储
         /// </summary>
@@ -25,18 +22,18 @@ namespace NLite.Data
         /// <returns></returns>
         IRepository<T> CreateRepository<T>();
 
-		/// <summary>
-		/// 启用Ado.net事务
-		/// </summary>
-		/// <param name="action"></param>
-		void UsingTransaction(Action action);
+        /// <summary>
+        /// 启用Ado.net事务
+        /// </summary>
+        /// <param name="action"></param>
+        void UsingTransaction(Action action);
 
         /// <summary>
         /// 启用Ado.net事务
         /// </summary>
         /// <param name="action"></param>
         /// <param name="isolationLevel"></param>
-        void UsingTransaction(Action action, IsolationLevel isolationLevel );
+        void UsingTransaction(Action action, IsolationLevel isolationLevel);
 
     }
 }

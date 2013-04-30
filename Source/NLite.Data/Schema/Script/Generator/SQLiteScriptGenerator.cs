@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Text;
 using NLite.Collections;
 using NLite.Data.Common;
 using NLite.Data.Mapping;
 namespace NLite.Data.Schema.Script.Generator
 {
-    class SQLiteScriptGenerator:DatabaseScriptGenerator
+    class SQLiteScriptGenerator : DatabaseScriptGenerator
     {
         protected override string BuildPKScript(Mapping.IMemberMapping[] members)
         {
@@ -41,14 +39,14 @@ namespace NLite.Data.Schema.Script.Generator
                 return null;
 
             var sb = new StringBuilder(512);
-            foreach(var fk in fks)
+            foreach (var fk in fks)
                 sb.Append(string.Concat(",FOREIGN KEY ("
-                    ,Dialect.Quote(fk.ThisKeyMembers.FirstOrDefault().ColumnName)
-                    ,") REFERENCES "
-                    ,GetTableName(fk.RelatedEntity)
-                    ,"("
-                    ,Dialect.Quote(fk.OtherKeyMembers.FirstOrDefault().ColumnName)
-                    ,")"));
+                    , Dialect.Quote(fk.ThisKeyMembers.FirstOrDefault().ColumnName)
+                    , ") REFERENCES "
+                    , GetTableName(fk.RelatedEntity)
+                    , "("
+                    , Dialect.Quote(fk.OtherKeyMembers.FirstOrDefault().ColumnName)
+                    , ")"));
             return sb.ToString();
         }
 
@@ -88,8 +86,8 @@ namespace NLite.Data.Schema.Script.Generator
             }
 
             var fks = mapping.Members.Where(p => p.IsManyToOne).ToArray();
-            foreach(var fk in fks)
-                sb.AppendLine(string.Concat( "\t,FOREIGN KEY ("
+            foreach (var fk in fks)
+                sb.AppendLine(string.Concat("\t,FOREIGN KEY ("
                     , Dialect.Quote(fk.ThisKeyMembers.FirstOrDefault().ColumnName)
                     , ") REFERENCES "
                     , GetTableName(fk.RelatedEntity)

@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
 using NLite.Data;
 using NLite.Reflection;
-using ELinq.DDLTest.ElinqToSql.Models;
+using NUnit.Framework;
 
 namespace ELinq.DDLTest.ElinqToSql
 {
     [TestFixture]
     public class MySqlDDLTest
     {
-         public DbConfiguration dbConfiguration;
-         public MySqlDDLTest()
+        public DbConfiguration dbConfiguration;
+        public MySqlDDLTest()
         {
             const string connectionStringName = "MySqlELinq";
             //DbConfiguration.InitializeDLinq<System.Data.Linq.Binary>();
@@ -28,25 +24,25 @@ namespace ELinq.DDLTest.ElinqToSql
 
         }
 
-         [Test]
-         public void DatabaseExists()
-         {
+        [Test]
+        public void DatabaseExists()
+        {
 
-             var DatabaseExists = dbConfiguration.DatabaseExists();
-             Assert.IsTrue(DatabaseExists);
-         }
+            var DatabaseExists = dbConfiguration.DatabaseExists();
+            Assert.IsTrue(DatabaseExists);
+        }
 
-         [Test]
-         public void CreateDatabase()
-         {
-             dbConfiguration.CreateDatabase();
-         }
+        [Test]
+        public void CreateDatabase()
+        {
+            dbConfiguration.CreateDatabase();
+        }
 
 
-         [Test]
-         public void DeleteDatabase()
-         {
-             dbConfiguration.DeleteDatabase();
-         }
+        [Test]
+        public void DeleteDatabase()
+        {
+            dbConfiguration.DeleteDatabase();
+        }
     }
 }

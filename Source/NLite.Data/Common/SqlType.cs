@@ -1,20 +1,10 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Data;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-using System.Text;
 
 namespace NLite.Data.Common
 {
-    using NLite.Data.Linq.Internal;
-    using System.Runtime.CompilerServices;
-    using NLite.Data.Mapping;
+    using System.Diagnostics;
     using NLite.Reflection;
-using System.Diagnostics;
 
     [Serializable]
     [DebuggerDisplay("{DbType}(Length={Length},Required={Required},Precision={Precision},Scale={Scale})")]
@@ -104,7 +94,7 @@ using System.Diagnostics;
             defaultTypes[Types.Boolean.TypeHandle.Value.GetHashCode()] = new SqlType(DBType.Boolean);
             defaultTypes[Types.Byte.TypeHandle.Value.GetHashCode()] = new SqlType(DBType.Byte);
             defaultTypes[Types.ByteArray.TypeHandle.Value.GetHashCode()] = new SqlType(DBType.Binary);
-            defaultTypes[Types.Char.TypeHandle.Value.GetHashCode()] = new SqlType(DBType.NChar,  1);
+            defaultTypes[Types.Char.TypeHandle.Value.GetHashCode()] = new SqlType(DBType.NChar, 1);
             defaultTypes[Types.DateTime.TypeHandle.Value.GetHashCode()] = new SqlType(DBType.DateTime);
             defaultTypes[Types.Decimal.TypeHandle.Value.GetHashCode()] = new SqlType(DBType.Decimal);
             defaultTypes[Types.Double.TypeHandle.Value.GetHashCode()] = new SqlType(DBType.Double);

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data.OleDb;
-using System.Data;
 
 namespace NLite.Data.Common
 {
@@ -44,7 +41,7 @@ namespace NLite.Data.Common
             {(int)OleDbType.WChar,new TypeMappingInfo{ CLRType = Types.String, DbType = DBType.Char, ProviderDbType = (int)OleDbType.WChar}},
         };
 
-        
+
         public static readonly Dictionary<string, TypeMappingInfo> OracleDbMap = new Dictionary<string, TypeMappingInfo>(StringComparer.OrdinalIgnoreCase)
         {
             {"BLOB", new TypeMappingInfo{ CLRType= Types.ByteArray, DbType = DBType.Image, ProviderDbType =2, NativeType = "BLOB"}},
@@ -190,6 +187,6 @@ namespace NLite.Data.Common
             {"VarChar",new TypeMappingInfo{CLRType= Types.String,DbType = DBType.VarChar, NativeType = "VarChar"} },
         };
 
-      
+
     }
 }

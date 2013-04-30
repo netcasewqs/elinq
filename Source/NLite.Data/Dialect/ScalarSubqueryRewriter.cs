@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Linq.Expressions;
-using NLite.Data.Linq.Expressions;
+﻿using System.Linq.Expressions;
 using NLite.Data.Common;
+using NLite.Data.Linq.Expressions;
 
 namespace NLite.Data.Dialect
 {
@@ -16,7 +12,7 @@ namespace NLite.Data.Dialect
     {
         Expression currentFrom;
 
-       
+
         public static Expression Rewrite(Expression expression)
         {
             return new ScalarSubqueryRewriter().Visit(expression);

@@ -2,14 +2,10 @@
 // This source code is made available under the terms of the Microsoft Public License (MS-PL)
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
-using System.Text;
-using NLite.Linq;
 
 namespace NLite.Data.Linq.Expressions
 {
@@ -114,8 +110,8 @@ namespace NLite.Data.Linq.Expressions
         }
 
         protected SelectExpression UpdateSelect(
-            SelectExpression select,             
-            Expression from, Expression where, 
+            SelectExpression select,
+            Expression from, Expression where,
             IEnumerable<OrderExpression> orderBy, IEnumerable<Expression> groupBy,
             Expression skip, Expression take,
             bool isDistinct, bool isReverse,
@@ -308,7 +304,7 @@ namespace NLite.Data.Linq.Expressions
 
         protected virtual Expression VisitAggregateSubquery(AggregateSubqueryExpression aggregate)
         {
-            var subquery = (ScalarExpression) this.Visit(aggregate.AggregateAsSubquery);
+            var subquery = (ScalarExpression)this.Visit(aggregate.AggregateAsSubquery);
             return this.UpdateAggregateSubquery(aggregate, subquery);
         }
 
@@ -348,7 +344,7 @@ namespace NLite.Data.Linq.Expressions
             var outerKey = this.VisitExpressionList(join.OuterKey);
             var innerKey = this.VisitExpressionList(join.InnerKey);
             return this.UpdateClientJoin(join, projection, outerKey, innerKey);
-         }
+        }
 
         protected ClientJoinExpression UpdateClientJoin(ClientJoinExpression join, ProjectionExpression projection, IEnumerable<Expression> outerKey, IEnumerable<Expression> innerKey)
         {
@@ -391,7 +387,7 @@ namespace NLite.Data.Linq.Expressions
         {
             if (table != insert.Table || assignments != insert.Assignments)
             {
-                return new InsertCommand(table, assignments,insert.Instance);
+                return new InsertCommand(table, assignments, insert.Instance);
             }
             return insert;
         }
@@ -408,7 +404,7 @@ namespace NLite.Data.Linq.Expressions
         {
             if (table != update.Table || where != update.Where || assignments != update.Assignments)
             {
-                return new UpdateCommand(table, where, update.Instance,update.SupportsVersionCheck, assignments);
+                return new UpdateCommand(table, where, update.Instance, update.SupportsVersionCheck, assignments);
             }
             return update;
         }
@@ -424,7 +420,7 @@ namespace NLite.Data.Linq.Expressions
         {
             if (table != delete.Table || where != delete.Where)
             {
-                return new DeleteCommand(table, where,delete.Instance, delete.SupportsVersionCheck);
+                return new DeleteCommand(table, where, delete.Instance, delete.SupportsVersionCheck);
             }
             return delete;
         }

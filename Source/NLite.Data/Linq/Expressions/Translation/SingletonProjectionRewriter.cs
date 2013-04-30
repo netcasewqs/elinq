@@ -1,14 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 // This source code is made available under the terms of the Microsoft Public License (MS-PL)
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
-using System.Text;
 using NLite.Data.Dialect;
 
 namespace NLite.Data.Linq.Expressions
@@ -65,7 +58,7 @@ namespace NLite.Data.Linq.Expressions
                 this.currentSelect = this.currentSelect.AddRedundantSelect(newAlias);
 
                 // remap any references to the outer select to the new alias;
-                SelectExpression source =(SelectExpression)ColumnMapper.Map(proj.Select, newAlias, this.currentSelect.Alias);
+                SelectExpression source = (SelectExpression)ColumnMapper.Map(proj.Select, newAlias, this.currentSelect.Alias);
 
                 // add outer-join test
                 ProjectionExpression pex = this.dialect.AddOuterJoinTest(new ProjectionExpression(source, proj.Projector));

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Linq.Expressions;
-using NLite.Data.Linq.Expressions;
 using NLite.Data.Common;
+using NLite.Data.Linq.Expressions;
 
 namespace NLite.Data.Dialect.SqlBuilder
 {
@@ -158,7 +155,7 @@ namespace NLite.Data.Dialect.SqlBuilder
         }
 
         TypeNames typeNames = null;
-        string GetVariableDeclaration(SqlType sqlType, bool suppressSize, int? length )
+        string GetVariableDeclaration(SqlType sqlType, bool suppressSize, int? length)
         {
             string result = null;
 
@@ -194,7 +191,7 @@ namespace NLite.Data.Dialect.SqlBuilder
                 this.Append("DECLARE @");
                 this.Append(v.Name);
                 this.Append(" ");
-                this.Append(this.GetVariableDeclaration(v.SqlType, false,null));
+                this.Append(this.GetVariableDeclaration(v.SqlType, false, null));
             }
             if (decl.Source != null)
             {

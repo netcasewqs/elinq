@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
 using NLite.Data;
-using ELinq.DDLTest.Models;
 using NLite.Reflection;
+using NUnit.Framework;
 
 namespace ELinq.DDLTest
 {
     [TestFixture]
     public class MySqlDDLTest
     {
-         public DbConfiguration dbConfiguration;
-         public MySqlDDLTest()
+        public DbConfiguration dbConfiguration;
+        public MySqlDDLTest()
         {
             const string connectionStringName = "MySqlELinq";
             //DbConfiguration.InitializeDLinq<System.Data.Linq.Binary>();
@@ -28,38 +24,38 @@ namespace ELinq.DDLTest
 
         }
 
-         [Test]
-         public void DatabaseExists()
-         {
-             //var ddlBuilder = dbConfiguration.Dialect.CreateDDLBuilder();
-             //var DatabaseExists = ddlBuilder.DatabaseExists(dbConfiguration);
-             Assert.IsTrue(dbConfiguration.DatabaseExists());
-         }
+        [Test]
+        public void DatabaseExists()
+        {
+            //var ddlBuilder = dbConfiguration.Dialect.CreateDDLBuilder();
+            //var DatabaseExists = ddlBuilder.DatabaseExists(dbConfiguration);
+            Assert.IsTrue(dbConfiguration.DatabaseExists());
+        }
 
-         [Test]
-         public void DatabaseNotExists()
-         {
-             Assert.IsFalse(dbConfiguration.DatabaseExists());
-         }
-
-
-         [Test]
-         public void CreateDatabase()
-         {
-             //var ddlBuilder = dbConfiguration.Dialect.CreateDDLBuilder();
-             //ddlBuilder.CreateDatabase(dbConfiguration);
-             dbConfiguration.CreateDatabase();
-         }
+        [Test]
+        public void DatabaseNotExists()
+        {
+            Assert.IsFalse(dbConfiguration.DatabaseExists());
+        }
 
 
-         [Test]
-         public void DeleteDatabase()
-         {
-             //var ddlBuilder = dbConfiguration.Dialect.CreateDDLBuilder();
-             //ddlBuilder.DeleteDatabase(dbConfiguration);
-             //var DatabaseExists = ddlBuilder.DatabaseExists(dbConfiguration);
-             //Assert.IsFalse(DatabaseExists);
-             dbConfiguration.DeleteDatabase();
-         }
+        [Test]
+        public void CreateDatabase()
+        {
+            //var ddlBuilder = dbConfiguration.Dialect.CreateDDLBuilder();
+            //ddlBuilder.CreateDatabase(dbConfiguration);
+            dbConfiguration.CreateDatabase();
+        }
+
+
+        [Test]
+        public void DeleteDatabase()
+        {
+            //var ddlBuilder = dbConfiguration.Dialect.CreateDDLBuilder();
+            //ddlBuilder.DeleteDatabase(dbConfiguration);
+            //var DatabaseExists = ddlBuilder.DatabaseExists(dbConfiguration);
+            //Assert.IsFalse(DatabaseExists);
+            dbConfiguration.DeleteDatabase();
+        }
     }
 }

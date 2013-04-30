@@ -1,21 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using NLite.Data.Test.Primitive;
 using NLite.Data.Test.Primitive.Model;
 
 using NUnit.Framework;
 using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestInitialize = NUnit.Framework.SetUpAttribute;
 using TestMethod = NUnit.Framework.TestAttribute;
 
-using NLite.Collections;
-using System.Linq.Expressions;
-using System.Globalization;
-using System.Data.OleDb;
-using System.Data.Common;
-using System.Data.SqlClient;
 
 namespace NLite.Data.Test.Where
 {
@@ -53,56 +43,56 @@ namespace NLite.Data.Test.Where
             for (int i = 0; i < arr.Length; i++)
             {
                 Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary=BitConverter.GetBytes(arr[i]),Int32=arr[i]});
-                var item = Db.Set<NullableTypeInfo>().First(p => p.Binary.Length >= 0&&p.Int32==arr[i]);
+                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
+                var item = Db.Set<NullableTypeInfo>().First(p => p.Binary.Length >= 0 && p.Int32 == arr[i]);
                 Assert.IsNotNull(item);
                 Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
             }
         }
-//        [TestMethod]
-//#if SqlServer ||SqlCE||SQLite||MySQL||Access
-//        [ExpectedException(typeof(NotSupportedException))]
-//#endif
-//        public virtual void GetLength()
-//        {
-//            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
-//            for (int i = 0; i < arr.Length; i++)
-//            {
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
-//                var item = Db.Set<NullableTypeInfo>().First(p => p.Binary.GetLength(0)== arr[i] && p.Int32 == arr[i]);
-//                Assert.IsNotNull(item);
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//            }
-//        }
+        //        [TestMethod]
+        //#if SqlServer ||SqlCE||SQLite||MySQL||Access
+        //        [ExpectedException(typeof(NotSupportedException))]
+        //#endif
+        //        public virtual void GetLength()
+        //        {
+        //            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
+        //            for (int i = 0; i < arr.Length; i++)
+        //            {
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
+        //                var item = Db.Set<NullableTypeInfo>().First(p => p.Binary.GetLength(0)== arr[i] && p.Int32 == arr[i]);
+        //                Assert.IsNotNull(item);
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //            }
+        //        }
 
-//        [TestMethod]
-//#if SqlServer ||SqlCE||SQLite||MySQL||Access
-//        [ExpectedException(typeof(NotSupportedException))]
-//#endif
-//        public virtual void GetLongLength()
-//        {
-//            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
-//            for (int i = 0; i < arr.Length; i++)
-//            {
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
-//                var item = Db.Set<NullableTypeInfo>().First(p => p.Binary.GetLongLength(0)== arr[i] && p.Int32 == arr[i]);
-//                Assert.IsNotNull(item);
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//            }
-//        }
+        //        [TestMethod]
+        //#if SqlServer ||SqlCE||SQLite||MySQL||Access
+        //        [ExpectedException(typeof(NotSupportedException))]
+        //#endif
+        //        public virtual void GetLongLength()
+        //        {
+        //            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
+        //            for (int i = 0; i < arr.Length; i++)
+        //            {
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
+        //                var item = Db.Set<NullableTypeInfo>().First(p => p.Binary.GetLongLength(0)== arr[i] && p.Int32 == arr[i]);
+        //                Assert.IsNotNull(item);
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //            }
+        //        }
 
         [TestMethod]
         public virtual void Equal()
         {
-            var arr = new int[] { 123,0,-1,int.MinValue,int.MaxValue};
+            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
             for (int i = 0; i < arr.Length; i++)
             {
                 Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
                 byte[] bytearr = BitConverter.GetBytes(arr[i]);
                 Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = bytearr, Int32 = arr[i] });
-                var item = Db.Set<NullableTypeInfo>().First(p =>p.Binary ==bytearr && p.Int32 == arr[i]);
+                var item = Db.Set<NullableTypeInfo>().First(p => p.Binary == bytearr && p.Int32 == arr[i]);
                 Assert.IsNotNull(item);
                 Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
             }
@@ -131,251 +121,251 @@ namespace NLite.Data.Test.Where
                 Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
                 byte[] bytearr = BitConverter.GetBytes(arr[i]);
                 Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = bytearr, Int32 = arr[i] });
-                var item = Db.Set<NullableTypeInfo>().First(p =>object.Equals(p.Binary,bytearr) && p.Int32 == arr[i]);
+                var item = Db.Set<NullableTypeInfo>().First(p => object.Equals(p.Binary, bytearr) && p.Int32 == arr[i]);
                 Assert.IsNotNull(item);
                 Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
             }
         }
 
-//        [TestMethod]
-//#if SqlServer ||SqlCE||SQLite||MySQL||Access
-//        [ExpectedException(typeof(NotSupportedException))]
-//#endif
-//        public virtual void ConverterToInt32()
-//        {
-//            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
-//            for (int i = 0; i < arr.Length; i++)
-//            {
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
-//                var item = Db.Set<NullableTypeInfo>().First(p =>BitConverter.ToInt32(p.Binary,1)==arr[i] && p.Int32 == arr[i]);
-//                Assert.IsNotNull(item);
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//            }
-//        }
-//        [TestMethod]
-//#if SqlServer ||SqlCE||SQLite||MySQL||Access
-//        [ExpectedException(typeof(NotSupportedException))]
-//#endif
-//        public virtual void ConverterToInt64()
-//        {
-//            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
-//            for (int i = 0; i < arr.Length; i++)
-//            {
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
-//                var item = Db.Set<NullableTypeInfo>().First(p => BitConverter.ToInt64(p.Binary, 1) == arr[i] && p.Int32 == arr[i]);
-//                Assert.IsNotNull(item);
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//            }
-//        }
-//        [TestMethod]
-//#if SqlServer ||SqlCE||SQLite||MySQL||Access
-//        [ExpectedException(typeof(NotSupportedException))]
-//#endif
-//        public virtual void ConverterToInt16()
-//        {
-//            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
-//            for (int i = 0; i < arr.Length; i++)
-//            {
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
-//                var item = Db.Set<NullableTypeInfo>().First(p => BitConverter.ToInt16(p.Binary, 1) == arr[i] && p.Int32 == arr[i]);
-//                Assert.IsNotNull(item);
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//            }
-//        }
-//        [TestMethod]
-//#if SqlServer ||SqlCE||SQLite||MySQL||Access
-//        [ExpectedException(typeof(NotSupportedException))]
-//#endif
-//        public virtual void GetLowerBound()
-//        {
-//            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
-//            for (int i = 0; i < arr.Length; i++)
-//            {
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//                Db.Set<NullableTypeInfo>().Insert( new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
-//                var item = Db.Set<NullableTypeInfo>().First(p =>p.Binary.GetLowerBound(0)== arr[i] && p.Int32 == arr[i]);
-//                Assert.IsNotNull(item);
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//            }
-//        }
-//        [TestMethod]
-//#if SqlServer ||SqlCE||SQLite||MySQL||Access
-//        [ExpectedException(typeof(NotSupportedException))]
-//#endif
-//        public virtual void GetString()
-//        {
-//            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
-//            for (int i = 0; i < arr.Length; i++)
-//            {
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
-//                var item = Db.Set<NullableTypeInfo>().First(p => p.Binary.GetString() == arr[i].ToString() && p.Int32 == arr[i]);
-//                Assert.IsNotNull(item);
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//            }
-//        }
-//        [TestMethod]
-//#if SqlServer ||SqlCE||SQLite||MySQL||Access
-//        [ExpectedException(typeof(NotSupportedException))]
-//#endif
-//        public virtual void GetStringASCII()
-//        {
-//            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
-//            for (int i = 0; i < arr.Length; i++)
-//            {
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
-//                var item = Db.Set<NullableTypeInfo>().First(p => p.Binary.GetStringASCII(1,0) == arr[i].ToString() && p.Int32 == arr[i]);
-//                Assert.IsNotNull(item);
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//            }
-//        }
-//        [TestMethod]
-//#if SqlServer ||SqlCE||SQLite||MySQL||Access
-//        [ExpectedException(typeof(NotSupportedException))]
-//#endif
-//        public virtual void GetStringUTF8()
-//        {
-//            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
-//            for (int i = 0; i < arr.Length; i++)
-//            {
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
-//                var item = Db.Set<NullableTypeInfo>().First(p => p.Binary.GetStringUTF8() == arr[i].ToString() && p.Int32 == arr[i]);
-//                Assert.IsNotNull(item);
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//            }
-//        }
-//        [TestMethod]
-//#if SqlServer ||SqlCE||SQLite||MySQL||Access
-//        [ExpectedException(typeof(NotSupportedException))]
-//#endif
-//        public virtual void GetUpperBound()
-//        {
-//            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
-//            for (int i = 0; i < arr.Length; i++)
-//            {
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
-//                var item = Db.Set<NullableTypeInfo>().First(p => p.Binary.GetUpperBound(1) == arr[i] && p.Int32 == arr[i]);
-//                Assert.IsNotNull(item);
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//            }
-//        }
-//        [TestMethod]
-//#if SqlServer ||SqlCE||SQLite||MySQL||Access
-//        [ExpectedException(typeof(NotSupportedException))]
-//#endif
-//        public virtual void GetValue()
-//        {
-//            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
-//            for (int i = 0; i < arr.Length; i++)
-//            {
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
-//                var item = Db.Set<NullableTypeInfo>().First(p => (int)p.Binary.GetValue(1) == arr[i] && p.Int32 == arr[i]);
-//                Assert.IsNotNull(item);
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//            }
-//        }
-//        [TestMethod]
-//#if SqlServer ||SqlCE||SQLite||MySQL||Access
-//        [ExpectedException(typeof(NotSupportedException))]
-//#endif
-//        public virtual void IsFixedSize()
-//        {
-//            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
-//            for (int i = 0; i < arr.Length; i++)
-//            {
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
-//                var item = Db.Set<NullableTypeInfo>().First(p => p.Binary.IsFixedSize==false && p.Int32 == arr[i]);
-//                Assert.IsNotNull(item);
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//            }
-//        }
-//        [TestMethod]
-//#if SqlServer ||SqlCE||SQLite||MySQL||Access
-//        [ExpectedException(typeof(NotSupportedException))]
-//#endif
-//        public virtual void IsReadOnly()
-//        {
-//            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
-//            for (int i = 0; i < arr.Length; i++)
-//            {
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
-//                var item = Db.Set<NullableTypeInfo>().First(p => p.Binary.IsReadOnly == false && p.Int32 == arr[i]);
-//                Assert.IsNotNull(item);
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//            }
-//        }
-//        [TestMethod]
-//#if SqlServer ||SqlCE||SQLite||MySQL||Access
-//        [ExpectedException(typeof(NotSupportedException))]
-//#endif
-//        public virtual void Rank()
-//        {
-//            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
-//            for (int i = 0; i < arr.Length; i++)
-//            {
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
-//                var item = Db.Set<NullableTypeInfo>().First(p => p.Binary.Rank == 1 && p.Int32 == arr[i]);
-//                Assert.IsNotNull(item);
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//            }
-//        }
-//        [TestMethod]
-//#if SqlServer ||SqlCE||SQLite||MySQL||Access
-//        [ExpectedException(typeof(NotSupportedException))]
-//#endif
-//        public virtual void BinarySearch()
-//        {
-//            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
-//            for (int i = 0; i < arr.Length; i++)
-//            {
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
-//                var item = Db.Set<NullableTypeInfo>().First(p =>Array.BinarySearch( p.Binary,0)==2 && p.Int32 == arr[i]);
-//                Assert.IsNotNull(item);
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//            }
-//        }
-//        [TestMethod]
-//#if SqlServer ||SqlCE||SQLite||MySQL||Access
-//        [ExpectedException(typeof(NotSupportedException))]
-//#endif
-//        public virtual void IndexOf()
-//        {
-//            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
-//            for (int i = 0; i < arr.Length; i++)
-//            {
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
-//                var item = Db.Set<NullableTypeInfo>().First(p => Array.IndexOf(p.Binary,0) ==2 && p.Int32 == arr[i]);
-//                Assert.IsNotNull(item);
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//            }
-//        }
-//        [TestMethod]
-//#if SqlServer ||SqlCE||SQLite||MySQL||Access
-//        [ExpectedException(typeof(NotSupportedException))]
-//#endif
-//        public virtual void LastIndexOf()
-//        {
-//            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
-//            for (int i = 0; i < arr.Length; i++)
-//            {
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
-//                var item = Db.Set<NullableTypeInfo>().First(p => Array.LastIndexOf(p.Binary,0) == 3 && p.Int32 == arr[i]);
-//                Assert.IsNotNull(item);
-//                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
-//            }
-//        }
+        //        [TestMethod]
+        //#if SqlServer ||SqlCE||SQLite||MySQL||Access
+        //        [ExpectedException(typeof(NotSupportedException))]
+        //#endif
+        //        public virtual void ConverterToInt32()
+        //        {
+        //            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
+        //            for (int i = 0; i < arr.Length; i++)
+        //            {
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
+        //                var item = Db.Set<NullableTypeInfo>().First(p =>BitConverter.ToInt32(p.Binary,1)==arr[i] && p.Int32 == arr[i]);
+        //                Assert.IsNotNull(item);
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //            }
+        //        }
+        //        [TestMethod]
+        //#if SqlServer ||SqlCE||SQLite||MySQL||Access
+        //        [ExpectedException(typeof(NotSupportedException))]
+        //#endif
+        //        public virtual void ConverterToInt64()
+        //        {
+        //            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
+        //            for (int i = 0; i < arr.Length; i++)
+        //            {
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
+        //                var item = Db.Set<NullableTypeInfo>().First(p => BitConverter.ToInt64(p.Binary, 1) == arr[i] && p.Int32 == arr[i]);
+        //                Assert.IsNotNull(item);
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //            }
+        //        }
+        //        [TestMethod]
+        //#if SqlServer ||SqlCE||SQLite||MySQL||Access
+        //        [ExpectedException(typeof(NotSupportedException))]
+        //#endif
+        //        public virtual void ConverterToInt16()
+        //        {
+        //            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
+        //            for (int i = 0; i < arr.Length; i++)
+        //            {
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
+        //                var item = Db.Set<NullableTypeInfo>().First(p => BitConverter.ToInt16(p.Binary, 1) == arr[i] && p.Int32 == arr[i]);
+        //                Assert.IsNotNull(item);
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //            }
+        //        }
+        //        [TestMethod]
+        //#if SqlServer ||SqlCE||SQLite||MySQL||Access
+        //        [ExpectedException(typeof(NotSupportedException))]
+        //#endif
+        //        public virtual void GetLowerBound()
+        //        {
+        //            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
+        //            for (int i = 0; i < arr.Length; i++)
+        //            {
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //                Db.Set<NullableTypeInfo>().Insert( new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
+        //                var item = Db.Set<NullableTypeInfo>().First(p =>p.Binary.GetLowerBound(0)== arr[i] && p.Int32 == arr[i]);
+        //                Assert.IsNotNull(item);
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //            }
+        //        }
+        //        [TestMethod]
+        //#if SqlServer ||SqlCE||SQLite||MySQL||Access
+        //        [ExpectedException(typeof(NotSupportedException))]
+        //#endif
+        //        public virtual void GetString()
+        //        {
+        //            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
+        //            for (int i = 0; i < arr.Length; i++)
+        //            {
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
+        //                var item = Db.Set<NullableTypeInfo>().First(p => p.Binary.GetString() == arr[i].ToString() && p.Int32 == arr[i]);
+        //                Assert.IsNotNull(item);
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //            }
+        //        }
+        //        [TestMethod]
+        //#if SqlServer ||SqlCE||SQLite||MySQL||Access
+        //        [ExpectedException(typeof(NotSupportedException))]
+        //#endif
+        //        public virtual void GetStringASCII()
+        //        {
+        //            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
+        //            for (int i = 0; i < arr.Length; i++)
+        //            {
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
+        //                var item = Db.Set<NullableTypeInfo>().First(p => p.Binary.GetStringASCII(1,0) == arr[i].ToString() && p.Int32 == arr[i]);
+        //                Assert.IsNotNull(item);
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //            }
+        //        }
+        //        [TestMethod]
+        //#if SqlServer ||SqlCE||SQLite||MySQL||Access
+        //        [ExpectedException(typeof(NotSupportedException))]
+        //#endif
+        //        public virtual void GetStringUTF8()
+        //        {
+        //            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
+        //            for (int i = 0; i < arr.Length; i++)
+        //            {
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
+        //                var item = Db.Set<NullableTypeInfo>().First(p => p.Binary.GetStringUTF8() == arr[i].ToString() && p.Int32 == arr[i]);
+        //                Assert.IsNotNull(item);
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //            }
+        //        }
+        //        [TestMethod]
+        //#if SqlServer ||SqlCE||SQLite||MySQL||Access
+        //        [ExpectedException(typeof(NotSupportedException))]
+        //#endif
+        //        public virtual void GetUpperBound()
+        //        {
+        //            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
+        //            for (int i = 0; i < arr.Length; i++)
+        //            {
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
+        //                var item = Db.Set<NullableTypeInfo>().First(p => p.Binary.GetUpperBound(1) == arr[i] && p.Int32 == arr[i]);
+        //                Assert.IsNotNull(item);
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //            }
+        //        }
+        //        [TestMethod]
+        //#if SqlServer ||SqlCE||SQLite||MySQL||Access
+        //        [ExpectedException(typeof(NotSupportedException))]
+        //#endif
+        //        public virtual void GetValue()
+        //        {
+        //            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
+        //            for (int i = 0; i < arr.Length; i++)
+        //            {
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
+        //                var item = Db.Set<NullableTypeInfo>().First(p => (int)p.Binary.GetValue(1) == arr[i] && p.Int32 == arr[i]);
+        //                Assert.IsNotNull(item);
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //            }
+        //        }
+        //        [TestMethod]
+        //#if SqlServer ||SqlCE||SQLite||MySQL||Access
+        //        [ExpectedException(typeof(NotSupportedException))]
+        //#endif
+        //        public virtual void IsFixedSize()
+        //        {
+        //            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
+        //            for (int i = 0; i < arr.Length; i++)
+        //            {
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
+        //                var item = Db.Set<NullableTypeInfo>().First(p => p.Binary.IsFixedSize==false && p.Int32 == arr[i]);
+        //                Assert.IsNotNull(item);
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //            }
+        //        }
+        //        [TestMethod]
+        //#if SqlServer ||SqlCE||SQLite||MySQL||Access
+        //        [ExpectedException(typeof(NotSupportedException))]
+        //#endif
+        //        public virtual void IsReadOnly()
+        //        {
+        //            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
+        //            for (int i = 0; i < arr.Length; i++)
+        //            {
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
+        //                var item = Db.Set<NullableTypeInfo>().First(p => p.Binary.IsReadOnly == false && p.Int32 == arr[i]);
+        //                Assert.IsNotNull(item);
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //            }
+        //        }
+        //        [TestMethod]
+        //#if SqlServer ||SqlCE||SQLite||MySQL||Access
+        //        [ExpectedException(typeof(NotSupportedException))]
+        //#endif
+        //        public virtual void Rank()
+        //        {
+        //            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
+        //            for (int i = 0; i < arr.Length; i++)
+        //            {
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
+        //                var item = Db.Set<NullableTypeInfo>().First(p => p.Binary.Rank == 1 && p.Int32 == arr[i]);
+        //                Assert.IsNotNull(item);
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //            }
+        //        }
+        //        [TestMethod]
+        //#if SqlServer ||SqlCE||SQLite||MySQL||Access
+        //        [ExpectedException(typeof(NotSupportedException))]
+        //#endif
+        //        public virtual void BinarySearch()
+        //        {
+        //            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
+        //            for (int i = 0; i < arr.Length; i++)
+        //            {
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
+        //                var item = Db.Set<NullableTypeInfo>().First(p =>Array.BinarySearch( p.Binary,0)==2 && p.Int32 == arr[i]);
+        //                Assert.IsNotNull(item);
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //            }
+        //        }
+        //        [TestMethod]
+        //#if SqlServer ||SqlCE||SQLite||MySQL||Access
+        //        [ExpectedException(typeof(NotSupportedException))]
+        //#endif
+        //        public virtual void IndexOf()
+        //        {
+        //            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
+        //            for (int i = 0; i < arr.Length; i++)
+        //            {
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
+        //                var item = Db.Set<NullableTypeInfo>().First(p => Array.IndexOf(p.Binary,0) ==2 && p.Int32 == arr[i]);
+        //                Assert.IsNotNull(item);
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //            }
+        //        }
+        //        [TestMethod]
+        //#if SqlServer ||SqlCE||SQLite||MySQL||Access
+        //        [ExpectedException(typeof(NotSupportedException))]
+        //#endif
+        //        public virtual void LastIndexOf()
+        //        {
+        //            var arr = new int[] { 123, 0, -1, int.MinValue, int.MaxValue };
+        //            for (int i = 0; i < arr.Length; i++)
+        //            {
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //                Db.Set<NullableTypeInfo>().Insert(new NullableTypeInfo { Binary = BitConverter.GetBytes(arr[i]), Int32 = arr[i] });
+        //                var item = Db.Set<NullableTypeInfo>().First(p => Array.LastIndexOf(p.Binary,0) == 3 && p.Int32 == arr[i]);
+        //                Assert.IsNotNull(item);
+        //                Db.Set<NullableTypeInfo>().Delete(p => p.Int32 == arr[i]);
+        //            }
+        //        }
     }
 }

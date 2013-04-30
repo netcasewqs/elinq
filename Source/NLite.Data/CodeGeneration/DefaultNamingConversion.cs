@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Text.RegularExpressions;
 using NLite.Collections;
 
@@ -24,10 +21,10 @@ namespace NLite.Data.CodeGeneration
 
     class DefaultNamingConversion : INamingConversion
     {
-       internal static Regex regex1 = new Regex(@"([A-Z]+)([A-Z][a-z])");
-       internal static Regex regex2 = new Regex(@"([a-z\d])([A-Z])");
-       internal static Regex regex3 = new Regex(@"[-\s]");
-       internal static Regex regex4 = new Regex(@"\b([a-z])");
+        internal static Regex regex1 = new Regex(@"([A-Z]+)([A-Z][a-z])");
+        internal static Regex regex2 = new Regex(@"([a-z\d])([A-Z])");
+        internal static Regex regex3 = new Regex(@"[-\s]");
+        internal static Regex regex4 = new Regex(@"\b([a-z])");
 
         public string QueryableName(string tableName)
         {
@@ -41,7 +38,7 @@ namespace NLite.Data.CodeGeneration
             return className;
         }
 
-      
+
 
         public string FieldName(string columnName)
         {
@@ -97,8 +94,8 @@ namespace NLite.Data.CodeGeneration
     class TableNameSingularNamingConversion : DefaultNamingConversion
     {
 
-       
-        protected  override string MemberName(string memberName)
+
+        protected override string MemberName(string memberName)
         {
 
             memberName = regex1.Replace(memberName, "$1_$2");
@@ -115,6 +112,6 @@ namespace NLite.Data.CodeGeneration
             return Inflector.Singular(MemberName(tableName).FirstUpper());
         }
 
-       
+
     }
 }

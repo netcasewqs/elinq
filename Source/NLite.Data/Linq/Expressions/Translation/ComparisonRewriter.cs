@@ -2,20 +2,15 @@
 // This source code is made available under the terms of the Microsoft Public License (MS-PL)
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
 namespace NLite.Data.Linq.Expressions
 {
-    using NLite.Linq;
-    using NLite.Data.Linq.Internal;
-    using NLite.Data.Mapping;
     using NLite.Data.Dialect;
-    using NLite.Data.Dialect.ExpressionBuilder;
+    using NLite.Linq;
 
     class ComparisonRewriter : DbExpressionVisitor
     {
@@ -75,7 +70,7 @@ namespace NLite.Data.Linq.Expressions
             bool negate = bop.NodeType == ExpressionType.NotEqual;
             if (entity1 != null)
             {
-                return this.MakePredicate(e1, e2, entity1.Entity.PrimaryKeys.Select(p=>p.Member), negate);
+                return this.MakePredicate(e1, e2, entity1.Entity.PrimaryKeys.Select(p => p.Member), negate);
             }
             else if (entity2 != null)
             {
@@ -94,9 +89,9 @@ namespace NLite.Data.Linq.Expressions
             if (dm1 != null && dm2 != null)
             {
                 // both are constructed types, so they'd better have the same members declared
-                HashSet<string> names1 = new HashSet<string>(dm1.Select(m => m.Name),StringComparer.Ordinal);
+                HashSet<string> names1 = new HashSet<string>(dm1.Select(m => m.Name), StringComparer.Ordinal);
                 HashSet<string> names2 = new HashSet<string>(dm2.Select(m => m.Name), StringComparer.Ordinal);
-                if (names1.IsSubsetOf(names2) && names2.IsSubsetOf(names1)) 
+                if (names1.IsSubsetOf(names2) && names2.IsSubsetOf(names1))
                 {
                     return MakePredicate(e1, e2, dm1, negate);
                 }

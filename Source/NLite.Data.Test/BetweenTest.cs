@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using NUnit.Framework;
-using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestInitialize = NUnit.Framework.SetUpAttribute;
-using TestMethod = NUnit.Framework.TestAttribute;
-using NLite.Data.Test.Primitive.Model;
-using NLite.Data.Linq;
 using System.Linq.Expressions;
 using NLite.Data.Common;
+using NLite.Data.Test.Primitive.Model;
+using NUnit.Framework;
+using TestMethod = NUnit.Framework.TestAttribute;
 
 namespace NLite.Data.Test
 {
@@ -51,7 +46,7 @@ namespace NLite.Data.Test
         protected void ExcuteNull(Expression<Func<NullableTypeInfo, bool>> where)
         {
             Table.Delete(p => true);
-            var expected = new NullableTypeInfo { Int32 = 123, String = "abcd", Int16 = 12, Int64 = 33,Double = 23.21, Decimal = 10, UInt16 = 12, UInt32 = 123, UInt64 = 33,DateTime = new DateTime(2013,1,15,10,26,40) };
+            var expected = new NullableTypeInfo { Int32 = 123, String = "abcd", Int16 = 12, Int64 = 33, Double = 23.21, Decimal = 10, UInt16 = 12, UInt32 = 123, UInt64 = 33, DateTime = new DateTime(2013, 1, 15, 10, 26, 40) };
             Table.Insert(expected);
 
             var item = Table.Select(where).FirstOrDefault();
@@ -229,8 +224,8 @@ namespace NLite.Data.Test
             Excute(p => SqlFunctions.Between(p.Decimal, 10, 11) == true);
             Excute(p => SqlFunctions.Between(p.Decimal, 9, 10) == true);
             Excute(p => SqlFunctions.Between(p.Decimal, 10, 10) == true);
-            Excute(p => SqlFunctions.Between(p.Decimal, 8, 9) == false );
-            Excute(p => SqlFunctions.Between(p.Decimal, 11, 12) == false );
+            Excute(p => SqlFunctions.Between(p.Decimal, 8, 9) == false);
+            Excute(p => SqlFunctions.Between(p.Decimal, 11, 12) == false);
             ExcuteNull(p => SqlFunctions.Between(p.Decimal, 8, 9) == true);
             ExcuteNull(p => SqlFunctions.Between(p.Decimal, 11, 12) == true);
         }
@@ -380,7 +375,7 @@ namespace NLite.Data.Test
         [TestMethod]
         public virtual void DateTimea()
         {
-            Excute(p => SqlFunctions.Between(p.DateTime, new DateTime(2012,1,1,10,10,20), new DateTime(2013,2,15,1,1,1)).Value);
+            Excute(p => SqlFunctions.Between(p.DateTime, new DateTime(2012, 1, 1, 10, 10, 20), new DateTime(2013, 2, 15, 1, 1, 1)).Value);
             Excute(p => SqlFunctions.Between(p.DateTime, new DateTime(2013, 1, 15, 10, 26, 40), new DateTime(2013, 2, 15, 1, 1, 1)).Value);
             Excute(p => SqlFunctions.Between(p.DateTime, new DateTime(2012, 1, 1, 10, 10, 20), new DateTime(2013, 1, 15, 10, 26, 40)).Value);
             Excute(p => SqlFunctions.Between(p.DateTime, new DateTime(2013, 1, 15, 10, 26, 40), new DateTime(2013, 1, 15, 10, 26, 40)).Value);

@@ -5,11 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
-using System.Text;
-using NLite.Data.Dialect;
 using NLite.Data.Common;
 
 namespace NLite.Data.Linq.Expressions
@@ -71,7 +67,7 @@ namespace NLite.Data.Linq.Expressions
                 if (select.IsReverse)
                 {
                     if (this.gatheredOrderings == null || gatheredOrderings.Count == 0)
-                        throw new NotSupportedException(string.Format(Res.OperationNotSupported,"","Reverse","if no 'OrderBy' expression."));
+                        throw new NotSupportedException(string.Format(Res.OperationNotSupported, "", "Reverse", "if no 'OrderBy' expression."));
 
                     for (int i = 0, n = this.gatheredOrderings.Count; i < n; i++)
                     {
@@ -126,7 +122,7 @@ namespace NLite.Data.Linq.Expressions
             }
         }
 
-        protected override Expression VisitSubquery(SubqueryExpression subquery)        
+        protected override Expression VisitSubquery(SubqueryExpression subquery)
         {
             var saveSuppressOrderBy = this.suppressOrderby;
             this.suppressOrderby = true;
@@ -171,7 +167,7 @@ namespace NLite.Data.Linq.Expressions
                 }
                 // trim off obvious duplicates
                 HashSet<string> unique = new HashSet<string>(StringComparer.Ordinal);
-                for (int i = 0; i < this.gatheredOrderings.Count;) 
+                for (int i = 0; i < this.gatheredOrderings.Count; )
                 {
                     ColumnExpression column = this.gatheredOrderings[i].Expression as ColumnExpression;
                     if (column != null)

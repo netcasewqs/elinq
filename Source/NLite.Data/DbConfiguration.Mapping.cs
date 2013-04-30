@@ -1,20 +1,19 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Linq;
-using System.Reflection;
-using NLite.Data.Mapping.Fluent;
-using System.Xml;
-using System.Xml.Schema;
-using NLite.Data.Mapping;
 using System.IO;
-using System.Data;
-using NLite.Reflection;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Xml;
+using System.Xml.Linq;
+using System.Xml.Schema;
 using NLite.Collections;
 using NLite.Data.LinqToSql;
+using NLite.Data.Mapping;
+using NLite.Data.Mapping.Fluent;
 using NLite.Data.Schema;
-using System.Collections;
+using NLite.Reflection;
 
 namespace NLite.Data
 {
@@ -114,29 +113,29 @@ namespace NLite.Data
                 return;
             var errors = new StringBuilder(500);
             foreach (var mapping in mappings.Values)
-                ValidateTableSchema(mapping,errors);
+                ValidateTableSchema(mapping, errors);
             if (errors.Length > 0)
                 throw new MappingException(errors.ToString());
         }
 
 
-        private void ValidateTableSchema(EntityMapping mapping,StringBuilder errors)
+        private void ValidateTableSchema(EntityMapping mapping, StringBuilder errors)
         {
             //如果映射的数据库名称和实际的数据库名称不一致，那么有可能是跨库映射则直接返回
-            if (mapping.databaseName.HasValue() && mapping.databaseName.ToLower() != DatabaseName) 
+            if (mapping.databaseName.HasValue() && mapping.databaseName.ToLower() != DatabaseName)
                 return;
-          
+
             var tb = Schema.Tables.Union(Schema.Views).FirstOrDefault(p => p.TableName.ToLower() == mapping.tableName.ToLower());
             if (tb == null)
-                errors.Append("Missing table:" + mapping.tableName ).AppendLine();
+                errors.Append("Missing table:" + mapping.tableName).AppendLine();
             else
-                ValidateColumns(mapping, tb,errors);
+                ValidateColumns(mapping, tb, errors);
         }
 
-        private void ValidateColumns(EntityMapping mapping, ITableSchema tb,StringBuilder errors)
+        private void ValidateColumns(EntityMapping mapping, ITableSchema tb, StringBuilder errors)
         {
             var scriptGenerator = this.Option.ScriptGenerator();
-            foreach (var m in mapping.innerMappingMembers.Where(p=>p.isColumn))
+            foreach (var m in mapping.innerMappingMembers.Where(p => p.isColumn))
             {
                 var c = tb.AllColumns.FirstOrDefault(p => p.ColumnName.ToLower() == m.columnName.ToLower());
                 if (c == null)
@@ -144,7 +143,7 @@ namespace NLite.Data
                     errors.AppendFormat("Missing column: {0} in {1}", m.columnName, tb.TableName).AppendLine();
                     continue;
                 }
-             
+
                 var memberType = m.memberType.IsNullable() ? Nullable.GetUnderlyingType(m.memberType) : m.memberType;
                 if (c.Type == memberType)
                     continue;
@@ -227,16 +226,16 @@ namespace NLite.Data
         /// <typeparam name="T"></typeparam>
         /// <param name="typeFilter"></param>
         /// <returns></returns>
-        public DbConfiguration AddFromAppDomain(System.Func<Type, bool> typeFilter )
+        public DbConfiguration AddFromAppDomain(System.Func<Type, bool> typeFilter)
         {
             Assembly[] asms = null;
             if (NLiteEnvironment.IsWeb)
             {
                 var buildManagerType = ClassLoader.Load("System.Web.Compilation.BuildManager,System.Web");
                 Guard.NotNull(buildManagerType, "buildManagerType");
-                asms =(buildManagerType
+                asms = (buildManagerType
                     .GetMethod("GetReferencedAssemblies", BindingFlags.Public | BindingFlags.Static)
-                    .Invoke(null,null) as IEnumerable)
+                    .Invoke(null, null) as IEnumerable)
                     .Cast<Assembly>()
                     .ToArray();
             }
@@ -248,34 +247,34 @@ namespace NLite.Data
             return this;
         }
 
-     
+
         /// <summary>
         /// 批量注册指定类型T所在的程序集内符合特定条件的实体到数据表的映射关系
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="typeFilter"></param>
         /// <returns></returns>
-        public DbConfiguration AddFromAssemblyOf<T>(System.Func<Type, bool> typeFilter )
+        public DbConfiguration AddFromAssemblyOf<T>(System.Func<Type, bool> typeFilter)
         {
             return AddFromAssembly(typeof(T).Assembly, typeFilter);
         }
 
-		/// <summary>
-		/// 批量注册指定类型T所在的程序集内符合特定条件的实体到数据表的映射关系
-		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <returns></returns>
-		public DbConfiguration AddFromAssemblyOf<T>()
-		{
-			return AddFromAssembly(typeof(T).Assembly, null);
-		}
+        /// <summary>
+        /// 批量注册指定类型T所在的程序集内符合特定条件的实体到数据表的映射关系
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public DbConfiguration AddFromAssemblyOf<T>()
+        {
+            return AddFromAssembly(typeof(T).Assembly, null);
+        }
 
         /// <summary>
         /// 批量注册特定程序集内符合特定条件的实体到数据表的映射关系
         /// </summary>
         /// <param name="typeFilter"></param>
         /// <returns></returns>
-        public DbConfiguration AddFromAssembly(Assembly asm,System.Func<Type, bool> typeFilter)
+        public DbConfiguration AddFromAssembly(Assembly asm, System.Func<Type, bool> typeFilter)
         {
             Guard.NotNull(asm, "asm");
             if (asm.IsSystemAssembly() || asm == ELinqAssembly || asm == NLiteAssembly)
@@ -525,7 +524,7 @@ namespace NLite.Data
             mapping.members.Add(member, col);
         }
 
-        private static void AddAssociation<TAssociationAttribute>(Type type, ClassMap mapping, XElement e) where TAssociationAttribute:AbstractAssociationAttribute, new()
+        private static void AddAssociation<TAssociationAttribute>(Type type, ClassMap mapping, XElement e) where TAssociationAttribute : AbstractAssociationAttribute, new()
         {
             var ass = new TAssociationAttribute();
             var memberName = e.GetAttributeValue<string>("Member");
@@ -672,7 +671,7 @@ namespace NLite.Data
                            ).Distinct()
                     select m;
             if (EFDataAnnotiationAdapter.Instance != null)
-                q = q.Where(p => p.GetCustomAttributes(EFDataAnnotiationAdapter.NotMappedAttributeType,false).Length == 0);
+                q = q.Where(p => p.GetCustomAttributes(EFDataAnnotiationAdapter.NotMappedAttributeType, false).Length == 0);
 
             var items = from m in q
                         let att = m.GetAttribute<MemberAttribute>(true)
@@ -707,7 +706,7 @@ namespace NLite.Data
                 mapping.schema = tableAttr.Schema;
         }
 
-        private static void PopulateTableName(EntityMapping mapping, string tableName,string defaultTableName)
+        private static void PopulateTableName(EntityMapping mapping, string tableName, string defaultTableName)
         {
             if (tableName.HasValue())
             {
@@ -718,19 +717,19 @@ namespace NLite.Data
                         mapping.tableName = tableName;
                         break;
                     case 2:
-                         mapping.schema = parts[0];
-                         mapping.tableName = parts[1].TrimStart('[').TrimEnd(']');
+                        mapping.schema = parts[0];
+                        mapping.tableName = parts[1].TrimStart('[').TrimEnd(']');
                         break;
                     case 3:
-                         mapping.databaseName = parts[0];
-                         mapping.schema = parts[1];
-                         mapping.tableName = parts[2].TrimStart('[').TrimEnd(']');
+                        mapping.databaseName = parts[0];
+                        mapping.schema = parts[1];
+                        mapping.tableName = parts[2].TrimStart('[').TrimEnd(']');
                         break;
                     case 4:
-                         mapping.serverName = parts[0];
-                         mapping.databaseName = parts[1];
-                         mapping.schema = parts[2];
-                         mapping.tableName = parts[3].TrimStart('[').TrimEnd(']');
+                        mapping.serverName = parts[0];
+                        mapping.databaseName = parts[1];
+                        mapping.schema = parts[2];
+                        mapping.tableName = parts[3].TrimStart('[').TrimEnd(']');
                         break;
                     default:
                         throw new MappingException("Invalid table name '" + tableName + "'");

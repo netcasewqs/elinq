@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using NLite.Data;
-using System.Data;
 
 namespace ELinq.DDLTest.ElinqToSql.Models
 {

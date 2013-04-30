@@ -1,34 +1,26 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
+using System.Data;
+using System.Data.Common;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
-using System.Data.Common;
-using System.Runtime.Remoting.Messaging;
-using System.Data;
-using NLite.Data.Mapping;
-using NLite.Linq;
-using NLite.Data.Linq.Internal;
-using NLite.Collections;
-using NLite.Reflection;
-using NLite.Data.Linq.Expressions;
-using NLite.Data.Dialect;
-using NLite.Data.Linq;
 using NLite.Data.Common;
-using NLite.Data.Dialect.ExpressionBuilder;
-using NLite.Data.Linq.Translation;
+using NLite.Data.Dialect;
 using NLite.Data.Driver;
+using NLite.Data.Linq;
+using NLite.Data.Linq.Expressions;
+using NLite.Data.Linq.Internal;
+using NLite.Data.Linq.Translation;
+using NLite.Data.Mapping;
+using NLite.Reflection;
 
 namespace NLite.Data
 {
     /// <summary>
     /// 
     /// </summary>
-    partial class InternalDbContext : ConnectionHost, IDbContext,IUnitOfWork, IQueryProvider
+    partial class InternalDbContext : ConnectionHost, IDbContext, IUnitOfWork, IQueryProvider
     {
         internal readonly IDialect Dialect;
         internal readonly IDriver Driver;
@@ -37,11 +29,13 @@ namespace NLite.Data
         internal DbConfiguration dbConfiguration;
         internal Dictionary<Type, IDbSet> dbSetTable = new Dictionary<Type, IDbSet>();
 
-        public InternalDbContext(DbConfiguration dbConfiguration):this(dbConfiguration,dbConfiguration.CreateDbConnection(),true)
+        public InternalDbContext(DbConfiguration dbConfiguration)
+            : this(dbConfiguration, dbConfiguration.CreateDbConnection(), true)
         {
         }
 
-        internal InternalDbContext(DbConfiguration dbConfiguration, DbConnection conn):this(dbConfiguration,conn,false)
+        internal InternalDbContext(DbConfiguration dbConfiguration, DbConnection conn)
+            : this(dbConfiguration, conn, false)
         {
         }
 
@@ -52,7 +46,7 @@ namespace NLite.Data
             this.dbConfiguration = dbConfiguration;
             connection = conn;
             Operations = new Dictionary<MemberInfo, List<LambdaExpression>>();
-            this.ExpressionBuilder =dbConfiguration.Option.DbExpressionBuilder;
+            this.ExpressionBuilder = dbConfiguration.Option.DbExpressionBuilder;
             Log = dbConfiguration.sqlLogger();
             HasSelfCreateConnection = hasSelfCreateConnection;
         }
@@ -70,7 +64,7 @@ namespace NLite.Data
         {
             get
             {
-                if(dbHelper == null)
+                if (dbHelper == null)
                     dbHelper = new DbHelper { CommandType = CommandType.Text, connection = this.connection, dbConfiguration = this.dbConfiguration, Driver = this.Driver, HasSelfCreateConnection = false };
                 return dbHelper;
             }
@@ -81,16 +75,16 @@ namespace NLite.Data
         {
             get
             {
-                if(spHelper == null)
-                    spHelper= new DbHelper { CommandType = CommandType.StoredProcedure, connection = this.connection, dbConfiguration = this.dbConfiguration, Driver = this.Driver, HasSelfCreateConnection = false };
+                if (spHelper == null)
+                    spHelper = new DbHelper { CommandType = CommandType.StoredProcedure, connection = this.connection, dbConfiguration = this.dbConfiguration, Driver = this.Driver, HasSelfCreateConnection = false };
                 return spHelper;
             }
         }
 
-		public void UsingTransaction (Action action)
-		{
-			UsingTransaction (action,IsolationLevel.Unspecified);
-		}
+        public void UsingTransaction(Action action)
+        {
+            UsingTransaction(action, IsolationLevel.Unspecified);
+        }
         public void UsingTransaction(Action action, IsolationLevel isolationLevel)
         {
             Guard.NotNull(action, "action");
@@ -247,7 +241,7 @@ namespace NLite.Data
 
         internal string BuildSql(Expression expression)
         {
-            var fmt = dbConfiguration.Option.SqlBuilder(Dialect,dbConfiguration.Option.FuncRegistry);
+            var fmt = dbConfiguration.Option.SqlBuilder(Dialect, dbConfiguration.Option.FuncRegistry);
             fmt.Visit(expression);
             return fmt.ToString();
         }
@@ -286,7 +280,7 @@ namespace NLite.Data
 
             var translation = expression;
             translation = PartialEvaluator.Eval(expression, ExpressionHelper.CanBeEvaluatedLocally);
-            translation = FunctionBinder.Bind(this,translation);
+            translation = FunctionBinder.Bind(this, translation);
             //translation = PartialEvaluator.Eval(translation, ExpressionHelper.CanBeEvaluatedLocally);
             translation = QueryBinder.Bind(ExpressionBuilder, this, translation);
 

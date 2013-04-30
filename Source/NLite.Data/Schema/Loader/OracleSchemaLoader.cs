@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data.Common;
+using System.Linq;
 using NLite.Data.Common;
 namespace NLite.Data.Schema.Loader
 {
@@ -68,7 +67,7 @@ order by t.table_name";
                     allFks = reader.ToList<ForeignKeyInfo>().ToArray();
             }
 
-            Dictionary<string, TableSchema> tables = new Dictionary<string,TableSchema>();
+            Dictionary<string, TableSchema> tables = new Dictionary<string, TableSchema>();
 
             foreach (var c in allColumns)
             {
@@ -78,29 +77,29 @@ order by t.table_name";
                     table = new TableSchema { TableName = c.TableName, IsView = c.IsView };
                     tables[c.TableName] = table;
                 }
-               
+
                 var key = allFks.FirstOrDefault(p => p.Type == "P"
                     && p.ThisTableName == c.TableName
                     && p.ThisKey == c.ColumnName);
                 c.IsPrimaryKey = key != null;
 
-             
+
 
                 var column = ToColumn(c);
                 table.AddColumn(column);
             }
 
-            foreach(var item in allFks.Where(p=>p.OtherTableName.HasValue()))
+            foreach (var item in allFks.Where(p => p.OtherTableName.HasValue()))
             {
                 TableSchema thisTable = tables[item.OtherTableName];
                 TableSchema otherTable = tables[item.ThisTableName];
-                IColumnSchema thisKey = thisTable.AllColumns.FirstOrDefault(p=>p.ColumnName == item.OtherKey);
+                IColumnSchema thisKey = thisTable.AllColumns.FirstOrDefault(p => p.ColumnName == item.OtherKey);
                 IColumnSchema otherKey = otherTable.AllColumns.FirstOrDefault(p => p.ColumnName == item.ThisKey);
 
                 thisTable.AddFK(new ForeignKeySchema
                 {
                     ThisTable = thisTable,
-                    Name = item.Name ,
+                    Name = item.Name,
                     ThisKey = thisKey,
                     OtherTable = otherTable,
                     OtherKey = otherKey

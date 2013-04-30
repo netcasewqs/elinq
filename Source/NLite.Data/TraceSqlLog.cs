@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Diagnostics;
 using System.Reflection;
 using NLite.Data.Common;
@@ -45,9 +42,9 @@ namespace NLite.Data
                     var v = paramValues[i];
 
                     if (v == null || v == DBNull.Value)
-                        Trace.WriteLine(string.Format("-- {0}:(DbType = {1}, Length = {2}, Value = NULL)", p.Name, p.sqlType.DbType, p.sqlType.Length),"ELinq");
+                        Trace.WriteLine(string.Format("-- {0}:(DbType = {1}, Length = {2}, Value = NULL)", p.Name, p.sqlType.DbType, p.sqlType.Length), "ELinq");
                     else
-                        Trace.WriteLine(string.Format("-- {0}:(DbType = {1}, Length = {2}, Value = {3})", p.Name, p.sqlType.DbType, p.sqlType.Length, v),"ELinq");
+                        Trace.WriteLine(string.Format("-- {0}:(DbType = {1}, Length = {2}, Value = {3})", p.Name, p.sqlType.DbType, p.sqlType.Length, v), "ELinq");
                 }
             }
         }

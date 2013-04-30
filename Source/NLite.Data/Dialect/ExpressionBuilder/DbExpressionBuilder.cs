@@ -1,23 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Linq.Expressions;
-using NLite.Linq;
-using NLite.Data.Linq.Internal;
-using System.Reflection;
-using System.Collections.ObjectModel;
-using NLite.Data.Linq.Expressions;
-using NLite.Data.Dialect;
-using System.IO;
-using System.Threading;
-using NLite.Reflection;
-using NLite.Collections;
-using NLite.Data.Mapping;
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.Specialized;
-using NLite.Data.Linq;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection;
+using NLite.Collections;
 using NLite.Data.Common;
+using NLite.Data.Linq;
+using NLite.Data.Linq.Expressions;
+using NLite.Data.Linq.Internal;
+using NLite.Data.Mapping;
+using NLite.Linq;
+using NLite.Reflection;
 
 namespace NLite.Data.Dialect.ExpressionBuilder
 {
@@ -350,8 +345,8 @@ namespace NLite.Data.Dialect.ExpressionBuilder
         {
             List<LambdaExpression> ops;
             var dbContext = ExecuteContext.DbContext;
-			if(dbContext != null && dbContext.Operations.TryGetValue(member,out ops))
-			{
+            if (dbContext != null && dbContext.Operations.TryGetValue(member, out ops))
+            {
                 var result = expression;
                 foreach (var fnOp in ops)
                 {
@@ -643,7 +638,7 @@ namespace NLite.Data.Dialect.ExpressionBuilder
             NewExpression newExpression;
 
             // handle cases where members are not directly assignable
-            EntityAssignment[] readonlyMembers = assignments.Where(b=>b.MemberMapping != null)
+            EntityAssignment[] readonlyMembers = assignments.Where(b => b.MemberMapping != null)
                 .Where(b => (b.MemberMapping as MemberMapping).setter == null)
                 .ToArray();
             ConstructorInfo[] cons = mapping.EntityType.GetConstructors(BindingFlags.Public | BindingFlags.Instance);

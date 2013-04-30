@@ -1,21 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Linq.Expressions;
-using NLite.Linq;
-using NLite.Data.Linq.Internal;
-using System.Reflection;
-using System.Collections.ObjectModel;
-using NLite.Data.Linq.Expressions;
-using NLite.Data.Dialect;
-using System.IO;
-using System.Threading;
-using NLite.Reflection;
-using NLite.Collections;
-using NLite.Data.Mapping;
-using System.Collections;
-using System.Collections.Specialized;
 using NLite.Data.Common;
 
 namespace NLite.Data.Linq.Expressions
@@ -44,7 +28,7 @@ namespace NLite.Data.Linq.Expressions
                 if (m.Method.DeclaringType == typeof(SqlFunctions))
                     return false;
             }
-           
+
             var member = expression as MemberExpression;
             if (member != null)
             {
@@ -53,8 +37,8 @@ namespace NLite.Data.Linq.Expressions
                 if (member.Member.DeclaringType == typeof(SqlFunctions))
                     return false;
             }
-          
-          
+
+
             if (expression.NodeType == ExpressionType.Convert &&
                 expression.Type == typeof(object))
                 return true;
@@ -192,7 +176,7 @@ namespace NLite.Data.Linq.Expressions
 
     //        return new InsertCommand(table, assignments,o);
     //    }
-        
+
 
     //    internal Expression GetUpdateExpression(IEntityModel entity, Expression instance, LambdaExpression updateCheck, LambdaExpression selector, Expression @else)
     //    {
@@ -211,7 +195,7 @@ namespace NLite.Data.Linq.Expressions
 
     //        var version = entity.Version;
     //        bool supportsVersionCheck = false;
-           
+
 
     //        if (version != null)
     //        {
@@ -289,7 +273,7 @@ namespace NLite.Data.Linq.Expressions
     //                where = (where != null) ? where.And(versionCheck) : versionCheck;
     //                supportsVersionCheck = true;
     //            }
-               
+
     //        }
 
     //        object o = null;
@@ -322,7 +306,7 @@ namespace NLite.Data.Linq.Expressions
     //        return expression;
     //    }
 
-        
+
     //    EntityExpression GetEntityExpression(Expression root, IEntityModel entity)
     //    {
     //        var assignments = new List<EntityAssignment>();
@@ -505,7 +489,7 @@ namespace NLite.Data.Linq.Expressions
 
     //            return r;
     //        }
-           
+
     //        var ms = instanceType.GetMembers();
     //        var expressions = entity.Members.Where(m=>m.IsPrimaryKey)
     //            .Where(m=>ms.Exist(p=>p.Name == m.Member.Name))

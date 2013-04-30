@@ -2,22 +2,18 @@
 // This source code is made available under the terms of the Microsoft Public License (MS-PL)
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
 using NLite.Data.Linq.Internal;
-using NLite.Reflection;
 using NLite.Data.LinqToSql;
 
 namespace NLite.Data.Linq.Expressions
 {
     static class Aggregator
     {
-       
+
         /// <summary>
         /// Get a function that coerces a sequence of one type into another type.
         /// This is primarily used for aggregators stored in ProjectionExpression's, which are used to represent the 
@@ -38,7 +34,7 @@ namespace NLite.Data.Linq.Expressions
                 {
                     body = Expression.Call(typeof(Enumerable), "SingleOrDefault", new Type[] { actualElementType }, p);
                 }
-                else if (expectedType.IsGenericType && 
+                else if (expectedType.IsGenericType &&
                     (expectedType == typeof(IQueryable) ||
                      expectedType == typeof(IOrderedQueryable) ||
                      expectedType.GetGenericTypeDefinition() == typeof(IQueryable<>) ||
@@ -57,7 +53,7 @@ namespace NLite.Data.Linq.Expressions
                 else if (expectedType.IsGenericType && expectedType.GetGenericTypeDefinition().IsAssignableFrom(typeof(IList<>)))
                 {
                     var gt = typeof(DeferredList<>).MakeGenericType(expectedType.GetGenericArguments());
-                    var cn = gt.GetConstructor(new Type[] {typeof(IEnumerable<>).MakeGenericType(expectedType.GetGenericArguments())});
+                    var cn = gt.GetConstructor(new Type[] { typeof(IEnumerable<>).MakeGenericType(expectedType.GetGenericArguments()) });
                     body = Expression.New(cn, CoerceElement(expectedElementType, p));
                 }
                 else if (expectedType.IsAssignableFrom(typeof(List<>).MakeGenericType(actualElementType)))

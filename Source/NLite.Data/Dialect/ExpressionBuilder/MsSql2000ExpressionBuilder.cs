@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 using NLite.Data.Linq.Expressions;
 using NLite.Data.Mapping;
 
@@ -10,7 +6,7 @@ namespace NLite.Data.Dialect.ExpressionBuilder
 {
     class MsSqlExpressionBuilder : DbExpressionBuilder
     {
-       
+
         public override Expression GetGeneratedIdExpression(IMemberMapping member)
         {
             return new FunctionExpression(member.MemberType, "SCOPE_IDENTITY()", null);

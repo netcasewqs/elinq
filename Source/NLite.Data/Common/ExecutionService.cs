@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data.Common;
 using System.Data;
-using NLite.Data.Dialect;
+using System.Data.Common;
 using System.Runtime.CompilerServices;
 
 namespace NLite.Data.Common
@@ -215,7 +212,7 @@ namespace NLite.Data.Common
                     System.Threading.Thread.Sleep(6000);
                     break;
             }
-              
+
         }
 
         static long Counter

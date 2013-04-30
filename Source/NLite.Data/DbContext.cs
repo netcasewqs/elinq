@@ -14,7 +14,7 @@ namespace NLite.Data
     /// <summary>
     /// Db上下文
     /// </summary>
-    public class DbContext : BooleanDisposable,IDbContext,IUnitOfWork, IQueryProvider
+    public class DbContext : BooleanDisposable, IDbContext, IUnitOfWork, IQueryProvider
     {
         /// <summary>
         /// 当前DbContext
@@ -97,18 +97,18 @@ namespace NLite.Data
         /// <param name="isolationLevel"></param>
         public void UsingTransaction(Action action)
         {
-			InnerContext.UsingTransaction(action, IsolationLevel.Unspecified);
+            InnerContext.UsingTransaction(action, IsolationLevel.Unspecified);
         }
 
-		/// <summary>
-		/// 启用Ado.net事务
-		/// </summary>
-		/// <param name="action"></param>
-		/// <param name="isolationLevel"></param>
-		public void UsingTransaction(Action action, IsolationLevel isolationLevel )
-		{
-			InnerContext.UsingTransaction(action, isolationLevel);
-		}
+        /// <summary>
+        /// 启用Ado.net事务
+        /// </summary>
+        /// <param name="action"></param>
+        /// <param name="isolationLevel"></param>
+        public void UsingTransaction(Action action, IsolationLevel isolationLevel)
+        {
+            InnerContext.UsingTransaction(action, isolationLevel);
+        }
 
         class MemberInitializer
         {

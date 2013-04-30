@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
 using NLite.Data;
+using NUnit.Framework;
 
 namespace CodeGeneratorTest
 {
@@ -22,8 +19,8 @@ namespace CodeGeneratorTest
                         .SetSqlLogger(() => new SqlLog(Console.Out))
                         ;
             }
-            
-            
+
+
         }
 
         [Test]

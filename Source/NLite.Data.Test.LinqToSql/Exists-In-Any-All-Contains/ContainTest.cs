@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using NUnit.Framework;
 using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestInitialize = NUnit.Framework.SetUpAttribute;
 using TestMethod = NUnit.Framework.TestAttribute;
 
 namespace NLite.Data.Test.LinqToSql.Exists_In_Any_All_Contains
 {
     [TestClass]
-    public class ContainTest:DLinqConnection
+    public class ContainTest : DLinqConnection
     {
         [TestMethod]
         public void test1()
@@ -36,7 +32,7 @@ namespace NLite.Data.Test.LinqToSql.Exists_In_Any_All_Contains
             using (var db = dbConfiguration.CreateDbContext())
             {
                 var item = from o in db.Set<Orders>()
-                           where !(new string[]{"AROUT","BOLID","FISSA"})
+                           where !(new string[] { "AROUT", "BOLID", "FISSA" })
                            .Contains(o.CustomerID)
                            select o;
                 foreach (var it in item)
@@ -56,7 +52,7 @@ namespace NLite.Data.Test.LinqToSql.Exists_In_Any_All_Contains
                              where o.OrderID == 10248
                              select o).First();
                 var item = from c in db.Set<Customers>()
-                           where c.Orders.Any(p=>p.OrderID == order.OrderID)
+                           where c.Orders.Any(p => p.OrderID == order.OrderID)
                            select c;
                 foreach (var it in item)//
                 {
@@ -90,7 +86,7 @@ namespace NLite.Data.Test.LinqToSql.Exists_In_Any_All_Contains
                            select o;
                 foreach (var it in item)
                 {
-                    Console.WriteLine(it.CompanyName+" --- "+it.City);
+                    Console.WriteLine(it.CompanyName + " --- " + it.City);
                 }
             }
         }

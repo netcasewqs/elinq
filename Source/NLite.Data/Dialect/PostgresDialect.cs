@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NLite.Data.Dialect.ExpressionBuilder;
-using NLite.Data.Dialect.Function;
-using NLite.Data.Dialect.Function.Postgres;
-using NLite.Data.Dialect.SqlBuilder;
-using NLite.Data.Linq.Expressions;
-
+﻿
 namespace NLite.Data.Dialect
 {
     partial class PostgresDialect : Dialect
@@ -36,6 +27,6 @@ namespace NLite.Data.Dialect
             get { return true; }
         }
 
-      
+
     }
 }

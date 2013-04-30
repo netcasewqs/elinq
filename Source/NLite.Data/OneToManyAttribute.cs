@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace NLite.Data
 {
     /// <summary>
@@ -10,7 +6,7 @@ namespace NLite.Data
     /// </summary>
     public class OneToManyAttribute : AbstractAssociationAttribute
     {
-       
+
     }
 
 }

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Globalization;
 
 namespace NLite.Data.Common
@@ -63,7 +60,7 @@ namespace NLite.Data.Common
             return true;
         }
 
-     
+
         internal static string TrimEnd(string str)
         {
             return str == null ? null : str.TrimEnd();
@@ -96,7 +93,7 @@ namespace NLite.Data.Common
 
             return str.IndexOf(value, startIndex.Value - 1);
         }
-        
+
         internal static int? IndexOf(string str, string value, int? startIndex, int? count)
         {
             if (str == null || value == null || startIndex == null || count == null)
@@ -120,7 +117,7 @@ namespace NLite.Data.Common
 
             return str.LastIndexOf(value, startIndex.Value - 1);
         }
-      
+
         internal static int? LastIndexOf(string str, string value, int? startIndex, int? count)
         {
             if (str == null || value == null || startIndex == null)
@@ -129,7 +126,7 @@ namespace NLite.Data.Common
             return str.LastIndexOf(value, startIndex.Value - 1, count.Value);
         }
 
-        
+
         internal static string Reverse(string str)
         {
             if (string.IsNullOrEmpty(str))
@@ -144,7 +141,7 @@ namespace NLite.Data.Common
         {
             return startIndex == null || str == null || str.Length < startIndex - 1 ? null : str.Remove(startIndex.Value - 1);
         }
-       
+
         internal static string LeftOf(string str, string value)
         {
             return str == null || value == null ? null : NLite.StringExtensions.LeftOf(str, value);
@@ -393,7 +390,7 @@ namespace NLite.Data.Common
         }
 
         internal static Double? Cot(Double? value) { return value == null ? null : (Double?)Math.Cos(value.Value) / Math.Sin(value.Value); }
-     
+
         internal static Decimal RoundToEven(Decimal value)
         {
             return (Decimal)Math.Round(value, MidpointRounding.ToEven);
@@ -550,7 +547,7 @@ namespace NLite.Data.Common
             return value >= begin && value <= end;
         }
 
-       
+
 
         #endregion
         #endregion

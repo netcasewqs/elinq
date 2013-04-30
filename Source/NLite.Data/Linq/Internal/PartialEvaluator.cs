@@ -3,12 +3,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
-using NLite.Reflection;
-using NLite.Data.Linq;
 using NLite.Data.Common;
+using NLite.Reflection;
 
 namespace NLite.Data.Linq.Internal
 {
@@ -93,7 +90,7 @@ namespace NLite.Data.Linq.Internal
                 if (e.NodeType == ExpressionType.Call)
                 {
                     var m = e as MethodCallExpression;
-                    if (m.Method.DeclaringType == typeof(SqlFunctions)&&m.Method.Name == "Convert")
+                    if (m.Method.DeclaringType == typeof(SqlFunctions) && m.Method.Name == "Convert")
                     {
                         if (TypeHelper.GetNonNullableType(m.Arguments[0].Type) == TypeHelper.GetNonNullableType(type))
                             e = m.Arguments[0];

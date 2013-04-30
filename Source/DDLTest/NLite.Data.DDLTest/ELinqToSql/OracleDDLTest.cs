@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
 using NLite.Data;
 using NLite.Reflection;
-using ELinq.DDLTest.ElinqToSql.Models;
+using NUnit.Framework;
 
 namespace ELinq.DDLTest.ElinqToSql
 {

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Reflection;
+﻿using System.Reflection;
 
 namespace NLite.Data.Schema.Script.Executor
 {
-    class SQLiteScriptExecutor:FileDatabaseScriptExecutor
+    class SQLiteScriptExecutor : FileDatabaseScriptExecutor
     {
         protected override void OnCreateDatabase(DbConfiguration dbConfiguration, string dbName)
         {

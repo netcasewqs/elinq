@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using NLite.Data.Schema;
 
 namespace NLite.Data.CodeGeneration
 {
-    class EntityModel:IEntityModel
+    class EntityModel : IEntityModel
     {
         public ITableSchema Table { get; set; }
         public string ClassName { get; set; }
@@ -17,12 +16,12 @@ namespace NLite.Data.CodeGeneration
         internal List<INavigationMemberModel> oneToMany = new List<INavigationMemberModel>();
 
         public IMemberModel[] PrimaryKeys { get { return members.Where(p => p.Column.IsPrimaryKey).ToArray(); } }
-        public IMemberModel[] Members { get { return members.Where(p=>!p.Column.IsPrimaryKey).ToArray(); } }
+        public IMemberModel[] Members { get { return members.Where(p => !p.Column.IsPrimaryKey).ToArray(); } }
         public INavigationMemberModel[] ManyToOnes { get { return manyToOnes.ToArray(); } }
         public INavigationMemberModel[] OneToMany { get { return oneToMany.ToArray(); } }
     }
 
-    class MemberModel:IMemberModel
+    class MemberModel : IMemberModel
     {
         public string MemberName { get; set; }
         public IColumnSchema Column { get; set; }

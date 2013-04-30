@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Linq.Expressions;
-using NLite.Data.Dialect.SqlBuilder;
+﻿using System.Linq.Expressions;
 using NLite.Data.Common;
 
 namespace NLite.Data.Dialect.Function.SQLite
@@ -49,6 +44,6 @@ namespace NLite.Data.Dialect.Function.SQLite
         {
             get { return stringFunctions; }
         }
-        
+
     }
 }

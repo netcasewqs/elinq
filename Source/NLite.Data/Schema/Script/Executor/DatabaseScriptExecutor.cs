@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data.Common;
-
+﻿
 namespace NLite.Data.Schema.Script.Executor
 {
-    abstract class DatabaseScriptExecutor:IDatabaseScriptExecutor
+    abstract class DatabaseScriptExecutor : IDatabaseScriptExecutor
     {
-       
+
         public abstract bool DatabaseExists(DbConfiguration dbConfiguration);
         public abstract void DeleteDatabase(DbConfiguration dbConfiguration);
         public abstract void CreateDatabase(DbConfiguration dbConfiguration, DatabaseScriptEntry script);
@@ -26,7 +21,7 @@ namespace NLite.Data.Schema.Script.Executor
             }
         }
 
-    
+
         protected virtual void CreateTables(ISqlLog log, DatabaseScriptEntry script, IDbContext ctx)
         {
             var cmd = ctx.Connection.CreateCommand();
@@ -58,7 +53,7 @@ namespace NLite.Data.Schema.Script.Executor
                     cmd.CommandText = item;
                     log.LogMessage(item);
                     cmd.ExecuteNonQuery();
-                    
+
                 }
             }
 

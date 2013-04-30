@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Reflection;
-using System.Data;
-using System.Linq.Expressions;
-using NLite.Linq;
 using NLite.Reflection;
-using NLite.Data.Linq.Internal;
 
 namespace NLite.Data.Mapping.Fluent
 {
@@ -76,6 +71,6 @@ namespace NLite.Data.Mapping.Fluent
         }
     }
 
-   
+
 
 }

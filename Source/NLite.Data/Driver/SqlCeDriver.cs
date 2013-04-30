@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data;
+﻿using System.Data;
 using System.Reflection;
 using NLite.Reflection;
 
 namespace NLite.Data.Driver
 {
-    class SqlCeDriver:AbstractDriver
+    class SqlCeDriver : AbstractDriver
     {
         private static Setter SetSqlDbType;
         protected override void ConvertDBTypeToNativeType(IDbDataParameter p, DBType dbType)

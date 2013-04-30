@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Linq.Expressions;
-using NLite.Data.Linq;
-
+﻿
 namespace NLite.Data.Dialect.Function.Access
 {
     class AccessFunctionRegistry : FunctionRegistry
@@ -41,7 +35,7 @@ namespace NLite.Data.Dialect.Function.Access
             get { return stringFunctions; }
         }
 
-      
+
 
     }
 
@@ -82,7 +76,7 @@ namespace NLite.Data.Dialect.Function.Access
             get { return new DatePartFunctionView(); }
         }
     }
-   
-   
-    
+
+
+
 }

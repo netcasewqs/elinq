@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using NUnit.Framework;
 using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestInitialize = NUnit.Framework.SetUpAttribute;
 using TestMethod = NUnit.Framework.TestAttribute;
 
 namespace NLite.Data.Test.LinqToSql.Where
@@ -18,7 +14,7 @@ namespace NLite.Data.Test.LinqToSql.Where
         {
             using (var db = dbConfiguration.CreateDbContext())
             {
-                var item = db.Set<Customers>().Where(p=>p.City=="London");
+                var item = db.Set<Customers>().Where(p => p.City == "London");
                 Console.WriteLine(item.Count());
             }
         }
@@ -27,7 +23,7 @@ namespace NLite.Data.Test.LinqToSql.Where
         {
             using (var db = dbConfiguration.CreateDbContext())
             {
-                var item = db.Set<Customers>().Select(p=>p).Where(p => p.City == "London");
+                var item = db.Set<Customers>().Select(p => p).Where(p => p.City == "London");
                 Console.WriteLine(item.Count());
             }
         }
@@ -36,7 +32,7 @@ namespace NLite.Data.Test.LinqToSql.Where
         {
             using (var db = dbConfiguration.CreateDbContext())
             {
-                var item = db.Set<Customers>().Select(p=>p.City).Where(p => p == "London");
+                var item = db.Set<Customers>().Select(p => p.City).Where(p => p == "London");
                 Console.WriteLine(item.FirstOrDefault().ToString());
             }
         }

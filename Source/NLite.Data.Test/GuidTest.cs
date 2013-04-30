@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using NLite.Data.Test.Primitive;
 using NLite.Data.Test.Primitive.Model;
 using NUnit.Framework;
 using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestInitialize = NUnit.Framework.SetUpAttribute;
 using TestMethod = NUnit.Framework.TestAttribute;
-using NLite.Collections;
-using System.Linq.Expressions;
-using System.Globalization;
 
 namespace NLite.Data.Test.Where
 {
@@ -82,7 +75,7 @@ namespace NLite.Data.Test.Where
             Assert.IsNotNull(item);
             GuidDelete();
         }
-  
+
 
         [TestMethod]
         public virtual void IsNotNull()

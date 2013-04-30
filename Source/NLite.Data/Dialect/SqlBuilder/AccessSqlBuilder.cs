@@ -1,19 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NLite.Data.Common;
 using System.Linq.Expressions;
-using System.Data;
+using NLite.Data.Common;
 using NLite.Data.Linq.Expressions;
-using NLite.Data.Dialect.Function;
 
 namespace NLite.Data.Dialect.SqlBuilder
 {
     internal class AccessSqlBuilder : DbSqlBuilder
     {
         static Dictionary<DBType, IFunctionView> CastFunctions = new Dictionary<DBType, IFunctionView>();
-         static AccessSqlBuilder()
+        static AccessSqlBuilder()
         {
             CastFunctions[DBType.Boolean] = FunctionView.StandardSafe("CBool", 1);
             CastFunctions[DBType.Byte] = FunctionView.StandardSafe("CByte", 1);
@@ -32,26 +28,26 @@ namespace NLite.Data.Dialect.SqlBuilder
             CastFunctions[DBType.NChar] = FunctionView.StandardSafe("CStr ", 1);
         }
 
-         TypeNames typeNames = null;
-         string GetVariableDeclaration(SqlType sqlType, bool suppressSize, int? length)
-         {
-             string result = null;
+        TypeNames typeNames = null;
+        string GetVariableDeclaration(SqlType sqlType, bool suppressSize, int? length)
+        {
+            string result = null;
 
-             if (typeNames == null)
-                 typeNames = new NLite.Data.Schema.Script.Generator.AccessScriptGenerator().typeNames;
+            if (typeNames == null)
+                typeNames = new NLite.Data.Schema.Script.Generator.AccessScriptGenerator().typeNames;
 
-             if (!suppressSize)
-                 result = typeNames.Get(sqlType.DbType);
-             else if (sqlType.Length > 0 || sqlType.Precision > 0 || sqlType.Scale > 0)
-                 result = typeNames.Get(sqlType.DbType, sqlType.Length, sqlType.Precision, sqlType.Scale);
-             else
-                 result = typeNames.Get(sqlType.DbType);
+            if (!suppressSize)
+                result = typeNames.Get(sqlType.DbType);
+            else if (sqlType.Length > 0 || sqlType.Precision > 0 || sqlType.Scale > 0)
+                result = typeNames.Get(sqlType.DbType, sqlType.Length, sqlType.Precision, sqlType.Scale);
+            else
+                result = typeNames.Get(sqlType.DbType);
 
-             if (result == null)
-                 throw new InvalidCastException(string.Format(Res.CastTypeInvalid, sqlType));
+            if (result == null)
+                throw new InvalidCastException(string.Format(Res.CastTypeInvalid, sqlType));
 
-             return result;
-         }
+            return result;
+        }
 
         protected internal virtual void FormatWithParameters(Expression expression)
         {
@@ -65,7 +61,7 @@ namespace NLite.Data.Dialect.SqlBuilder
                         this.Append(", ");
                     this.AppendParameterName(names[i].Name);
                     this.Append(" ");
-                    this.Append(GetVariableDeclaration(names[i].SqlType, true,null));
+                    this.Append(GetVariableDeclaration(names[i].SqlType, true, null));
                 }
                 this.Append(";");
                 this.AppendLine(Indentation.Same);

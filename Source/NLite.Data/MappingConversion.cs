@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NLite.Data.CodeGeneration;
 
 namespace NLite.Data
 {
@@ -19,7 +15,7 @@ namespace NLite.Data
         /// <summary>
         /// 表名复数策略，字段或属性的名称和列名完全一致
         /// </summary>
-        public static readonly IMappingConversion Plural = new ProxyMappingConversion(className=>Inflector.Plural(className));
+        public static readonly IMappingConversion Plural = new ProxyMappingConversion(className => Inflector.Plural(className));
 
         internal static IMappingConversion Current { get; set; }
     }
@@ -58,12 +54,12 @@ namespace NLite.Data
             this.fnTableName = fnTableName;
             this.fnColumnName = fnColumnName;
         }
-         
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="fnTableName"></param>
-        public ProxyMappingConversion(Func<string,string> fnTableName):this(fnTableName,memberName=>memberName){}
+        public ProxyMappingConversion(Func<string, string> fnTableName) : this(fnTableName, memberName => memberName) { }
 
         /// <summary>
         /// 
@@ -85,5 +81,5 @@ namespace NLite.Data
             return fnColumnName(memberName);
         }
     }
-    
+
 }

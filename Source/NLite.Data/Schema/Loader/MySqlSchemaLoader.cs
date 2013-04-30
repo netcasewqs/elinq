@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using NLite.Data.Common;
 
 namespace NLite.Data.Schema.Loader
@@ -19,7 +16,9 @@ namespace NLite.Data.Schema.Loader
 
         protected override string AllColumnsSql
         {
-            get { return @"
+            get
+            {
+                return @"
                             SELECT 
                                     table_name AS TableName,
                                     CASE WHEN (SELECT   COUNT(*) 
@@ -39,12 +38,15 @@ namespace NLite.Data.Schema.Loader
                                     column_default AS DefaultValue,
                                     column_comment AS `Comment`
                              FROM INFORMATION_SCHEMA.COLUMNS a
-                             WHERE a.TABLE_SCHEMA = '" + dbName+"'"; }
+                             WHERE a.TABLE_SCHEMA = '" + dbName + "'";
+            }
         }
 
         protected override string AllConstraintsSql
         {
-            get { return @"
+            get
+            {
+                return @"
                             SELECT 
                                     a.table_name AS TableName
                                     ,a.constraint_name AS `Name`

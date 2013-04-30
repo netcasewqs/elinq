@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 using NLite.Data.Linq.Expressions;
 
 namespace NLite.Data.Dialect.SqlBuilder
@@ -11,7 +7,7 @@ namespace NLite.Data.Dialect.SqlBuilder
     {
         protected override void WriteTableName(Mapping.IEntityMapping mapping)
         {
-            if(mapping.ServerName.HasValue())
+            if (mapping.ServerName.HasValue())
                 sb.Append(Dialect.Quote(mapping.ServerName)).Append(".");
             if (mapping.DatabaseName.HasValue())
                 sb.Append(Dialect.Quote(mapping.DatabaseName)).Append(".");
@@ -48,5 +44,5 @@ namespace NLite.Data.Dialect.SqlBuilder
 
     }
 
-     
+
 }

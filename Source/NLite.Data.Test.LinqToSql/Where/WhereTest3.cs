@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using NUnit.Framework;
 using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestInitialize = NUnit.Framework.SetUpAttribute;
 using TestMethod = NUnit.Framework.TestAttribute;
 
 namespace NLite.Data.Test.LinqToSql.Where
 {
     [TestClass]
     //First()形式
-    public class WhereTest3:DLinqConnection
+    public class WhereTest3 : DLinqConnection
     {
         [TestMethod]
         public void FirstTest1()
@@ -27,7 +23,7 @@ namespace NLite.Data.Test.LinqToSql.Where
         {
             using (var db = dbConfiguration.CreateDbContext())
             {
-                var item = db.Set<Customers>().OrderBy(p=>p.CustomerID).First();
+                var item = db.Set<Customers>().OrderBy(p => p.CustomerID).First();
                 Console.WriteLine(item.Country);
             }
         }
@@ -36,7 +32,7 @@ namespace NLite.Data.Test.LinqToSql.Where
         {
             using (var db = dbConfiguration.CreateDbContext())
             {
-                var item = db.Set<Customers>().First(p=>p.Country=="UK");
+                var item = db.Set<Customers>().First(p => p.Country == "UK");
                 Console.WriteLine(item.CompanyName);
             }
         }

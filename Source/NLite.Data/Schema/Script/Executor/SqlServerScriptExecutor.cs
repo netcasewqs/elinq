@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data.Common;
 
 namespace NLite.Data.Schema.Script.Executor
 {
-    class SqlServerScriptExecutor:NonFileDatabaseScriptExecutor
+    class SqlServerScriptExecutor : NonFileDatabaseScriptExecutor
     {
         public override void CreateDatabase(DbConfiguration dbConfiguration, DatabaseScriptEntry script)
         {
@@ -49,7 +45,7 @@ namespace NLite.Data.Schema.Script.Executor
 
         public override void DeleteDatabase(DbConfiguration dbConfiguration)
         {
-            
+
             var connectionStringBuilder = dbConfiguration.DbProviderFactory.CreateConnectionStringBuilder();
             connectionStringBuilder.ConnectionString = dbConfiguration.ConnectionString;
 

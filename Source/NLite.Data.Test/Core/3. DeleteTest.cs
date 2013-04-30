@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
-using NLite.Data.Test.Model.Northwind;
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Linq;
+using NLite.Data.Test.Model.Northwind;
+using NUnit.Framework;
 
 namespace NLite.Data.Test.Core
 {
@@ -133,7 +132,7 @@ namespace NLite.Data.Test.Core
                 //5. 执行PO插入
                 cusotmers.Insert(c);
                 //6. 通过CustomerID 进行删除
-                var dict = new Dictionary<string,object>();
+                var dict = new Dictionary<string, object>();
                 dict["customerId"] = c.CustomerID;
 
                 cusotmers.Delete(dict);
@@ -198,7 +197,7 @@ namespace NLite.Data.Test.Core
                 //5. 执行PO插入
                 cusotmers.Insert(c);
                 //6. 通过CustomerID 进行删除
-                cusotmers.Delete(m=>m.CustomerID == c.CustomerID);
+                cusotmers.Delete(m => m.CustomerID == c.CustomerID);
             }
         }
 

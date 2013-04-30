@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data.Common;
-using System.IO;
 using System.Reflection;
 
 namespace NLite.Data.Schema.Script.Executor
 {
-    class SqlCeScriptExecutor:FileDatabaseScriptExecutor
+    class SqlCeScriptExecutor : FileDatabaseScriptExecutor
     {
         protected override void OnCreateDatabase(DbConfiguration dbConfiguration, string dbName)
         {
@@ -25,6 +20,6 @@ namespace NLite.Data.Schema.Script.Executor
                 throw ex.InnerException;
             }
         }
-       
+
     }
 }

@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
-using NLite.Data.Test.Model.Northwind;
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Linq;
+using NLite.Data.Test.Model.Northwind;
+using NUnit.Framework;
 
 namespace NLite.Data.Test.Core
 {
@@ -23,7 +22,7 @@ namespace NLite.Data.Test.Core
                     })
                 .AddClass<Order>();
 
-        
+
         //标准PO对象插入
         [Test]
         public void PO()
@@ -61,7 +60,7 @@ namespace NLite.Data.Test.Core
                 Assert.AreEqual(c.City, c2.City);
                 Assert.AreEqual(c.Country, c2.Country);
 
-                
+
                 q.Delete(c);
             }
         }
@@ -151,7 +150,7 @@ namespace NLite.Data.Test.Core
         public void GenericDictionary()
         {
             //1. 创建匿名对象
-            var c = new Dictionary<string,object>();
+            var c = new Dictionary<string, object>();
             c["CustomerID"] = "XX1";
             c["CompanyName"] = "Company1";
             c["ContactName"] = "Contact1";

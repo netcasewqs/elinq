@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data;
+using System.Linq;
 using NLite.Data;
 using NUnit.Framework;
 
 namespace CodeGeneratorTest
 {
-      [TestFixture]
+    [TestFixture]
     class OracleSchemaTest
     {
-         public DbConfiguration dbConfiguration;
-         public OracleSchemaTest()
+        public DbConfiguration dbConfiguration;
+        public OracleSchemaTest()
         {
             const string connectionStringName = "OracleELinq";
             //DbConfiguration.InitializeDLinq<System.Data.Linq.Binary>();
@@ -42,7 +40,7 @@ namespace CodeGeneratorTest
                     , item["ProviderDbType"]
                     , item["DataType"]));
 
-            
+
         }
 
         [Test]

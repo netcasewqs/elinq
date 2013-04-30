@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace NLite.Data.Schema.Loader
 {
     class SqlCeSchemaLoader : SchemaLoader
@@ -25,14 +21,15 @@ namespace NLite.Data.Schema.Loader
                 , case when IS_NULLABLE ='YES' then 1 when is_nullable ='NO' then 0 end AS IsNullable
                 , COLUMN_DEFAULT AS DefaultValue
                 , DESCRIPTION AS Comment
-                FROM      INFORMATION_SCHEMA.COLUMNS"; }
+                FROM      INFORMATION_SCHEMA.COLUMNS";
+            }
         }
 
         protected override string AllConstraintsSql
         {
             get
             {
-                return 
+                return
                 @"SELECT   TABLE_NAME AS TableName
                 , COLUMN_NAME AS ColumnName
                 , CONSTRAINT_NAME AS Name
@@ -46,7 +43,8 @@ namespace NLite.Data.Schema.Loader
 
         protected override string AllFKsSql
         {
-            get { 
+            get
+            {
                 return
                 @"
                 select 
@@ -61,7 +59,7 @@ namespace NLite.Data.Schema.Loader
                 inner join INFORMATION_SCHEMA.KEY_COLUMN_USAGE c
                 on b.UNIQUE_CONSTRAINT_NAME = c.CONSTRAINT_NAME
                 where a.CONSTRAINT_NAME like 'FK%'
-                "; 
+                ";
             }
         }
     }

@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using NLite.Data;
-using System.Data;
 
 namespace ELinq.DDLTest.ElinqToSql.Models
 {
     [Table(Name = "dbo2.Employees")]
     public class Employees
     {
-        
-        [Id(IsDbGenerated=true,SequenceName = "S_Employees")]
+
+        [Id(IsDbGenerated = true, SequenceName = "S_Employees")]
         public int EmployeeID { get; set; }
 
         [Column(Length = 20, IsNullable = false)]
@@ -31,7 +27,7 @@ namespace ELinq.DDLTest.ElinqToSql.Models
 
         [Column]
         public System.Nullable<System.DateTime> HireDate { get; set; }
-       
+
         [Column(Length = 60)]
         public string Address { get; set; }
 
@@ -56,7 +52,7 @@ namespace ELinq.DDLTest.ElinqToSql.Models
         //[Column(DbType = DBType.Image)]
         public byte[] Photo { get; set; }
 
-        [Column(DbType=DBType.NText)]
+        [Column(DbType = DBType.NText)]
         public string Notes { get; set; }
 
         [Column]
@@ -76,6 +72,6 @@ namespace ELinq.DDLTest.ElinqToSql.Models
 
         [ManyToOne(ThisKey = "ReportsTo", OtherKey = "EmployeeID")]
         public Employees Employees1 { get; set; }
-	
+
     }
 }

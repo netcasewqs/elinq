@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Text;
 using NLite.Collections;
 namespace NLite.Data.Schema.Script.Generator
 {
-    class AccessScriptGenerator:DatabaseScriptGenerator
+    class AccessScriptGenerator : DatabaseScriptGenerator
     {
         protected override string BuildPKScript(Mapping.IMemberMapping[] members)
         {

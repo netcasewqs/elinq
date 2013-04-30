@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NLite.Data.LinqToSql;
-using System.Reflection;
 using System.Data;
+using System.Reflection;
+using NLite.Data.LinqToSql;
 
 namespace NLite.Data.Common
 {

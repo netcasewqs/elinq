@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NLite.Data.Common;
-using System.Reflection;
 using System.Diagnostics;
+using System.Reflection;
+using NLite.Data.Common;
 
 namespace NLite.Data
 {
-    class DebugSqlLog:ISqlLog
+    class DebugSqlLog : ISqlLog
     {
         static readonly string Version = "-- ELinq Version:" + Assembly.GetExecutingAssembly().GetName().Version.ToString();
 

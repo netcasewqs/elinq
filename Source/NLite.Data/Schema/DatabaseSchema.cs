@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data;
 using System.Diagnostics;
+using System.Linq;
 
 namespace NLite.Data.Schema
 {
-    class DatabaseSchema:IDatabaseSchema
+    class DatabaseSchema : IDatabaseSchema
     {
         public ITableSchema[] Tables { get; internal set; }
         public ITableSchema[] Views { get; internal set; }
@@ -78,5 +76,5 @@ namespace NLite.Data.Schema
         public IColumnSchema OtherKey { get; internal set; }
     }
 
-    
+
 }

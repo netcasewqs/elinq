@@ -1,14 +1,8 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 // This source code is made available under the terms of the Microsoft Public License (MS-PL)
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
-using System.Text;
 using NLite.Data.Linq.Internal;
 
 
@@ -62,7 +56,7 @@ namespace NLite.Data.Linq.Expressions
                 {
                     if (join.Condition == compareTo.Condition)
                         return join.Right;
-                    var scope = new ScopedDictionary<TableAlias, TableAlias>(null,TableAlias.Comparer);
+                    var scope = new ScopedDictionary<TableAlias, TableAlias>(null, TableAlias.Comparer);
                     scope.Add(((AliasedExpression)join.Right).Alias, ((AliasedExpression)compareTo.Right).Alias);
                     if (DbExpressionComparer.AreEqual(null, scope, join.Condition, compareTo.Condition))
                         return join.Right;

@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-using System.IO;
-using System.Data.Common;
 using System.Data;
-using NLite.Data.Mapping;
+using System.Data.Common;
 
 namespace NLite.Data
 {
@@ -54,13 +46,13 @@ namespace NLite.Data
         /// </summary>
         /// <param name="action"></param>
         void UsingTransaction(Action action);
-		/// <summary>
-		/// 启用Ado.net事务
-		/// </summary>
-		/// <param name="action"></param>
-		/// <param name="isolationLevel"></param>
-		void UsingTransaction(Action action, IsolationLevel isolationLevel);
+        /// <summary>
+        /// 启用Ado.net事务
+        /// </summary>
+        /// <param name="action"></param>
+        /// <param name="isolationLevel"></param>
+        void UsingTransaction(Action action, IsolationLevel isolationLevel);
     }
 
-   
+
 }

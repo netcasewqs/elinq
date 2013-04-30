@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data;
-using NLite.Reflection;
+using System.Linq;
 using System.Reflection;
 using NLite.Data.Common;
+using NLite.Reflection;
 
 namespace NLite.Data.Schema.Loader
 {
-    class SQLiteSchemaLoader:SchemaLoader
+    class SQLiteSchemaLoader : SchemaLoader
     {
         static Func GetSchemaTableMethod = null;
         static readonly object Mutext = new object();
@@ -18,8 +17,8 @@ namespace NLite.Data.Schema.Loader
         {
             var databaseSchema = new DatabaseSchema();
 
-            Dictionary<string,List<ForeignKeyInfo>> allFks = new Dictionary<string, List<ForeignKeyInfo>>();
-            Dictionary<string,DataTable> allColumns = new Dictionary<string,DataTable>();
+            Dictionary<string, List<ForeignKeyInfo>> allFks = new Dictionary<string, List<ForeignKeyInfo>>();
+            Dictionary<string, DataTable> allColumns = new Dictionary<string, DataTable>();
             var tables = LoadData(cfg, allFks, allColumns);
 
             foreach (var tb in tables)
@@ -32,7 +31,7 @@ namespace NLite.Data.Schema.Loader
                     var type = row["DataType"] as Type;
                     var dbType = ParseDbType(typeName);
 
-                    int precision,scale ;
+                    int precision, scale;
                     if (string.IsNullOrEmpty(row["NumericPrecision"] as string))
                         precision = 0;
                     else
@@ -95,7 +94,7 @@ namespace NLite.Data.Schema.Loader
                 const BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Instance;
 
                 if (GetSchemaTableMethod == null)
-                    lock(Mutext)
+                    lock (Mutext)
                         GetSchemaTableMethod = conn.GetType().Module
                             .GetType("System.Data.SQLite.SQLiteDataReader")
                             .GetMethod("GetSchemaTable", flags)
@@ -118,13 +117,13 @@ WHERE ([type] LIKE 'table' OR [type] LIKE 'view') and [name] not like  'sqlite%'
 
                         cmd.CommandText = string.Format("select * from main.[{0}]", t.TableName);
                         using (var reader = cmd.ExecuteReader(System.Data.CommandBehavior.SchemaOnly))
-                            allColumns.Add(t.TableName,GetSchemaTableMethod(reader, true, true) as DataTable);
+                            allColumns.Add(t.TableName, GetSchemaTableMethod(reader, true, true) as DataTable);
                         cmd.CommandText = string.Format("PRAGMA main.foreign_key_list([{0}])", t.TableName);
                         using (var reader = cmd.ExecuteReader())
                         {
                             var fks = new List<ForeignKeyInfo>();
                             allFks.Add(t.TableName, fks);
-                            while(reader.Read())
+                            while (reader.Read())
                                 fks.Add(new ForeignKeyInfo
                                 {
                                     ThisTableName = t.TableName,

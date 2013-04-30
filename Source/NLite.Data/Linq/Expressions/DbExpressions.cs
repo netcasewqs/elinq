@@ -2,22 +2,16 @@
 // This source code is made available under the terms of the Microsoft Public License (MS-PL)
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
-using System.Text;
 
 namespace NLite.Data.Linq.Expressions
 {
-    using NLite.Data.Linq.Internal;
-    using NLite.Data.Mapping;
-
-    using NLite.Data.Dialect;
     using System.Diagnostics;
     using NLite.Data.Common;
+    using NLite.Data.Linq.Internal;
+    using NLite.Data.Mapping;
 
     /// <summary>
     /// Extended node types for custom expressions
@@ -281,7 +275,7 @@ namespace NLite.Data.Linq.Expressions
     /// <summary>
     /// A declaration of a column in a SQL SELECT expression
     /// </summary>
-     [DebuggerDisplay("name={name},type={sqlType},expression={expression}")]
+    [DebuggerDisplay("name={name},type={sqlType},expression={expression}")]
     public class ColumnDeclaration
     {
         string name;

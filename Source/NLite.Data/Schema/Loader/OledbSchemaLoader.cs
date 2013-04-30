@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data.OleDb;
 using System.Data;
+using System.Data.OleDb;
+using System.Linq;
 using NLite.Data.Common;
 
 namespace NLite.Data.Schema.Loader
@@ -67,7 +66,7 @@ namespace NLite.Data.Schema.Loader
                     c.IsNullable = (bool)item["IS_NULLABLE"];
 
                 TableSchema table = null;
-                string key = string.Concat(tableCatalog,tableSchema,tableName);
+                string key = string.Concat(tableCatalog, tableSchema, tableName);
 
                 if (!tables.TryGetValue(key, out table))
                 {
@@ -87,7 +86,7 @@ namespace NLite.Data.Schema.Loader
                 TableSchema otherTable = null;
                 IColumnSchema thisKey = null;
                 IColumnSchema otherKey = null;
-                var key = string.Concat(tableCatalog, tableSchema,item["FK_TABLE_NAME"] as string);
+                var key = string.Concat(tableCatalog, tableSchema, item["FK_TABLE_NAME"] as string);
                 if (tables.TryGetValue(key, out thisTable))
                     thisKey = thisTable.AllColumns.FirstOrDefault(p => p.ColumnName == item["FK_COLUMN_NAME"] as string);
 
@@ -97,8 +96,8 @@ namespace NLite.Data.Schema.Loader
 
                 thisTable.AddFK(new ForeignKeySchema
                 {
-                    ThisTable = thisTable ,
-                    Name = item["FK_NAME"] as string ,
+                    ThisTable = thisTable,
+                    Name = item["FK_NAME"] as string,
                     ThisKey = thisKey,
                     OtherTable = otherTable,
                     OtherKey = otherKey
@@ -113,14 +112,14 @@ namespace NLite.Data.Schema.Loader
                 var tableSchema = item["TABLE_SCHEMA"] as string;
                 var tableCatalog = item["TABLE_CATALOG"] as string;
                 TableSchema table = null;
-                var key = string.Concat(tableCatalog, tableSchema,tableName);
+                var key = string.Concat(tableCatalog, tableSchema, tableName);
                 if (tables.TryGetValue(key, out table))
                     table.IsView = true;
             }
 
             databaseSchema.Tables = tables.Values.Where(p => !p.IsView).ToArray();
             databaseSchema.Views = tables.Values.Where(p => p.IsView).ToArray();
-         
+
             //allColumns.WriteXmlSchema(Console.Out);
             //pkTable.WriteXmlSchema(Console.Out);
             //fkTable.WriteXmlSchema(Console.Out);
@@ -128,8 +127,8 @@ namespace NLite.Data.Schema.Loader
             return databaseSchema;
         }
 
-      
-        protected  DBType ParseDbType(int strColumnType)
+
+        protected DBType ParseDbType(int strColumnType)
         {
             TypeMappingInfo item;
             if (TypeMapping.OleDbMap.TryGetValue(strColumnType, out item))

@@ -3,10 +3,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
-using System.Text;
 using NLite.Reflection;
 
 namespace NLite.Data.Linq.Internal
@@ -74,6 +71,6 @@ namespace NLite.Data.Linq.Internal
         {
             return Expression.Constant(null, GetNullAssignableType(type));
         }
-     
+
     }
 }

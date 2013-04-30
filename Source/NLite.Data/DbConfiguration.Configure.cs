@@ -1,27 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NLite.Data.Dialect;
-using System.Reflection;
 using System.Configuration;
-using System.Data.Common;
-using System.Threading;
-using NLite.Data.Schema.Script.Generator;
-using NLite.Data.Schema.Script.Executor;
 using System.Data;
-using NLite.Data.Schema.Script;
-using NLite.Data.LinqToSql;
+using System.Data.Common;
+using System.Linq;
+using System.Reflection;
+using System.Threading;
 using NLite.Data.Common;
-using NLite.Data.Schema;
-using NLite.Data.Schema.Loader;
+using NLite.Data.Dialect;
 using NLite.Data.Dialect.ExpressionBuilder;
 using NLite.Data.Dialect.SqlBuilder;
 using NLite.Data.Driver;
+using NLite.Data.LinqToSql;
+using NLite.Data.Schema.Loader;
+using NLite.Data.Schema.Script.Executor;
+using NLite.Data.Schema.Script.Generator;
 
 namespace NLite.Data
 {
-   
+
     partial class DbConfiguration
     {
         static readonly IDictionary<string, DbConfiguration> items;
@@ -67,18 +64,18 @@ namespace NLite.Data
                 Dialect = new AccessDialect(),
                 FuncRegistry = new NLite.Data.Dialect.Function.Access.AccessFunctionRegistry(),
                 DbExpressionBuilder = new AssessDbExpressionBuilder(),
-                SqlBuilder = (dialect,funcRegistry) => new AccessSqlBuilder { Dialect = dialect , FuncRegistry = funcRegistry },
+                SqlBuilder = (dialect, funcRegistry) => new AccessSqlBuilder { Dialect = dialect, FuncRegistry = funcRegistry },
 
                 ScriptGenerator = () => new AccessScriptGenerator(),
                 ScriptExecutor = () => new AccessScriptExecutor(),
                 SchemaLoader = () => new OledbSchemaLoader(),
-              
+
             };
 
             Options["MySql.Data.MySqlClient"] = new DbConfigurationInfo
             {
                 Driver = new MySqlDriver(),
-                Dialect =  new MySqlDialect(),
+                Dialect = new MySqlDialect(),
                 FuncRegistry = new NLite.Data.Dialect.Function.MySQL.MySqlFunctionRegistry(),
                 DbExpressionBuilder = new MySqlExpressionBuilder(),
                 SqlBuilder = (dialect, funcRegistry) => new MySqlBuilder { Dialect = dialect, FuncRegistry = funcRegistry },
@@ -86,7 +83,7 @@ namespace NLite.Data
                 ScriptGenerator = () => new MySQLScriptGenerator(),
                 ScriptExecutor = () => new MySQLScriptExecutor(),
                 SchemaLoader = () => new MySqlSchemaLoader(),
-               
+
             };
 
             Options["Oracle.DataAccess.Client"] = new DbConfigurationInfo
@@ -105,7 +102,7 @@ namespace NLite.Data
             Options["System.Data.OracleClient"] = new DbConfigurationInfo
             {
                 Driver = new OracleClientDriver(),
-                Dialect =  new OracleDialect(),
+                Dialect = new OracleDialect(),
                 FuncRegistry = new NLite.Data.Dialect.Function.Oracle.OracleFunctionRegistry(),
                 DbExpressionBuilder = new OracleExpressionBuilder(),
                 SqlBuilder = (dialect, funcRegistry) => new OracleSqlBuilder { Dialect = dialect, FuncRegistry = funcRegistry },
@@ -125,21 +122,21 @@ namespace NLite.Data
 
                 ScriptGenerator = () => new SqlServerScriptGenerator(),
                 ScriptExecutor = () => new SqlServerScriptExecutor(),
-                SchemaLoader =()=>new SqlServerSchemaLoader(),
+                SchemaLoader = () => new SqlServerSchemaLoader(),
             };
 
             Options["System.Data.SQLite"] = new DbConfigurationInfo
             {
                 Driver = new SQLiteDriver(),
-                Dialect =  new SQLiteDialect(),
+                Dialect = new SQLiteDialect(),
                 FuncRegistry = new NLite.Data.Dialect.Function.SQLite.SQLiteFunctionManager(),
                 DbExpressionBuilder = new SQLiteExpressionBuilder(),
                 SqlBuilder = (dialect, funcRegistry) => new SQLiteSqlBuilder { Dialect = dialect, FuncRegistry = funcRegistry },
 
                 ScriptGenerator = () => new SQLiteScriptGenerator(),
                 ScriptExecutor = () => new SQLiteScriptExecutor(),
-                SchemaLoader =()=>new SQLiteSchemaLoader(),
-               
+                SchemaLoader = () => new SQLiteSchemaLoader(),
+
             };
 
             Options["System.Data.SqlServerCe.3.5"] = new DbConfigurationInfo
@@ -153,13 +150,13 @@ namespace NLite.Data
                 ScriptGenerator = () => new SqlCeScriptGenerator(),
                 ScriptExecutor = () => new SqlCeScriptExecutor(),
                 SchemaLoader = () => new SqlCeSchemaLoader(),
-               
+
             };
 
             Options["System.Data.SqlServerCe.4.0"] = new DbConfigurationInfo
             {
                 Driver = new SqlCeDriver(),
-                Dialect =  new SqlCe35Dialect(),
+                Dialect = new SqlCe35Dialect(),
                 FuncRegistry = new NLite.Data.Dialect.Function.SqlCe.SqlCeFunctionRegistry(),
                 DbExpressionBuilder = new SqlCe35ExpressionBuilder(),
                 SqlBuilder = (dialect, funcRegistry) => new SqlCeBuilder { Dialect = dialect, FuncRegistry = funcRegistry },
@@ -167,7 +164,7 @@ namespace NLite.Data
                 ScriptGenerator = () => new SqlCeScriptGenerator(),
                 ScriptExecutor = () => new SqlCeScriptExecutor(),
                 SchemaLoader = () => new SqlCeSchemaLoader(),
-              
+
             };
 
 
@@ -189,11 +186,11 @@ namespace NLite.Data
             {
                 //自动配置
                 cfg = DbConfiguration.Configure(dbConfigurationName);
-               
+
             }
             return cfg;
         }
-        
+
         /// <summary>
         /// 通过缺省的连接字串配置创建DbConfiguration对象（当且仅当配置文件中只有一个数据库连接字符串配置时才能使用）
         /// </summary>
@@ -255,15 +252,15 @@ namespace NLite.Data
 
         private static void AutoMatchDialect(DbConfiguration cfg, string connectionString, string providerName, DbProviderFactory factory)
         {
-           if (Options.ContainsKey(providerName))
+            if (Options.ContainsKey(providerName))
             {
                 cfg.Option = Options[providerName];
             }
 
-           PopulateSqlServer2000(cfg, factory);
+            PopulateSqlServer2000(cfg, factory);
         }
 
-    
+
 
         /// <summary>
         ///  通过connectionString和providerName创建DbConfiguration对象

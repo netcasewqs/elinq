@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace NLite.Data
 {
     /// <summary>
     /// 
     /// </summary>
-     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
-    public abstract class AbstractAssociationAttribute: MemberAttribute
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
+    public abstract class AbstractAssociationAttribute : MemberAttribute
     {
         /// <summary>
         /// Gets or sets members of this entity class to represent the key values on this side of the association.

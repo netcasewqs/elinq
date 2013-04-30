@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Reflection;
-using System.Linq.Expressions;
-using NLite.Data.Dialect;
 
 namespace NLite.Data.Mapping
 {
@@ -16,7 +11,7 @@ namespace NLite.Data.Mapping
         /// <summary>
         /// 得到或设置服务器名
         /// </summary>
-        string ServerName { get;}
+        string ServerName { get; }
         /// <summary>
         /// 数据库名称
         /// </summary>

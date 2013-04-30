@@ -1,23 +1,20 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using NLite.Data.Linq.Expressions;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Collections;
-using NLite.Reflection;
-using System.ComponentModel;
-using NLite.Data.Dialect;
-using NLite.Linq;
-using NLite.Data.Mapping;
-using NLite.Data.LinqToSql;
+using System.Text;
 using NLite.Data.Common;
-using NLite.Data.Linq.Internal;
+using NLite.Data.LinqToSql;
+using NLite.Data.Mapping;
+using NLite.Linq;
+using NLite.Reflection;
 
 namespace NLite.Data.Linq.Expressions
 {
-  
+
     class FunctionBinder : DbExpressionVisitor
     {
         private static MethodInfo[] _enumerableMethods;
@@ -25,7 +22,7 @@ namespace NLite.Data.Linq.Expressions
         {
             get { return _enumerableMethods ?? (_enumerableMethods = typeof(Enumerable).GetMethods()); }
         }
-        
+
         private static MethodInfo[] _queryableMethods;
         public static MethodInfo[] QueryableMethods
         {
@@ -118,7 +115,7 @@ namespace NLite.Data.Linq.Expressions
             {
                 var array = (exp as UnaryExpression).Operand;
                 if (array.Type.GetElementType() == Types.Byte)
-                    return Expression.Property(Expression.Call(MethodRepository.Len, array),"Value");
+                    return Expression.Property(Expression.Call(MethodRepository.Len, array), "Value");
             }
             return exp;
         }
@@ -179,7 +176,7 @@ namespace NLite.Data.Linq.Expressions
                         return Visit(call);
                 }
             }
-          
+
             return m;
         }
 
@@ -195,7 +192,7 @@ namespace NLite.Data.Linq.Expressions
             }
             return u;
         }
-				
+
         protected override Expression VisitNew(NewExpression nex)
         {
             nex = base.VisitNew(nex) as NewExpression;
@@ -241,7 +238,7 @@ namespace NLite.Data.Linq.Expressions
         protected override Expression VisitMethodCall(MethodCallExpression m)
         {
             m = base.VisitMethodCall(m) as MethodCallExpression;
-           
+
             var lambda = MethodMapping.ConvertMember(m.Method);
             if (lambda != null)
             {
@@ -250,7 +247,7 @@ namespace NLite.Data.Linq.Expressions
                 var pn = m.Method.IsStatic ? 0 : -1;
 
                 foreach (var p in lambda.Parameters)
-                    parms.Add(p.Name,new ParameterMapping( pn++,p.Type));
+                    parms.Add(p.Name, new ParameterMapping(pn++, p.Type));
 
                 var pie = ef.Convert(wpi =>
                 {
@@ -275,7 +272,7 @@ namespace NLite.Data.Linq.Expressions
                 return Visit(pie);
             }
 
-           
+
 
             var methodName = m.Method.Name;
             var declaringType = m.Method.DeclaringType;
@@ -302,7 +299,7 @@ namespace NLite.Data.Linq.Expressions
                 if (methodName.StartsWith("ConvertFrom"))
                 {
                     var c = m.Object as ConstantExpression;
-                    Type converterType =  null;
+                    Type converterType = null;
                     if (c != null)
                         converterType = (m.Object as ConstantExpression).Value.GetType();
                     else
@@ -311,7 +308,7 @@ namespace NLite.Data.Linq.Expressions
                         if (ma != null)
                         {
                             c = ma.Expression as ConstantExpression;
-                            if(c == null)
+                            if (c == null)
                                 throw new NotSupportedException(string.Format("The method '{0}' is not supported", m.Method.Name));
 
                             converterType = ma.Member.GetGetter()(c.Value).GetType();
@@ -346,7 +343,7 @@ namespace NLite.Data.Linq.Expressions
                 }
 
                 if (operand != null && toType != null && toType != Types.Object)
-                    return Expression.Call(MethodRepository.GetConvertMethod(operand.Type,toType), operand);
+                    return Expression.Call(MethodRepository.GetConvertMethod(operand.Type, toType), operand);
                 throw new NotSupportedException(string.Format("The method '{0}' is not supported", methodName));
             }
 
@@ -358,11 +355,11 @@ namespace NLite.Data.Linq.Expressions
             {
                 Expression operand = m.Arguments[0];
                 Type toType = declaringType.IsNullable() ? Nullable.GetUnderlyingType(declaringType) : declaringType;
-                return Expression.Call(MethodRepository.GetConvertMethod(operand.Type,toType), operand);
+                return Expression.Call(MethodRepository.GetConvertMethod(operand.Type, toType), operand);
             }
             if (declaringType == Types.String)
             {
-                if( methodName == "Concat")
+                if (methodName == "Concat")
                     return BindConcat(m.Arguments.ToArray());
                 if (methodName == "Join")
                     return BindJoin(m);
@@ -392,7 +389,7 @@ namespace NLite.Data.Linq.Expressions
                     Expression.PropertyOrField(m.Object, "Keys"),
                     m.Arguments[0]);
             }
-          
+
 
             if (declaringType.FullName == DLinq.StrSqlMethhodsType && declaringType.Assembly.GetName().Name == DLinq.StrAssemblyName)
             {
@@ -409,16 +406,16 @@ namespace NLite.Data.Linq.Expressions
             //        , (bool)(m.Arguments[4] as ConstantExpression).Value);
             //}
 
-            if (typeof(Queryable).IsAssignableFrom(declaringType)|| typeof(Enumerable).IsAssignableFrom(declaringType))
+            if (typeof(Queryable).IsAssignableFrom(declaringType) || typeof(Enumerable).IsAssignableFrom(declaringType))
             {
                 var elementType = NLite.Data.Linq.Internal.ReflectionHelper.GetElementType(m.Arguments[0].Type);
                 switch (methodName)
                 {
                     case "Contains":
                         EntityMapping mapping;
-                        if(DbContext.dbConfiguration.mappings.TryGetValue(elementType.TypeHandle.Value,out mapping))
+                        if (DbContext.dbConfiguration.mappings.TryGetValue(elementType.TypeHandle.Value, out mapping))
                         {
-                           // Expression left = 
+                            // Expression left = 
                         }
                         break;
                     //case "Aggregate":
@@ -475,8 +472,8 @@ namespace NLite.Data.Linq.Expressions
                         }
                         break;
                 }
-                
-                 
+
+
             }
             return m;
         }
@@ -528,14 +525,14 @@ namespace NLite.Data.Linq.Expressions
         }
         protected override Expression VisitBinary(BinaryExpression b)
         {
-           b = base.VisitBinary(b) as BinaryExpression;
-      
+            b = base.VisitBinary(b) as BinaryExpression;
+
             switch (b.NodeType)
             {
                 case ExpressionType.Add:
                 case ExpressionType.AddChecked:
                     if (b.Left.Type.Equals(typeof(String)))
-                        return Expression.Call(MethodRepository.Concat, Expression.NewArrayInit(Types.String, b.Left,Expressor.ToString(b.Right)));
+                        return Expression.Call(MethodRepository.Concat, Expression.NewArrayInit(Types.String, b.Left, Expressor.ToString(b.Right)));
                     if (b.Right.Type.Equals(typeof(String)))
                         return Expression.Call(MethodRepository.Concat, Expression.NewArrayInit(Types.String, Expressor.ToString(b.Left), b.Right));
                     return b;
@@ -545,7 +542,7 @@ namespace NLite.Data.Linq.Expressions
 
                     }
                     return b;
-                case ExpressionType.Equal :
+                case ExpressionType.Equal:
                 case ExpressionType.NotEqual:
                 default:
                     return b;
@@ -602,7 +599,7 @@ namespace NLite.Data.Linq.Expressions
                 var arg = args[0];
                 if (arg.NodeType == ExpressionType.NewArrayInit)
                     args = ((NewArrayExpression)arg).Expressions.ToArray();
-                else if(arg.NodeType == ExpressionType.MemberAccess)
+                else if (arg.NodeType == ExpressionType.MemberAccess)
                 {
                     var m = arg as MemberExpression;
                     var c = m.Expression as ConstantExpression;
@@ -634,7 +631,7 @@ namespace NLite.Data.Linq.Expressions
             var length = args.Length;
 
             for (int i = 0; i < length; i++)
-                 args[i] = Expressor.ToString(args[i]);
+                args[i] = Expressor.ToString(args[i]);
             return Expression.Call(MethodRepository.Concat, Expression.NewArrayInit(Types.String, args));
         }
     }

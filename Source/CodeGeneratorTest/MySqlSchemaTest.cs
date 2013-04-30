@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
-using NLite.Data;
 using System.Data;
+using System.Linq;
+using NLite.Data;
+using NUnit.Framework;
 
 namespace CodeGeneratorTest
 {
@@ -25,24 +23,24 @@ namespace CodeGeneratorTest
             }
 
             DataTable tb = null;
-            using ( var conn = dbConfiguration.DbProviderFactory.CreateConnection())
+            using (var conn = dbConfiguration.DbProviderFactory.CreateConnection())
             {
                 conn.ConnectionString = dbConfiguration.ConnectionString;
                 conn.Open();
                 tb = conn.GetSchema("DATATYPES", null);
             }
 
-            
+
             tb.WriteXml(Console.Out);
 
             var items = tb.Rows.Cast<DataRow>().Select(p => p["TypeName"].ToString()).ToArray();
             foreach (DataRow item in tb.Rows)
                 Console.WriteLine(string.Format("TypeName:{0},ProviderDbType:{1},DataType:{2}"
-                    ,item["TypeName"]
-                    ,item["ProviderDbType"]
-                    ,item["DataType"]));
+                    , item["TypeName"]
+                    , item["ProviderDbType"]
+                    , item["DataType"]));
 
-            
+
         }
 
         [Test]

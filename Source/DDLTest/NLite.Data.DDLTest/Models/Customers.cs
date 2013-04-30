@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Data.Linq;
 using System.Data.Linq.Mapping;
-using System.Data.Linq;
 
 namespace ELinq.DDLTest.Models
 {
     [TableAttribute(Name = "dbo2.Customers")]
-    public partial class Customers 
+    public partial class Customers
     {
         [ColumnAttribute(DbType = "NChar(5) NOT NULL", CanBeNull = false, IsPrimaryKey = true)]
         public string CustomerID { get; set; }
@@ -45,6 +41,6 @@ namespace ELinq.DDLTest.Models
         [AssociationAttribute(ThisKey = "CustomerID", OtherKey = "CustomerID")]
         public EntitySet<Orders> Orders { get; set; }
 
-       
+
     }
 }

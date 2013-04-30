@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Linq.Expressions;
-using NLite.Data.Dialect.SqlBuilder;
+﻿using System.Linq.Expressions;
 using NLite.Data.Common;
 
 namespace NLite.Data.Dialect.Function.Oracle
@@ -44,7 +39,7 @@ namespace NLite.Data.Dialect.Function.Oracle
             get { return stringFunctions; }
         }
     }
-    
+
     class ToTimeFunctionView : IFunctionView
     {
         public void Render(ISqlBuilder builder, params Expression[] args)

@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Data;
 using System.Data.Common;
 using NLite.Data.Common;
-using System.Data;
 
 namespace NLite.Data.Driver
 {
-    class MySqlDriver:AbstractDriver
+    class MySqlDriver : AbstractDriver
     {
 
         public override bool AllowsMultipleOpenReaders

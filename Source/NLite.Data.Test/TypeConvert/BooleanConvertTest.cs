@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
+using System.Linq.Expressions;
+using NLite.Data.Test.Primitive.Model;
 using NUnit.Framework;
 using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestInitialize = NUnit.Framework.SetUpAttribute;
 using TestMethod = NUnit.Framework.TestAttribute;
-using NLite.Data.Test.Primitive.Model;
-using System.Linq.Expressions;
-using System.ComponentModel;
 
 namespace NLite.Data.Test.TypeConvert
 {
     [TestClass]
-    public class BooleanConvertTest: TestBase<NullableTypeInfo>
+    public class BooleanConvertTest : TestBase<NullableTypeInfo>
     {
         protected override string ConnectionStringName
         {
@@ -55,45 +52,45 @@ namespace NLite.Data.Test.TypeConvert
         [TestMethod]
         public virtual void ToBoolean()
         {
-         
-            Execute("SByte", (sbyte)0, p =>! Convert.ToBoolean(p.SByte.Value));
+
+            Execute("SByte", (sbyte)0, p => !Convert.ToBoolean(p.SByte.Value));
             Execute("SByte", (sbyte)1, p => Convert.ToBoolean(p.SByte.Value));
-          
+
             Execute("SByte", (sbyte)2, p => Convert.ToBoolean(p.SByte.Value));
 
-            Execute("SByte", (sbyte)0, p => !(bool)Convert.ChangeType(p.SByte.Value,typeof(bool)));
+            Execute("SByte", (sbyte)0, p => !(bool)Convert.ChangeType(p.SByte.Value, typeof(bool)));
             Execute("SByte", (sbyte)1, p => (bool)Convert.ChangeType(p.SByte.Value, typeof(bool)));
-         
+
             Execute("SByte", (sbyte)2, p => (bool)Convert.ChangeType(p.SByte.Value, typeof(bool)));
 
             Execute("SByte", (sbyte)0, p => !(bool)converter.ConvertFrom(p.SByte.Value));
             Execute("SByte", (sbyte)1, p => (bool)converter.ConvertFrom(p.SByte.Value));
-        
+
             Execute("SByte", (sbyte)2, p => (bool)converter.ConvertFrom(p.SByte.Value));
 
             var converter2 = TypeDescriptor.GetConverter(typeof(bool));
             Execute("SByte", (sbyte)0, p => !(bool)converter2.ConvertFrom(p.SByte.Value));
             Execute("SByte", (sbyte)1, p => (bool)converter2.ConvertFrom(p.SByte.Value));
-          
+
             Execute("SByte", (sbyte)2, p => (bool)converter2.ConvertFrom(p.SByte.Value));
 
             var byteConverter2 = TypeDescriptor.GetConverter(typeof(byte));
-            Execute("SByte", (sbyte)0, p => !(bool)byteConverter.ConvertTo(p.SByte.Value,typeof(bool)));
+            Execute("SByte", (sbyte)0, p => !(bool)byteConverter.ConvertTo(p.SByte.Value, typeof(bool)));
             Execute("SByte", (sbyte)1, p => (bool)byteConverter.ConvertTo(p.SByte.Value, typeof(bool)));
-        
+
             Execute("SByte", (sbyte)2, p => (bool)byteConverter2.ConvertTo(p.SByte.Value, typeof(bool)));
 
             Execute("SByte", (sbyte)0, p => !(bool)Convert.ChangeType(p.SByte, typeof(bool)));
             Execute("SByte", (sbyte)1, p => (bool)Convert.ChangeType(p.SByte, typeof(bool)));
-         
+
             Execute("SByte", (sbyte)2, p => (bool)Convert.ChangeType(p.SByte, typeof(bool)));
 
             Execute("SByte", (sbyte)0, p => !(bool)converter.ConvertFrom(p.SByte));
             Execute("SByte", (sbyte)1, p => (bool)converter.ConvertFrom(p.SByte));
-         
+
             Execute("SByte", (sbyte)2, p => (bool)converter.ConvertFrom(p.SByte));
 
-        
+
             Execute("SByte", (sbyte)0, p => !(Convert.ChangeType(p.SByte.Value, typeof(bool?)) as bool?).Value);
             Execute("SByte", (sbyte)1, p => ((bool?)Convert.ChangeType(p.SByte.Value, typeof(bool?))).Value);
 
@@ -107,7 +104,7 @@ namespace NLite.Data.Test.TypeConvert
             Execute("SByte", (sbyte)-1, p => (bool)converter.ConvertFrom(p.SByte));
 #endif
         }
-      
+
         [TestMethod]
         public virtual void ToSByte()
         {
@@ -125,7 +122,7 @@ namespace NLite.Data.Test.TypeConvert
 
             Execute("Boolean", true, p => Convert.ToSByte(p.Boolean.Value) == 1);
             Execute("Boolean", false, p => Convert.ToSByte(p.Boolean.Value) == 0);
-           
+
 
             //Assert.IsTrue(PrimitiveMapper.Map<bool, sbyte>(true) == 1);
             //Assert.IsTrue(PrimitiveMapper.Map<bool, sbyte>(false) == 0);
@@ -158,7 +155,7 @@ namespace NLite.Data.Test.TypeConvert
              */
             Execute("Boolean", true, p => Convert.ToSByte(p.Boolean.Value) == 1);
             Execute("Boolean", false, p => Convert.ToSByte(p.Boolean.Value) == 0);
-           
+
 
             //Assert.IsTrue(PrimitiveMapper.Map<bool, byte>(true) == 1);
             //Assert.IsTrue(PrimitiveMapper.Map<bool, byte>(false) == 0);
@@ -190,9 +187,9 @@ namespace NLite.Data.Test.TypeConvert
             Console.WriteLine(b);
             */
 
-            Execute("Boolean", true, p =>Convert.ToInt16(p.Boolean.Value) == 1);
+            Execute("Boolean", true, p => Convert.ToInt16(p.Boolean.Value) == 1);
             Execute("Boolean", false, p => Convert.ToInt16(p.Boolean.Value) == 0);
-           
+
             //Assert.IsTrue(PrimitiveMapper.Map<bool, Int16>(true) == 1);
             //Assert.IsTrue(PrimitiveMapper.Map<bool, Int16>(false) == 0);
 
@@ -457,7 +454,7 @@ namespace NLite.Data.Test.TypeConvert
             //Assert.IsTrue(PrimitiveMapper.Map<bool?, Decimal?>(false) == 0);
             //Assert.IsNull(PrimitiveMapper.Map<bool?, Decimal?>(null));
         }
-       
+
         [TestMethod]
         public virtual void ToSString()
         {

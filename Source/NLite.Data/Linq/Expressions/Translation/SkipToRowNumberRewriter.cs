@@ -1,18 +1,13 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 // This source code is made available under the terms of the Microsoft Public License (MS-PL)
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
 
 namespace NLite.Data.Linq.Expressions
 {
-    using NLite.Linq;
-    using NLite.Data.Dialect;
     using NLite.Data.Common;
+    using NLite.Linq;
 
     /// <summary>
     /// Rewrites take & skip expressions into uses of TSQL row_number function
@@ -39,7 +34,7 @@ namespace NLite.Data.Linq.Expressions
                     newSelect = newSelect.AddRedundantSelect(new TableAlias());
                 }
 
-                var colType = SqlType.Int32 ;
+                var colType = SqlType.Int32;
                 newSelect = newSelect.AddColumn(new ColumnDeclaration(columnName, new RowNumberExpression(select.OrderBy), colType));
 
                 // add layer for WHERE clause that references new rownum column

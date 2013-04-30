@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data;
 using System.Data.Common;
 using NLite.Data.Common;
 
 namespace NLite.Data.Driver
 {
-    class OracleODPDriver:OracleDriver
+    class OracleODPDriver : OracleDriver
     {
         protected override void InitializeParameter(System.Data.IDbDataParameter p, NamedParameter parameter, object value)
         {
@@ -103,6 +100,6 @@ namespace NLite.Data.Driver
             p.Value = item;
         }
 
-      
+
     }
 }

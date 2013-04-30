@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace NLite.Data.Dialect
 {
@@ -12,6 +9,6 @@ namespace NLite.Data.Dialect
         void RegisterFunction(string fnName, IFunctionView fn);
 
         bool TryGetFunction(string fnName, out IFunctionView fn);
-     
+
     }
 }

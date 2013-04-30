@@ -1,20 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using NLite.Data.Test.Primitive.Model;
 using NUnit.Framework;
 using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestInitialize = NUnit.Framework.SetUpAttribute;
 using TestMethod = NUnit.Framework.TestAttribute;
-using NLite.Collections;
-using System.Linq.Expressions;
-using System.Globalization;
-using System.Data.OleDb;
-using System.Data.Common;
-using System.Data.SqlClient;
-using NLite.Data.Mapping;
-using System.Collections;
 
 namespace NLite.Data.Test.Where
 {
@@ -358,8 +347,8 @@ namespace NLite.Data.Test.Where
         {
             LinqDelete();
             LinqAdd();
-            var t = Table.Select(p=>p);
-            var item = Table.Select(p =>p).Join<NullableTypeInfo,NullableTypeInfo, bool, int?>(t, p => p.String == "OK", c => c.String=="LinqTest",(a,b)=>a.Int32+b.Int32);
+            var t = Table.Select(p => p);
+            var item = Table.Select(p => p).Join<NullableTypeInfo, NullableTypeInfo, bool, int?>(t, p => p.String == "OK", c => c.String == "LinqTest", (a, b) => a.Int32 + b.Int32);
             Assert.IsNotNull(item);
             Console.WriteLine(item.FirstOrDefault());
             LinqDelete();
@@ -650,10 +639,10 @@ namespace NLite.Data.Test.Where
             LinqDelete();
             LinqAdd();
             string str = "LinqTest";
-            var expected = str.Insert(0,"zxm");
+            var expected = str.Insert(0, "zxm");
             var actual = Table.Select(p => p.String.Insert(0, "zxm")).FirstOrDefault();
             Assert.AreEqual(expected, actual);
-            
+
             var item = Table.Where(p => p.String.Insert(0, "zxm") == expected).FirstOrDefault();
             Assert.IsNotNull(item);
             LinqDelete();
@@ -695,7 +684,7 @@ namespace NLite.Data.Test.Where
             var expected = str.PadLeft(9);
             var actual = Table.Select(p => p.String.PadLeft(9)).FirstOrDefault();
             Assert.AreEqual(expected, actual);
-            var item = Table.Where(p => p.String.PadLeft(9) ==expected);
+            var item = Table.Where(p => p.String.PadLeft(9) == expected);
             Assert.IsNotNull(item);
             LinqDelete();
         }
@@ -706,7 +695,7 @@ namespace NLite.Data.Test.Where
             LinqAdd();
             string str = "LinqTest";
             var expected = str.PadLeft(9, 'z');
-            var actual = Table.Select(p =>p.String.PadLeft(9, 'z')).FirstOrDefault();
+            var actual = Table.Select(p => p.String.PadLeft(9, 'z')).FirstOrDefault();
             Assert.AreEqual(expected, actual);
             var item = Table.Where(p => p.String.PadLeft(9) == expected);
             Assert.IsNotNull(item);
@@ -719,7 +708,7 @@ namespace NLite.Data.Test.Where
             LinqAdd();
             string str = "LinqTest";
             var expected = str.PadRight(9);
-            var actual = Table.Select(p =>  p.String.PadRight(9)).FirstOrDefault();
+            var actual = Table.Select(p => p.String.PadRight(9)).FirstOrDefault();
             Assert.AreEqual(expected, actual);
             var item = Table.Where(p => p.String.PadLeft(9) == expected);
             Assert.IsNotNull(item);
@@ -731,10 +720,10 @@ namespace NLite.Data.Test.Where
             LinqDelete();
             LinqAdd();
             string str = "LinqTest";
-            var expected = str.PadRight(9,'z');
-            var actual = Table.Select(p =>p.String.PadRight(9,'z')).FirstOrDefault();
+            var expected = str.PadRight(9, 'z');
+            var actual = Table.Select(p => p.String.PadRight(9, 'z')).FirstOrDefault();
             Assert.AreEqual(expected, actual);
-            var item = Table.Where(p => p.String.PadLeft(9) ==expected);
+            var item = Table.Where(p => p.String.PadLeft(9) == expected);
             Assert.IsNotNull(item);
             LinqDelete();
         }
@@ -744,10 +733,10 @@ namespace NLite.Data.Test.Where
             LinqDelete();
             LinqAdd();
             string str = "LinqTest";
-            var expected = str.Replace("Linq","ELinq");
+            var expected = str.Replace("Linq", "ELinq");
             var actual = Table.Select(p => p.String.Replace("Linq", "ELinq")).FirstOrDefault();
             Assert.AreEqual(expected, actual);
-            var item = Table.Where(p => p.String.Replace("Linq","ELinq") == expected);
+            var item = Table.Where(p => p.String.Replace("Linq", "ELinq") == expected);
             Assert.IsNotNull(item);
             LinqDelete();
         }
@@ -757,7 +746,7 @@ namespace NLite.Data.Test.Where
             LinqDelete();
             LinqAdd();
             string str = "LinqTest";
-            var expected = str.Replace('T','B');
+            var expected = str.Replace('T', 'B');
             var actual = Table.Select(p => p.String.Replace('T', 'B')).FirstOrDefault();
             Assert.AreEqual(expected, actual);
             var item = Table.Where(p => p.String.Replace('T', 'B') == expected);
@@ -767,9 +756,9 @@ namespace NLite.Data.Test.Where
         [TestMethod]
         public virtual void SelectTrim()
         {
-            LinqDelete();      
+            LinqDelete();
             string str = " Linq Test ";
-            Table.Insert(new NullableTypeInfo{String=str});
+            Table.Insert(new NullableTypeInfo { String = str });
             var expected = str.Trim();
             var actual = Table.Select(p => p.String.Trim()).FirstOrDefault();
             Assert.AreEqual(expected, actual);
@@ -861,11 +850,11 @@ namespace NLite.Data.Test.Where
             LinqDelete();
             LinqAdd();
             string str = "LinqTest";
-            var expected = string.CompareOrdinal(str, "TestLinq")<0?true:false;//-8
+            var expected = string.CompareOrdinal(str, "TestLinq") < 0 ? true : false;//-8
             //-1
-            var actual = Table.Select(p =>string.CompareOrdinal(p.String, "TestLinq")<0?true:false).FirstOrDefault();
+            var actual = Table.Select(p => string.CompareOrdinal(p.String, "TestLinq") < 0 ? true : false).FirstOrDefault();
             Assert.AreEqual(expected, actual);
-            var item= Table.Where(p => (string.CompareOrdinal(p.String, "TestLinq")<0?true:false) == expected);
+            var item = Table.Where(p => (string.CompareOrdinal(p.String, "TestLinq") < 0 ? true : false) == expected);
             Assert.IsNotNull(item);
             LinqDelete();
         }
@@ -890,8 +879,8 @@ namespace NLite.Data.Test.Where
             string str = "LinqTest";
             var expected = string.Compare(str, 2, "TestLinq", 2, 1) < 0 ? true : false;
             var actual = Table.Select(p => string.Compare(p.String, 2, "TestLinq", 2, 1) < 0 ? true : false).FirstOrDefault();
-            Assert.AreEqual(expected,actual);
-            var item = Table.Where(p => (string.Compare(p.String, 2, "TestLinq", 2, 1)<0?true:false) ==expected);
+            Assert.AreEqual(expected, actual);
+            var item = Table.Where(p => (string.Compare(p.String, 2, "TestLinq", 2, 1) < 0 ? true : false) == expected);
             Assert.IsNotNull(item);
             LinqDelete();
         }
@@ -901,7 +890,7 @@ namespace NLite.Data.Test.Where
             LinqDelete();
             LinqAdd();
             string str = "LinqTest";
-            var expected = string.Compare(str, 7, "TestLinq", 4, 1,false) < 0 ? true : false;
+            var expected = string.Compare(str, 7, "TestLinq", 4, 1, false) < 0 ? true : false;
             var actual = Table.Select(p => string.Compare(p.String, 7, "TestLinq", 4, 1, false) < 0 ? true : false).First();
             Assert.AreEqual(expected, actual);
             var item = Table.Where(p => (string.Compare(p.String, 7, "TestLinq", 4, 1, false) < 0 ? true : false) == expected);
@@ -914,10 +903,10 @@ namespace NLite.Data.Test.Where
             LinqDelete();
             LinqAdd();
             string str = "LinqTest";
-            var expected = string.Compare(str,"TestLinq") < 0 ? true : false;
-            var actual = Table.Select(p =>string.Compare(p.String, "TestLinq")<0?true:false).FirstOrDefault();
+            var expected = string.Compare(str, "TestLinq") < 0 ? true : false;
+            var actual = Table.Select(p => string.Compare(p.String, "TestLinq") < 0 ? true : false).FirstOrDefault();
             Assert.AreEqual(expected, actual);
-            var item = Table.Where(p => string.Compare(p.String, "TestLinq")<0?true:false == expected);
+            var item = Table.Where(p => string.Compare(p.String, "TestLinq") < 0 ? true : false == expected);
             Assert.IsNotNull(item);
             LinqDelete();
         }
@@ -927,10 +916,10 @@ namespace NLite.Data.Test.Where
             LinqDelete();
             LinqAdd();
             string str = "LinqTest";
-            var expected = string.Compare(str, "TestLinq",false) < 0 ? true : false;
+            var expected = string.Compare(str, "TestLinq", false) < 0 ? true : false;
             var actual = Table.Select(p => string.Compare(p.String, "TestLinq", false) < 0 ? true : false).FirstOrDefault();
             Assert.AreEqual(expected, actual);
-            var item = Table.Where(p => string.Compare(p.String, "TestLinq", false)<0?true:false == expected);
+            var item = Table.Where(p => string.Compare(p.String, "TestLinq", false) < 0 ? true : false == expected);
             Assert.IsNotNull(item);
             LinqDelete();
         }
@@ -940,10 +929,10 @@ namespace NLite.Data.Test.Where
             LinqDelete();
             LinqAdd();
             string str = "LinqTest";
-            var expected = str.CompareTo("TestLinq")<0?true:false;
-            var actual = Table.Select(p =>p.String.CompareTo("TestLinq")<0?true:false).FirstOrDefault();
+            var expected = str.CompareTo("TestLinq") < 0 ? true : false;
+            var actual = Table.Select(p => p.String.CompareTo("TestLinq") < 0 ? true : false).FirstOrDefault();
             Assert.AreEqual(expected, actual);
-            var item = Table.Select(p => p.String.CompareTo("TestLinq")<0?true:false ==expected);
+            var item = Table.Select(p => p.String.CompareTo("TestLinq") < 0 ? true : false == expected);
             Assert.IsNotNull(item);
             LinqDelete();
         }
@@ -953,7 +942,7 @@ namespace NLite.Data.Test.Where
             LinqDelete();
             LinqAdd();
             string str = "LinqTest";
-            var expected = str.Equals("linqtest",StringComparison.CurrentCultureIgnoreCase);
+            var expected = str.Equals("linqtest", StringComparison.CurrentCultureIgnoreCase);
             var actual = Table.Select(p => p.String.Equals("linqtest", StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
             Assert.AreEqual(expected, actual);
             var item = Table.Select(p => p.String.Equals("linqtest", StringComparison.CurrentCultureIgnoreCase));
@@ -966,10 +955,10 @@ namespace NLite.Data.Test.Where
             LinqDelete();
             LinqAdd();
             string str = "LinqTest";
-            var expected =string.Equals(str,"linqtest", StringComparison.CurrentCultureIgnoreCase);
-            var actual = Table.Select(p => string.Equals(p.String,"linqtest", StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+            var expected = string.Equals(str, "linqtest", StringComparison.CurrentCultureIgnoreCase);
+            var actual = Table.Select(p => string.Equals(p.String, "linqtest", StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
             Assert.AreEqual(expected, actual);
-            var item = Table.Select(p =>string.Equals(p.String,"linqtest", StringComparison.CurrentCultureIgnoreCase));
+            var item = Table.Select(p => string.Equals(p.String, "linqtest", StringComparison.CurrentCultureIgnoreCase));
             Assert.IsNotNull(item);
             LinqDelete();
         }
@@ -981,11 +970,11 @@ namespace NLite.Data.Test.Where
             LinqAdd();
             var str = "LinqTest";
             var expected = str.Contains('q');
-            var actual = Table.Select(p => p.String .Contains('q')).FirstOrDefault();
+            var actual = Table.Select(p => p.String.Contains('q')).FirstOrDefault();
             Assert.AreEqual(expected, actual);
 
-           // var item = Table.Where(p => p.String.Contains('q') == expected).FirstOrDefault();
-           // Assert.IsNotNull(item);
+            // var item = Table.Where(p => p.String.Contains('q') == expected).FirstOrDefault();
+            // Assert.IsNotNull(item);
             LinqDelete();
         }
         [TestMethod]
@@ -1022,8 +1011,8 @@ namespace NLite.Data.Test.Where
             LinqDelete();
             LinqAdd();
             var str = "LinqTest";
-            var expected = str.StartsWith("L",true,null);
-            var actual = Table.Select(p => p.String.StartsWith("L",true,null)).FirstOrDefault();
+            var expected = str.StartsWith("L", true, null);
+            var actual = Table.Select(p => p.String.StartsWith("L", true, null)).FirstOrDefault();
             Assert.AreEqual(expected, actual);
 
             // var item = Table.Where(p => p.String.StartsWith("L") == expected).FirstOrDefault();
@@ -1036,7 +1025,7 @@ namespace NLite.Data.Test.Where
             LinqDelete();
             LinqAdd();
             var str = "LinqTest";
-            var expected = str.StartsWith("L",StringComparison.Ordinal);
+            var expected = str.StartsWith("L", StringComparison.Ordinal);
             var actual = Table.Select(p => p.String.StartsWith("L", true, null)).FirstOrDefault();
             Assert.AreEqual(expected, actual);
 
@@ -1064,8 +1053,8 @@ namespace NLite.Data.Test.Where
             LinqDelete();
             LinqAdd();
             var str = "LinqTest";
-            var expected = str.EndsWith("t",true,null);
-            var actual = Table.Select(p => p.String.EndsWith("t",true,null)).FirstOrDefault();
+            var expected = str.EndsWith("t", true, null);
+            var actual = Table.Select(p => p.String.EndsWith("t", true, null)).FirstOrDefault();
             Assert.AreEqual(expected, actual);
 
             // var item = Table.Where(p => EndsWith("t",true,null) == expected).FirstOrDefault();
@@ -1079,7 +1068,7 @@ namespace NLite.Data.Test.Where
             LinqAdd();
             var str = "LinqTest";
             var expected = str.EndsWith("t");
-            var actual = Table.Select(p => p.String.EndsWith("t",StringComparison.Ordinal)).FirstOrDefault();
+            var actual = Table.Select(p => p.String.EndsWith("t", StringComparison.Ordinal)).FirstOrDefault();
             Assert.AreEqual(expected, actual);
 
             // var item = Table.Where(p => p.String.EndsWith("t",StringComparison.Ordinal) == expected).FirstOrDefault();
@@ -1137,10 +1126,10 @@ namespace NLite.Data.Test.Where
             LinqDelete();
             LinqAdd();
             var expected = str.IndexOf("nq", 2);
-            var actual = Table.Select(p => p.String.IndexOf("nq",2)).First();
+            var actual = Table.Select(p => p.String.IndexOf("nq", 2)).First();
             Assert.AreEqual(expected, actual);
 
-            var item = Table.Where(p => p.String.IndexOf("nq",2) == expected);
+            var item = Table.Where(p => p.String.IndexOf("nq", 2) == expected);
             Assert.IsNotNull(item);
             LinqDelete();
         }
@@ -1152,7 +1141,7 @@ namespace NLite.Data.Test.Where
             var expected = str.IndexOf("Te", 1, 5);
             LinqDelete();
             LinqAdd();
-            var actual = Table.Select(p =>p.String.IndexOf("Te", 1,5)).First();
+            var actual = Table.Select(p => p.String.IndexOf("Te", 1, 5)).First();
             Assert.AreEqual(expected, actual);
 
             var item = Table.Where(p => p.String.IndexOf("Te", 1, 5) == expected);
@@ -1166,8 +1155,8 @@ namespace NLite.Data.Test.Where
             var expected = str.IndexOf("Te", 1, 5, StringComparison.Ordinal);
             LinqDelete();
             LinqAdd();
-            var actual = Table.Select(p =>p.String.IndexOf("Te", 1, 5, StringComparison.Ordinal)).First();
-            Assert.AreEqual(expected,actual);
+            var actual = Table.Select(p => p.String.IndexOf("Te", 1, 5, StringComparison.Ordinal)).First();
+            Assert.AreEqual(expected, actual);
             var item = Table.Where(p => p.String.IndexOf("Te", 1, 5, StringComparison.Ordinal) == expected);
             Assert.IsNotNull(item);
             LinqDelete();
@@ -1179,9 +1168,9 @@ namespace NLite.Data.Test.Where
             var expected = str.IndexOf("Te", StringComparison.Ordinal);
             LinqDelete();
             LinqAdd();
-            var actual = Table.Select(p => p.String.IndexOf("Te",StringComparison.Ordinal)).First();
+            var actual = Table.Select(p => p.String.IndexOf("Te", StringComparison.Ordinal)).First();
             Assert.AreEqual(expected, actual);
-            var item = Table.Where(p => p.String.IndexOf("Te",StringComparison.Ordinal) == expected);
+            var item = Table.Where(p => p.String.IndexOf("Te", StringComparison.Ordinal) == expected);
             Assert.IsNotNull(item);
             LinqDelete();
         }
@@ -1189,7 +1178,7 @@ namespace NLite.Data.Test.Where
         public virtual void SelectIndexOf6()
         {
             string str = "LinqTest";
-            var expected = str.IndexOf("st", 6,StringComparison.Ordinal);
+            var expected = str.IndexOf("st", 6, StringComparison.Ordinal);
             LinqDelete();
             LinqAdd();
             var actual = Table.Select(p => p.String.IndexOf("st", 6, StringComparison.Ordinal)).First();
@@ -1215,7 +1204,7 @@ namespace NLite.Data.Test.Where
         public virtual void SelectIndexOf8()
         {
             string str = "LinqTest";
-            var expected = str.IndexOf('t',7);
+            var expected = str.IndexOf('t', 7);
             LinqDelete();
             LinqAdd();
             var actual = Table.Select(p => p.String.IndexOf('t', 7)).First();
@@ -1228,7 +1217,7 @@ namespace NLite.Data.Test.Where
         public virtual void SelectIndexOf9()
         {
             string str = "LinqTest";
-            var expected = str.IndexOf('s', 6,1);
+            var expected = str.IndexOf('s', 6, 1);
             LinqDelete();
             LinqAdd();
             var actual = Table.Select(p => p.String.IndexOf('s', 6, 1)).First();
@@ -1271,7 +1260,7 @@ namespace NLite.Data.Test.Where
 
             LinqDelete();
             LinqAdd();
-        
+
             var actual = Table.Select(p => p.String.LastIndexOf('T', 4, 4)).FirstOrDefault();
             Assert.AreEqual(expected, actual);
             var item = Table.Where(p => p.String.LastIndexOf('T', 4, 4) == expected);
@@ -1299,7 +1288,7 @@ namespace NLite.Data.Test.Where
             LinqDelete();
             LinqAdd();
             var expected = str.LastIndexOf("t", 7);
-            var actual = Table.Select(p =>p.String.LastIndexOf("t",7) ).First();
+            var actual = Table.Select(p => p.String.LastIndexOf("t", 7)).First();
             Assert.AreEqual(expected, actual);
             var item = Table.Where(p => p.String.LastIndexOf("t", 7) == expected);
             Assert.IsNotNull(item);
@@ -1312,8 +1301,8 @@ namespace NLite.Data.Test.Where
             string str = "LinqTest";
             LinqDelete();
             LinqAdd();
-            var expected = str.LastIndexOf("in",3,3);
-            var actual = Table.Select(p =>  p.String.LastIndexOf("in", 3, 3)).First();
+            var expected = str.LastIndexOf("in", 3, 3);
+            var actual = Table.Select(p => p.String.LastIndexOf("in", 3, 3)).First();
             Assert.AreEqual(expected, actual);
             var item = Table.Where(p => p.String.LastIndexOf("in", 3, 3) == expected);
             Assert.IsNotNull(item);
@@ -1324,7 +1313,7 @@ namespace NLite.Data.Test.Where
         public virtual void SelectStuff()
         {
         }
-        
+
         [TestMethod]
         //还有3个重载
         public virtual void SelectMany1()

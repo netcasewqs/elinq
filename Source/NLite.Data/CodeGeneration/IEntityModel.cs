@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NLite.Data.Schema;
+﻿using NLite.Data.Schema;
 
 namespace NLite.Data.CodeGeneration
 {

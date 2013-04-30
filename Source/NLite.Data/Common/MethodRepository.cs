@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Reflection;
 using NLite.Linq;
-using NLite.Data.Linq;
 
 namespace NLite.Data.Common
 {

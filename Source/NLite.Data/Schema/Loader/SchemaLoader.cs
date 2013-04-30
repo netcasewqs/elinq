@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NLite.Data;
-using System.Data;
-using NLite.Data.Common;
 using System.Data.Common;
 using System.Diagnostics;
+using System.Linq;
+using NLite.Data.Common;
 
 namespace NLite.Data.Schema.Loader
 {
-    abstract class SchemaLoader:ISchemaLoader
+    abstract class SchemaLoader : ISchemaLoader
     {
         public Dialect.Dialect Dialect { get; internal set; }
 
@@ -42,7 +39,7 @@ namespace NLite.Data.Schema.Loader
 
         internal enum ConstraintType
         {
-            PrimaryKey= 1,
+            PrimaryKey = 1,
             Uniqule = 2,
             Check = 3,
         }
@@ -76,7 +73,7 @@ namespace NLite.Data.Schema.Loader
         public virtual IDatabaseSchema Load(DbConfiguration cfg)
         {
             var databaseSchema = new DatabaseSchema();
-             
+
             ColumnInfo[] allColumns = null;
             ConstraintInfo[] allConstraints = null;
             ForeignKeyInfo[] allFks = null;
@@ -109,16 +106,21 @@ namespace NLite.Data.Schema.Loader
                     thisKey = thisTable.AllColumns.FirstOrDefault(p => p.ColumnName == item.ThisKey);
 
                 key = string.Format("{0}.{1}", item.OtherSchema, item.OtherTableName);
-                if(tables.TryGetValue(key, out otherTable))
+                if (tables.TryGetValue(key, out otherTable))
                     otherKey = otherTable.AllColumns.FirstOrDefault(p => p.ColumnName == item.OtherKey);
 
                 thisTable.AddFK(new ForeignKeySchema
-                { 
+                {
                     ThisTable = thisTable
-                    , Name = item.Name
-                    , ThisKey = thisKey
-                    , OtherTable = otherTable
-                    , OtherKey = otherKey });
+                    ,
+                    Name = item.Name
+                    ,
+                    ThisKey = thisKey
+                    ,
+                    OtherTable = otherTable
+                    ,
+                    OtherKey = otherKey
+                });
 
             }
 
@@ -137,7 +139,7 @@ namespace NLite.Data.Schema.Loader
 
                 if (!tables.TryGetValue(key, out table))
                 {
-                    table = new TableSchema { TableName = c.TableName, Schema = c.Schema,IsView = c.IsView };
+                    table = new TableSchema { TableName = c.TableName, Schema = c.Schema, IsView = c.IsView };
                     tables[key] = table;
                 }
 
@@ -172,7 +174,7 @@ namespace NLite.Data.Schema.Loader
         protected virtual IColumnSchema ToColumn(SchemaLoader.ColumnInfo column)
         {
             var columnSchema = Mapper.Map<SchemaLoader.ColumnInfo, ColumnSchema>(column);
-        
+
             var strColumnType = column.ColumnType;
 
             columnSchema.DbType = ParseDbType(strColumnType);

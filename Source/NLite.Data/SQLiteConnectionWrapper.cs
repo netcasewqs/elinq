@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Data;
 using System.Data.Common;
-using System.Data;
 
 namespace NLite.Data
 {
-    class SQLiteConnectionWrapper:DbConnectionWrapper
+    class SQLiteConnectionWrapper : DbConnectionWrapper
     {
         public SQLiteConnectionWrapper(DbConfiguration dbConfiguraiton, DbConnection conn) : base(dbConfiguraiton, conn) { }
 
