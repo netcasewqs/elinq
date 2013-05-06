@@ -14,23 +14,40 @@ namespace NLite.Data.Dialect.Function.SQLite
             }
             else
             {
-                builder.Append("(");
+            	 builder.Append("(");
                 builder.Visit(args[0]);
                 builder.Append(" || '-' || (CASE WHEN ");
                 builder.Visit(args[1]);
-                builder.Append(" < 10 THEN '0' || '");
+                builder.Append(" < 10 THEN '0' || ");
                 builder.Visit(args[1]);
-                builder.Append("' ELSE '");
+                builder.Append(" ELSE ");
                 builder.Visit(args[1]);
-                builder.Append("' END)");
+                builder.Append(" END)");
                 builder.Append(" || '-' || (CASE WHEN ");
                 builder.Visit(args[2]);
-                builder.Append(" < 10 THEN '0' || '");
+                builder.Append(" < 10 THEN '0' || ");
                 builder.Visit(args[2]);
-                builder.Append("' ELSE '");
+                builder.Append(" ELSE ");
                 builder.Visit(args[2]);
-                builder.Append("' END)");
+                builder.Append(" END)");
                 builder.Append(")");
+//                builder.Append("(");
+//                builder.Visit(args[0]);
+//                builder.Append(" || '-' || (CASE WHEN ");
+//                builder.Visit(args[1]);
+//                builder.Append(" < 10 THEN '0' || '");
+//                builder.Visit(args[1]);
+//                builder.Append("' ELSE '");
+//                builder.Visit(args[1]);
+//                builder.Append("' END)");
+//                builder.Append(" || '-' || (CASE WHEN ");
+//                builder.Visit(args[2]);
+//                builder.Append(" < 10 THEN '0' || '");
+//                builder.Visit(args[2]);
+//                builder.Append("' ELSE '");
+//                builder.Visit(args[2]);
+//                builder.Append("' END)");
+//                builder.Append(")");
             }
         }
     }

@@ -446,6 +446,7 @@ namespace NLite.Data.Linq.Expressions
 
             if (IsSameOrParent(typeof(IEnumerable<>), declaringType)
                 && !declaringType.IsArray
+                && m.Object != null
                 && m.Object.NodeType == ExpressionType.Constant
                 && !typeof(IQueryable).IsAssignableFrom(declaringType))
             {

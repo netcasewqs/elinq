@@ -1,4 +1,5 @@
 ﻿using System.Linq.Expressions;
+using NLite.Data.Linq.Expressions;
 
 namespace NLite.Data.Dialect.Function.SQLite
 {
@@ -64,6 +65,8 @@ namespace NLite.Data.Dialect.Function.SQLite
                         FunctionView.Standard("Floor").Render(builder, args);
 
                     var arg = args[0] as ConstantExpression;
+                    if(arg == null)
+                    	arg = (args[0] as NamedValueExpression).Value as ConstantExpression;
                     var constanceExpr = arg;
                     if (constanceExpr != null && constanceExpr.Value != null)
                     {

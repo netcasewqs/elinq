@@ -1,5 +1,6 @@
 ﻿using System.Linq.Expressions;
 using NLite.Data.Common;
+using NLite.Data.Linq.Expressions;
 
 namespace NLite.Data.Dialect.Function.Default
 {
@@ -31,10 +32,26 @@ namespace NLite.Data.Dialect.Function.Default
         public void Render(ISqlBuilder builder, params Expression[] args)
         {
             var value = args[1];
-            value = FormatValue(value,
-                (bool)(args[2] as ConstantExpression).Value
-                , (bool)(args[3] as ConstantExpression).Value
-                , (bool)(args[4] as ConstantExpression).Value);
+            var constExp = args[2] as ConstantExpression;
+            if (constExp != null)
+            {
+                value = FormatValue(value,
+                    (bool)constExp.Value
+                    , (bool)(args[3] as ConstantExpression).Value
+                    , (bool)(args[4] as ConstantExpression).Value);
+            }
+            else
+            {
+                var nv = args[2] as NamedValueExpression;
+                if (nv != null)
+                {
+                    constExp = nv.Value as ConstantExpression;
+                    value = FormatValue(value,
+                   (bool)constExp.Value
+                   , (bool)((args[3] as NamedValueExpression).Value as  ConstantExpression).Value
+                   , (bool)((args[4] as NamedValueExpression).Value as ConstantExpression).Value);
+                }
+            }
 
             builder.Append("(");
             builder.Visit(args[0]);

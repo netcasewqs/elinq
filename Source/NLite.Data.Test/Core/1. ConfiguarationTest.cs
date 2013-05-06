@@ -98,7 +98,7 @@ namespace NLite.Data.Test.Core
 
         //2.1 不注册OR映射并获取DbSet，那么将抛出异常
         [Test]
-        [ExpectedException(typeof(MappingException))]
+        //[ExpectedException(typeof(MappingException))]
         public void NoMappingTest()
         {
             DbConfiguration.Items.Clear();
@@ -118,7 +118,7 @@ namespace NLite.Data.Test.Core
         {
             var db = DbConfiguration
                            .Configure("Northwind")
-                           .AddClass<Customer>()
+                           //.AddClass<Customer>()
                            .SetSqlLogger(() => new SqlLog(Console.Out))
                            .CreateDbContext();
 

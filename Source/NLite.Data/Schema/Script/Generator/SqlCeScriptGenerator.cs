@@ -46,7 +46,7 @@ namespace NLite.Data.Schema.Script.Generator
             RegisterColumnType(DBType.DateTime, "DATETIME");
             RegisterColumnType(DBType.Decimal, "DECIMAL(19,5)");
             RegisterColumnType(DBType.Decimal, 19, "DECIMAL($pair, $s)");
-            RegisterColumnType(DBType.Double, "DOUBLE PRECISION"); //synonym for FLOAT(53)
+            RegisterColumnType(DBType.Double, "REAL"); //synonym for FLOAT(53)
             RegisterColumnType(DBType.Guid, "UNIQUEIDENTIFIER");
 
 

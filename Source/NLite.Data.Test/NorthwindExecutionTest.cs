@@ -1660,7 +1660,17 @@ namespace NLite.Data.Test
         [TestMethod]
         public virtual void TestDecimalAdd()
         {
-            var onetwo = db.Customers.Where(c => c.CustomerID == "ALFKI").Sum(c => decimal.Add((c.CustomerID == "ALFKI" ? 1m : 1m), 2m));
+            var fn = QueryCompiler.Compile((Northwind n, string id,decimal a,decimal b) =>
+               n.Customers.Where(c => c.CustomerID == id)
+              .Sum(c => decimal.Add((c.CustomerID == id ? a : a), b)));
+
+            var r = fn(db, "ALFKI", 1m, 2m);
+
+
+            var onetwo = db.Customers.Where(c => c.CustomerID == "ALFKI")
+                .Sum(c => decimal.Add((c.CustomerID == "ALFKI" ? 1m : 1m), 2m));
+
+            Assert.AreEqual(r, onetwo);
             AssertValue(3m, onetwo);
         }
 

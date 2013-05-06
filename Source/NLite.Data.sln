@@ -1,14 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLite.Data", "NLite.Data\NLite.Data.csproj", "{1AEA82FF-B88B-4DAE-A7AA-1B26FF347756}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLite.Data.Test", "NLite.Data.Test\NLite.Data.Test.csproj", "{23327BAD-3EBD-40D1-BDE0-68DEE26D4FB8}"
-EndProject
+# SharpDevelop 4.3
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{97388084-C568-4B8D-A7F1-9602DF6C192D}"
 	ProjectSection(SolutionItems) = preProject
 		ELinq.xsd = ELinq.xsd
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DDLTest", "DDLTest", "{4E2206AB-55C8-49B8-A5BC-50844A0BB4B6}"
+	ProjectSection(SolutionItems) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLite.Data.DDLTest", "DDLTest\NLite.Data.DDLTest\NLite.Data.DDLTest.csproj", "{383A6E01-156F-433B-B61C-B6217C4B38EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLite.Data", "NLite.Data\NLite.Data.csproj", "{1AEA82FF-B88B-4DAE-A7AA-1B26FF347756}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLite.Data.Test", "NLite.Data.Test\NLite.Data.Test.csproj", "{23327BAD-3EBD-40D1-BDE0-68DEE26D4FB8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLite.Data.Test.SqlServer", "NLite.Data.Test.SqlServer\NLite.Data.Test.SqlServer.csproj", "{949FA9A6-CA16-45D1-95FE-9A281F9C8CC8}"
 EndProject
@@ -27,10 +34,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLite.Data.Test.SqlServer2000", "NLite.Data.Test.SqlServer2000\NLite.Data.Test.SqlServer2000.csproj", "{6371A743-5C9C-464D-A229-CAFB3EC52448}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLite.Data.Test.LinqToSql", "NLite.Data.Test.LinqToSql\NLite.Data.Test.LinqToSql.csproj", "{FFC5F577-F318-40DD-882A-091ACA3ECB35}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DDLTest", "DDLTest", "{4E2206AB-55C8-49B8-A5BC-50844A0BB4B6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLite.Data.DDLTest", "DDLTest\NLite.Data.DDLTest\NLite.Data.DDLTest.csproj", "{383A6E01-156F-433B-B61C-B6217C4B38EF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGeneratorTest", "CodeGeneratorTest\CodeGeneratorTest.csproj", "{17F69229-A8A4-4C11-886A-835F4E375DD2}"
 EndProject

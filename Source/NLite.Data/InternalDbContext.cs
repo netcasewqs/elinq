@@ -228,7 +228,8 @@ namespace NLite.Data
             {
                 ExecuteContext.DbContext = null;
                 ExecuteContext.Dialect = null;
-                ExecuteContext.Items.Clear();
+                if(ExecuteContext.Items != null)
+                    ExecuteContext.Items.Clear();
                 ExecuteContext.Items = null;
             }
         }

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+
 using NLite.Data.Common;
+using NLite.Data.Linq.Expressions;
 
 namespace NLite.Data.Dialect.Function.SQLite
 {
@@ -24,7 +26,11 @@ namespace NLite.Data.Dialect.Function.SQLite
                     };
         public void Render(ISqlBuilder builder, params Expression[] args)
         {
-            var datePart = (DateParts)(args[0] as ConstantExpression).Value;
+           var constExp = args[0] as ConstantExpression;
+        	if(constExp == null)
+        		constExp = (args[0] as NamedValueExpression).Value as ConstantExpression;
+        	
+            var datePart = (DateParts)constExp.Value;
             if (datePart == DateParts.TimeSpan)
             {
                 AddDate.Render(builder, args);

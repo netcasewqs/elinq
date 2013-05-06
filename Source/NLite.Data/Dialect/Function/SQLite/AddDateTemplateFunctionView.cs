@@ -22,12 +22,14 @@ namespace NLite.Data.Dialect.Function.SQLite
         {
             ctx.Append("DATETIME(");
             ctx.Visit(args[0]);
-            ctx.Append(",'");
+            ctx.Append(",");
             //ctx.Append((args[0] as ConstantExpression).Value);
             ExecuteContext.Items.Add(SQLiteDateTimeFunctions.IgonreIntDoubleConvert, null);
+            
+            ctx.Append("CAST(");
             ctx.Visit(args[1]);
             ExecuteContext.Items.Remove(SQLiteDateTimeFunctions.IgonreIntDoubleConvert);
-            ctx.Append(" ");
+            ctx.Append(" AS TEXT) || ' ");
             ctx.Append(type);
             ctx.Append("')");
         }

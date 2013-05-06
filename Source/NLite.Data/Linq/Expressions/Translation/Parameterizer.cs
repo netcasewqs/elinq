@@ -123,7 +123,7 @@ namespace NLite.Data.Linq.Expressions
             if (c.Value != null)
             {
                 var type = c.Value.GetType();
-                if (!IsNumeric(type) && type != Types.TimeSpan && c.Type != typeof(Type))
+                if (/*!IsNumeric(type) && type != Types.TimeSpan &&*/ c.Type != typeof(Type))
                 {
                     NamedValueExpression nv;
                     TypeAndValue tv = new TypeAndValue(type, c.Value);

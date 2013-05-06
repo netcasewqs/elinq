@@ -7,6 +7,7 @@ namespace NLite.Data.Dialect.Function.SQLite
 
         public void Render(ISqlBuilder builder, params Expression[] args)
         {
+        	//TODO:BUG
             builder.Append("((CAST(strftime('%m', orderdate) AS INT) - 1)/3 + 1)");
         }
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using NLite.Data.Common;
+using NLite.Data.Linq.Expressions;
 
 namespace NLite.Data.Dialect.Function.SqlCe
 {
@@ -22,7 +23,7 @@ namespace NLite.Data.Dialect.Function.SqlCe
                     };
         public void Render(ISqlBuilder builder, params Expression[] args)
         {
-            var datePart = (DateParts)(args[0] as ConstantExpression).Value;
+            var datePart = (DateParts)((args[0] as NamedValueExpression).Value as ConstantExpression).Value;
             IFunctionView f;
             if (functions.TryGetValue(datePart, out f))
                 f.Render(builder, args[1], args[2]);

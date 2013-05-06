@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using NLite.Data.Common;
+using NLite.Data.Linq.Expressions;
 
 namespace NLite.Data.Dialect.Function.SqlCe
 {
     class DatePartFunctionView : IFunctionView
     {
-        static readonly Dictionary<DateParts, IFunctionView> functions = new Dictionary<DateParts, IFunctionView>
+        protected Dictionary<DateParts, IFunctionView> functions = new Dictionary<DateParts, IFunctionView>
                     {
                         { DateParts.Year,FunctionView.Template("DatePart(year, ?1)")},
                         { DateParts.Quarter,FunctionView.Template("DatePart(quarter, ?1)")},
@@ -22,9 +23,10 @@ namespace NLite.Data.Dialect.Function.SqlCe
                         { DateParts.Week,FunctionView.Template("DatePart(ww, ?1)")},
                         //{ DateParts.Date,FunctionViews.Standard("Date")},
                     };
+
         public void Render(ISqlBuilder builder, params Expression[] args)
         {
-            var datePart = (DateParts)(args[0] as ConstantExpression).Value;
+            var datePart = (DateParts)((args[0] as NamedValueExpression).Value as ConstantExpression).Value;
             IFunctionView f;
             if (functions.TryGetValue(datePart, out f))
                 f.Render(builder, args[1]);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
+using NLite.Data.Linq.Expressions;
 
 namespace NLite.Data.Dialect.Function.SqlCe
 {
@@ -9,7 +10,7 @@ namespace NLite.Data.Dialect.Function.SqlCe
         public void Render(ISqlBuilder builder, params Expression[] args)
         {
             var flag = args.Length == 3 ? "" : "-";
-            var value = (TimeSpan)(args[2] as ConstantExpression).Value;
+            var value = (TimeSpan)((args[2] as NamedValueExpression).Value as ConstantExpression).Value;
             builder.AppendFormat("DATEADD(DAY,{4}{0},DATEADD(HOUR,{4}{1},DATEADD(MINUTE,{4}{2},DATEADD(SECOND,{4}{3},"
                               , value.Days
                               , value.Hours
