@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Runtime.CompilerServices;
+using NLite.Data.Exceptions;
 
 namespace NLite.Data.Common
 {
@@ -11,6 +12,8 @@ namespace NLite.Data.Common
         InternalDbContext dbContext;
         int rowsAffected;
         ISqlLog log;
+        ISQLExceptionConverter exceptionConverter;
+
         static long counter;
 
         public ExecutionService(InternalDbContext dbContext)
@@ -19,6 +22,11 @@ namespace NLite.Data.Common
             log = dbContext.Log;
             if (log == null)
                 log = SqlLog.Debug;
+
+            if (exceptionConverter == null)
+            {
+                exceptionConverter = new SqlExceptionConverter();
+            }
         }
 
         public IDbContext DbContext
@@ -33,12 +41,30 @@ namespace NLite.Data.Common
 
         IDataReader ExecuteReader(DbCommand command)
         {
-            var reader = command.ExecuteReader();
+            DbDataReader reader = null;
+
+            try
+            {
+                reader = command.ExecuteReader();
+            }
+            catch (DbException ex)
+            {
+                var exceptionContext = new DbExceptionContextInfo
+                {
+                    SqlException = new QueryException(ex.Message,ex),
+                    Message = "unable to select data.",
+                    Sql = command.CommandText,
+                    
+                };
+                throw ExceptionHelper.Convert(log,exceptionConverter, exceptionContext);
+            }
+
             if (!this.dbContext.Driver.AllowsMultipleOpenReaders)
             {
                 var table = reader.ToDataTable();
                 reader = table.CreateDataReader();
             }
+
             return reader;
         }
 
@@ -46,15 +72,36 @@ namespace NLite.Data.Common
         public IEnumerable<T> Query<T>(QueryContext<T> q)
         {
             log.LogCommand(q.CommandText, q.Parameters, q.ParameterValues);
+
             try
             {
                 using (var cmd = this.GetCommand(q.CommandText, q.Parameters, q.ParameterValues))
-                using (var reader = ExecuteReader(cmd))
+                {
+                    var reader = ExecuteReader(cmd);
+
                     return Project(reader, q.FnProjector);
+                }
             }
+            catch (ConnectionException)
+            {
+                throw;
+            }
+            catch (QueryException)
+            {
+                throw;
+            }
+            catch (ProjectionException)
+            {
+                throw;
+            }
+
             catch (Exception ex)
             {
                 throw new QueryException(ex.Message, ex);
+            }
+            finally
+            {
+               
             }
         }
 
@@ -63,25 +110,68 @@ namespace NLite.Data.Common
             var items = new List<T>();
             var freader = new FieldReader(reader);
             while (reader.Read())
-                items.Add(fnProjector(freader));
+            {
+                T item = default(T);
+                try
+                {
+                    item = fnProjector(freader);
+                    items.Add(item);
+                }
+                catch (Exception ex)
+                {
+
+                    var exceptionContext = new DbExceptionContextInfo
+                    {
+                        SqlException = new ProjectionException(ex.Message, ex),
+                        Message = "data bind exception.",
+                    };
+                    throw ExceptionHelper.Convert(log, exceptionConverter, exceptionContext);
+                }
+               
+            }
             return items;
         }
 
         public int ExecuteNonQuery(CommandContext ctx)
         {
             this.log.LogCommand(ctx.CommandText, ctx.Parameters, ctx.ParameterValues);
-            try
+
+            using (var cmd = this.GetCommand(ctx.CommandText, ctx.Parameters, ctx.ParameterValues))
             {
-                using (DbCommand cmd = this.GetCommand(ctx.CommandText, ctx.Parameters, ctx.ParameterValues))
+                try
+                {
                     this.rowsAffected = cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                throw new PersistenceException(ex.Message, ex);
+
+                    if (ctx.SupportsVersionCheck && rowsAffected == 0)
+                        throw new ConcurrencyException(ctx.Instance, ctx.OperationType);
+                }
+                catch (Exception ex)
+                {
+                    var exceptionContext = new DbExceptionContextInfo
+                    {
+                        EntityName = ctx.EntityType.FullName,
+                        //Message = "unable to select data.",
+                        Entity = ctx.Instance,
+                        Sql = cmd.CommandText,
+                    };
+
+                    switch (ctx.OperationType)
+                    {
+                        case OperationType.Insert:
+                            exceptionContext.SqlException = new InsertException(ex.Message, ex);
+                            break;
+                        case OperationType.Update:
+                            exceptionContext.SqlException = new UpdateException(ex.Message, ex);
+                            break;
+                        case OperationType.Delete:
+                            exceptionContext.SqlException = new DeleteException(ex.Message, ex);
+                            break;
+                    }
+                    throw ExceptionHelper.Convert(log, exceptionConverter, exceptionContext,ctx.ParameterValues,ctx.Parameters);
+                }
             }
 
-            if (ctx.SupportsVersionCheck && rowsAffected == 0)
-                throw new ConcurrencyException(ctx.Instance, ctx.OperationType);
+          
             return this.rowsAffected;
         }
 
@@ -117,10 +207,13 @@ namespace NLite.Data.Common
             {
                 int n;
 
+
+
                 try
                 {
                     var dataAdapter = this.dbContext.dbConfiguration.DbProviderFactory.CreateDataAdapter();
                     //dataAdapter.UpdateBatchSize = batchSize;
+
                     var cmd = this.GetCommand(commandText, parameters, null);
                     for (int i = 0, m = parameters.Length; i < m; i++)
                         cmd.Parameters[i].SourceColumn = parameters[i].Name;
@@ -128,9 +221,23 @@ namespace NLite.Data.Common
                     dataAdapter.InsertCommand.UpdatedRowSource = UpdateRowSource.None;
                     n = dataAdapter.Update(dataTable);
                 }
+                catch (ConnectionException)
+                {
+                    throw;
+                }
+                catch (DBConcurrencyException)
+                {
+                    throw;
+                }
                 catch (Exception ex)
                 {
-                    throw new PersistenceException(ex.Message, ex);
+                    var exceptionContext = new DbExceptionContextInfo
+                    {
+                        Sql = commandText,
+                        SqlException = new PersistenceException(ex.Message,ex),
+                    };
+
+                    throw ExceptionHelper.Convert(log, exceptionConverter, exceptionContext);
                 }
 
                 for (int i = 0; i < count; i++)
@@ -153,6 +260,7 @@ namespace NLite.Data.Common
         IEnumerable<T> ExecuteBatch<T>(string commandText, NamedParameter[] parameters, IEnumerable<object[]> paramSets, Func<FieldReader, T> fnProjector)
         {
             log.LogCommand(commandText, parameters, null);
+          
             var items = new List<T>();
 
             try
@@ -182,9 +290,23 @@ namespace NLite.Data.Common
                     }
                 }
             }
+            catch (ConnectionException)
+            {
+                throw;
+            }
+            catch (DBConcurrencyException)
+            {
+                throw;
+            }
             catch (Exception ex)
             {
-                throw new QueryException(ex.Message, ex);
+                var exceptionContext = new DbExceptionContextInfo
+                {
+                    Sql = commandText,
+                    SqlException = new PersistenceException(ex.Message, ex),
+                };
+
+                throw ExceptionHelper.Convert(log, exceptionConverter, exceptionContext);
             }
 
             return items;
@@ -240,7 +362,16 @@ namespace NLite.Data.Common
             cmd.CommandText = commandText;
             SetParameterValues(parameters, cmd, paramValues);
             if (cmd.Connection.State != ConnectionState.Open)
-                this.dbContext.Connection.Open();
+            {
+                try
+                {
+                    this.dbContext.Connection.Open();
+                }
+                catch (Exception ex)
+                {
+                    throw new ConnectionException(ex.Message, ex);
+                }
+            }
 
             return cmd;
         }

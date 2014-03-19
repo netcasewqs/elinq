@@ -52,24 +52,26 @@ namespace NLite.Data.Driver
             {
                 case DBType.NChar:
                 case DBType.NVarChar:
-                    {
-                        var str = value as string;
-                        if (string.IsNullOrEmpty(str))
-                            p.Size = 2;
-                        else
-                            p.Size = str.Length * 2;
-                        break;
-                    }
+                    //{
+                    //    var str = value as string;
+                    //    if (string.IsNullOrEmpty(str))
+                    //        p.Size = 2;
+                    //    else
+                    //        p.Size = str.Length * 2;
+                    //    break;
+                    //}
                 case DBType.Char:
                 case DBType.VarChar:
-                    {
-                        var str = value as string;
-                        if (string.IsNullOrEmpty(str))
-                            p.Size = 1;
-                        else
-                            p.Size = str.Length * 1;
-                        break;
-                    }
+                    //{
+                    //    var str = value as string;
+                    //    if (string.IsNullOrEmpty(str))
+                    //        p.Size = 1;
+                    //    else
+                    //        p.Size = str.Length * 1;
+                    //    break;
+                    //}
+                    p.Size = int.MaxValue;
+                    break;
             }
         }
 

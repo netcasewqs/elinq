@@ -14,6 +14,7 @@ using NLite.Data.Linq.Internal;
 using NLite.Data.Linq.Translation;
 using NLite.Data.Mapping;
 using NLite.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace NLite.Data
 {
@@ -214,13 +215,23 @@ namespace NLite.Data
                 {
                     LambdaExpression fn = Expression.Lambda(lambda.Type, plan, lambda.Parameters);
                     //DynamicLinqGenerator.GenerateMethod(fn);
+#if DEBUG
+                      return fn.Compile(DebugInfoGenerator.CreatePdbGenerator());
+#else
                     return fn.Compile();
+#endif
                 }
                 else
                 {
                     Expression<Func<object>> efn = Expression.Lambda<Func<object>>(Expression.Convert(plan, typeof(object)));
                     //DynamicLinqGenerator.GenerateMethod(efn);
+
+#if DEBUG
+                       Func<object> fn = efn.Compile(DebugInfoGenerator.CreatePdbGenerator());
+#else
                     Func<object> fn = efn.Compile();
+#endif
+
                     return fn();
                 }
             }
@@ -228,7 +239,7 @@ namespace NLite.Data
             {
                 ExecuteContext.DbContext = null;
                 ExecuteContext.Dialect = null;
-                if(ExecuteContext.Items != null)
+                if (ExecuteContext.Items != null)
                     ExecuteContext.Items.Clear();
                 ExecuteContext.Items = null;
             }

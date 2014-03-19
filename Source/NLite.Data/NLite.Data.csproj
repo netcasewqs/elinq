@@ -97,12 +97,13 @@
     <Prefer32Bit>False</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <OutputPath>..\Bin\</OutputPath>
     <DocumentationFile>..\Bin\ELinq.xml</DocumentationFile>
     <DefineConstants>TRACE;DEBUG;SDK4</DefineConstants>
     <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
@@ -187,12 +188,18 @@
     <Compile Include="Common\MethodRepository.cs" />
     <Compile Include="Common\NamedParameter.cs" />
     <Compile Include="Common\OperationType.cs" />
+    <Compile Include="Exceptions\DbExceptionContextInfo.cs" />
+    <Compile Include="Exceptions\DbExceptionLogger.cs" />
+    <Compile Include="Exceptions\ExceptionHelper.cs" />
+    <Compile Include="Exceptions\ISQLExceptionConverter.cs" />
+    <Compile Include="Exceptions\ProjectionException.cs" />
     <Compile Include="Common\QueryContext.cs" />
     <Compile Include="Common\SqlType.cs" />
     <Compile Include="Common\TypeMapping.cs" />
     <Compile Include="Common\TypeMappingInfo.cs" />
     <Compile Include="ComputedColumnAttribute.cs" />
-    <Compile Include="ConcurrencyException.cs" />
+    <Compile Include="Exceptions\ConcurrencyException.cs" />
+    <Compile Include="Exceptions\ConnectionException.cs" />
     <Compile Include="ConnectionHost.cs" />
     <Compile Include="DataAnnotationMappingAdapter.cs" />
     <Compile Include="DbConfiguration.BuildConnectionString.cs" />
@@ -438,6 +445,7 @@
     <Compile Include="Driver\SqlServerDriver.cs" />
     <Compile Include="EFDataAnnotiationAdapter.cs" />
     <Compile Include="EmptyDbLog.cs" />
+    <Compile Include="Exceptions\SqlExceptionConverter.cs" />
     <Compile Include="ExecuteContext.cs" />
     <Compile Include="IdAttribute.cs" />
     <Compile Include="IDbContext.cs" />
@@ -511,7 +519,7 @@
     <Compile Include="Linq\QueryCompiler.cs" />
     <Compile Include="ManyToOneAttribute.cs" />
     <Compile Include="MappingConversion.cs" />
-    <Compile Include="MappingException.cs" />
+    <Compile Include="Exceptions\MappingException.cs" />
     <Compile Include="Mapping\EntityMapping.cs" />
     <Compile Include="Mapping\Fluent\ClassMap.cs" />
     <Compile Include="Mapping\Fluent\ClassMapOfT.cs" />

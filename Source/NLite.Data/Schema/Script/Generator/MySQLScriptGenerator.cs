@@ -20,7 +20,7 @@ namespace NLite.Data.Schema.Script.Generator
             var sb = new StringBuilder(512);
             if (mapping.PrimaryKeys != null && mapping.PrimaryKeys.Length > 0)
             {
-                sb.Append(",primary key( ")
+                sb.Append(",PRIMARY KEY( ")
                     .Append(mapping.PrimaryKeys.Select(p => Dialect.Quote(p.ColumnName)).ToCSV(","))
                     .Append(") ")
                     .AppendLine("")
@@ -61,13 +61,13 @@ namespace NLite.Data.Schema.Script.Generator
             if (mapping.PrimaryKeys.Count() > 1)
             {
                 sb.AppendLine().Append(CreatePKScript(mapping.Members))
-                    .Append(")TYPE=INNODB;");
+                    .Append(") ENGINE=INNODB;");
                 sb.AppendLine("");
             }
             else
             {
                 sb.AppendLine()
-                    .Append(") TYPE=INNODB;");
+                    .Append(") ENGINE=INNODB;");
                 sb.AppendLine("");
             }
 

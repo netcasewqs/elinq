@@ -69,6 +69,18 @@ namespace NLite.Data.Mapping.Fluent
         }
 
         /// <summary>
+        /// 忽略成员映射
+        /// </summary>
+        /// <param name="fnMember"></param>
+        /// <returns></returns>
+        public ClassMap<TEntity> Ignore(MemberInfo member)
+        {
+            Guard.NotNull(member, "member");
+            IgnoreMembers.Add(member);
+            return this;
+        }
+
+        /// <summary>
         /// 设置主键
         /// </summary>
         /// <param name="fnMember"></param>

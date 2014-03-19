@@ -174,12 +174,19 @@ namespace NLite.Data
                 {
                     transaction.Commit();
                 }
-#if DEBUG
                 catch
                 {
+                    try
+                    {
+                        transaction.Rollback();
+                    }
+                    catch
+                    {
+                    }
+#if DEBUG
                     throw;
-                }
 #endif
+                }
                 finally
                 {
                     transaction.Dispose();

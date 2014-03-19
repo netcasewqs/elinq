@@ -221,9 +221,6 @@
     <Compile Include="..\NLite.Data\ComputedColumnAttribute.cs">
       <Link>ComputedColumnAttribute.cs</Link>
     </Compile>
-    <Compile Include="..\NLite.Data\ConcurrencyException.cs">
-      <Link>ConcurrencyException.cs</Link>
-    </Compile>
     <Compile Include="..\NLite.Data\ConnectionHost.cs">
       <Link>ConnectionHost.cs</Link>
     </Compile>
@@ -918,6 +915,33 @@
     <Compile Include="..\NLite.Data\EmptyDbLog.cs">
       <Link>EmptyDbLog.cs</Link>
     </Compile>
+    <Compile Include="..\NLite.Data\Exceptions\ConcurrencyException.cs">
+      <Link>Exceptions\ConcurrencyException.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Exceptions\ConnectionException.cs">
+      <Link>Exceptions\ConnectionException.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Exceptions\DbExceptionContextInfo.cs">
+      <Link>Exceptions\DbExceptionContextInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Exceptions\DbExceptionLogger.cs">
+      <Link>Exceptions\DbExceptionLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Exceptions\ExceptionHelper.cs">
+      <Link>Exceptions\ExceptionHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Exceptions\ISQLExceptionConverter.cs">
+      <Link>Exceptions\ISQLExceptionConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Exceptions\MappingException.cs">
+      <Link>Exceptions\MappingException.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Exceptions\ProjectionException.cs">
+      <Link>Exceptions\ProjectionException.cs</Link>
+    </Compile>
+    <Compile Include="..\NLite.Data\Exceptions\SqlExceptionConverter.cs">
+      <Link>Exceptions\SqlExceptionConverter.cs</Link>
+    </Compile>
     <Compile Include="..\NLite.Data\ExecuteContext.cs">
       <Link>ExecuteContext.cs</Link>
     </Compile>
@@ -1145,9 +1169,6 @@
     </Compile>
     <Compile Include="..\NLite.Data\MappingConversion.cs">
       <Link>MappingConversion.cs</Link>
-    </Compile>
-    <Compile Include="..\NLite.Data\MappingException.cs">
-      <Link>MappingException.cs</Link>
     </Compile>
     <Compile Include="..\NLite.Data\Mapping\EntityMapping.cs">
       <Link>Mapping\EntityMapping.cs</Link>

@@ -21,6 +21,7 @@ namespace NLite.Data
     [DebuggerDisplay("Name='{Name}',DbProviderName='{DbProviderName}',ConnectionStringName='{ConnectionStringName}',ConnectionString='{ConnectionString}'")]
     public partial class DbConfiguration
     {
+        private IDictionary<string, string> properties;
         /// <summary>
         /// DbProvider 名称列表
         /// </summary>
@@ -115,7 +116,6 @@ namespace NLite.Data
         /// 数据库驱动
         /// </summary>
         public IDriver Driver { get { return this.Option.Driver; } }
-
 
         /// <summary>
         /// 数据库方言
@@ -344,6 +344,30 @@ namespace NLite.Data
             return this;
         }
 
+        /// <summary>
+        /// 设置配置属性
+        /// </summary>
+        public DbConfiguration SetProperty(string name, string value)
+        {
+            properties[name] = value;
+            return this;
+        }
+
+        /// <summary>
+        /// 得到配置属性
+        /// </summary>
+        public string GetProperty(string name,string defaultValue)
+        {
+            string p;
+
+            if (!properties.TryGetValue(name, out p))
+            {
+                p = defaultValue;
+            }
+
+            return p;
+        }
+
         private DbConfiguration(
             string providerName
             , string name
@@ -355,6 +379,8 @@ namespace NLite.Data
             DbProviderFactory = dbProviderFactory;
             ConnectionString = connectionString;
             SetMappingConversion(MappingConversion.Default);
+
+            properties = new Dictionary<string, string>();
 
             switch (providerName)
             {
