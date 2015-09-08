@@ -133,6 +133,7 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Configuration" />
@@ -597,6 +598,7 @@
     <Compile Include="Guard.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Ado\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>

@@ -94,7 +94,7 @@ namespace NLite.Data.Common
             defaultTypes[Types.Boolean.TypeHandle.Value.GetHashCode()] = new SqlType(DBType.Boolean);
             defaultTypes[Types.Byte.TypeHandle.Value.GetHashCode()] = new SqlType(DBType.Byte);
             defaultTypes[Types.ByteArray.TypeHandle.Value.GetHashCode()] = new SqlType(DBType.Binary);
-            defaultTypes[Types.Char.TypeHandle.Value.GetHashCode()] = new SqlType(DBType.NChar, 1);
+            defaultTypes[Types.Char.TypeHandle.Value.GetHashCode()] = new SqlType(DBType.NChar, int.MaxValue);
             defaultTypes[Types.DateTime.TypeHandle.Value.GetHashCode()] = new SqlType(DBType.DateTime);
             defaultTypes[Types.Decimal.TypeHandle.Value.GetHashCode()] = new SqlType(DBType.Decimal);
             defaultTypes[Types.Double.TypeHandle.Value.GetHashCode()] = new SqlType(DBType.Double);
@@ -105,7 +105,7 @@ namespace NLite.Data.Common
             defaultTypes[Types.Object.TypeHandle.Value.GetHashCode()] = new SqlType(DBType.Unkonw);
             defaultTypes[Types.SByte.TypeHandle.Value.GetHashCode()] = new SqlType(DBType.Byte);
             defaultTypes[Types.Single.TypeHandle.Value.GetHashCode()] = new SqlType(DBType.Single);
-            defaultTypes[Types.String.TypeHandle.Value.GetHashCode()] = new SqlType(DBType.NVarChar, 255);
+            defaultTypes[Types.String.TypeHandle.Value.GetHashCode()] = new SqlType(DBType.NVarChar, int.MaxValue);
             defaultTypes[Types.UInt16.TypeHandle.Value.GetHashCode()] = new SqlType(DBType.Int16);
             defaultTypes[Types.UInt32.TypeHandle.Value.GetHashCode()] = new SqlType(DBType.Int32);
             defaultTypes[Types.UInt64.TypeHandle.Value.GetHashCode()] = new SqlType(DBType.Int64);
@@ -114,7 +114,7 @@ namespace NLite.Data.Common
 
             defaultTypes[typeof(Boolean?).TypeHandle.Value.GetHashCode()] = new SqlType(DBType.Boolean);
             defaultTypes[typeof(byte?).TypeHandle.Value.GetHashCode()] = new SqlType(DBType.Byte);
-            defaultTypes[typeof(char?).TypeHandle.Value.GetHashCode()] = new SqlType(DBType.NChar, 1);
+            defaultTypes[typeof(char?).TypeHandle.Value.GetHashCode()] = new SqlType(DBType.NChar, int.MaxValue);
             defaultTypes[typeof(DateTime?).TypeHandle.Value.GetHashCode()] = new SqlType(DBType.DateTime);
             defaultTypes[typeof(decimal?).TypeHandle.Value.GetHashCode()] = new SqlType(DBType.Decimal);
             defaultTypes[typeof(double?).TypeHandle.Value.GetHashCode()] = new SqlType(DBType.Double);

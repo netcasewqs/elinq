@@ -56,6 +56,9 @@
     <Compile Include="..\NLite.Data.Test\BetweenTest.cs">
       <Link>BetweenTest.cs</Link>
     </Compile>
+    <Compile Include="..\NLite.Data.Test\BooleanTest.cs">
+      <Link>BooleanTest.cs</Link>
+    </Compile>
     <Compile Include="..\NLite.Data.Test\ByteArrayTest.cs">
       <Link>ByteArrayTest.cs</Link>
     </Compile>

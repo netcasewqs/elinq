@@ -260,30 +260,6 @@
             <summary>
             通过类型得到一个Key
             </summary>
-            <param name="binderType"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NLite.Messaging.Internal.Key.Make(System.Type,System.String)">
-            <summary>
-            
-            </summary>
-            <param name="binderType"></param>
-            <param name="name"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NLite.Messaging.Internal.Key.Make``1">
-            <summary>
-            
-            </summary>
-            <typeparam name="TTarget"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:NLite.Messaging.Internal.Key.Make``1(System.String)">
-            <summary>
-            
-            </summary>
-            <typeparam name="TTarget"></typeparam>
-            <param name="name"></param>
             <returns></returns>
         </member>
         <member name="P:NLite.Messaging.Internal.Key.Handle">
@@ -341,7 +317,7 @@
             <summary>
             执行模型绑定
             </summary>
-            <param name="bindingInfo">绑定元数据</param>
+            <param name="info">绑定元数据</param>
             <param name="valueProvider">valueProvider</param>
             <returns></returns>
         </member>
@@ -411,6 +387,13 @@
             <param name="input">String to check</param>
             <returns>bool</returns>
         </member>
+        <member name="M:NLite.StringExtensions.IsNullOrEmpty(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="M:NLite.StringExtensions.AsNamespaced(System.String,System.String)">
             <summary>
             Returns the name of an element with the namespace if specified
@@ -425,6 +408,15 @@
             </summary>
             <param name="input">String to process</param>
             <returns>string</returns>
+        </member>
+        <member name="M:NLite.StringExtensions.ChangeType(System.Object,System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="source"></param>
+            <param name="newType"></param>
+            <param name="culture"></param>
+            <returns></returns>
         </member>
         <member name="M:NLite.StringExtensions.Format(System.String,System.Object[])">
             <summary>
@@ -623,6 +615,186 @@
             <param name="offset"></param>
             <param name="len"></param>
             <returns></returns>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.NonInterceptedInterceptionFilter">
+            <summary>
+            Represents an non-intercepted interception filter.
+            </summary>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.IInterceptionFilter">
+            <summary>
+            Defines an interception filter.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.IInterceptionFilter.AcceptEvent(System.Reflection.EventInfo)">
+            <summary>
+            Accepts the specified event.
+            </summary>
+            <param name="eventInfo">The event information.</param>
+            <returns>A value indicating whether the specified event is accepted.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.IInterceptionFilter.AcceptProperty(System.Reflection.PropertyInfo)">
+            <summary>
+            Accepts the specified property.
+            </summary>
+            <param name="propertyInfo">The property information.</param>
+            <returns>A value indicating whether the specified property is accepted.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.IInterceptionFilter.AcceptMethod(System.Reflection.MethodInfo)">
+            <summary>
+            Accepts the specified method.
+            </summary>
+            <param name="methodInfo">The method information.</param>
+            <returns>A value indicating whether the specified method is accepted.</returns>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.NonInterceptedInterceptionFilter.DestructorMethodName">
+            <summary>
+            The name of the destructor method.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.NonInterceptedInterceptionFilter.AcceptEvent(System.Reflection.EventInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.NonInterceptedInterceptionFilter.AcceptProperty(System.Reflection.PropertyInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.NonInterceptedInterceptionFilter.AcceptMethod(System.Reflection.MethodInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.Internal.Reflection.MethodBaseExtensions">
+            <summary>
+            Provides <see cref="T:System.Reflection.MethodBase"/> extension methods.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Reflection.MethodBaseExtensions.CanOverride(System.Reflection.MethodBase)">
+            <summary>
+            Returns a value indicating whether the specified method is overrideable.
+            </summary>
+            <param name="methodBase">The method base.</param>
+            <returns>A value indicating whether the specified method is overrideable.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Reflection.MethodBaseExtensions.GetFullName(System.Reflection.MethodBase)">
+            <summary>
+            Returns the full name of the specified method.
+            </summary>
+            <param name="methodBase">The method base.</param>
+            <returns>The full name.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Reflection.MethodBaseExtensions.GetParameterTypes(System.Reflection.MethodBase)">
+            <summary>
+            Returns the parameter types of the specified method.
+            </summary>
+            <param name="methodBase">The method base.</param>
+            <returns>The parameter types.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Reflection.MethodBaseExtensions.MapGenericParameterTypes(System.Reflection.MethodBase,System.Type[])">
+            <summary>
+            Maps the parameter types to the specified generic types.
+            </summary>
+            <param name="methodBase">The method base.</param>
+            <param name="genericTypes">The generic types.</param>
+            <returns>The mapped parameter types.</returns>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.Internal.Definitions.IProxyDefinition">
+            <summary>
+            Defines a proxy definition.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.IProxyDefinition.AcceptVisitor(NLite.Reflection.Dynamic.Internal.Definitions.IProxyDefinitionVisitor)">
+            <summary>
+            Dispatches to the specific visit method for each member.
+            </summary>
+            <param name="proxyDefinitionVisitor">The proxy definition visitor.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.IProxyDefinition.UnwrapProxy(System.Object)">
+            <summary>
+            Unwraps the specified proxy.
+            </summary>
+            <param name="proxy">The proxy object.</param>
+            <returns>The wrapped object.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.IProxyDefinition.CreateProxy(System.Type,System.Object[])">
+            <summary>
+            Creates a new proxy of the specified type.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="arguments">The constructor arguments.</param>
+            <returns>The new proxy object.</returns>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Definitions.IProxyDefinition.DeclaringType">
+            <summary>
+            Returns the declaring type.
+            </summary>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Definitions.IProxyDefinition.ParentType">
+            <summary>
+            Returns the parent type.
+            </summary>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Definitions.IProxyDefinition.ImplementedInterfaces">
+            <summary>
+            Returns all implemented interfaces.
+            </summary>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.Internal.Caching.ConcurrentCache`2">
+            <summary>
+            Represents a concurrent cache.
+            </summary>
+            <typeparam name="TKey">The key type.</typeparam>
+            <typeparam name="TValue">The value type.</typeparam>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.Internal.Caching.ICache`2">
+            <summary>
+            Defines a cache.
+            </summary>
+            <typeparam name="TKey">The key type.</typeparam>
+            <typeparam name="TValue">The value type.</typeparam>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Caching.ICache`2.GetOrAdd(`0,System.Func{`0,`1})">
+            <summary>
+            Gets or adds a value for the specified key.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="valueFactory">The value factory.</param>
+            <returns>The value.</returns>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.Internal.Caching.ConcurrentCache`2._values">
+            <summary>
+            The values.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.Internal.Caching.ConcurrentCache`2._lock">
+            <summary>
+            The lock.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.Internal.Caching.ConcurrentCache`2._disposed">
+            <summary>
+            A value indicating whether this <see cref="T:NLite.Reflection.Dynamic.Internal.Caching.ConcurrentCache`2"/> was already disposed.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Caching.ConcurrentCache`2.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NLite.Reflection.Dynamic.Internal.Caching.ConcurrentCache`2"/> class.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Caching.ConcurrentCache`2.Finalize">
+            <summary>
+            Releases unmanaged resources and performs other cleanup operations before the
+            <see cref="T:NLite.Reflection.Dynamic.Internal.Caching.ConcurrentCache`2"/> is reclaimed by garbage collection.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Caching.ConcurrentCache`2.Dispose(System.Boolean)">
+            <summary>
+            Dispose this <see cref="T:NLite.Reflection.Dynamic.Internal.Caching.ConcurrentCache`2"/>.
+            </summary>
+            <param name="disposing">A value indicating whether disposing is in progress.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Caching.ConcurrentCache`2.GetOrAdd(`0,System.Func{`0,`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Caching.ConcurrentCache`2.Dispose">
+            <inheritdoc/>
         </member>
         <member name="T:NLite.ServiceRegistryExtensions">
             <summary>
@@ -833,8 +1005,8 @@
             <summary>
             当新组件注册时进行刷新
             </summary>
-            <param name="bindingInfo"></param>
-            <param name="registry"></param>
+            <param name="info"></param>
+            <param name="kernel"></param>
         </member>
         <member name="P:NLite.Mini.Resolving.IDependency.IsOptional">
             <summary>
@@ -935,7 +1107,7 @@
             <summary>
             
             </summary>
-            <param name="bindingInfo"></param>
+            <param name="info"></param>
             <param name="context"></param>
         </member>
         <member name="T:NLite.Messaging.SubscribeAttribute">
@@ -1130,6 +1302,7 @@
             <summary>
             订阅主题消息
             </summary>
+            <param name="info"></param>
             <returns></returns>
         </member>
         <member name="M:NLite.Messaging.IMessageBus.Unsubscribe(System.String,System.Type,NLite.Messaging.IObserverHandler{NLite.Messaging.IMessage})">
@@ -1137,6 +1310,7 @@
             注销订阅的主题消息
             </summary>
             <param name="topic">消息主题</param>
+            <param name="messageType"></param>
             <param name="handler">处理器</param>
         </member>
         <member name="M:NLite.Messaging.IMessageBus.RegisterListner(NLite.Messaging.IMessageListener[])">
@@ -1156,7 +1330,7 @@
             移除主题消息
             </summary>
             <param name="topic">消息主题</param>
-            <param name="binderType">类型</param>
+            <param name="type">类型</param>
         </member>
         <member name="M:NLite.Messaging.IMessageBus.RemoveAll">
             <summary>
@@ -1778,6 +1952,99 @@
             
             </summary>
         </member>
+        <member name="T:NLite.Threading.ActiveObject.ActiveTaskEventType">
+            <summary>
+            任务事件类型
+            </summary>
+        </member>
+        <member name="F:NLite.Threading.ActiveObject.ActiveTaskEventType.Executing">
+            <summary>
+            任务执行前
+            </summary>
+        </member>
+        <member name="F:NLite.Threading.ActiveObject.ActiveTaskEventType.Executed">
+            <summary>
+            任务执行后
+            </summary>
+        </member>
+        <member name="F:NLite.Threading.ActiveObject.ActiveTaskEventType.Exception">
+            <summary>
+            异常
+            </summary>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.ProxyTemplateExtensions">
+            <summary>
+            Provides <see cref="T:NLite.Reflection.Dynamic.IProxyTemplate"/> extension methods.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTemplateExtensions.AdaptProxy``1(NLite.Reflection.Dynamic.IProxyTemplate,System.Object)">
+            <summary>
+            Adapts a proxy to the specified interface type.
+            </summary>
+            <typeparam name="TInterface">The interface type.</typeparam>
+            <param name="proxyTemplate">The proxy template.</param>
+            <param name="proxy">The proxy object.</param>
+            <returns>The object, of the specified interface type, to which the proxy object has been adapted.</returns>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.Internal.Caching.LockOnWriteCache`2">
+            <summary>
+            Represents a lock-on-write cache.
+            </summary>
+            <typeparam name="TKey">The key type.</typeparam>
+            <typeparam name="TValue">The value type.</typeparam>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.Internal.Caching.LockOnWriteCache`2._values">
+            <summary>
+            The values.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.Internal.Caching.LockOnWriteCache`2._lock">
+            <summary>
+            The lock.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.Internal.Caching.LockOnWriteCache`2._disposed">
+            <summary>
+            A value indicating whether this <see cref="T:NLite.Reflection.Dynamic.Internal.Caching.LockOnWriteCache`2"/> was already disposed.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Caching.LockOnWriteCache`2.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NLite.Reflection.Dynamic.Internal.Caching.LockOnWriteCache`2"/> class.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Caching.LockOnWriteCache`2.Finalize">
+            <summary>
+            Releases unmanaged resources and performs other cleanup operations before the
+            <see cref="T:NLite.Reflection.Dynamic.Internal.Caching.LockOnWriteCache`2"/> is reclaimed by garbage collection.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Caching.LockOnWriteCache`2.Dispose(System.Boolean)">
+            <summary>
+            Dispose this <see cref="T:NLite.Reflection.Dynamic.Internal.Caching.LockOnWriteCache`2"/>.
+            </summary>
+            <param name="disposing">A value indicating whether disposing is in progress.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Caching.LockOnWriteCache`2.GetOrAdd(`0,System.Func{`0,`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Caching.LockOnWriteCache`2.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:NLite.Reflection.IInvocationHandler">
+            <summary>
+            Defines an invocation handler.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.IInvocationHandler.Invoke(System.Object,System.Reflection.MethodInfo,System.Object[])">
+            <summary>
+            Processes an invocation on a target.
+            </summary>
+            <param name="target">The target object.</param>
+            <param name="method">The method information.</param>
+            <param name="parameters">The parameter values.</param>
+            <returns>The return value.</returns>
+        </member>
         <member name="T:NLite.ServiceLocator">
             <summary>
             服务定位器门面类
@@ -1852,8 +2119,8 @@
             
             </summary>
             <param name="activator"></param>
-            <param name="registry"></param>
-            <param name="bindingInfo"></param>
+            <param name="kernel"></param>
+            <param name="info"></param>
             <param name="onDestroy"></param>
         </member>
         <member name="M:NLite.Mini.Lifestyle.ILifestyleManager.Get(NLite.Mini.Context.IComponentContext)">
@@ -1883,47 +2150,40 @@
             
             </summary>
         </member>
+        <member name="P:NLite.Mini.Lifestyle.ILifestyleManager.OnFetch">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:NLite.Mini.Lifestyle.LifestyleManagerAdapter.Init(NLite.Mini.Activation.IActivator,NLite.IKernel,NLite.IComponentInfo,System.Action{NLite.IComponentInfo,System.Object},System.Action{NLite.Mini.Context.IComponentContext})">
             <summary>
             
             </summary>
             <param name="activator"></param>
-            <param name="registry"></param>
-            <param name="bindingInfo"></param>
+            <param name="kernel"></param>
+            <param name="info"></param>
             <param name="onDestroying"></param>
         </member>
         <member name="M:NLite.Mini.Lifestyle.LifestyleManagerAdapter.Get(NLite.Mini.Context.IComponentContext)">
-            <summary>
-            
-            </summary>
-            <param name="ctx"></param>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:NLite.Mini.Lifestyle.LifestyleManagerAdapter.Dispose(System.Boolean)">
-            <summary>
-            
-            </summary>
-            <param name="disposing"></param>
+            <inheritdoc/>
         </member>
         <member name="P:NLite.Mini.Lifestyle.LifestyleManagerAdapter.Kernel">
-            <summary>
-            
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:NLite.Mini.Lifestyle.LifestyleManagerAdapter.Activator">
-            <summary>
-            
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:NLite.Mini.Lifestyle.LifestyleManagerAdapter.Info">
-            <summary>
-            
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:NLite.Mini.Lifestyle.LifestyleManagerAdapter.OnDestroying">
-            <summary>
-            
-            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Mini.Lifestyle.LifestyleManagerAdapter.OnFetch">
+            <inheritdoc/>
         </member>
         <member name="T:NLite.IServiceLocator">
             <summary>
@@ -2240,22 +2500,22 @@
             <summary>
             
             </summary>
-            <param name="registry"></param>
+            <param name="kernel"></param>
             <param name="gernericParameters"></param>
         </member>
         <member name="M:NLite.Mini.Context.ComponentContext.Init(NLite.IComponentInfo)">
             <summary>
             
             </summary>
-            <param name="bindingInfo"></param>
+            <param name="info"></param>
             <returns></returns>
         </member>
         <member name="M:NLite.Mini.Context.ComponentContext.#ctor(NLite.IKernel,NLite.IComponentInfo,System.Collections.Generic.IDictionary{System.String,System.Object},System.Type[])">
             <summary>
             
             </summary>
-            <param name="registry"></param>
-            <param name="bindingInfo"></param>
+            <param name="kernel"></param>
+            <param name="info"></param>
             <param name="args"></param>
             <param name="genericParameters"></param>
         </member>
@@ -2263,45 +2523,31 @@
             <summary>
             
             </summary>
-            <param name="registry"></param>
-            <param name="bindingInfo"></param>
+            <param name="kernel"></param>
+            <param name="info"></param>
             <param name="args"></param>
             <param name="genericParameters"></param>
         </member>
         <member name="P:NLite.Mini.Context.ComponentContext.Kernel">
-            <summary>
-            
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:NLite.Mini.Context.ComponentContext.LifestyleManager">
-            <summary>
-            
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:NLite.Mini.Context.ComponentContext.Component">
-            <summary>
-            
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:NLite.Mini.Context.ComponentContext.NamedArgs">
-            <summary>
-            
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:NLite.Mini.Context.ComponentContext.Args">
-            <summary>
-            
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:NLite.Mini.Context.ComponentContext.GenericParameters">
-            <summary>
-            
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:NLite.Mini.Context.ComponentContext.Instance">
-            <summary>
-            
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="T:NLite.Mini.Listener.SubscribeListener">
             <summary>
@@ -2322,25 +2568,25 @@
             <summary>
             初始化监听器
             </summary>
-            <param name="registry"></param>
+            <param name="kernel"></param>
         </member>
         <member name="M:NLite.IComponentListener.OnMetadataRegistering(NLite.IComponentInfo)">
             <summary>
             在组件元数据注册前进行监听，例如Aop监听器
             </summary>
-            <param name="bindingInfo"></param>
+            <param name="info"></param>
         </member>
         <member name="M:NLite.IComponentListener.OnMetadataRegistered(NLite.IComponentInfo)">
             <summary>
             在组件元数据注册后进行监听，例如Aop监听器
             </summary>
-            <param name="bindingInfo"></param>
+            <param name="info"></param>
         </member>
         <member name="M:NLite.IComponentListener.OnMetadataUnregistered(NLite.IComponentInfo)">
             <summary>
             在组件元数据注销后进行监听，例如Aop监听器
             </summary>
-            <param name="bindingInfo"></param>
+            <param name="info"></param>
         </member>
         <member name="M:NLite.IComponentListener.OnPreCreation(NLite.Mini.Context.IComponentContext)">
             <summary>
@@ -2376,14 +2622,14 @@
             <summary>
             在组件释放前进行监听
             </summary>
-            <param name="bindingInfo"></param>
+            <param name="info"></param>
             <param name="instance"></param>
         </member>
         <member name="M:NLite.IComponentListener.OnPostDestroy(NLite.IComponentInfo)">
             <summary>
             在组件释放后进行监听
             </summary>
-            <param name="bindingInfo"></param>
+            <param name="info"></param>
         </member>
         <member name="P:NLite.IComponentListener.Kernel">
             <summary>
@@ -2396,65 +2642,34 @@
             </summary>
         </member>
         <member name="M:NLite.Mini.Listener.ComponentListenerAdapter.OnMetadataRegistering(NLite.IComponentInfo)">
-            <summary>
-            在组件元数据注册前进行监听，例如Aop监听器
-            </summary>
-            <param name="bindingInfo"></param>
+            <inheritdoc/>
         </member>
         <member name="M:NLite.Mini.Listener.ComponentListenerAdapter.OnMetadataRegistered(NLite.IComponentInfo)">
-            <summary>
-            在组件元数据注册后进行监听，例如Aop监听器
-            </summary>
-            <param name="bindingInfo"></param>
+            <inheritdoc/>
         </member>
         <member name="M:NLite.Mini.Listener.ComponentListenerAdapter.OnMetadataUnregistered(NLite.IComponentInfo)">
-            <summary>
-            在组件元数据注销后进行监听，例如Aop监听器
-            </summary>
-            <param name="bindingInfo"></param>
+            <inheritdoc/>
         </member>
         <member name="M:NLite.Mini.Listener.ComponentListenerAdapter.OnPreCreation(NLite.Mini.Context.IComponentContext)">
-            <summary>
-            在组件创建前进行监听
-            </summary>
-            <param name="ctx"></param>
+            <inheritdoc/>
         </member>
         <member name="M:NLite.Mini.Listener.ComponentListenerAdapter.OnPostCreation(NLite.Mini.Context.IComponentContext)">
-            <summary>
-            在组件创建后进行监听
-            </summary>
-            <param name="ctx"></param>
+            <inheritdoc/>
         </member>
         <member name="M:NLite.Mini.Listener.ComponentListenerAdapter.OnInitialization(NLite.Mini.Context.IComponentContext)">
-            <summary>
-            在组件创建后对组件初始化进行监听
-            </summary>
-            <param name="ctx"></param>
+            <inheritdoc/>
         </member>
         <member name="M:NLite.Mini.Listener.ComponentListenerAdapter.OnPostInitialization(NLite.Mini.Context.IComponentContext)">
-            <summary>
-            在组件初始化后进行监听
-            </summary>
-            <param name="ctx"></param>
+            <inheritdoc/>
         </member>
         <member name="M:NLite.Mini.Listener.ComponentListenerAdapter.OnFetch(NLite.Mini.Context.IComponentContext)">
-            <summary>
-            
-            </summary>
-            <param name="ctx"></param>
+            <inheritdoc/>
         </member>
         <member name="M:NLite.Mini.Listener.ComponentListenerAdapter.OnPreDestroy(NLite.IComponentInfo,System.Object)">
-            <summary>
-            在组件释放前进行监听
-            </summary>
-            <param name="bindingInfo"></param>
-            <param name="instance"></param>
+            <inheritdoc/>
         </member>
         <member name="M:NLite.Mini.Listener.ComponentListenerAdapter.OnPostDestroy(NLite.IComponentInfo)">
-            <summary>
-            在组件释放后进行监听
-            </summary>
-            <param name="bindingInfo"></param>
+            <inheritdoc/>
         </member>
         <member name="P:NLite.Mini.Listener.ComponentListenerAdapter.Kernel">
             <summary>
@@ -2643,56 +2858,6 @@
             <typeparam name="TResource">资源定位器名称</typeparam>
             <param name="key"></param>
             <returns></returns>
-        </member>
-        <member name="T:NLite.Interceptor.IInvocationExceptionContext">
-            <summary>
-            异常调用上下文
-            </summary>
-        </member>
-        <member name="T:NLite.Interceptor.IInovacationExecutedContext">
-            <summary>
-            执行后调用上下文
-            </summary>
-        </member>
-        <member name="T:NLite.Interceptor.IInvocationContext">
-            <summary>
-            调用上下文
-            </summary>
-        </member>
-        <member name="P:NLite.Interceptor.IInvocationContext.Target">
-            <summary>
-            目标对象
-            </summary>
-        </member>
-        <member name="P:NLite.Interceptor.IInvocationContext.Method">
-            <summary>
-            目标方法
-            </summary>
-        </member>
-        <member name="P:NLite.Interceptor.IInvocationContext.Arguments">
-            <summary>
-            方法参数
-            </summary>
-        </member>
-        <member name="P:NLite.Interceptor.IInovacationExecutedContext.Result">
-            <summary>
-            得到或设置返回结果
-            </summary>
-        </member>
-        <member name="P:NLite.Interceptor.IInvocationExceptionContext.Exception">
-            <summary>
-            得到或设置异常
-            </summary>
-        </member>
-        <member name="P:NLite.Interceptor.IInvocationExceptionContext.ExceptionHandled">
-            <summary>
-            得到或设置一个值，用来指示是否已经处理了异常
-            </summary>
-        </member>
-        <member name="T:NLite.Interceptor.IInvocationExecutingContext">
-            <summary>
-            执行前调用上下文
-            </summary>
         </member>
         <member name="T:NLite.Threading.ResetEvent">
             <summary>
@@ -2885,6 +3050,41 @@
             <param name="value"></param>
             <param name="index"></param>
         </member>
+        <member name="T:NLite.Reflection.Dynamic.Internal.Definitions.IProxyDefinitionVisitor">
+            <summary>
+            Defines a proxy definition visitor.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.IProxyDefinitionVisitor.VisitInterface(System.Type)">
+            <summary>
+            Visits the specified interface type.
+            </summary>
+            <param name="interfaceType">The interface type.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.IProxyDefinitionVisitor.VisitConstructor(System.Reflection.ConstructorInfo)">
+            <summary>
+            Visits the specified constructor.
+            </summary>
+            <param name="constructorInfo">The constructor information.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.IProxyDefinitionVisitor.VisitEvent(System.Reflection.EventInfo)">
+            <summary>
+            Visits the specified event.
+            </summary>
+            <param name="eventInfo">The event information.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.IProxyDefinitionVisitor.VisitProperty(System.Reflection.PropertyInfo)">
+            <summary>
+            Visits the specified property.
+            </summary>
+            <param name="propertyInfo">The property information.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.IProxyDefinitionVisitor.VisitMethod(System.Reflection.MethodInfo)">
+            <summary>
+            Visits the specified method.
+            </summary>
+            <param name="methodInfo">The method information.</param>
+        </member>
         <member name="T:NLite.Mini.Lifestyle.GenericTransientLifestyleManager">
             <summary>
             泛型临时生命周期管理器
@@ -2906,16 +3106,18 @@
             
             </summary>
             <param name="activator"></param>
-            <param name="registry"></param>
-            <param name="bindingInfo"></param>
+            <param name="kernel"></param>
+            <param name="info"></param>
             <param name="onDestroyed"></param>
         </member>
         <member name="M:NLite.Mini.Lifestyle.GenericLifestyleManager`1.Get(NLite.Mini.Context.IComponentContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Mini.Lifestyle.GenericLifestyleManager`1.OnFetchCore(NLite.Mini.Context.IComponentContext)">
             <summary>
             
             </summary>
             <param name="ctx"></param>
-            <returns></returns>
         </member>
         <member name="M:NLite.Mini.Lifestyle.GenericLifestyleManager`1.Dispose">
             <summary>
@@ -2923,24 +3125,19 @@
             </summary>
         </member>
         <member name="P:NLite.Mini.Lifestyle.GenericLifestyleManager`1.Kernel">
-            <summary>
-            
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:NLite.Mini.Lifestyle.GenericLifestyleManager`1.Activator">
-            <summary>
-            
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:NLite.Mini.Lifestyle.GenericLifestyleManager`1.Info">
-            <summary>
-            
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:NLite.Mini.Lifestyle.GenericLifestyleManager`1.OnDestroying">
-            <summary>
-            
-            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Mini.Lifestyle.GenericLifestyleManager`1.OnFetch">
+            <inheritdoc/>
         </member>
         <member name="T:NLite.Mini.Listener.DisposalListener">
             <summary>
@@ -2951,7 +3148,7 @@
             <summary>
             
             </summary>
-            <param name="bindingInfo"></param>
+            <param name="info"></param>
             <param name="instance"></param>
         </member>
         <member name="T:NLite.MetadataAttribute">
@@ -3028,6 +3225,16 @@
             <param name="args">参数列表</param>
             <returns>返回方法调用结果</returns>
         </member>
+        <member name="T:NLite.Threading.ActiveObject.IActiveTask">
+            <summary>
+            主动任务接口
+            </summary>
+        </member>
+        <member name="M:NLite.Threading.ActiveObject.IActiveTask.Execute">
+            <summary>
+            执行主动任务
+            </summary>
+        </member>
         <member name="T:NLite.Serialization.ContentHandlerTable">
             <summary>
             内容类型处理器映射表
@@ -3044,6 +3251,145 @@
             <summary>
             类型处理器字典
             </summary>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.Internal.Resources">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Resources.ResourceManager">
+            <summary>
+              返回此类使用的缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Resources.Culture">
+            <summary>
+              使用此强类型资源类，为所有资源查找
+              重写当前线程的 CurrentUICulture 属性。
+            </summary>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Resources.CannotAdaptProxy">
+            <summary>
+              查找类似 Cannot adapt proxy to interface type. 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Resources.ConstructorOnTypeNotFound">
+            <summary>
+              查找类似 Constructor on type &apos;{0}&apos; not found. 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Resources.DynamicAssemblyKeyPairIsMissing">
+            <summary>
+              查找类似 Dynamic assembly key pair is missing. 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Resources.InterfaceTypeMustNotBeAGenericTypeDefinition">
+            <summary>
+              查找类似 Interface type &apos;{0}&apos; must not be a generic type definition. 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Resources.InterfaceTypeMustNotBeNull">
+            <summary>
+              查找类似 Interface type must not be null. 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Resources.InterfaceTypeWasAlreadyAdded">
+            <summary>
+              查找类似 Interface type {0} was already added. 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Resources.InvalidProxyType">
+            <summary>
+              查找类似 Invalid proxy type. 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Resources.MemberHasNoDeclaringType">
+            <summary>
+              查找类似 Member has no declaring type. 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Resources.MethodNotDeclaredOrInherited">
+            <summary>
+              查找类似 Method is not declared or inherited by target object. 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Resources.MethodNotImplemented">
+            <summary>
+              查找类似 Method is not implemented by target object. 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Resources.MethodNotOverridable">
+            <summary>
+              查找类似 Method &apos;{0}&apos; is not overridable. 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Resources.MethodOnTypeNotFound">
+            <summary>
+              查找类似 Method &apos;{0}&apos; on type &apos;{1}&apos; not found. 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Resources.MethodRequiresATargetObject">
+            <summary>
+              查找类似 Method requires a target object. 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Resources.NoMoreInterceptorsInTheInterceptorChain">
+            <summary>
+              查找类似 No more interceptors in the interceptor chain. 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Resources.NumberOfParameterTypesAndNamesMustBeEqual">
+            <summary>
+              查找类似 Number of parameter types and names must be equal. 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Resources.ParentTypeMustNotBeAGenericTypeDefinition">
+            <summary>
+              查找类似 Parent type must not be a generic type definition. 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Resources.ParentTypeMustNotBeSealed">
+            <summary>
+              查找类似 Parent type must not be sealed. 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Resources.TypeNotAnInterfaceType">
+            <summary>
+              查找类似 Type &apos;{0}&apos; is not an interface type. 的本地化字符串。
+            </summary>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.Internal.Reflection.PropertyInfoExtensions">
+            <summary>
+            Provides <see cref="T:System.Reflection.PropertyInfo"/> extension methods.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Reflection.PropertyInfoExtensions.CanOverride(System.Reflection.PropertyInfo)">
+            <summary>
+            Returns a value indicating whether the specified property is overrideable.
+            </summary>
+            <param name="propertyInfo">The property information.</param>
+            <returns>A value indicating whether the specified property is overrideable.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Reflection.PropertyInfoExtensions.GetAccessorMethods(System.Reflection.PropertyInfo)">
+            <summary>
+            Returns the accessor methods for the specified property.
+            </summary>
+            <param name="propertyInfo">The property information.</param>
+            <returns>The accessor method informations.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Reflection.PropertyInfoExtensions.GetFullName(System.Reflection.PropertyInfo)">
+            <summary>
+            Returns the full name of the specified property.
+            </summary>
+            <param name="propertyInfo">The property information.</param>
+            <returns>The full name.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Reflection.PropertyInfoExtensions.GetIndexParameterTypes(System.Reflection.PropertyInfo)">
+            <summary>
+            Returns the index parameter types of the specified property.
+            </summary>
+            <param name="propertyInfo">The property information.</param>
+            <returns>The index parameter types.</returns>
         </member>
         <member name="T:NLite.Reflection.IClassLoader">
             <summary>
@@ -3325,7 +3671,7 @@
             <summary>
             
             </summary>
-            <param name="registry"></param>
+            <param name="kernel"></param>
             <param name="model"></param>
             <returns></returns>
         </member>
@@ -3361,15 +3707,11 @@
             <summary>
             
             </summary>
-            <param name="binderType"></param>
+            <param name="type"></param>
             <returns></returns>
         </member>
         <member name="M:NLite.Mini.Lifestyle.LifestyleManagerFactory.Create(NLite.LifestyleFlags)">
-            <summary>
-            
-            </summary>
-            <param name="binderType"></param>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="T:NLite.Mini.Lifestyle.GenericThreadLifestyleManager">
             <summary>
@@ -3420,7 +3762,7 @@
             <summary>
             
             </summary>
-            <param name="bindingInfo"></param>
+            <param name="info"></param>
             <param name="context"></param>
         </member>
         <member name="T:NLite.Messaging.MessageExceptionEventArgs">
@@ -4005,6 +4347,11 @@
             得到一个值用来指示当前运行环境是否是Web环境
             </summary>
         </member>
+        <member name="P:NLite.NLiteEnvironment.IsMono">
+            <summary>
+            得到一个值用来指示是否是Mono环境
+            </summary>
+        </member>
         <member name="P:NLite.NLiteEnvironment.ContainerType">
             <summary>
             得到或设置DI 容器的类型
@@ -4024,6 +4371,306 @@
             <summary>
             得到Cache状态对象
             </summary>
+        </member>
+        <member name="T:NLite.Threading.ActiveObject.ActiveObjectEvent">
+            <summary>
+            主动对象事件
+            </summary>
+        </member>
+        <member name="M:NLite.Threading.ActiveObject.ActiveObjectEvent.#ctor(NLite.Threading.ActiveObject.IActiveObject,System.Exception)">
+            <summary>
+            构造一个新的主动对象事件
+            </summary>
+            <param name="activeObject"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="P:NLite.Threading.ActiveObject.ActiveObjectEvent.ActiveObject">
+            <summary>
+            得到主动对象
+            </summary>
+        </member>
+        <member name="P:NLite.Threading.ActiveObject.ActiveObjectEvent.Exception">
+            <summary>
+            得到主动对象在分发执行主动任务中产生的异常（排除主动任务异常）
+            </summary>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.ProxyTypeBuilder">
+            <summary>
+            Represents a proxy type builder.
+            </summary>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.Internal.Emit.ITypeBuilder">
+            <summary>
+            Defines a type builder.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.ITypeBuilder.AddCustomAttribute(System.Reflection.ConstructorInfo,System.Object[])">
+            <summary>
+            Adds the specified custom attribute.
+            </summary>
+            <param name="constructorInfo">The constructor information.</param>
+            <param name="arguments">The constructor arguments.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.ITypeBuilder.AddInterface(System.Type)">
+            <summary>
+            Adds the specified interface.
+            </summary>
+            <param name="interfaceType">The interface type.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.ITypeBuilder.BuildConstructor(System.Reflection.ConstructorInfo)">
+            <summary>
+            Builds a constructor based on the specified constructor.
+            </summary>
+            <param name="constructorInfo">The constructor information.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.ITypeBuilder.IsConcreteEvent(System.Reflection.EventInfo)">
+            <summary>
+            Returns a value indicating whether the specified event is concrete.
+            </summary>
+            <param name="eventInfo">The event information.</param>
+            <returns>A value indicating whether the specified event is concrete.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.ITypeBuilder.BuildEvent(System.Reflection.EventInfo)">
+            <summary>
+            Builds an event based on the specified event.
+            </summary>
+            <param name="eventInfo">The event information.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.ITypeBuilder.IsConcreteProperty(System.Reflection.PropertyInfo)">
+            <summary>
+            Returns a value indicating whether the specified property is concrete.
+            </summary>
+            <param name="propertyInfo">The property information.</param>
+            <returns>A value indicating whether the specified property is concrete.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.ITypeBuilder.BuildProperty(System.Reflection.PropertyInfo)">
+            <summary>
+            Builds a property based on the specified property.
+            </summary>
+            <param name="propertyInfo">The property information.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.ITypeBuilder.IsConcreteMethod(System.Reflection.MethodInfo)">
+            <summary>
+            Returns a value indicating whether the specified method is concrete.
+            </summary>
+            <param name="methodInfo">The method information.</param>
+            <returns>A value indicating whether the specified method is concrete.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.ITypeBuilder.BuildMethod(System.Reflection.MethodInfo)">
+            <summary>
+            Builds a method based on the specified method.
+            </summary>
+            <param name="methodInfo">The method information.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.ITypeBuilder.CreateType">
+            <summary>
+            Creates the type.
+            </summary>
+            <returns>The type.</returns>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.ProxyTypeBuilder.InvocationHandlerInvokeMethodInfo">
+            <summary>
+            The <c>IInvocationHandler.Invoke</c> method information.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.ProxyTypeBuilder._typeRepository">
+            <summary>
+            The type repository.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.ProxyTypeBuilder._parentType">
+            <summary>
+            The parent type.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.ProxyTypeBuilder._typeBuilder">
+            <summary>
+            The type builder.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.ProxyTypeBuilder._invocationHandlerFieldInfo">
+            <summary>
+            The invocation handler field information.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.ProxyTypeBuilder._interfaceTypes">
+            <summary>
+            The interface types.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTypeBuilder.#ctor(NLite.Reflection.Dynamic.Internal.Emit.ITypeRepository,System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NLite.Reflection.Dynamic.ProxyTypeBuilder"/> class.
+            </summary>
+            <param name="typeRepository">The type repository.</param>
+            <param name="parentType">The parent type.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTypeBuilder.BuildInterceptedMethod(System.Reflection.MethodInfo,System.Boolean)">
+            <summary>
+            Builds an intercepted method based on the specified method.
+            </summary>
+            <param name="methodInfo">The method information.</param>
+            <param name="isExplicit">A value indicating whether the specified method should be implemented explicitly.</param>
+            <returns>The intercepted method builder.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTypeBuilder.GetMethodInfoConstructor(System.Reflection.MethodInfo,System.Type[])">
+            <summary>
+            Returns a constructor information for the specified method.
+            </summary>
+            <param name="methodInfo">The method information.</param>
+            <param name="genericParameterTypes">The generic parameter types.</param>
+            <returns>The constructor information.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTypeBuilder.LoadArguments(System.Reflection.Emit.ILGenerator,System.Collections.Generic.IList{System.Type},System.Reflection.Emit.LocalBuilder)">
+            <summary>
+            Loads the arguments onto the stack.
+            </summary>
+            <param name="ilGenerator">The intermediate language generator.</param>
+            <param name="parameterTypes">The parameter types.</param>
+            <param name="parametersLocalBuilder">The parameters local builder.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTypeBuilder.RestoreByReferenceArguments(System.Reflection.Emit.ILGenerator,System.Collections.Generic.IList{System.Type},System.Reflection.Emit.LocalBuilder)">
+            <summary>
+            Restores the by reference arguments.
+            </summary>
+            <param name="ilGenerator">The intermediate language generator.</param>
+            <param name="parameterTypes">The parameter types.</param>
+            <param name="parametersLocalBuilder">The parameters local builder.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTypeBuilder.IsOverrideMember(System.Reflection.MemberInfo)">
+            <summary>
+            Returns a value indicating whether the specified member should be overridden.
+            </summary>
+            <param name="memberInfo">The member information.</param>
+            <returns>A value indicating whether the specified member should be overridden.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTypeBuilder.IsExplicitMember(System.Reflection.MemberInfo)">
+            <summary>
+            Returns a value indicating whether the specified member should be implemented explicitly.
+            </summary>
+            <param name="memberInfo">The member information.</param>
+            <returns>A value indicating whether the specified member should be implemented explicitly.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTypeBuilder.AddCustomAttribute(System.Reflection.ConstructorInfo,System.Object[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTypeBuilder.AddInterface(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTypeBuilder.BuildConstructor(System.Reflection.ConstructorInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTypeBuilder.IsConcreteEvent(System.Reflection.EventInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTypeBuilder.BuildEvent(System.Reflection.EventInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTypeBuilder.IsConcreteProperty(System.Reflection.PropertyInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTypeBuilder.BuildProperty(System.Reflection.PropertyInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTypeBuilder.IsConcreteMethod(System.Reflection.MethodInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTypeBuilder.BuildMethod(System.Reflection.MethodInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTypeBuilder.CreateType">
+            <inheritdoc/>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.ProxyFactory">
+            <summary>
+            Represents the proxy factory.
+            </summary>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.IProxyFactory">
+            <summary>
+            Defines a proxy factory.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.IProxyFactory.GetProxyTemplate(System.Type,System.Collections.Generic.IEnumerable{System.Type})">
+            <summary>
+            Returns a proxy template.
+            </summary>
+            <param name="declaringType">The declaring type.</param>
+            <param name="interfaceTypes">The additional interface types.</param>
+            <returns>The proxy template.</returns>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.ProxyFactory._typeBuilderFactory">
+            <summary>
+            The type builder factory.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.ProxyFactory._interceptionFilter">
+            <summary>
+            The interception filter.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.ProxyFactory._proxyTemplateCache">
+            <summary>
+            The proxy template cache.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyFactory.#ctor(System.Boolean,System.Boolean,NLite.Reflection.Dynamic.IInterceptionFilter)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NLite.Reflection.Dynamic.ProxyFactory"/> class.
+            </summary>
+            <param name="interceptionFilter">The interception filter.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyFactory.CreateProxyDefinition(System.Type,System.Collections.Generic.IEnumerable{System.Type})">
+            <summary>
+            Creates a proxy definition for the specified declaring type and interface types.
+            </summary>
+            <param name="declaringType">The declaring type.</param>
+            <param name="interfaceTypes">The interface types.</param>
+            <returns>The proxy definition.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyFactory.GenerateProxyTemplate(NLite.Reflection.Dynamic.Internal.Definitions.IProxyDefinition)">
+            <summary>
+            Generates a proxy template.
+            </summary>
+            <param name="proxyDefinition">The proxy definition.</param>
+            <returns>The proxy template.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyFactory.GetProxyTemplate(System.Type,System.Collections.Generic.IEnumerable{System.Type})">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyFactory.SaveAssembly">
+            <inheritdoc/>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.NonInterceptedAttribute">
+            <summary>
+            Represents an attribute which indicates that an event, property or method should not be intercepted.
+            </summary>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.Internal.Reflection.EventInfoExtensions">
+            <summary>
+            Provides <see cref="T:System.Reflection.EventInfo"/> extension methods.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Reflection.EventInfoExtensions.CanOverride(System.Reflection.EventInfo)">
+            <summary>
+            Returns a value indicating whether the specified event is overrideable.
+            </summary>
+            <param name="eventInfo">The event information.</param>
+            <returns>A value indicating whether the specified event is overrideable.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Reflection.EventInfoExtensions.GetAccessorMethods(System.Reflection.EventInfo)">
+            <summary>
+            Returns the accessor methods for the specified event.
+            </summary>
+            <param name="eventInfo">The event information.</param>
+            <returns>The accessor method informations.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Reflection.EventInfoExtensions.GetFullName(System.Reflection.EventInfo)">
+            <summary>
+            Returns the full name of the specified event.
+            </summary>
+            <param name="eventInfo">The event information.</param>
+            <returns>The full name.</returns>
         </member>
         <member name="T:NLite.FluentExtensions">
             <summary>
@@ -4876,13 +5523,13 @@
             <summary>
             用当前扩展点来扩展可扩展对象
             </summary>
-            <param name="cfg"></param>
+            <param name="owner"></param>
         </member>
         <member name="M:NLite.IExtension`1.Detach(`0)">
             <summary>
             从可扩展对象中移除当前扩展点
             </summary>
-            <param name="cfg"></param>
+            <param name="owner"></param>
         </member>
         <member name="T:NLite.Domain.ServiceContext">
             <summary>
@@ -5037,6 +5684,96 @@
             得到当前的序列化器
             </summary>
         </member>
+        <member name="T:NLite.Reflection.Dynamic.Internal.Emit.TypeBuilderExtensions">
+            <summary>
+            Provides <see cref="T:System.Reflection.Emit.TypeBuilder"/> extension methods.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.TypeBuilderExtensions.DefineGenericParameters(System.Reflection.Emit.TypeBuilder,System.Type[])">
+            <summary>
+            Defines the generic type parameters.
+            </summary>
+            <param name="typeBuilder">The type builder.</param>
+            <param name="genericTypes">The generic types.</param>
+            <returns>The generic parameter types.</returns>
+            <remarks>
+            Custom attributes are not considered by this method.
+            </remarks>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.TypeBuilderExtensions.DefineConstructor(System.Reflection.Emit.TypeBuilder,System.Reflection.MethodAttributes,System.Reflection.CallingConventions,System.Type[],System.String[])">
+            <summary>
+            Defines a constructor.
+            </summary>
+            <param name="typeBuilder">The type builder.</param>
+            <param name="methodAttributes">The method attributes.</param>
+            <param name="callingConvention">The calling convention.</param>
+            <param name="parameterTypes">The parameter types.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <returns>The constructor builder.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.TypeBuilderExtensions.DefineParameters(System.Reflection.Emit.ConstructorBuilder,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Defines the constructor parameters.
+            </summary>
+            <param name="constructorBuilder">The constructor builder.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.TypeBuilderExtensions.DefineConstructor(System.Reflection.Emit.TypeBuilder,System.Reflection.ConstructorInfo,System.Collections.Generic.IEnumerable{System.Type},System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Defines a constructor based on the specified constructor.
+            </summary>
+            <param name="typeBuilder">The type builder.</param>
+            <param name="constructorInfo">The constructor information.</param>
+            <param name="additionalParameterTypes">The additional parameter types.</param>
+            <param name="additionalParameterNames">The additional parameter names.</param>
+            <returns>The constructor builder.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.TypeBuilderExtensions.DefineParameters(System.Reflection.Emit.ConstructorBuilder,System.Reflection.ConstructorInfo,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Defines the constructor parameters based on the specified constructor.
+            </summary>
+            <param name="constructorBuilder">The constructor builder.</param>
+            <param name="constructorInfo">The constructor information.</param>
+            <param name="additionalParameterNames">The additional parameter names.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.TypeBuilderExtensions.DefineEvent(System.Reflection.Emit.TypeBuilder,System.Reflection.EventInfo,System.Boolean,System.Func{System.Reflection.MethodInfo,System.Boolean,System.Reflection.Emit.MethodBuilder})">
+            <summary>
+            Defines an event based on the specified event.
+            </summary>
+            <param name="typeBuilder">The type builder.</param>
+            <param name="eventInfo">The event information.</param>
+            <param name="isExplicit">A value indicating whether the specified event should be implemented explicitly.</param>
+            <param name="methodBuilderFactory">The method builder factory function.</param>
+            <returns>The event builder.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.TypeBuilderExtensions.DefineProperty(System.Reflection.Emit.TypeBuilder,System.Reflection.PropertyInfo,System.Boolean,System.Func{System.Reflection.MethodInfo,System.Boolean,System.Reflection.Emit.MethodBuilder})">
+            <summary>
+            Defines a property based on the specified property.
+            </summary>
+            <param name="typeBuilder">The type builder.</param>
+            <param name="propertyInfo">The property information.</param>
+            <param name="isExplicit">A value indicating whether the specified property should be implemented explicitly.</param>
+            <param name="methodBuilderFactory">The method builder factory function.</param>
+            <returns>The property builder.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.TypeBuilderExtensions.DefineMethod(System.Reflection.Emit.TypeBuilder,System.Reflection.MethodInfo,System.Boolean,System.Boolean)">
+            <summary>
+            Defines a method based on the specified method.
+            </summary>
+            <param name="typeBuilder">The type builder.</param>
+            <param name="methodInfo">The method information.</param>
+            <param name="isExplicit">A value indicating whether the specified method should be implemented explicitly.</param>
+            <param name="isOverride">A value indicating whether the specified method should be overridden.</param>
+            <returns>The method builder.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.TypeBuilderExtensions.SetCustomAttribute(System.Reflection.Emit.TypeBuilder,System.Reflection.ConstructorInfo,System.Object[])">
+            <summary>
+            Sets the specified custom attribute.
+            </summary>
+            <param name="typeBuilder">The type builder.</param>
+            <param name="constructorInfo">The constructor information.</param>
+            <param name="arguments">The constructor arguments.</param>
+        </member>
         <member name="T:NLite.ActivatorType">
             <summary>
             对象工厂类型
@@ -5127,7 +5864,7 @@
             <summary>
             
             </summary>
-            <param name="bindingInfo"></param>
+            <param name="info"></param>
             <param name="instance"></param>
         </member>
         <member name="T:NLite.Mini.Listener.InitializationListener">
@@ -5150,14 +5887,14 @@
             <summary>
             
             </summary>
-            <param name="binderType"></param>
+            <param name="type"></param>
             <param name="creator"></param>
         </member>
         <member name="M:NLite.Mini.Activation.IActivatorFactory.Create(System.String)">
             <summary>
             
             </summary>
-            <param name="binderType"></param>
+            <param name="type"></param>
             <returns></returns>
         </member>
         <member name="T:NLite.ResourceAttribute">
@@ -5231,10 +5968,7 @@
             <summary>
             
             </summary>
-            <param name="topic">消息主题</param>
-            <param name="messageType"></param>
-            <param name="mode"></param>
-            <param name="handler">处理器</param>
+            <param name="info"></param>
             <returns></returns>
         </member>
         <member name="M:NLite.Messaging.SimpleBus.Remove(System.String,System.Type)">
@@ -5242,7 +5976,7 @@
             
             </summary>
             <param name="topic">消息主题</param>
-            <param name="binderType">类型</param>
+            <param name="type">类型</param>
         </member>
         <member name="M:NLite.Messaging.SimpleBus.Dispose">
             <summary>
@@ -5398,6 +6132,9 @@
             <summary>
             服务元数据组件监听器
             </summary>
+        </member>
+        <member name="M:NLite.Domain.Listener.ServiceDescriptorComponentListener.OnMetadataRegistered(NLite.IComponentInfo)">
+            <inheritdoc/>
         </member>
         <member name="T:NLite.SortOrder">
             <summary>
@@ -5850,8 +6587,93 @@
             <summary>
             
             </summary>
-            <param name="bindingInfo"></param>
+            <param name="info"></param>
             <param name="context"></param>
+        </member>
+        <member name="T:NLite.Threading.ThreadState">
+            <summary>
+            线程状态
+            </summary>
+        </member>
+        <member name="F:NLite.Threading.ThreadState.NotStarted">
+            <summary>
+            未启动
+            </summary>
+        </member>
+        <member name="F:NLite.Threading.ThreadState.Running">
+            <summary>
+            运行中
+            </summary>
+        </member>
+        <member name="F:NLite.Threading.ThreadState.Suspended">
+            <summary>
+            挂起
+            </summary>
+        </member>
+        <member name="F:NLite.Threading.ThreadState.Stopped">
+            <summary>
+            停止
+            </summary>
+        </member>
+        <member name="T:NLite.Threading.SmartThread">
+            <summary>
+            线程类
+            </summary>
+        </member>
+        <member name="M:NLite.Threading.SmartThread.#ctor(System.Action,System.String,System.Boolean,System.Threading.ApartmentState)">
+            <summary>
+            创建线程
+            </summary>
+            <param name="name"></param>
+            <param name="task"></param>
+            <param name="isBackground"></param>
+            <param name="apartmentState"></param>
+        </member>
+        <member name="M:NLite.Threading.SmartThread.Start">
+            <summary>
+            启动线程
+            </summary>
+        </member>
+        <member name="M:NLite.Threading.SmartThread.Suspend">
+            <summary>
+            挂起线程
+            </summary>
+        </member>
+        <member name="M:NLite.Threading.SmartThread.Resume">
+            <summary>
+            唤醒线程
+            </summary>
+        </member>
+        <member name="M:NLite.Threading.SmartThread.Join">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NLite.Threading.SmartThread.Abort">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NLite.Threading.SmartThread.Dispose(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="P:NLite.Threading.SmartThread.Name">
+            <summary>
+            得到线程名称
+            </summary>
+        </member>
+        <member name="P:NLite.Threading.SmartThread.Id">
+            <summary>
+            线程Id
+            </summary>
+        </member>
+        <member name="P:NLite.Threading.SmartThread.State">
+            <summary>
+            线程状态
+            </summary>
         </member>
         <member name="T:NLite.Threading.AtomicReference`1">
             <summary>
@@ -5900,6 +6722,62 @@
             <returns></returns>
         </member>
         <member name="P:NLite.Threading.AtomicReference`1.Value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NLite.Threading.BlockingQueue`1.queue">
+            <summary>
+            缓存队列
+            </summary>
+        </member>
+        <member name="F:NLite.Threading.BlockingQueue`1.semaphore">
+            <summary>
+            信号量
+            </summary>
+        </member>
+        <member name="M:NLite.Threading.BlockingQueue`1.#ctor(System.UInt32)">
+            <summary>
+            默认构造函数
+            </summary>
+        </member>
+        <member name="M:NLite.Threading.BlockingQueue`1.Close">
+            <summary>
+            关闭阻塞式队列
+            </summary>
+        </member>
+        <member name="M:NLite.Threading.BlockingQueue`1.Enqueue(`0)">
+            <summary>
+            向队列中添加一个元素
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="P:NLite.Threading.BlockingQueue`1.Count">
+            <summary>
+            获取队列中包含的元素数
+            </summary>
+        </member>
+        <member name="P:NLite.Threading.BlockingQueue`1.Capacity">
+            <summary>
+            获取一个值，用于表示队列中可存放元素的最大个数
+            </summary>
+        </member>
+        <member name="T:NLite.Threading.ActiveObject.TaskExceptionType">
+            <summary>
+            异常类型
+            </summary>
+        </member>
+        <member name="F:NLite.Threading.ActiveObject.TaskExceptionType.ExecutingError">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NLite.Threading.ActiveObject.TaskExceptionType.ExecuteError">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NLite.Threading.ActiveObject.TaskExceptionType.ExecutedError">
             <summary>
             
             </summary>
@@ -6425,6 +7303,158 @@
             IDictionary 类型
             </summary>
         </member>
+        <member name="T:NLite.Reflection.Dynamic.ProxyGenerator">
+            <summary>
+            Represents the proxy generator.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.ProxyGenerator._typeBuilder">
+            <summary>
+            The type builder.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.ProxyGenerator._interceptionFilter">
+            <summary>
+            The interception filter.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.ProxyGenerator._eventInfos">
+            <summary>
+            The event informations.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.ProxyGenerator._propertyInfos">
+            <summary>
+            The property informations.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.ProxyGenerator._methodInfos">
+            <summary>
+            The method informations.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyGenerator.#ctor(NLite.Reflection.Dynamic.Internal.Emit.ITypeBuilder,NLite.Reflection.Dynamic.IInterceptionFilter)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NLite.Reflection.Dynamic.ProxyGenerator"/> class.
+            </summary>
+            <param name="typeBuilder">The type builder.</param>
+            <param name="interceptionFilter">The interception filter.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyGenerator.GenerateProxyTemplate(NLite.Reflection.Dynamic.Internal.Definitions.IProxyDefinition)">
+            <summary>
+            Generates a proxy template based on the specified proxy definition.
+            </summary>
+            <param name="proxyDefinition">The proxy definition.</param>
+            <returns>The proxy template.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyGenerator.VisitInterface(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyGenerator.VisitConstructor(System.Reflection.ConstructorInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyGenerator.VisitEvent(System.Reflection.EventInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyGenerator.VisitProperty(System.Reflection.PropertyInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyGenerator.VisitMethod(System.Reflection.MethodInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.Internal.Definitions.ProxyDefinitionBase">
+            <summary>
+            Represents the proxy definition base class.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.Internal.Definitions.ProxyDefinitionBase._declaringType">
+            <summary>
+            The declaring type.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.Internal.Definitions.ProxyDefinitionBase._parentType">
+            <summary>
+            The parent type.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.Internal.Definitions.ProxyDefinitionBase._declaringInterfaceTypes">
+            <summary>
+            The declaring interface types.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.Internal.Definitions.ProxyDefinitionBase._additionalInterfaceTypes">
+            <summary>
+            The additional interface types.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.ProxyDefinitionBase.#ctor(System.Type,System.Type,System.Collections.Generic.IEnumerable{System.Type})">
+            <summary>
+            Initializes a new instance of the <see cref="T:NLite.Reflection.Dynamic.Internal.Definitions.ProxyDefinitionBase"/> class.
+            </summary>
+            <param name="declaringType">The declaring type.</param>
+            <param name="parentType">The parent type.</param>
+            <param name="interfaceTypes">The interface types.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.ProxyDefinitionBase.ExtractInterfaces(System.Type)">
+            <summary>
+            Extracts all interface types for the specified type.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>The interface types.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.ProxyDefinitionBase.ExtractAdditionalInterfaces(System.Collections.Generic.IEnumerable{System.Type},System.Collections.Generic.ICollection{System.Type})">
+            <summary>
+            Extracts all additional interface types.
+            </summary>
+            <param name="interfaceTypes">The interface types.</param>
+            <param name="declaringInterfaceTypes">The declaring interface types.</param>
+            <returns>The additional interface types.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.ProxyDefinitionBase.AddAdditionalInterfaces(System.Type,System.Collections.Generic.ICollection{System.Type},System.Collections.Generic.HashSet{System.Type})">
+            <summary>
+            Adds additional interface types.
+            </summary>
+            <param name="interfaceType">The interface type.</param>
+            <param name="declaringInterfaceTypes">The declaring interface types.</param>
+            <param name="additionalInterfaceTypes">The additional interface types.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.ProxyDefinitionBase.AcceptVisitor(NLite.Reflection.Dynamic.Internal.Definitions.IProxyDefinitionVisitor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.ProxyDefinitionBase.UnwrapProxy(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.ProxyDefinitionBase.CreateProxy(System.Type,System.Object[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.ProxyDefinitionBase.Equals(NLite.Reflection.Dynamic.Internal.Definitions.ProxyDefinitionBase)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.ProxyDefinitionBase.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.ProxyDefinitionBase.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Definitions.ProxyDefinitionBase.DeclaringInterfaces">
+            <summary>
+            Returns all declaring interface types.
+            </summary>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Definitions.ProxyDefinitionBase.AdditionalInterfaces">
+            <summary>
+            Returns all additional interface types.
+            </summary>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Definitions.ProxyDefinitionBase.DeclaringType">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Definitions.ProxyDefinitionBase.ParentType">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Definitions.ProxyDefinitionBase.ImplementedInterfaces">
+            <inheritdoc/>
+        </member>
         <member name="T:NLite.ILazyServiceLocator">
             <summary>
             懒惰服务定位器
@@ -6476,7 +7506,7 @@
             <summary>
             初始化组件监听管理器
             </summary>
-            <param name="registry"></param>
+            <param name="kernel"></param>
         </member>
         <member name="P:NLite.IComponentListenerManager.Enabled">
             <summary>
@@ -6493,7 +7523,7 @@
             <summary>
             
             </summary>
-            <param name="registry"></param>
+            <param name="kernel"></param>
         </member>
         <member name="M:NLite.Mini.Listener.ComponentListenManager.Init">
             <summary>
@@ -6753,6 +7783,17 @@
             <param name="resp"></param>
             <param name="operationDesc"></param>
         </member>
+        <member name="T:NLite.Threading.ActiveObject.IActiveTaskListener">
+            <summary>
+            主动任务监听器接口
+            </summary>
+        </member>
+        <member name="M:NLite.Threading.ActiveObject.IActiveTaskListener.TaskEvent(NLite.Threading.ActiveObject.ActiveTaskEvent)">
+            <summary>
+            在主动任务执行前、执行后和异常时触发
+            </summary>
+            <param name="e"></param>
+        </member>
         <member name="T:NLite.Reflection.Gac">
             <summary>
             Gac 工具类
@@ -6775,7 +7816,7 @@
             <summary>
             
             </summary>
-            <param name="binderType"></param>
+            <param name="type"></param>
             <returns></returns>
         </member>
         <member name="T:NLite.Reflection.Internal.ASM_DISPLAY_FLAGS">
@@ -6791,17 +7832,14 @@
         </member>
         <member name="T:NLite.Reflection.Internal.IASSEMBLYCACHE_UNINSTALL_DISPOSITION">
             <summary>
-            <see cref="M:NLite.Reflection.Internal.IAssemblyCache.UninstallAssembly(System.UInt32,System.String,NLite.Reflection.Internal.FUSION_INSTALL_REFERENCE[],System.UInt32@)"/>
             </summary>
         </member>
         <member name="T:NLite.Reflection.Internal.QUERYASMINFO_FLAG">
             <summary>
-            <see cref="M:NLite.Reflection.Internal.IAssemblyCache.QueryAssemblyInfo(System.UInt32,System.String,NLite.Reflection.Internal.ASSEMBLY_INFO@)"/>
             </summary>
         </member>
         <member name="T:NLite.Reflection.Internal.IASSEMBLYCACHE_INSTALL_FLAG">
             <summary>
-            <see cref="!:IAssemblyChance.InstallAssembly"/>
             </summary>
         </member>
         <member name="T:NLite.Reflection.Internal.CREATE_ASM_NAME_OBJ_FLAGS">
@@ -6811,7 +7849,6 @@
             	the individual properties. If the flag is not specified, szAssemblyName is the "Name" portion of the assembly name.
             CANOF_SET_DEFAULT_VALUES - If this flag is specified, certain properties, such as processor architecture, are set to
             	their default values.
-            <see cref="!:AssemblyCache.CreateAssemblyNameObject"/>
             </summary>
         </member>
         <member name="T:NLite.Reflection.Internal.ASM_CACHE_FLAGS">
@@ -7214,6 +8251,105 @@
             Undocumented.
             </summary>
         </member>
+        <member name="T:NLite.Reflection.Dynamic.Internal.Emit.ITypeRepository">
+            <summary>
+            Defines a type repository.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.ITypeRepository.DefineType(System.String,System.Type)">
+            <summary>
+            Constructs a type builder.
+            </summary>
+            <param name="typeName">The type name.</param>
+            <param name="parentType">The parent type.</param>
+            <returns>The type builder.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.ITypeRepository.GetType(System.Reflection.MethodInfo)">
+            <summary>
+            Returns a type for the specified method.
+            </summary>
+            <param name="methodInfo">The method information.</param>
+            <returns>The type.</returns>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.Internal.Emit.ILGeneratorExtensions">
+            <summary>
+            Provides <see cref="T:System.Reflection.Emit.ILGenerator"/> extension methods.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.ILGeneratorExtensions.EmitCall(System.Reflection.Emit.ILGenerator,System.Reflection.MethodInfo)">
+            <summary>
+            Calls the specified method.
+            </summary>
+            <param name="ilGenerator">The intermediate language generator.</param>
+            <param name="methodInfo">The method information.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.ILGeneratorExtensions.EmitLoadArguments(System.Reflection.Emit.ILGenerator,System.Int32,System.Int32)">
+            <summary>
+            Loads the arguments onto the stack.
+            </summary>
+            <param name="ilGenerator">The intermediate language generator.</param>
+            <param name="offset">The argument offset.</param>
+            <param name="count">The argument count.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.ILGeneratorExtensions.EmitLoadArgument(System.Reflection.Emit.ILGenerator,System.Int32)">
+            <summary>
+            Loads an argument onto the stack.
+            </summary>
+            <param name="ilGenerator">The intermediate language generator.</param>
+            <param name="index">The argument index.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.ILGeneratorExtensions.EmitLoadValue(System.Reflection.Emit.ILGenerator,System.Int32)">
+            <summary>
+            Loads a value onto the stack.
+            </summary>
+            <param name="ilGenerator">The intermediate language generator.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.ILGeneratorExtensions.ThrowException(System.Reflection.Emit.ILGenerator,System.Type,System.String)">
+            <summary>
+            Throws a new exception of the specified exception type.
+            </summary>
+            <param name="ilGenerator">The intermediate language generator.</param>
+            <param name="exceptionType">The exception type.</param>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.ILGeneratorExtensions.NewArray(System.Reflection.Emit.ILGenerator,System.Type,System.Int32)">
+            <summary>
+            Creates a new array of the specified element type.
+            </summary>
+            <param name="ilGenerator">The intermediate language generator.</param>
+            <param name="elementType">The element type.</param>
+            <param name="size">The array size.</param>
+            <returns>The new array.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.ILGeneratorExtensions.EmitBox(System.Reflection.Emit.ILGenerator,System.Type)">
+            <summary>
+            Converts a value type to an object reference.
+            </summary>
+            <param name="ilGenerator">The intermediate language generator.</param>
+            <param name="type">The type.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.ILGeneratorExtensions.EmitUnbox(System.Reflection.Emit.ILGenerator,System.Type)">
+            <summary>
+            Converts the boxed representation of a specified type to its unboxed form.
+            </summary>
+            <param name="ilGenerator">The intermediate language generator.</param>
+            <param name="type">The type.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.ILGeneratorExtensions.EmitLoadIndirect(System.Reflection.Emit.ILGenerator,System.Type)">
+            <summary>
+            Loads a value from an address.
+            </summary>
+            <param name="ilGenerator">The intermediate language generator.</param>
+            <param name="type">The type.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.ILGeneratorExtensions.EmitStoreIndirect(System.Reflection.Emit.ILGenerator,System.Type)">
+            <summary>
+            Stores a value to an address.
+            </summary>
+            <param name="ilGenerator">The intermediate language generator.</param>
+            <param name="type">The type.</param>
+        </member>
         <member name="T:NLite.Mini.Resolving.IAttributeProviderVisitor`1">
             <summary>
             
@@ -7474,7 +8610,7 @@
             <summary>
             通过组件元数据注册组件到容器中
             </summary>
-            <param name="bindingInfo"></param>
+            <param name="info"></param>
             <returns></returns>
         </member>
         <member name="M:NLite.IServiceRegistry.Compose(System.Object)">
@@ -7572,6 +8708,18 @@
             <summary>
             得到或设置父容器
             </summary>
+        </member>
+        <member name="T:NLite.InterceptorAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NLite.InterceptorAttribute.#ctor(System.Type)">
+            <summary>
+              Constructs the InterceptorAttribute pointing to
+              a service
+            </summary>
+            <param name="interceptorType"></param>
         </member>
         <member name="T:NLite.Messaging.IObserverHandler`1">
             <summary>
@@ -7890,7 +9038,7 @@
             <summary>
             注册流资源
             </summary>
-            <param name="fileName"></param>
+            <param name="stream"></param>
         </member>
         <member name="M:NLite.Globalization.ResourceManager`1.Register(System.String,System.Reflection.Assembly)">
             <summary>
@@ -8025,13 +9173,13 @@
             <summary>
             用当前扩展点来扩展可扩展对象
             </summary>
-            <param name="cfg"></param>
+            <param name="owner"></param>
         </member>
         <member name="M:NLite.CompoistionObject`1.Detach(`0)">
             <summary>
             从可扩展对象中移除当前扩展点
             </summary>
-            <param name="cfg"></param>
+            <param name="owner"></param>
         </member>
         <member name="T:NLite.Domain.IServiceDispatcherConfiguationItem">
             <summary>
@@ -8488,6 +9636,17 @@
             
             </summary>
         </member>
+        <member name="T:NLite.Serialization.XmlSerializer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NLite.Serialization.XmlSerializer.SetSerializer(NLite.Serialization.ISerializer)">
+            <summary>
+            
+            </summary>
+            <param name="serializer"></param>
+        </member>
         <member name="M:NLite.Serialization.XmlSerializer.#ctor">
             <summary>
             Default constructor, does not specify namespace
@@ -8511,8 +9670,33 @@
             
             </summary>
             <param name="strDoc"></param>
-            <param name="binderType"></param>
+            <param name="type"></param>
             <returns></returns>
+        </member>
+        <member name="P:NLite.Serialization.XmlSerializer.Current">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NLite.Serialization.XmlSerializer.RootElement">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NLite.Serialization.XmlSerializer.Namespace">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NLite.Serialization.XmlSerializer.DateFormat">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NLite.Serialization.XmlSerializer.Culture">
+            <summary>
+            
+            </summary>
         </member>
         <member name="P:NLite.Serialization.XmlSerializer.ContentType">
             <summary>
@@ -8582,6 +9766,125 @@
             对称算法类型
             </summary>
         </member>
+        <member name="T:NLite.Reflection.Dynamic.ProxyTypeBuilderFactory">
+            <summary>
+            Represents a proxy type builder factory.
+            </summary>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.Internal.Emit.ITypeBuilderFactory">
+            <summary>
+            Defines a type builder factory.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.ITypeBuilderFactory.CreateBuilder(System.Type)">
+            <summary>
+            Creates a type builder.
+            </summary>
+            <param name="parentType">The parent type.</param>
+            <returns>The type builder.</returns>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.ProxyTypeBuilderFactory.DynamicAssemblyName">
+            <summary>
+            The dynamic assembly name.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.ProxyTypeBuilderFactory.DynamicModuleName">
+            <summary>
+            The dynamic module name.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.ProxyTypeBuilderFactory.DynamicDefaultNamespace">
+            <summary>
+            The dynamic default namespace.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.ProxyTypeBuilderFactory.DynamicAssemblyKeyPairResourceName">
+            <summary>
+            The dynamic assembly key pair resource name.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.ProxyTypeBuilderFactory._assemblyBuilder">
+            <summary>
+            The assembly builder.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.ProxyTypeBuilderFactory._moduleBuilder">
+            <summary>
+            The module builder.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.ProxyTypeBuilderFactory._methodInfoTypeFactory">
+            <summary>
+            The method information type factory.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.ProxyTypeBuilderFactory._methodInfoTypeCache">
+            <summary>
+            The method information type cache.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.ProxyTypeBuilderFactory._nextTypeId">
+            <summary>
+            The next type identifier.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTypeBuilderFactory.#ctor(System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NLite.Reflection.Dynamic.ProxyTypeBuilderFactory"/> class.
+            </summary>
+            <param name="strongNamedAssembly">A value indicating whether the assembly should be strong named.</param>
+            <param name="canSaveAssembly">A value indicating whether the assembly can be saved.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTypeBuilderFactory.DefineDynamicAssembly(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Defines the dynamic assembly.
+            </summary>
+            <param name="name">The assembly name.</param>
+            <param name="strongNamedAssembly">A value indicating whether the assembly should be strong named.</param>
+            <param name="canSaveAssembly">A value indicating whether the assembly can be saved.</param>
+            <returns>The assembly builder.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTypeBuilderFactory.GetDynamicAssemblyKeyPair">
+            <summary>
+            Returns the dynamic assembly key pair.
+            </summary>
+            <returns>The dynamic assembly key pair.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTypeBuilderFactory.ReadToEnd(System.IO.Stream)">
+            <summary>
+            Reads all bytes from the current position to the end of the specified stream.
+            </summary>
+            <param name="stream">The stream.</param>
+            <returns>All bytes from the current position to the end of the specified stream.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTypeBuilderFactory.GetExecutingAssemblyName">
+            <summary>
+            Returns the executing assembly name.
+            </summary>
+            <returns>The assembly name.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTypeBuilderFactory.GetDynamicAssemblyName(System.String,System.Boolean)">
+            <summary>
+            Returns the dynamic assembly name.
+            </summary>
+            <param name="assemblyName">The assembly name.</param>
+            <param name="strongNamedAssembly">A value indicating whether the assembly name should contain a strong name key pair.</param>
+            <returns>The assembly name.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTypeBuilderFactory.SaveAssembly">
+            <summary>
+            Saves the dynamic assembly to disk.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTypeBuilderFactory.DefineType(System.String,System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTypeBuilderFactory.GetType(System.Reflection.MethodInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTypeBuilderFactory.CreateBuilder(System.Type)">
+            <inheritdoc/>
+        </member>
         <member name="T:NLite.Mini.Lifestyle.ProxyLifestyleManager">
             <summary>
             
@@ -8594,26 +9897,13 @@
             <param name="real"></param>
         </member>
         <member name="M:NLite.Mini.Lifestyle.ProxyLifestyleManager.Init(NLite.Mini.Activation.IActivator,NLite.IKernel,NLite.IComponentInfo,System.Action{NLite.IComponentInfo,System.Object},System.Action{NLite.Mini.Context.IComponentContext})">
-            <summary>
-            
-            </summary>
-            <param name="activator"></param>
-            <param name="registry"></param>
-            <param name="bindingInfo"></param>
-            <param name="onDestroying"></param>
+            <inheritdoc/>
         </member>
         <member name="M:NLite.Mini.Lifestyle.ProxyLifestyleManager.Dispose(System.Boolean)">
-            <summary>
-            
-            </summary>
-            <param name="disposing"></param>
+            <inheritdoc/>
         </member>
         <member name="M:NLite.Mini.Lifestyle.ProxyLifestyleManager.Get(NLite.Mini.Context.IComponentContext)">
-            <summary>
-            
-            </summary>
-            <param name="ctx"></param>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="T:NLite.ServiceRegistry">
             <summary>
@@ -9058,13 +10348,363 @@
             <summary>
             安装消息总线
             </summary>
-            <param name="cfg"></param>
+            <param name="owner"></param>
         </member>
         <member name="M:NLite.Cfg.MessageBusConfigurationItem.Detach(NLite.Cfg.Configuration)">
             <summary>
             卸载消息总线
             </summary>
-            <param name="cfg"></param>
+            <param name="owner"></param>
+        </member>
+        <member name="T:NLite.Threading.ActiveObject.IActiveObjectListener">
+            <summary>
+            主动对象监听器接口
+            </summary>
+        </member>
+        <member name="M:NLite.Threading.ActiveObject.IActiveObjectListener.ActiveObjectEvent(NLite.Threading.ActiveObject.ActiveObjectEvent)">
+            <summary>
+            当前主动对象在分发执行主动任务中产生异常（排除主动任务异常）时触发
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="T:NLite.Reflection.Proxy">
+            <summary>
+            NLite 动态代理门面类
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Proxy.GetProxyType(System.Type,System.Type[])">
+            <summary>
+            根据declaringType得到Proxy 类型
+            </summary>
+            <param name="declaringType"></param>
+            <param name="interfaceTypes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NLite.Reflection.Proxy.IsProxyType(System.Type)">
+            <summary>
+            检测一个类型是否是代理类型
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NLite.Reflection.Proxy.NewProxyInstance(System.Type,System.Type[],NLite.Reflection.IInvocationHandler,System.Object[],System.Object[])">
+            <summary>
+            构造Class Proxy实例
+            </summary>
+            <param name="declaringType">代表declaringType</param>
+            <param name="interfaceTypes">代表代理所实现的接口列表</param>
+            <param name="h">调用处理器</param>
+            <param name="mixins"></param>
+            <param name="arguments">代理构造器参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:NLite.Reflection.Proxy.NewProxyInstance(System.Type[],NLite.Reflection.IInvocationHandler,System.Object[])">
+            <summary>
+            构造Interface Proxy实例
+            </summary>
+            <param name="interfaceTypes">代表代理所实现的接口列表,不运行null</param>
+            <param name="h"></param>
+            <param name="mixins"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NLite.Reflection.Proxy.MixinInvocationHandler.Invoke(System.Object,System.Reflection.MethodInfo,System.Object[])">
+            <inheritdoc/>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.ProxyTemplate">
+            <summary>
+            Represents a proxy template.
+            </summary>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.IProxyTemplate">
+            <summary>
+            Defines a proxy template.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.IProxyTemplate.AdaptProxy(System.Type,System.Object)">
+            <summary>
+            Adapts a proxy to the specified interface type.
+            </summary>
+            <param name="interfaceType">The interface type.</param>
+            <param name="proxy">The proxy object.</param>
+            <returns>The object, of the specified interface type, to which the proxy has been adapted.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.IProxyTemplate.CreateProxy(NLite.Reflection.IInvocationHandler,System.Object[])">
+            <summary>
+            Creates a new proxy.
+            </summary>
+            <param name="invocationHandler">The invocation handler.</param>
+            <param name="arguments">The constructor arguments.</param>
+            <returns>The new proxy object.</returns>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.IProxyTemplate.DeclaringType">
+            <summary>
+            Returns the declaring type.
+            </summary>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.IProxyTemplate.ParentType">
+            <summary>
+            Returns the parent type.
+            </summary>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.IProxyTemplate.ImplementationType">
+            <summary>
+            Returns the implementation type.
+            </summary>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.IProxyTemplate.ImplementedInterfaces">
+            <summary>
+            Returns all implemented interfaces.
+            </summary>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.IProxyTemplate.InterceptedEvents">
+            <summary>
+            Returns all intercepted events.
+            </summary>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.IProxyTemplate.InterceptedProperties">
+            <summary>
+            Returns all intercepted properties.
+            </summary>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.IProxyTemplate.InterceptedMethods">
+            <summary>
+            Returns all intercepted methods.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.ProxyTemplate._proxyDefinition">
+            <summary>
+            The proxy definition.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.ProxyTemplate._implementationType">
+            <summary>
+            The implementation type.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.ProxyTemplate._eventInfos">
+            <summary>
+            The event informations.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.ProxyTemplate._propertyInfos">
+            <summary>
+            The property informations.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.ProxyTemplate._methodInfos">
+            <summary>
+            The method informations.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTemplate.#ctor(NLite.Reflection.Dynamic.Internal.Definitions.IProxyDefinition,System.Type,System.Collections.Generic.ICollection{System.Reflection.EventInfo},System.Collections.Generic.ICollection{System.Reflection.PropertyInfo},System.Collections.Generic.ICollection{System.Reflection.MethodInfo})">
+            <summary>
+            Initializes a new instance of the <see cref="T:NLite.Reflection.Dynamic.ProxyTemplate"/> class.
+            </summary>
+            <param name="proxyDefinition">The proxy definition.</param>
+            <param name="implementationType">The implementation type.</param>
+            <param name="eventInfos">The event informations.</param>
+            <param name="propertyInfos">The property informations.</param>
+            <param name="methodInfos">The method informations.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTemplate.AdaptProxy(System.Type,System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTemplate.CreateProxy(NLite.Reflection.IInvocationHandler,System.Object[])">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.ProxyTemplate.DeclaringType">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.ProxyTemplate.ParentType">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.ProxyTemplate.ImplementationType">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.ProxyTemplate.ImplementedInterfaces">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.ProxyTemplate.InterceptedEvents">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.ProxyTemplate.InterceptedProperties">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.ProxyTemplate.InterceptedMethods">
+            <inheritdoc/>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.ProxyTemplate`1">
+            <summary>
+            Represents a proxy template.
+            </summary>
+            <typeparam name="T">The declaring type.</typeparam>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.IProxyTemplate`1">
+            <summary>
+            Defines a proxy template.
+            </summary>
+            <typeparam name="T">The declaring type.</typeparam>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.IProxyTemplate`1.CreateProxy(NLite.Reflection.IInvocationHandler,System.Object[])">
+            <summary>
+            Creates a new proxy.
+            </summary>
+            <param name="invocationHandler">The invocation handler.</param>
+            <param name="arguments">The constructor arguments.</param>
+            <returns>The new proxy object.</returns>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.ProxyTemplate`1._proxyTemplate">
+            <summary>
+            The proxy template.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTemplate`1.#ctor(NLite.Reflection.Dynamic.IProxyTemplate)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NLite.Reflection.Dynamic.ProxyTemplate`1"/> class.
+            </summary>
+            <param name="proxyTemplate">The proxy template.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTemplate`1.AdaptProxy(System.Type,System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTemplate`1.NLite#Reflection#Dynamic#IProxyTemplate#CreateProxy(NLite.Reflection.IInvocationHandler,System.Object[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyTemplate`1.CreateProxy(NLite.Reflection.IInvocationHandler,System.Object[])">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.ProxyTemplate`1.DeclaringType">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.ProxyTemplate`1.ParentType">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.ProxyTemplate`1.ImplementationType">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.ProxyTemplate`1.ImplementedInterfaces">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.ProxyTemplate`1.InterceptedEvents">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.ProxyTemplate`1.InterceptedProperties">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.ProxyTemplate`1.InterceptedMethods">
+            <inheritdoc/>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.ProxyFactoryExtensions">
+            <summary>
+            Provides <see cref="T:NLite.Reflection.Dynamic.IProxyFactory"/> extension methods.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyFactoryExtensions.GetProxyTemplate``1(NLite.Reflection.Dynamic.IProxyFactory,System.Collections.Generic.IEnumerable{System.Type})">
+            <summary>
+            Returns a proxy template.
+            </summary>
+            <typeparam name="T">The declaring type.</typeparam>
+            <param name="proxyFactory">The proxy factory.</param>
+            <param name="interfaceTypes">The additional interface types.</param>
+            <returns>The proxy template.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyFactoryExtensions.CreateProxy(NLite.Reflection.Dynamic.IProxyFactory,System.Type,System.Collections.Generic.IEnumerable{System.Type},NLite.Reflection.IInvocationHandler,System.Object[])">
+            <summary>
+            Creates a new proxy.
+            </summary>
+            <param name="proxyFactory">The proxy factory.</param>
+            <param name="declaringType">The declaring type.</param>
+            <param name="interfaceTypes">The additional interface types.</param>
+            <param name="invocationHandler">The invocation handler.</param>
+            <param name="arguments">The constructor arguments.</param>
+            <returns>The new proxy object.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.ProxyFactoryExtensions.CreateProxy``1(NLite.Reflection.Dynamic.IProxyFactory,System.Collections.Generic.IEnumerable{System.Type},NLite.Reflection.IInvocationHandler,System.Object[])">
+            <summary>
+            Creates a new proxy.
+            </summary>
+            <typeparam name="T">The declaring type.</typeparam>
+            <param name="proxyFactory">The proxy factory.</param>
+            <param name="interfaceTypes">The additional interface types.</param>
+            <param name="invocationHandler">The invocation handler.</param>
+            <param name="arguments">The constructor arguments.</param>
+            <returns>The new proxy object.</returns>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.Internal.Definitions.ProxyDefinitionVisitorExtensions">
+            <summary>
+            Provides <see cref="T:NLite.Reflection.Dynamic.Internal.Definitions.IProxyDefinitionVisitor"/> extension methods.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.ProxyDefinitionVisitorExtensions.VisitInterfaces(NLite.Reflection.Dynamic.Internal.Definitions.IProxyDefinitionVisitor,System.Collections.Generic.IEnumerable{System.Type})">
+            <summary>
+            Visits all specified interface types.
+            </summary>
+            <param name="proxyDefinitionVisitor">The proxy definition visitor.</param>
+            <param name="interfaceTypes">The interface types.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.ProxyDefinitionVisitorExtensions.VisitConstructors(NLite.Reflection.Dynamic.Internal.Definitions.IProxyDefinitionVisitor,System.Type)">
+            <summary>
+            Visits all constructors of the specified type.
+            </summary>
+            <param name="proxyDefinitionVisitor">The proxy definition visitor.</param>
+            <param name="type">The type.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.ProxyDefinitionVisitorExtensions.VisitMembers(NLite.Reflection.Dynamic.Internal.Definitions.IProxyDefinitionVisitor,System.Type)">
+            <summary>
+            Visits all members of the specified type.
+            </summary>
+            <param name="proxyDefinitionVisitor">The proxy definition visitor.</param>
+            <param name="type">The type.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.ProxyDefinitionVisitorExtensions.VisitEvents(NLite.Reflection.Dynamic.Internal.Definitions.IProxyDefinitionVisitor,System.Type)">
+            <summary>
+            Visits all events of the specified type.
+            </summary>
+            <param name="proxyDefinitionVisitor">The proxy definition visitor.</param>
+            <param name="type">The type.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.ProxyDefinitionVisitorExtensions.VisitProperties(NLite.Reflection.Dynamic.Internal.Definitions.IProxyDefinitionVisitor,System.Type)">
+            <summary>
+            Visits all properties of the specified type.
+            </summary>
+            <param name="proxyDefinitionVisitor">The proxy definition visitor.</param>
+            <param name="type">The type.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.ProxyDefinitionVisitorExtensions.VisitMethods(NLite.Reflection.Dynamic.Internal.Definitions.IProxyDefinitionVisitor,System.Type)">
+            <summary>
+            Visits all methods of the specified type.
+            </summary>
+            <param name="proxyDefinitionVisitor">The proxy definition visitor.</param>
+            <param name="type">The type.</param>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.Internal.Definitions.DelegateProxyDefinition">
+            <summary>
+            Represents a delegate proxy definition.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.Internal.Definitions.DelegateProxyDefinition.DelegateMethodName">
+            <summary>
+            The name of the delegate method.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.DelegateProxyDefinition.#ctor(System.Type,System.Collections.Generic.IEnumerable{System.Type})">
+            <summary>
+            Initializes a new instance of the <see cref="T:NLite.Reflection.Dynamic.Internal.Definitions.DelegateProxyDefinition"/> class.
+            </summary>
+            <param name="declaringType">The declaring type.</param>
+            <param name="interfaceTypes">The interface types.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.DelegateProxyDefinition.AcceptVisitor(NLite.Reflection.Dynamic.Internal.Definitions.IProxyDefinitionVisitor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.DelegateProxyDefinition.UnwrapProxy(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.DelegateProxyDefinition.CreateProxy(System.Type,System.Object[])">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Definitions.DelegateProxyDefinition.ImplementedInterfaces">
+            <inheritdoc/>
         </member>
         <member name="T:NLite.Mini.Resolving.IInstanceHandle">
             <summary>
@@ -9111,14 +10751,14 @@
             注册句柄
             </summary>
             <param name="instance"></param>
-            <param name="registry"></param>
+            <param name="kernel"></param>
             <param name="component"></param>
         </member>
         <member name="M:NLite.Mini.Resolving.ReferenceManager.UnregisterAllByKernel(NLite.IKernel)">
             <summary>
             移除指定内核创建的所有实例句柄
             </summary>
-            <param name="registry"></param>
+            <param name="kernel"></param>
         </member>
         <member name="M:NLite.Mini.Resolving.ReferenceManager.UnregisterHandle(System.Object)">
             <summary>
@@ -9491,6 +11131,31 @@
             <param name="inherit">是否继承</param>
             <returns></returns>
         </member>
+        <member name="T:NLite.Threading.ActiveObject.ActiveTaskException">
+            <summary>
+            主动任务异常
+            </summary>
+        </member>
+        <member name="M:NLite.Threading.ActiveObject.ActiveTaskException.#ctor(NLite.Threading.ActiveObject.TaskExceptionType,System.String,System.Exception)">
+            <summary>
+            创建一个新的主动异常对象
+            </summary>
+            <param name="type"></param>
+            <param name="message"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="M:NLite.Threading.ActiveObject.ActiveTaskException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="P:NLite.Threading.ActiveObject.ActiveTaskException.ExceptionType">
+            <summary>
+            异常类型
+            </summary>
+        </member>
         <member name="T:NLite.Reflection.Internal.EmitHelper">
             <summary>
             
@@ -9502,30 +11167,6 @@
             </summary>
             <param name="typeBuilder"></param>
             <param name="ctrArgumentTypes"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NLite.Reflection.Internal.EmitHelper.GetExceptionDataAndStoreInLocal(System.Reflection.Emit.ILGenerator,System.Reflection.Emit.LocalBuilder,System.Reflection.Emit.LocalBuilder)">
-            Generates the code to get the binderType of an object and store it in a local
-            <param name="ilGenerator"></param>
-            <param name="dictionary"></param>
-            <param name="key"></param>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NLite.Reflection.Internal.EmitHelper.AddItemToLocalDictionary(System.Reflection.Emit.ILGenerator,System.Reflection.Emit.LocalBuilder,System.Object,System.Object)">
-            Generates the code that adds an object to a dictionary stored in a local variable
-            <param name="ilGenerator"></param>
-            <param name="dictionary"></param>
-            <param name="key"></param>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NLite.Reflection.Internal.EmitHelper.AddLocalToLocalDictionary(System.Reflection.Emit.ILGenerator,System.Reflection.Emit.LocalBuilder,System.Object,System.Reflection.Emit.LocalBuilder)">
-            Generates the code that adds an object from a local variable to a dictionary also stored in a local
-            <param name="ilGenerator"></param>
-            <param name="dictionary"></param>
-            <param name="key"></param>
-            <param name="value"></param>
             <returns></returns>
         </member>
         <member name="M:NLite.Reflection.Internal.EmitHelper.UnboxOrCast(System.Reflection.Emit.ILGenerator,System.Type)">
@@ -9637,6 +11278,101 @@
             <param name="il"></param>
             <returns></returns>
         </member>
+        <member name="T:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoTypeFactory">
+            <summary>
+            Represents a method information type factory.
+            </summary>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.Internal.Emit.ITypeFactory">
+            <summary>
+            Defines a type factory.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.ITypeFactory.CreateType(System.Reflection.MethodInfo)">
+            <summary>
+            Creates a new type based on the specified method.
+            </summary>
+            <param name="methodInfo">The method information.</param>
+            <returns>The new type.</returns>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoTypeFactory.MethodBaseGetMethodFromHandleMethodInfo">
+            <summary>
+            The <see cref="M:System.Reflection.MethodBase.GetMethodFromHandle(System.RuntimeMethodHandle,System.RuntimeTypeHandle)"/> method information.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoTypeFactory.MethodInfoBaseConstructorInfo">
+            <summary>
+            The <see cref="T:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase"/> constructor information.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoTypeFactory.MethodInfoBaseInvokeBaseMethodInfo">
+            <summary>
+            The <see cref="M:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.InvokeBase(System.Object,System.Object[])"/> method information.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoTypeFactory.MethodInfoBaseInvokeVirtualMethodInfo">
+            <summary>
+            The <see cref="M:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.InvokeVirtual(System.Object,System.Object[])"/> method information.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoTypeFactory._typeRepository">
+            <summary>
+            The type repository.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoTypeFactory.#ctor(NLite.Reflection.Dynamic.Internal.Emit.ITypeRepository)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoTypeFactory"/> class.
+            </summary>
+            <param name="typeRepository">The type repository.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoTypeFactory.BuildTypeInitializer(System.Reflection.Emit.TypeBuilder,System.Reflection.MethodInfo,System.Type[],System.Reflection.FieldInfo)">
+            <summary>
+            Builds the type initializer.
+            </summary>
+            <param name="typeBuilder">The type builder.</param>
+            <param name="prototypeMethodInfo">The prototype method information.</param>
+            <param name="genericParameterTypes">The generic parameter types.</param>
+            <param name="methodFieldInfo">The method information static field information.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoTypeFactory.BuildConstructor(System.Reflection.Emit.TypeBuilder,System.Reflection.FieldInfo)">
+            <summary>
+            Builds the constructor.
+            </summary>
+            <param name="typeBuilder">The type builder.</param>
+            <param name="methodFieldInfo">The method information static field information.</param>
+            <returns>The constructor information.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoTypeFactory.BuildInvokeMethod(System.Reflection.Emit.TypeBuilder,System.Reflection.MethodInfo,System.Type[],System.Boolean)">
+            <summary>
+            Builds the invoke method.
+            </summary>
+            <param name="typeBuilder">The type builder.</param>
+            <param name="methodInfo">The method information.</param>
+            <param name="genericParameterTypes">The generic parameter types.</param>
+            <param name="isVirtual">A value indicating whether the method should be called virtually.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoTypeFactory.LoadParameterValues(System.Reflection.Emit.ILGenerator,System.Int32,System.Collections.Generic.IList{System.Type},System.Collections.Generic.IList{System.Reflection.Emit.LocalBuilder})">
+            <summary>
+            Loads the parameter values onto the stack.
+            </summary>
+            <param name="ilGenerator">The intermediate language generator.</param>
+            <param name="argumentIndex">The argument index.</param>
+            <param name="parameterTypes">The parameter types.</param>
+            <param name="parameterValueLocalBuilders">The parameter value local builders.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoTypeFactory.RestoreByReferenceParameterValues(System.Reflection.Emit.ILGenerator,System.Int32,System.Collections.Generic.IList{System.Type},System.Collections.Generic.IList{System.Reflection.Emit.LocalBuilder})">
+            <summary>
+            Restores the by reference parameter values.
+            </summary>
+            <param name="ilGenerator">The intermediate language generator.</param>
+            <param name="argumentIndex">The argument index.</param>
+            <param name="parameterTypes">The parameter types.</param>
+            <param name="parameterValueLocalBuilders">The parameter value local builders.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoTypeFactory.CreateType(System.Reflection.MethodInfo)">
+            <inheritdoc/>
+        </member>
         <member name="T:NLite.Reflection.DynamicAssemblyManager">
             <summary>
             
@@ -9674,24 +11410,13 @@
             </summary>
         </member>
         <member name="M:NLite.Mini.Activation.ActivatorFactory.Register(System.String,System.Func{NLite.Mini.Activation.IActivator})">
-            <summary>
-            
-            </summary>
-            <param name="binderType"></param>
-            <param name="creator"></param>
+            <inheritdoc/>
         </member>
         <member name="M:NLite.Mini.Activation.ActivatorFactory.Unregister(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="binderType"></param>
+            <inheritdoc/>
         </member>
         <member name="M:NLite.Mini.Activation.ActivatorFactory.Create(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="binderType"></param>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="T:NLite.Mini.Listener.AppSettingInjectionListener">
             <summary>
@@ -9699,22 +11424,13 @@
             </summary>
         </member>
         <member name="M:NLite.Mini.Listener.AppSettingInjectionListener.Init">
-            <summary>
-            
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:NLite.Mini.Listener.AppSettingInjectionListener.OnPostCreation(NLite.Mini.Context.IComponentContext)">
-            <summary>
-            
-            </summary>
-            <param name="ctx"></param>
+            <inheritdoc/>
         </member>
         <member name="M:NLite.Mini.Listener.AppSettingInjectionListener.OnPreDestroy(NLite.IComponentInfo,System.Object)">
-            <summary>
-            
-            </summary>
-            <param name="bindingInfo"></param>
-            <param name="instance"></param>
+            <inheritdoc/>
         </member>
         <member name="T:NLite.Interceptor.Metadata.CutPointFlags">
             <summary>
@@ -10032,7 +11748,7 @@
             
             </summary>
             <param name="item"></param>
-            <param name="binderType"></param>
+            <param name="type"></param>
             <returns></returns>
         </member>
         <member name="M:NLite.Dynamic.ITransformProvider.Transform(NLite.Dynamic.Filter,System.Type)">
@@ -10040,7 +11756,7 @@
             
             </summary>
             <param name="item"></param>
-            <param name="binderType"></param>
+            <param name="type"></param>
             <returns></returns>
         </member>
         <member name="T:NLite.Dynamic.InTransformProvider">
@@ -10053,7 +11769,7 @@
             
             </summary>
             <param name="item"></param>
-            <param name="binderType"></param>
+            <param name="type"></param>
             <returns></returns>
         </member>
         <member name="M:NLite.Dynamic.InTransformProvider.Transform(NLite.Dynamic.Filter,System.Type)">
@@ -10061,7 +11777,7 @@
             
             </summary>
             <param name="item"></param>
-            <param name="binderType"></param>
+            <param name="type"></param>
             <returns></returns>
         </member>
         <member name="T:NLite.Dynamic.OrGroupTransformProvider">
@@ -10095,7 +11811,7 @@
             
             </summary>
             <param name="item"></param>
-            <param name="binderType"></param>
+            <param name="type"></param>
             <returns></returns>
         </member>
         <member name="M:NLite.Dynamic.DateBlockTransformProvider.Transform(NLite.Dynamic.Filter,System.Type)">
@@ -10103,7 +11819,7 @@
             
             </summary>
             <param name="item"></param>
-            <param name="binderType"></param>
+            <param name="type"></param>
             <returns></returns>
         </member>
         <member name="T:NLite.Dynamic.UnixTimeTransformProvider">
@@ -10116,7 +11832,7 @@
             
             </summary>
             <param name="item"></param>
-            <param name="binderType"></param>
+            <param name="type"></param>
             <returns></returns>
         </member>
         <member name="M:NLite.Dynamic.UnixTimeTransformProvider.Transform(NLite.Dynamic.Filter,System.Type)">
@@ -10124,7 +11840,7 @@
             
             </summary>
             <param name="item"></param>
-            <param name="binderType"></param>
+            <param name="type"></param>
             <returns></returns>
         </member>
         <member name="T:NLite.Dynamic.LikeTransformProvider">
@@ -10137,7 +11853,7 @@
             
             </summary>
             <param name="item"></param>
-            <param name="binderType"></param>
+            <param name="type"></param>
             <returns></returns>
         </member>
         <member name="M:NLite.Dynamic.LikeTransformProvider.Transform(NLite.Dynamic.Filter,System.Type)">
@@ -10145,7 +11861,7 @@
             
             </summary>
             <param name="item"></param>
-            <param name="binderType"></param>
+            <param name="type"></param>
             <returns></returns>
         </member>
         <member name="T:NLite.Dynamic.ConjunctionOperator">
@@ -10283,29 +11999,6 @@
             <param name="operationDesc"></param>
             <returns></returns>
         </member>
-        <member name="T:NLite.DynamicProxy.ProxyFactory">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:NLite.DynamicProxy.ProxyFactory.CreateProxy(System.Type,NLite.DynamicProxy.IInterceptor,System.Type[])">
-            <summary>
-            
-            </summary>
-            <param name="instanceType"></param>
-            <param name="interceptor"></param>
-            <param name="baseInterfaces"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NLite.DynamicProxy.ProxyFactory.CreateProxy``1(NLite.DynamicProxy.IInterceptor,System.Type[])">
-            <summary>
-            
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="interceptor"></param>
-            <param name="baseInterfaces"></param>
-            <returns></returns>
-        </member>
         <member name="T:NLite.Threading.Paraller">
             <summary>
             
@@ -10401,12 +12094,70 @@
             </summary>
             <param name="message"></param>
         </member>
+        <member name="T:NLite.Threading.ActiveObject.AsyncActiveTaskImpl">
+            <summary>
+            主动任务委托包装器
+            </summary>
+        </member>
         <member name="M:NLite.Serialization.MetadataBuilder.BuildName(System.Type)">
             <summary>
             简化限定名称
             </summary>
             <param name="binderType"></param>
             <returns></returns>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.Internal.Caching.ReadWriteLock">
+            <summary>
+            Represents a read write lock.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.Internal.Caching.ReadWriteLock._lock">
+            <summary>
+            The reader writer lock.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.Internal.Caching.ReadWriteLock._disposed">
+            <summary>
+            A value indicating whether this <see cref="T:NLite.Reflection.Dynamic.Internal.Caching.ReadWriteLock"/> was already disposed.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Caching.ReadWriteLock.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NLite.Reflection.Dynamic.Internal.Caching.ReadWriteLock"/> class.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Caching.ReadWriteLock.Finalize">
+            <summary>
+            Releases unmanaged resources and performs other cleanup operations before the
+            <see cref="T:NLite.Reflection.Dynamic.Internal.Caching.ReadWriteLock"/> is reclaimed by garbage collection.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Caching.ReadWriteLock.Dispose(System.Boolean)">
+            <summary>
+            Dispose this <see cref="T:NLite.Reflection.Dynamic.Internal.Caching.AnonymousDisposable"/>.
+            </summary>
+            <param name="disposing">A value indicating whether disposing is in progress.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Caching.ReadWriteLock.UpgradeableRead">
+            <summary>
+            Tries to enter the lock in upgradeable mode.
+            </summary>
+            <returns>A disposable to exit the lock from upgradeable mode.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Caching.ReadWriteLock.Read">
+            <summary>
+            Tries to enter the lock in read mode.
+            </summary>
+            <returns>A disposable to exit the lock from read mode.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Caching.ReadWriteLock.Write">
+            <summary>
+            Tries to enter the lock in write mode.
+            </summary>
+            <returns>A disposable to exit the lock from write mode.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Caching.ReadWriteLock.Dispose">
+            <inheritdoc/>
         </member>
         <member name="T:NLite.Mini.Lifestyle.ThreadLifestyleManager">
             <summary>
@@ -10769,65 +12520,31 @@
             日志拦截器
             </summary>
         </member>
-        <member name="T:NLite.Interceptor.DefaultInterceptor">
-            <summary>
-            缺省拦截器
-            </summary>
-        </member>
         <member name="T:NLite.Interceptor.IInterceptor">
             <summary>
             拦截器接口
             </summary>
         </member>
-        <member name="M:NLite.Interceptor.IInterceptor.OnInvocationExecuting(NLite.Interceptor.IInvocationExecutingContext)">
+        <member name="M:NLite.Interceptor.IInterceptor.Intercept(NLite.Interceptor.IInvocationContext)">
             <summary>
-            调用前拦截
+            拦截
             </summary>
-            <param name="ctx"></param>
+            <param name="invocationContext">调用上下文</param>
+            <returns></returns>
         </member>
-        <member name="M:NLite.Interceptor.IInterceptor.OnInvocationExecuted(NLite.Interceptor.IInovacationExecutedContext)">
-            <summary>
-            调用后拦截
-            </summary>
-            <param name="ctx"></param>
-        </member>
-        <member name="M:NLite.Interceptor.IInterceptor.OnException(NLite.Interceptor.IInvocationExceptionContext)">
-            <summary>
-            异常拦截
-            </summary>
-            <param name="ctx"></param>
-        </member>
-        <member name="M:NLite.Interceptor.DefaultInterceptor.OnInvocationExecuting(NLite.Interceptor.IInvocationExecutingContext)">
+        <member name="M:NLite.Interceptor.LoggerInterceptor.OnInvocationExecuting(NLite.Interceptor.IInvocationContext)">
             <summary>
             
             </summary>
             <param name="ctx"></param>
         </member>
-        <member name="M:NLite.Interceptor.DefaultInterceptor.OnInvocationExecuted(NLite.Interceptor.IInovacationExecutedContext)">
+        <member name="M:NLite.Interceptor.LoggerInterceptor.OnInvocationExecuted(NLite.Interceptor.IInvocationContext)">
             <summary>
             
             </summary>
             <param name="ctx"></param>
         </member>
-        <member name="M:NLite.Interceptor.DefaultInterceptor.OnException(NLite.Interceptor.IInvocationExceptionContext)">
-            <summary>
-            
-            </summary>
-            <param name="ctx"></param>
-        </member>
-        <member name="M:NLite.Interceptor.LoggerInterceptor.OnInvocationExecuting(NLite.Interceptor.IInvocationExecutingContext)">
-            <summary>
-            
-            </summary>
-            <param name="ctx"></param>
-        </member>
-        <member name="M:NLite.Interceptor.LoggerInterceptor.OnInvocationExecuted(NLite.Interceptor.IInovacationExecutedContext)">
-            <summary>
-            
-            </summary>
-            <param name="ctx"></param>
-        </member>
-        <member name="M:NLite.Interceptor.LoggerInterceptor.OnException(NLite.Interceptor.IInvocationExceptionContext)">
+        <member name="M:NLite.Interceptor.LoggerInterceptor.OnException(NLite.Interceptor.IInvocationContext,System.Exception)">
             <summary>
             
             </summary>
@@ -10983,6 +12700,73 @@
             缺省缓存容器
             </summary>
         </member>
+        <member name="T:NLite.Reflection.Dynamic.Internal.Emit.MethodBuilderExtensions">
+            <summary>
+            Provides <see cref="T:System.Reflection.Emit.MethodBuilder"/> extension methods.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.MethodBuilderExtensions.DefineParameters(System.Reflection.Emit.MethodBuilder,System.Reflection.MethodInfo)">
+            <summary>
+            Defines the method parameters based on the specified method.
+            </summary>
+            <param name="methodBuilder">The method builder.</param>
+            <param name="methodInfo">The method information.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.MethodBuilderExtensions.DefineParameters(System.Reflection.Emit.MethodBuilder,System.Reflection.MethodInfo,System.Type[])">
+            <summary>
+            Defines the method parameters based on the specified method.
+            </summary>
+            <param name="methodBuilder">The method builder.</param>
+            <param name="methodInfo">The method information.</param>
+            <param name="genericTypes">The generic types.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.MethodBuilderExtensions.DefineGenericParameters(System.Reflection.Emit.MethodBuilder,System.Reflection.MethodBase)">
+            <summary>
+            Defines the generic method parameters based on the specified method.
+            </summary>
+            <param name="methodBuilder">The method builder.</param>
+            <param name="methodBase">The method base.</param>
+            <returns>The generic parameter types.</returns>
+            <remarks>
+            Custom attributes are not considered by this method.
+            </remarks>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.Internal.Caching.AnonymousDisposable">
+            <summary>
+            Represents an anonymous disposable.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.Internal.Caching.AnonymousDisposable._dispose">
+            <summary>
+            The dispose action.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.Internal.Caching.AnonymousDisposable._disposed">
+            <summary>
+            A value indicating whether this <see cref="T:NLite.Reflection.Dynamic.Internal.Caching.AnonymousDisposable"/> was already disposed.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Caching.AnonymousDisposable.#ctor(System.Action{System.Boolean})">
+            <summary>
+            Initializes a new instance of the <see cref="T:NLite.Reflection.Dynamic.Internal.Caching.AnonymousDisposable"/> class.
+            </summary>
+            <param name="dispose">The dispose action.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Caching.AnonymousDisposable.Finalize">
+            <summary>
+            Releases unmanaged resources and performs other cleanup operations before the
+            <see cref="T:NLite.Reflection.Dynamic.Internal.Caching.AnonymousDisposable"/> is reclaimed by garbage collection.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Caching.AnonymousDisposable.Dispose(System.Boolean)">
+            <summary>
+            Dispose this <see cref="T:NLite.Reflection.Dynamic.Internal.Caching.AnonymousDisposable"/>.
+            </summary>
+            <param name="disposing">A value indicating whether disposing is in progress.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Caching.AnonymousDisposable.Dispose">
+            <inheritdoc/>
+        </member>
         <member name="M:NLite.Mini.Resolving.MemberExportException.#ctor">
             <summary>
             
@@ -11005,7 +12789,7 @@
             <summary>
             
             </summary>
-            <param name="bindingInfo"></param>
+            <param name="info"></param>
             <param name="context"></param>
         </member>
         <member name="T:NLite.RepeatRegistrationException">
@@ -11537,7 +13321,7 @@
             构造模型绑定器
             </summary>
             <param name="name">成员名称</param>
-            <param name="binderType">成员类型</param>
+            <param name="type">成员类型</param>
             <param name="defaultValue">缺省值</param>
         </member>
         <member name="M:NLite.Binding.BindingInfo.BindModel(System.Collections.Generic.IDictionary{System.String,System.Object})">
@@ -11593,6 +13377,163 @@
             
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.Internal.Reflection.MethodInfoExtensions">
+            <summary>
+            Provides <see cref="T:System.Reflection.MethodInfo"/> extension methods.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Reflection.MethodInfoExtensions.MapGenericMethod(System.Reflection.MethodInfo,System.Type[])">
+            <summary>
+            Maps a method to the specified generic types.
+            </summary>
+            <param name="methodInfo">The method information.</param>
+            <param name="genericTypes">The generic types.</param>
+            <returns>The mapped method information.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Reflection.MethodInfoExtensions.MapGenericReturnType(System.Reflection.MethodInfo,System.Type[])">
+            <summary>
+            Maps a return type to the specified generic types.
+            </summary>
+            <param name="methodInfo">The method information.</param>
+            <param name="genericTypes">The generic types.</param>
+            <returns>The mapped return type.</returns>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase">
+            <summary>
+            Represents the method information base class.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase._source">
+            <summary>
+            The source object.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase._methodInfo">
+            <summary>
+            The declaring method information.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase._isOverride">
+            <summary>
+            A value indicating whether the method is an override.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase._declaringType">
+            <summary>
+            The declaring type.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.#ctor(System.Object,System.Reflection.MethodInfo,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase"/> class.
+            </summary>
+            <param name="source">The source object.</param>
+            <param name="methodInfo">The declaring method information.</param>
+            <param name="isOverride">A value indicating whether the method is an override.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.InvokeBase(System.Object,System.Object[])">
+            <summary>
+            Invokes the base method represented by the current instance.
+            </summary>
+            <param name="target">The target object.</param>
+            <param name="parameters">The parameters.</param>
+            <returns>The return value.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.InvokeVirtual(System.Object,System.Object[])">
+            <summary>
+            Invokes the virtual method represented by the current instance.
+            </summary>
+            <param name="target">The target object.</param>
+            <param name="parameters">The parameters.</param>
+            <returns>The return value.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.GetBaseDefinition">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.GetGenericMethodDefinition">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.MakeGenericMethod(System.Type[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.GetGenericArguments">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.GetMethodBody">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.GetMethodImplementationFlags">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.GetParameters">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.Invoke(System.Object,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object[],System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.GetCustomAttributes(System.Type,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.GetCustomAttributes(System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.IsDefined(System.Type,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.ReturnParameter">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.ReturnType">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.ReturnTypeCustomAttributes">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.Attributes">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.CallingConvention">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.ContainsGenericParameters">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.IsGenericMethod">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.IsGenericMethodDefinition">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.MethodHandle">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.DeclaringType">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.MemberType">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.MetadataToken">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.Module">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Emit.MethodInfoBase.ReflectedType">
+            <inheritdoc/>
         </member>
         <member name="T:NLite.Mini.Kernel">
             <summary>
@@ -12348,7 +14289,7 @@
             
             </summary>
             <param name="router"></param>
-            <param name="cfg"></param>
+            <param name="owner"></param>
             <param name="event"></param>
             <returns></returns>
         </member>
@@ -12358,7 +14299,7 @@
             </summary>
             <typeparam name="TOwner"></typeparam>
             <param name="router"></param>
-            <param name="cfg"></param>
+            <param name="owner"></param>
             <param name="evt"></param>
             <returns></returns>
         </member>
@@ -12369,7 +14310,7 @@
             <typeparam name="TOwner"></typeparam>
             <param name="router"></param>
             <param name="topic"></param>
-            <param name="cfg"></param>
+            <param name="owner"></param>
             <param name="evt"></param>
             <returns></returns>
         </member>
@@ -12379,7 +14320,7 @@
             </summary>
             <param name="router"></param>
             <param name="topic">消息主题</param>
-            <param name="cfg"></param>
+            <param name="owner"></param>
             <param name="event"></param>
             <returns></returns>
         </member>
@@ -12478,38 +14419,58 @@
             调用前、异常和调用后都拦截
             </summary>
         </member>
-        <member name="T:NLite.Interceptor.InterceptorBroker">
+        <member name="T:NLite.Interceptor.IInvocationContext">
             <summary>
-            
+            调用上下文
             </summary>
         </member>
-        <member name="M:NLite.Interceptor.InterceptorBroker.#ctor">
+        <member name="M:NLite.Interceptor.IInvocationContext.Proceed">
             <summary>
-            
+            处理
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:NLite.Interceptor.IInvocationContext.Target">
+            <summary>
+            目标对象
             </summary>
         </member>
-        <member name="M:NLite.Interceptor.InterceptorBroker.OnInvocationExecuting(NLite.Interceptor.IInvocationExecutingContext)">
+        <member name="P:NLite.Interceptor.IInvocationContext.Method">
             <summary>
-            
+            目标方法
             </summary>
-            <param name="ctx"></param>
         </member>
-        <member name="M:NLite.Interceptor.InterceptorBroker.OnInvocationExecuted(NLite.Interceptor.IInovacationExecutedContext)">
+        <member name="P:NLite.Interceptor.IInvocationContext.Parameters">
             <summary>
-            
+            方法参数
             </summary>
-            <param name="ctx"></param>
         </member>
-        <member name="M:NLite.Interceptor.InterceptorBroker.OnException(NLite.Interceptor.IInvocationExceptionContext)">
-            <summary>
-            
-            </summary>
-            <param name="ctx"></param>
+        <member name="M:NLite.Interceptor.InvocationContext.Proceed">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Interceptor.InvocationContext.Target">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Interceptor.InvocationContext.Method">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Interceptor.InvocationContext.Parameters">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Interceptor.InvocationContext.StaticTargetInterceptor.Intercept(NLite.Interceptor.IInvocationContext)">
+            <inheritdoc/>
         </member>
         <member name="T:NLite.Interceptor.Aspect">
             <summary>
             切面工厂类
             </summary>
+        </member>
+        <member name="M:NLite.Interceptor.Aspect.GetPointCuts(System.Type)">
+            <summary>
+            得到类型对应的所有切点信息
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
         </member>
         <member name="M:NLite.Interceptor.Aspect.FromNamespace(System.String)">
             <summary>
@@ -12532,21 +14493,14 @@
             <param name="componentType"></param>
             <returns></returns>
         </member>
-        <member name="T:NLite.Interceptor.IInterceptorRepository">
-            <summary>
-            拦截器仓储接口
-            </summary>
-        </member>
-        <member name="M:NLite.Interceptor.IInterceptorRepository.Get(System.Reflection.MethodInfo)">
-            <summary>
-            得到指定方法上的所有拦截器
-            </summary>
-            <param name="method"></param>
-            <returns></returns>
-        </member>
         <member name="T:NLite.Interceptor.InterceptorRepository">
             <summary>
             拦截器仓储
+            </summary>
+        </member>
+        <member name="F:NLite.Interceptor.InterceptorRepository.Instance">
+            <summary>
+            
             </summary>
         </member>
         <member name="M:NLite.Interceptor.InterceptorRepository.Get(System.Reflection.MethodInfo)">
@@ -12750,7 +14704,7 @@
             <summary>
             得到缺省构造函数委托
             </summary>
-            <param name="binderType"></param>
+            <param name="type"></param>
             <returns></returns>
         </member>
         <member name="M:NLite.Reflection.DynamicMethodFactory.GetGetter(System.Reflection.MemberInfo)">
@@ -12885,6 +14839,301 @@
             <param name="binderType"></param>
             <param name="bindingFlags"></param>
             <returns></returns>
+        </member>
+        <member name="T:NLite.Threading.ActiveObject.IActiveObject">
+            <summary>
+            主动对象接口
+            </summary>
+        </member>
+        <member name="T:NLite.IStartable">
+            <summary>
+            启动接口
+            </summary>
+        </member>
+        <member name="M:NLite.IStartable.Start">
+            <summary>
+            启动
+            </summary>
+        </member>
+        <member name="M:NLite.IStartable.Stop">
+            <summary>
+            停止
+            </summary>
+        </member>
+        <member name="M:NLite.Threading.ActiveObject.IActiveObject.AddTask(NLite.Threading.ActiveObject.IActiveTask)">
+            <summary>
+            添加主动任务
+            </summary>
+            <param name="task"></param>
+        </member>
+        <member name="M:NLite.Threading.ActiveObject.IActiveObject.AddTaskListener(NLite.Threading.ActiveObject.IActiveTaskListener)">
+            <summary>
+            添加任务监听器
+            </summary>
+            <param name="listener"></param>
+        </member>
+        <member name="M:NLite.Threading.ActiveObject.IActiveObject.RemoveTaskListener(NLite.Threading.ActiveObject.IActiveTaskListener)">
+            <summary>
+            移除任务监听器
+            </summary>
+            <param name="listener"></param>
+        </member>
+        <member name="M:NLite.Threading.ActiveObject.IActiveObject.AddListener(NLite.Threading.ActiveObject.IActiveObjectListener)">
+            <summary>
+            添加主动对象监听器
+            </summary>
+            <param name="listener"></param>
+        </member>
+        <member name="M:NLite.Threading.ActiveObject.IActiveObject.RemoveListener(NLite.Threading.ActiveObject.IActiveObjectListener)">
+            <summary>
+            移除主动对象监听器
+            </summary>
+            <param name="listener"></param>
+        </member>
+        <member name="P:NLite.Threading.ActiveObject.IActiveObject.Name">
+            <summary>
+            得到一个值来指示当前主动对象的名称
+            </summary>
+        </member>
+        <member name="P:NLite.Threading.ActiveObject.IActiveObject.CurrentTask">
+            <summary>
+            得到当前正在执行的主动任务
+            </summary>
+        </member>
+        <member name="T:NLite.Threading.ActiveObject.ActiveObjectExtensions">
+            <summary>
+            主动任务扩展类
+            </summary>
+        </member>
+        <member name="M:NLite.Threading.ActiveObject.ActiveObjectExtensions.AddTask(NLite.Threading.ActiveObject.IActiveObject,System.Action)">
+            <summary>
+            添加一个同步任务
+            </summary>
+            <param name="activeObject"></param>
+            <param name="task"></param>
+        </member>
+        <member name="M:NLite.Threading.ActiveObject.ActiveObjectExtensions.AddAsyncTask(NLite.Threading.ActiveObject.IActiveObject,System.Action)">
+            <summary>
+            添加一个异步任务
+            </summary>
+            <param name="activeObject"></param>
+            <param name="task"></param>
+        </member>
+        <member name="T:NLite.Threading.ActiveObject.ActiveTaskEvent">
+            <summary>
+            主动任务事件
+            </summary>
+        </member>
+        <member name="M:NLite.Threading.ActiveObject.ActiveTaskEvent.#ctor(NLite.Threading.ActiveObject.IActiveTask,NLite.Threading.ActiveObject.ActiveTaskEventType,NLite.Threading.ActiveObject.ActiveTaskException)">
+            <summary>
+            主动任务事件
+            </summary>
+            <param name="task"></param>
+            <param name="type"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="P:NLite.Threading.ActiveObject.ActiveTaskEvent.Task">
+            <summary>
+            主动任务
+            </summary>
+        </member>
+        <member name="P:NLite.Threading.ActiveObject.ActiveTaskEvent.Type">
+            <summary>
+            任务类型
+            </summary>
+        </member>
+        <member name="P:NLite.Threading.ActiveObject.ActiveTaskEvent.Exception">
+            <summary>
+            任务异常
+            </summary>
+        </member>
+        <member name="P:NLite.Threading.ActiveObject.ActiveTaskEvent.Cancelled">
+            <summary>
+            得到或设置一个值，用来指示在Executing下该主动任务是否被取消了
+            </summary>
+        </member>
+        <member name="T:NLite.Threading.ActiveObject.ActiveObject">
+            <summary>
+            缺省主动对象实现
+            </summary>
+        </member>
+        <member name="F:NLite.Threading.ActiveObject.ActiveObject.ApartmentState">
+            <summary>
+            得到一个值来指示当前线程的单元状态
+            </summary>
+        </member>
+        <member name="M:NLite.Threading.ActiveObject.ActiveObject.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NLite.Threading.ActiveObject.ActiveObject.#ctor(System.String,System.Threading.ApartmentState)">
+            <summary>
+            构造一个新的主动对象
+            </summary>
+            <param name="activeObjectName">主动对象名称</param>
+            <param name="apartmentState">线程的单元状态，默认是MTA</param>
+        </member>
+        <member name="M:NLite.Threading.ActiveObject.ActiveObject.Start">
+            <summary>
+            启动主动对象
+            </summary>
+        </member>
+        <member name="M:NLite.Threading.ActiveObject.ActiveObject.Stop">
+            <summary>
+            停止主动对象
+            </summary>
+        </member>
+        <member name="M:NLite.Threading.ActiveObject.ActiveObject.AddTask(NLite.Threading.ActiveObject.IActiveTask)">
+            <summary>
+            添加主动任务
+            </summary>
+            <param name="task"></param>
+        </member>
+        <member name="M:NLite.Threading.ActiveObject.ActiveObject.AddTaskListener(NLite.Threading.ActiveObject.IActiveTaskListener)">
+            <summary>
+            添加任务监听器
+            </summary>
+            <param name="listener"></param>
+        </member>
+        <member name="M:NLite.Threading.ActiveObject.ActiveObject.RemoveTaskListener(NLite.Threading.ActiveObject.IActiveTaskListener)">
+            <summary>
+            移除任务监听器
+            </summary>
+            <param name="listener"></param>
+        </member>
+        <member name="M:NLite.Threading.ActiveObject.ActiveObject.AddListener(NLite.Threading.ActiveObject.IActiveObjectListener)">
+            <summary>
+            添加主动对象监听器
+            </summary>
+            <param name="listener"></param>
+        </member>
+        <member name="M:NLite.Threading.ActiveObject.ActiveObject.RemoveListener(NLite.Threading.ActiveObject.IActiveObjectListener)">
+            <summary>
+            移除主动对象监听器
+            </summary>
+            <param name="listener"></param>
+        </member>
+        <member name="M:NLite.Threading.ActiveObject.ActiveObject.Dispose(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="P:NLite.Threading.ActiveObject.ActiveObject.Name">
+            <summary>
+            得到一个值来指示当前主动对象的名称
+            </summary>
+        </member>
+        <member name="P:NLite.Threading.ActiveObject.ActiveObject.CurrentTask">
+            <summary>
+            得到当前正在执行的主动任务
+            </summary>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.Internal.Reflection.TypeExtensions">
+            <summary>
+            Provides <see cref="T:System.Type"/> extension methods.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Reflection.TypeExtensions.IsDelegate(System.Type)">
+            <summary>
+            Returns a value indicating whether the specified type is a delegate.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>A value indicating whether the specified type is a delegate.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Reflection.TypeExtensions.IsVoid(System.Type)">
+            <summary>
+            Returns a value indicating whether the specified type is void.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>A value indicating whether the specified type is void.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Reflection.TypeExtensions.GetConstructor(System.Type,System.Reflection.BindingFlags,System.Type[])">
+            <summary>
+            Returns the constructor information that reflects the constructor that matches the specified criterias.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="bindingFlags">The binding flags.</param>
+            <param name="parameterTypes">The parameter types.</param>
+            <returns>The constructor information.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Reflection.TypeExtensions.GetMethod(System.Type,System.String,System.Reflection.BindingFlags,System.Type[])">
+            <summary>
+            Returns the method that reflects the method that matches the specified criterias.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="methodName">The method name.</param>
+            <param name="bindingFlags">The binding flags.</param>
+            <param name="parameterTypes">The parameter types.</param>
+            <returns>The method information.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Reflection.TypeExtensions.MapGenericType(System.Type,System.Type[])">
+            <summary>
+            Maps a type to the specified generic types.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="genericTypes">The generic types.</param>
+            <returns>The mapped type.</returns>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Reflection.TypeExtensions.MapGenericArguments(System.Type,System.Type[])">
+            <summary>
+            Maps the generic arguments to the specified generic types.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="genericTypes">The generic types.</param>
+            <returns>The mapped generic arguments.</returns>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.Internal.Reflection.MemberToken">
+            <summary>
+            Represents a value which uniquely identifies a member.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.Internal.Reflection.MemberToken._declaringType">
+            <summary>
+            The declaring type.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.Internal.Reflection.MemberToken._metadataToken">
+            <summary>
+            The metadata token.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Reflection.MemberToken.#ctor(System.Reflection.MemberInfo)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NLite.Reflection.Dynamic.Internal.Reflection.MemberToken"/> struct.
+            </summary>
+            <param name="memberInfo">The member information.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Reflection.MemberToken.Equals(NLite.Reflection.Dynamic.Internal.Reflection.MemberToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Reflection.MemberToken.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Reflection.MemberToken.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Reflection.MemberToken.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.Internal.Caching.Cache`2">
+            <summary>
+            Represents a cache.
+            </summary>
+        </member>
+        <member name="F:NLite.Reflection.Dynamic.Internal.Caching.Cache`2._values">
+            <summary>
+            The values.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Caching.Cache`2.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NLite.Reflection.Dynamic.Internal.Caching.Cache`2"/> class.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Caching.Cache`2.GetOrAdd(`0,System.Func{`0,`1})">
+            <inheritdoc/>
         </member>
         <member name="T:NLite.Messaging.MessageListnerType">
             <summary>
@@ -13039,178 +15288,8 @@
             <summary>
             构造循环依赖异常对象
             </summary>
-            <param name="bindingInfo"></param>
+            <param name="info"></param>
             <param name="context"></param>
-        </member>
-        <member name="T:NLite.Threading.IActiveObject">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:NLite.IStartable">
-            <summary>
-            启动接口
-            </summary>
-        </member>
-        <member name="M:NLite.IStartable.Start">
-            <summary>
-            启动
-            </summary>
-        </member>
-        <member name="M:NLite.IStartable.Stop">
-            <summary>
-            停止
-            </summary>
-        </member>
-        <member name="M:NLite.Threading.IActiveObject.AddCommand(NLite.ICommand)">
-            <summary>
-            
-            </summary>
-            <param name="cmd"></param>
-        </member>
-        <member name="P:NLite.Threading.IActiveObject.Interval">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:NLite.Threading.Command">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:NLite.ICommand">
-            <summary>
-            无参数命令接口
-            </summary>
-        </member>
-        <member name="M:NLite.ICommand.Execute">
-            <summary>
-            执行命令方法
-            </summary>
-        </member>
-        <member name="M:NLite.Threading.Command.OnExecuting">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:NLite.Threading.Command.OnExecute">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:NLite.Threading.Command.OnExecuted">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:NLite.Threading.Command.Execute">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:NLite.Threading.Command.Current">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:NLite.Threading.CompositeCommand">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:NLite.ICompositeCommand">
-            <summary>
-            复合命令接口
-            </summary>
-        </member>
-        <member name="M:NLite.ICompositeCommand.Add(NLite.ICommand)">
-            <summary>
-            添加命令
-            </summary>
-            <param name="cmd"></param>
-        </member>
-        <member name="M:NLite.Threading.CompositeCommand.Add(NLite.ICommand)">
-            <summary>
-            
-            </summary>
-            <param name="cmd"></param>
-        </member>
-        <member name="M:NLite.Threading.CompositeCommand.Execute">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:NLite.Threading.Internal.CompoisteCommandQueue">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:NLite.Threading.Internal.CompoisteCommandQueue.Add(NLite.ICommand)">
-            <summary>
-            
-            </summary>
-            <param name="cmd"></param>
-        </member>
-        <member name="M:NLite.Threading.Internal.CompoisteCommandQueue.Execute">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:NLite.Threading.ActiveObjectExtensions">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:NLite.Threading.ActiveObjectExtensions.AddCommand(NLite.Threading.IActiveObject,System.Action)">
-            <summary>
-            
-            </summary>
-            <param name="activeObject"></param>
-            <param name="command"></param>
-        </member>
-        <member name="T:NLite.Threading.ActiveObject">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:NLite.Threading.ActiveObject.#ctor">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:NLite.Threading.ActiveObject.#ctor(System.String,NLite.ICompositeCommand)">
-            <summary>
-            
-            </summary>
-            <param name="name"></param>
-            <param name="compositeCommand"></param>
-        </member>
-        <member name="M:NLite.Threading.ActiveObject.AddCommand(NLite.ICommand)">
-            <summary>
-            
-            </summary>
-            <param name="cmd"></param>
-        </member>
-        <member name="M:NLite.Threading.ActiveObject.Start">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:NLite.Threading.ActiveObject.Stop">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:NLite.Threading.ActiveObject.Name">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:NLite.Threading.ActiveObject.Interval">
-            <summary>
-            
-            </summary>
         </member>
         <member name="T:NLite.StringFormatter">
             <summary>
@@ -13244,23 +15323,64 @@
             <param name="target">目标对象</param>
             <param name="value">成员值</param>
         </member>
+        <member name="T:NLite.Reflection.Dynamic.Internal.Definitions.InterfaceProxyDefinition">
+            <summary>
+            Represents an interface proxy definition.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.InterfaceProxyDefinition.#ctor(System.Type,System.Collections.Generic.IEnumerable{System.Type})">
+            <summary>
+            Initializes a new instance of the <see cref="T:NLite.Reflection.Dynamic.Internal.Definitions.InterfaceProxyDefinition"/> class.
+            </summary>
+            <param name="declaringType">The declaring type.</param>
+            <param name="interfaceTypes">The interface types.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.InterfaceProxyDefinition.AcceptVisitor(NLite.Reflection.Dynamic.Internal.Definitions.IProxyDefinitionVisitor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.InterfaceProxyDefinition.UnwrapProxy(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.InterfaceProxyDefinition.CreateProxy(System.Type,System.Object[])">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Definitions.InterfaceProxyDefinition.ImplementedInterfaces">
+            <inheritdoc/>
+        </member>
+        <member name="T:NLite.Reflection.Dynamic.Internal.Definitions.ClassProxyDefinition">
+            <summary>
+            Represents a class proxy definition.
+            </summary>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.ClassProxyDefinition.#ctor(System.Type,System.Collections.Generic.IEnumerable{System.Type})">
+            <summary>
+            Initializes a new instance of the <see cref="T:NLite.Reflection.Dynamic.Internal.Definitions.ClassProxyDefinition"/> class.
+            </summary>
+            <param name="declaringType">The declaring type.</param>
+            <param name="interfaceTypes">The interface types.</param>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.ClassProxyDefinition.AcceptVisitor(NLite.Reflection.Dynamic.Internal.Definitions.IProxyDefinitionVisitor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.ClassProxyDefinition.UnwrapProxy(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:NLite.Reflection.Dynamic.Internal.Definitions.ClassProxyDefinition.CreateProxy(System.Type,System.Object[])">
+            <inheritdoc/>
+        </member>
+        <member name="P:NLite.Reflection.Dynamic.Internal.Definitions.ClassProxyDefinition.ImplementedInterfaces">
+            <inheritdoc/>
+        </member>
         <member name="T:NLite.Mini.Listener.StartableListener">
             <summary>
             
             </summary>
         </member>
         <member name="M:NLite.Mini.Listener.StartableListener.OnPostInitialization(NLite.Mini.Context.IComponentContext)">
-            <summary>
-            
-            </summary>
-            <param name="ctx"></param>
+            <inheritdoc/>
         </member>
         <member name="M:NLite.Mini.Listener.StartableListener.OnPreDestroy(NLite.IComponentInfo,System.Object)">
-            <summary>
-            
-            </summary>
-            <param name="bindingInfo"></param>
-            <param name="instance"></param>
+            <inheritdoc/>
         </member>
         <member name="T:NLite.Mini.Listener.AopListener">
             <summary>
@@ -13354,7 +15474,7 @@
             <summary>
             
             </summary>
-            <param name="binderType"></param>
+            <param name="type"></param>
             <returns></returns>
         </member>
         <member name="M:NLite.Interceptor.Matcher.JoinPointMatcher.FlagsMatchMethodType(System.Reflection.MethodInfo,NLite.Interceptor.Metadata.IMethodSignature)">
@@ -13364,6 +15484,27 @@
             <param name="method"></param>
             <param name="pointcut"></param>
             <returns></returns>
+        </member>
+        <member name="T:NLite.ICommand">
+            <summary>
+            无参数命令接口
+            </summary>
+        </member>
+        <member name="M:NLite.ICommand.Execute">
+            <summary>
+            执行命令方法
+            </summary>
+        </member>
+        <member name="T:NLite.ICompositeCommand">
+            <summary>
+            复合命令接口
+            </summary>
+        </member>
+        <member name="M:NLite.ICompositeCommand.Add(NLite.ICommand)">
+            <summary>
+            添加命令
+            </summary>
+            <param name="cmd"></param>
         </member>
         <member name="T:NLite.ICommand`1">
             <summary>

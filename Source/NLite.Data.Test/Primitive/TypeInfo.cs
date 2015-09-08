@@ -56,6 +56,17 @@ namespace NLite.Data.Test.Primitive.Model
         //[Column]
         public UInt64? UInt64;
     }
+
+    [Table(Name = "TypeInfos")]
+    public class TypeInfo
+    {
+        [Id(Name = "Id", IsDbGenerated = true)]
+        public int Id;
+        //[Column]
+        public bool Boolean;
+      
+    }
+
     [Flags]
     public enum roles : int
     {

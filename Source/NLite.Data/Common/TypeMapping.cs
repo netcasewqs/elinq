@@ -45,7 +45,7 @@ namespace NLite.Data.Common
         public static readonly Dictionary<string, TypeMappingInfo> OracleDbMap = new Dictionary<string, TypeMappingInfo>(StringComparer.OrdinalIgnoreCase)
         {
             {"BLOB", new TypeMappingInfo{ CLRType= Types.ByteArray, DbType = DBType.Image, ProviderDbType =2, NativeType = "BLOB"}},
-            {"CLOB",new TypeMappingInfo{ CLRType = Types.String,DbType = DBType.Text,ProviderDbType =3,NativeType = "CLOB"}},
+            {"CLOB",new TypeMappingInfo{ CLRType = Types.String,DbType = DBType.Text,ProviderDbType =4,NativeType = "CLOB"}},
             {"DATE", new TypeMappingInfo{ CLRType = Types.DateTime, DbType = DBType.DateTime,ProviderDbType =6, NativeType = "DATE"}},
             {"LONG",new TypeMappingInfo{ CLRType= Types.String,DbType = DBType.NVarChar,ProviderDbType =10,NativeType = "LONG"}},
             {"LONG RAW",new TypeMappingInfo {CLRType = Types.ByteArray, DbType = DBType.Binary,ProviderDbType =9, NativeType = "LONG RAW"}},

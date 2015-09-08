@@ -121,6 +121,7 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="NLite">
       <HintPath>..\..\Libs\NLite\net35\NLite.dll</HintPath>
@@ -1338,7 +1339,6 @@
     </Compile>
     <Compile Include="..\NLite.Data\SQLiteConnectionWrapper.cs">
       <Link>SQLiteConnectionWrapper.cs</Link>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="..\NLite.Data\SqlLog.cs">
       <Link>SqlLog.cs</Link>

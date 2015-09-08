@@ -143,7 +143,29 @@ namespace NLite.Data
 
         public override void Open()
         {
-            innerConnection.Open();
+            switch (innerConnection.State)
+            {
+                case ConnectionState.Closed:
+                    innerConnection.Open();
+                    break;
+                case ConnectionState.Broken:
+                    try
+                    {
+                        innerConnection.Close();
+                    }
+                    catch
+                    {
+                    }
+                    try
+                    {
+                        innerConnection.Open();
+                    }
+                    catch
+                    {
+                    }
+                    break;
+            }
+
             dbConfiguration.totalOpenConnection = System.Threading.Interlocked.Increment(ref dbConfiguration.totalOpenConnection);
         }
 

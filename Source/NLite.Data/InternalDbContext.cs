@@ -215,7 +215,7 @@ namespace NLite.Data
                 {
                     LambdaExpression fn = Expression.Lambda(lambda.Type, plan, lambda.Parameters);
                     //DynamicLinqGenerator.GenerateMethod(fn);
-#if DEBUG
+#if DEBUG && !SDK35
                       return fn.Compile(DebugInfoGenerator.CreatePdbGenerator());
 #else
                     return fn.Compile();
@@ -227,7 +227,7 @@ namespace NLite.Data
                     //DynamicLinqGenerator.GenerateMethod(efn);
 
 #if DEBUG
-                       Func<object> fn = efn.Compile(DebugInfoGenerator.CreatePdbGenerator());
+                       Func<object> fn = efn.Compile(/*DebugInfoGenerator.CreatePdbGenerator()*/);
 #else
                     Func<object> fn = efn.Compile();
 #endif

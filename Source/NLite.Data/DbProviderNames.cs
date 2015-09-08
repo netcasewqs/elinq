@@ -19,6 +19,14 @@ namespace NLite.Data
         /// </summary>
         public const string Oracle_ODP = "Oracle.DataAccess.Client";
         /// <summary>
+        /// Oracle Managed ODP Provider
+        /// </summary>
+        public const string Oracle_Managed_ODP = "Oracle.ManagedDataAccess.Client";
+        /// <summary>
+        /// BJMT Oracle ODP Provider
+        /// </summary>
+        public const string NLite_Data_Oracle = "NLite.Data.OracleClient";
+        /// <summary>
         /// Microsoft Oracle Provider
         /// </summary>
         public const string Oracle = "System.Data.OracleClient";

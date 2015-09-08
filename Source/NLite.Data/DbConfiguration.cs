@@ -150,8 +150,12 @@ namespace NLite.Data
                     case DbProviderNames.Oracle_ODP:
                         connection = new ODPConnectionWrapper(this, connection);
                         break;
+                    case DbProviderNames.Oracle_Managed_ODP:
+                    case DbProviderNames.NLite_Data_Oracle:
+                        connection = new ManagedODPConnectionWrapper(this, connection);
+                        break;
                     case DbProviderNames.SQLite:
-                        connection = new SQLiteConnectionWrapper(this, connection) { IsFileDatabase = true };
+                        connection = new DbConnectionWrapper(this, connection) { IsFileDatabase = true };
                         break;
                     case DbProviderNames.SqlCe40:
                     case DbProviderNames.SqlCe35:
@@ -385,7 +389,7 @@ namespace NLite.Data
             switch (providerName)
             {
                 case DbProviderNames.SQLite:
-                    connectionCreator = () => new SQLiteConnectionWrapper(this, DbProviderFactory.CreateConnection()) { ConnectionString = connectionString, IsFileDatabase = true };
+                    connectionCreator = () => new DbConnectionWrapper(this, DbProviderFactory.CreateConnection()) { ConnectionString = connectionString, IsFileDatabase = true };
                     break;
                 case DbProviderNames.Oledb:
                 case DbProviderNames.SqlCe35:
@@ -400,6 +404,13 @@ namespace NLite.Data
                     break;
                 case DbProviderNames.Oracle_ODP:
                     connectionCreator = () => new ODPConnectionWrapper(this, DbProviderFactory.CreateConnection()) { ConnectionString = connectionString };
+                    break;
+                case DbProviderNames.Oracle_Managed_ODP:
+                    connectionCreator = () =>new ManagedODPConnectionWrapper(this, DbProviderFactory.CreateConnection()) { ConnectionString = connectionString };
+                    break;
+                case DbProviderNames.NLite_Data_Oracle:
+                    (DbProviderFactory as OracleClientFactory).Init(ConnectionString);
+                    connectionCreator = () => new ManagedODPConnectionWrapper(this, DbProviderFactory.CreateConnection());
                     break;
                 default:
                     connectionCreator = () => new DbConnectionWrapper(this, DbProviderFactory.CreateConnection()) { ConnectionString = connectionString };
